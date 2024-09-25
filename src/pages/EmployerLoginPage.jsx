@@ -10,7 +10,7 @@ const EmployerLoginPage = () => {
     <>
       <div className='employer-login-section'>
         <div className='employer-login-section-text'>
-          <h1>INDIA'S #1 HIRING PLATFORM</h1>
+          <h1>Your Gateway to Exceptional Talent!</h1>
           <h1>Find the right candidate. Fast.</h1>
           <p>Trusted by 5Cr+ Candidates | 7 Lakh+ Employers</p>
         </div>

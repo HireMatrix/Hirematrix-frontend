@@ -3,10 +3,12 @@ import dropDownPng from '../../assets/dropdown.png'
 import {useDispatch} from 'react-redux'
 import { togglePopup } from '../../features/loginpopup/loginpopupSlice'
 import hamburger from '../../assets/icons-hamburger.png'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { IoMdClose } from "react-icons/io";
 
 const LandingPageHeader = () => {
+
+    const dropDownBox = useRef();
 
     const dispatch = useDispatch()
     const onClickingcandidateLogin = () => {
@@ -15,6 +17,7 @@ const LandingPageHeader = () => {
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [activeSubMenu, setActiveSubMenu] = useState(null);
+    const [heightOfHr, setHeightOfHr] = useState(0);
 
     const togglePopHam = () => {
       setIsPopupOpen(!isPopupOpen);
@@ -24,6 +27,11 @@ const LandingPageHeader = () => {
       setActiveSubMenu(activeSubMenu === subMenuId ? null : subMenuId);
     };
 
+    useEffect(() => {
+        const heightOfDropDown = dropDownBox.current.offsetHeight;
+        setHeightOfHr(heightOfDropDown);
+    }, [])
+
 
   return (
     <nav className="nav-bar">
@@ -31,7 +39,7 @@ const LandingPageHeader = () => {
             <div className="nav-bar-container-options">
                 <img src={hamburger} alt='hamburger-icon' onClick={togglePopHam}/>
                 <Link to='/'>
-                    <img src="https://uptoskills.com/wp-content/uploads/2023/04/hd-logo-iguru.png" alt="logo"/>
+                    <img src="" alt="logo"/>
                 </Link>
                 {
                     window.location.pathname !== '/' && (
@@ -45,120 +53,122 @@ const LandingPageHeader = () => {
                                 <img className="drop-down-img" src={dropDownPng}/>
                             </a>
                             <div className="dropdown-container">
-                                <ul className="dropdown-list">
+                                <ul className="dropdown-list" ref={dropDownBox}>
                                     <li><a href="#">Work From Home</a></li>
-                                    <li><a href="#">Work From Home</a></li>
-                                    <li><a href="#">Work From Home</a></li>
-                                    <li><a href="#">Work From Home</a></li>
-                                    <li><a href="#">Work From Home</a></li>
+                                    <li><a href="#">Part Time Jobs</a></li>
+                                    <li><a href="#">Freshers Jobs</a></li>
+                                    <li><a href="#">Jobs for women</a></li>
+                                    <li><a href="#">Full Time Jobs</a></li>
                                 </ul>
                                 
                                 {/* <!-- line break --> */}
                                 
-                                <hr className='hr-tag-landingPage-header'/>
+                                <hr className='hr-tag-landingPage-header' style={{
+                                    height: `${heightOfHr}px`
+                                }}/>
 
                                 <ul className="dropdown-sub-list">
                                     <li>
-                                        <a href="#">Work From Home 
+                                        <a href="#"><span>Jobs By City</span>
                                             <img className="drop-down-img" src={dropDownPng}/>
                                         </a>
                                         <div className="dropdown-sub-container">
                                             <ul>
                                                 <li>
-                                                    <a href="#">drop drop 1</a>
+                                                    <a href="#">Jobs in Agra</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">drop drop 1</a>
+                                                    <a href="#">Jobs in Benguluru</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">drop drop 1</a>
+                                                    <a href="#">Jobs in Bhopal</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">drop drop 1</a>
+                                                    <a href="#">Jobs in Hyderabad</a>
                                                 </li>
                                             </ul>
                                         </div>
                                     </li>
                                     <li>
-                                        <a href="#">Work From Home 
+                                        <a href="#"><span>Jobs By Department</span> 
                                             <img className="drop-down-img" src={dropDownPng}/>
                                         </a>
                                         <div className="dropdown-sub-container">
                                             <ul>
                                                 <li>
-                                                    <a href="#">drop drop 2</a>
+                                                    <a href="#">Admin Roles</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">drop drop 2</a>
+                                                    <a href="#">Consulting</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">drop drop 2</a>
+                                                    <a href="#">Data Science</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">drop drop 2</a>
+                                                    <a href="#">Customer Support</a>
                                                 </li>
                                             </ul>
                                         </div>
                                     </li>
                                     <li>
-                                        <a href="#">Work From Home 
+                                        <a href="#"><span>Jobs By Company</span>
                                             <img className="drop-down-img" src={dropDownPng}/>
                                         </a>
                                         <div className="dropdown-sub-container">
                                             <ul>
                                                 <li>
-                                                    <a href="#">drop drop 3</a>
+                                                    <a href="#">Swiggy</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">drop drop 3</a>
+                                                    <a href="#">Paytm</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">drop drop 3</a>
+                                                    <a href="#">Blinkit</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">drop drop 3</a>
+                                                    <a href="#">Just Dial</a>
                                                 </li>
                                             </ul>
                                         </div>
                                     </li>
                                     <li>
-                                        <a href="#">Work From Home
+                                        <a href="#"><span>Jobs By Qualification</span>
                                             <img className="drop-down-img" src={dropDownPng}/>
                                         </a>
                                         <div className="dropdown-sub-container">
                                             <ul>
                                                 <li>
-                                                    <a href="#">drop drop 4</a>
+                                                    <a href="#">10th Pass Jobs</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">drop drop 4</a>
+                                                    <a href="#">12th Pass Jobs</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">drop drop 4</a>
+                                                    <a href="#">Diploma Jobs</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">drop drop 4</a>
+                                                    <a href="#">ITI Jobs</a>
                                                 </li>
                                             </ul>
                                         </div>
                                     </li>
                                     <li>
-                                        <a href="#">Work From Home
+                                        <a href="#">Others
                                             <img className="drop-down-img" src={dropDownPng}/>
                                         </a>
                                         <div className="dropdown-sub-container">
                                             <ul>
                                                 <li>
-                                                    <a href="#">drop drop 5</a>
+                                                    <a href="#">Free Job Alert</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">drop drop 5</a>
+                                                    <a href="#">Download HireMatrix app</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">drop drop 5</a>
+                                                    <a href="#">Blog</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">drop drop 5</a>
+                                                    <a href="#">Contact Us</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -177,12 +187,13 @@ const LandingPageHeader = () => {
                                             AI Resume Builder
                                         </a>
                                     </li>
-                                    <li><a href="#">Work From Home</a></li>
-                                    <li><a href="#">Work From Home</a></li>
-                                    <li><a href="#">Work From Home</a></li>
-                                    <li><a href="#">Work From Home</a></li>
+                                    <li><a href="#">AI Resume checker</a></li>
+                                    <li><a href="#">AI Mock Interview</a></li>
+                                    <li><a href="#">Blog</a></li>
                                 </ul>
-                                <hr className='hr-tag-landingPage-header'/>
+                                <hr className='hr-tag-landingPage-header' style={{
+                                    height: `${heightOfHr}px`
+                                }}/>
                                 <div className="watch-video-container">
                                     <img src="" alt=""/>
                                     <button>Watch video</button>
@@ -195,10 +206,12 @@ const LandingPageHeader = () => {
                             </a>
                             <div className="dropdown-container community-dropdown">
                                 <ul className="dropdown-list">
-                                    <li><a href="#">Work From Home</a></li>
-                                    <li><a href="#">Work From Home</a></li>
+                                    <li><a href="#">Communities</a></li>
+                                    <li><a href="#">Xclusives</a></li>
                                 </ul>
-                                <hr className='hr-tag-landingPage-header'/>
+                                <hr className='hr-tag-landingPage-header' style={{
+                                    height: `${heightOfHr}px`
+                                }}/>
                                 <div className="watch-video-container">
                                     <img src="" alt=""/>
                                     <button>Watch video</button>
@@ -210,7 +223,7 @@ const LandingPageHeader = () => {
             </div>
             <div className="login-buttons-container">
                 <Link to="/employer-login" target='_blank' style={{border: 'none', outline: 'none'}}>
-                    <button className="employer-btn">Employer Login</button>
+                    <button className="employer-btn">Recruiter Login</button>
                 </Link>
                 <button className="candidate-btn" onClick={onClickingcandidateLogin}>Candidate Login</button>
             </div>
@@ -225,37 +238,33 @@ const LandingPageHeader = () => {
                             <li className="popup-item" onClick={() => toggleSubMenu('homeSubMenu')}>
                                 <a href="#">Job</a>
                                 <ul id="homeSubMenu" className={`submenu ${activeSubMenu === 'homeSubMenu' ? 'open' : ''}`}>
-                                    <li className="submenu-item"><a href="#">Work from Home 1</a></li>
-                                    <li className="submenu-item"><a href="#">Work from Home 2</a></li>
-                                    <li className="submenu-item"><a href="#">Work from Home 3</a></li>
-                                    <li className="submenu-item"><a href="#">Work from Home 4</a></li>
+                                    <li className="submenu-item"><a href="#">Work From Home</a></li>
+                                    <li className="submenu-item"><a href="#">Part Time Jobs</a></li>
+                                    <li className="submenu-item"><a href="#">Fresher Jobs</a></li>
+                                    <li className="submenu-item"><a href="#">Full Time Jobs</a></li>
                                 </ul>
                             </li>
                             <li className="popup-item" onClick={() => toggleSubMenu('aboutSubMenu')}>
                                 <a href="#">Career Compass</a>
                                 <ul id="aboutSubMenu" className={`submenu ${activeSubMenu === 'aboutSubMenu' ? 'open' : ''}`}>
-                                    <li className="submenu-item"><a href="#">Work from Home 1</a></li>
-                                    <li className="submenu-item"><a href="#">Work from Home 2</a></li>
-                                    <li className="submenu-item"><a href="#">Work from Home 3</a></li>
-                                    <li className="submenu-item"><a href="#">Work from Home 4</a></li>
+                                    <li className="submenu-item"><a href="#">AI Resume builder</a></li>
+                                    <li className="submenu-item"><a href="#">AI Resume checker</a></li>
+                                    <li className="submenu-item"><a href="#">AI Mock Interviews</a></li>
+                                    <li className="submenu-item"><a href="#">Blog</a></li>
                                 </ul>
                             </li>
                             <li className="popup-item" onClick={() => toggleSubMenu('servicesSubMenu')}>
                                 <a href="#">Community</a>
                                 <ul id="servicesSubMenu" className={`submenu ${activeSubMenu === 'servicesSubMenu' ? 'open' : ''}`}>
-                                    <li className="submenu-item"><a href="#">Work from Home 1</a></li>
-                                    <li className="submenu-item"><a href="#">Work from Home 2</a></li>
-                                    <li className="submenu-item"><a href="#">Work from Home 3</a></li>
-                                    <li className="submenu-item"><a href="#">Work from Home 4</a></li>
+                                    <li className="submenu-item"><a href="#">Communities</a></li>
+                                    <li className="submenu-item"><a href="#">Xclusives</a></li>
                                 </ul>
                             </li>
                             <li className="popup-item" onClick={() => toggleSubMenu('contactSubMenu')}>
-                                <a href="#">Contact</a>
+                                <a href="#">Login</a>
                                 <ul id="contactSubMenu" className={`submenu ${activeSubMenu === 'contactSubMenu' ? 'open' : ''}`}>
-                                    <li className="submenu-item"><a href="#">Contact 1</a></li>
-                                    <li className="submenu-item"><a href="#">Contact 2</a></li>
-                                    <li className="submenu-item"><a href="#">Contact 3</a></li>
-                                    <li className="submenu-item"><a href="#">Contact 4</a></li>
+                                    <li className="submenu-item"><a href="#">Candidate</a></li>
+                                    <li className="submenu-item"><a href="/employer-login/">Recruiter</a></li>
                                 </ul>
                             </li>
                         </ul>

@@ -154,8 +154,8 @@ const JobLandingPage = () => {
         {/* <!-- search section --> */}
 
         <div className="search-jobs-container">
-          <h1>INDIA'S #1 JOB PLATFORM</h1>
-          <h1 className='search-job-heading-details'>Your job search ends here</h1>
+          <h1>Your Gateway to Exceptional Talent!</h1>
+          <h1>Effortless Hiring, Maximum Efficiency</h1>
           <p>Discover 50 lakh+ career opportunities</p>
           <div className={`search-input-container ${searchInputErrMsg ? 'error-search-input-el' : ''} ${locationInputErrMsg ? 'error-search-input-el' : ''}`}>
             <img src={searchPng} alt='search-icon'/>

@@ -6,7 +6,7 @@ const EmployerPageHeader = () => {
     <nav className='employer-page-nav-bar'>
       <div className='employer-page-header-continer'>
         <div className='employer-page-header-navigation-section'>
-            <img src='https://uptoskills.com/wp-content/uploads/2023/04/hd-logo-iguru.png' alt='main-logo'/>
+            <img src='' alt='main-logo'/>
             <ul>
                 <li>Jobs</li>
                 <li>Database</li>
