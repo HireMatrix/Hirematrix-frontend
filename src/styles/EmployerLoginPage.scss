@@ -1,7 +1,114 @@
-.employer-login-section {
-    width: 100vw;
+/* Main layout container */
+.employer-login-main-container {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15vw;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 85vh;
+    width: 100vw;
+    padding: 40px 50px;
+    .employer-login-section {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        background-color: #ffffff;
+        min-height: 100vh;
+        .employer-login-section-text {
+            max-width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            padding: 40px;
+            .employer-login-section-text div {
+                > h1 {
+                    font-size: 2.5em;
+                    color: #333;
+                }
+                > h2 {
+                    font-size: 2.5em;
+                    color: #333;
+                    margin-bottom: 15px;
+                }
+            }
+            .employer-login-line-between {
+                width: 100%;
+                background-color: #666;
+                height: 1.5px;
+            }
+            .employer-login-employer-stats {
+                display: flex;
+                gap: 50px; /* Space between each stat */
+                .employer-login-stat-item {
+                    text-align: center;
+                    .employer-login-stat-number {
+                        font-size: 2em;
+                        font-weight: bold;
+                        color: #15872f;
+                    }
+                    .employer-login-stat-label {
+                        font-size: 1.2em;
+                        color: #666;
+                    }
+                }
+            }
+        }
+        .employer-login-card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            > h2 {
+                font-size: 1.8em;
+                color: #333;
+                margin-bottom: 5px;
+            }
+            .employer-login-mobile-input-container label {
+                font-size: 1em;
+                color: #333;
+                display: block;
+                margin-bottom: 5px;
+            }
+            .employer-login-mobile-input-container input {
+                width: 100%;
+                padding: 10px;
+                font-size: 1em;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                margin-bottom: 15px;
+            }
+            .employer-login-login-button {
+                width: 100%;
+                padding: 12px;
+                background-color: #15872f;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 1.2em;
+                cursor: pointer;
+            }
+            .employer-login-divider {
+                text-align: center;
+                margin: 20px 0;
+                color: #666;
+                font-size: 0.9em;
+                > span {
+                    background-color: #fff;
+                    padding: 0 10px;
+                    position: relative;
+                    top: -10px;
+                }
+            }
+            .employer-login-company-email-button {
+                width: 100%;
+                padding: 12px;
+                background-color: white;
+                color: #007bff;
+                border: 1px solid #007bff;
+                border-radius: 5px;
+                font-size: 1.2em;
+                cursor: pointer;
+            }
+        }     
+    }
 }
