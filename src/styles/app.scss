@@ -1,0 +1,54 @@
+@import './jobLandingPage.scss';
+@import './header/LandingPageHeader.scss';
+@import './header/EmployerPageHeader.scss';
+@import './EmployerLoginPage.scss';
+@import './JobSearchPage.scss';
+@import './jobFilterSection.scss';
+@import './jobItem.scss';
+
+:root {
+    font-family: sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    overflow-x: hidden;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+ul {
+    list-style-type: none;
+}
+
+body {
+  user-select: none;
+}
+
+.loader {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    > div {
+        height: 10rem;
+        width: 10rem;
+        border-radius: 50%;
+        border-top: 1rem solid rgb(43, 43, 43);
+        border-left: 1rem solid rgb(43, 43, 43);
+        border-right: 1rem solid #fff;
+        border-bottom: 1rem solid #fff;
+        animation: loader-animation 0.5s linear infinite;
+    }
+}

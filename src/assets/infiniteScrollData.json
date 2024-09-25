@@ -1,0 +1,115 @@
+{
+    "candidatesInfiniteScroll": [
+        {
+            "imgUrl": "https://i.ibb.co/7QGp44k/profile.jpg",
+            "text": "Jafri Zain has fixed an interview"
+        },
+        {
+            "imgUrl": "https://i.ibb.co/7QGp44k/profile.jpg",
+            "text": "Riya Singh has fixed an interview"
+        },
+        {
+            "imgUrl": "https://i.ibb.co/7QGp44k/profile.jpg",
+            "text": "Suman Biswas got job 3 hours ago"
+        },
+        {
+            "imgUrl": "https://i.ibb.co/7QGp44k/profile.jpg",
+            "text": "As Swathi has fixed an interview"
+        },
+        {
+            "imgUrl": "https://i.ibb.co/7QGp44k/profile.jpg",
+            "text": "Zill Macwan got job 3 hours ago"
+        },
+        {
+            "imgUrl": "https://i.ibb.co/7QGp44k/profile.jpg",
+            "text": "Foridul got job 6 hours ago"
+        },
+        {
+            "imgUrl": "https://i.ibb.co/7QGp44k/profile.jpg",
+            "text": "Dharmender has fixed an interview"
+        },
+        {
+            "imgUrl": "https://i.ibb.co/7QGp44k/profile.jpg",
+            "text": "Riya Comfort has fixed an interview"
+        },
+        {
+            "imgUrl": "https://i.ibb.co/7QGp44k/profile.jpg",
+            "text": "Vikash kumar got job 4 hours ago"
+        },
+        {
+            "imgUrl": "https://i.ibb.co/7QGp44k/profile.jpg",
+            "text": "Ashirwad got job 8 hours ago"
+        },
+        {
+            "imgUrl": "https://i.ibb.co/7QGp44k/profile.jpg",
+             "text": "Swarup DAS has fixed an interview"
+        }
+    ],
+    "trendingJobInfiniteScrollList": [
+        {
+            "imgUrl": "",
+            "jobText": "Nurse / Patient Care",
+            "numText": "115 openings"
+        },
+        {
+            "imgUrl": "",
+            "jobText": "Interior Designer",
+            "numText": "119 openings"
+        },
+        {
+            "imgUrl": "",
+            "jobText": "Beautician / Hair Stylist",
+            "numText": "119 openings"
+        },
+        {
+            "imgUrl": "",
+            "jobText": "Labour / Factory Worker",
+            "numText": "122 openings"
+        },
+        {
+            "imgUrl": "",
+            "jobText": "Hospitality/ Hotel/ Event Management",
+            "numText": "169 openings"
+        },
+        {
+            "imgUrl": "",
+            "jobText": "Machine Operator",
+            "numText": "186 openings"
+        },
+        {
+            "imgUrl": "",
+            "jobText": "Office Help / Peon",
+            "numText": "186 openings"
+        },
+        {
+            "imgUrl": "",
+            "jobText": "Software / Web Developer",
+            "numText": "204 openings"
+        },
+        {
+            "imgUrl": "",
+            "jobText": "Housekeeping",
+            "numText": "217 openings"
+        },
+        {
+            "imgUrl": "",
+            "jobText": "Counsellor (Career / Visa)",
+            "numText": "247 openings"
+        },
+        {
+            "imgUrl": "",
+            "jobText": "Civil Engineer / Architect",
+            "numText": "249 openings"
+        },
+        {
+            "imgUrl": "",
+            "jobText": "Graphic Designer",
+            "numText": "272 openings"
+        },
+        {
+            "imgUrl": "",
+            "jobText": "Computer / Data Entry 'Operato'r / COPA",
+            "numText": "315 openings"
+        }
+    ]
+}

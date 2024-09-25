@@ -1,0 +1,145 @@
+.filter-icon-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    > div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        > img {
+            height: 14px;
+        }
+    }
+    > p {
+        color: rgb(31 130 104);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+}
+
+.diff-filter-items {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    > span {
+        background-color: rgb(235,243,254);
+        border-radius: 12px;
+        border: 1px solid rgb(88,129,189);
+        padding: 0 12px;
+        font-size: 14px;
+        color: rgb(40,83,153);
+        cursor: pointer;
+        > span {
+            color: rgb(32,85,164);
+            font-size: 17px;
+            margin-left: 5px;
+        }
+    }
+}
+
+.dropDown-click-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 8px 0;
+    cursor: pointer;
+    color: #000000;
+    > p {
+        font-size: 15px;
+        font-weight: 600;
+    }
+}
+
+.filter-section-dropdownimg {
+    height: 20px;
+    transition: all 0.1s linear;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}
+
+.filter-options-group {
+    display: flex !important;
+    flex-direction: column;
+    gap: 10px;
+    margin: 12px 0;
+    position: relative;
+    > label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #4b4b4b;
+        > input {
+            color: rgb(31 130 104);
+        }
+    }
+    > input{
+        margin-top: 20px;
+        position: relative;
+        width: 100%;
+    }
+}
+
+.filter-sortby-section {
+    border-bottom: 0.5px solid rgb(189, 189, 189);
+}
+
+.experience-range-filter-section {
+    border-bottom: 0.5px solid rgb(189, 189, 189);
+    > p {
+        color: #808080;
+    }
+}
+
+.salary-range-filter-section {
+    border-bottom: 0.5px solid rgb(189, 189, 189);
+    > p {
+        color: #808080;
+    }
+}
+
+.datePosted-radio-options-section {
+    border-bottom: 0.5px solid rgb(189, 189, 189);
+}
+
+.highestEdu-radio-options-section {
+    border-bottom: 0.5px solid rgb(189, 189, 189);
+    > p {
+        color: #808080;
+    }
+}
+
+.english-radio-options-section {
+    border-bottom: 0.5px solid rgb(189, 189, 189);
+    > p {
+        color: #808080;
+    }
+}
+
+.workMode-checkBox-section {
+    border-bottom: 0.5px solid rgb(189, 189, 189);
+}
+
+.range-top-text {
+    position: absolute;
+    transform: translate(-50%, -35%);
+    background-color: rgb(0,66,44);
+    color: #ffffff;
+    border-radius: 20px;
+    height: fit-content;
+    width: fit-content;
+    padding: 3px 9px;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.experience-label-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    color: #373737;
+}

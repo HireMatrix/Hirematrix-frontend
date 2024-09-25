@@ -1,0 +1,51 @@
+.employer-page-nav-bar {
+    height: 10vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+}
+
+.employer-page-header-continer {
+    height: 100%;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.employer-page-header-navigation-section {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 55px;
+    > img {
+        height: 40px;
+    }
+    > ul {
+        display: flex;
+        gap: 55px;
+        align-items: center;
+        white-space: nowrap;
+        color: black;
+        font-size: 19px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+}
+
+.employer-page-header-button-section {
+    > a {
+        > button {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: rgb(31 130 104);
+            cursor: pointer;
+        }
+    }
+}
