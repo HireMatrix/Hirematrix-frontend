@@ -376,6 +376,7 @@
     transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 /* job opening section */
@@ -452,6 +453,7 @@
     border-radius: 8px;
     color: rgb(31,130,104);
     outline: none !important;
+    cursor: pointer;
 }
 
 .job-opening-scroll-progress-container {
@@ -486,6 +488,7 @@
     &:hover {
         background-color: rgb(31,130,104);
         color: #ffffff;
+        cursor: pointer;
     }
 }
 
@@ -777,6 +780,7 @@
     &:hover {
         background-color: rgb(6, 101, 76);
         color: #ffffff;
+        cursor: pointer;
     }
 }
 
