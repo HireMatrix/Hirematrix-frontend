@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import dropDownPng from '../../assets/dropdown.png'
 import {useDispatch} from 'react-redux'
-import { togglePopup } from '../../features/loginpopup/loginpopupSlice'
+// import { togglePopup } from '../../features/loginpopup/loginpopupSlice'
 import hamburger from '../../assets/icons-hamburger.png'
 import { useEffect, useRef, useState } from 'react'
 import { IoMdClose } from "react-icons/io";
@@ -225,7 +225,9 @@ const LandingPageHeader = () => {
                 <Link to="/employer-login" target='_blank' style={{border: 'none', outline: 'none'}}>
                     <button className="employer-btn">Recruiter Login</button>
                 </Link>
-                <button className="candidate-btn" onClick={onClickingcandidateLogin}>Candidate Login</button>
+                <Link to="/candidate-login" className='candidate-btn'>
+                    <button onClick={onClickingcandidateLogin}>Candidate Login</button>
+                </Link>
             </div>
             <img src={hamburger} alt='hamburger-icon' className='mobile-ham-icon' onClick={togglePopHam}/>
             <div id="popupWindow" className={`popup-window ${isPopupOpen ? 'open' : ''}`}>
@@ -263,7 +265,7 @@ const LandingPageHeader = () => {
                             <li className="popup-item" onClick={() => toggleSubMenu('contactSubMenu')}>
                                 <a href="#">Login</a>
                                 <ul id="contactSubMenu" className={`submenu ${activeSubMenu === 'contactSubMenu' ? 'open' : ''}`}>
-                                    <li className="submenu-item"><a href="#">Candidate</a></li>
+                                    <li className="submenu-item"><a href="/candidate-login/">Candidate</a></li>
                                     <li className="submenu-item"><a href="/employer-login/">Recruiter</a></li>
                                 </ul>
                             </li>

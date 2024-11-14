@@ -4,12 +4,15 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Loader from './components/Loader.jsx';
 import LandingPageHeader from './components/header/LandingPageHeader.jsx';
 import EmployerPageHeader from './components/header/EmployerPageHeader.jsx';
-import JobItem from './pages/JobItem.jsx';
+import Basic_1 from './components/basic_details/Basic_1.jsx';
 
 const JobLandingPage = lazy(() => import('./pages/JobLandingPage.jsx'));
 const EmployerLoginPage = lazy(() => import('./pages/EmployerLoginPage.jsx'));
 const JobSearchPage = lazy(() => import('./pages/JobSearchPage.jsx'));
 const ResumeBuilderPage = lazy(() => import('./pages/ResumeBuilderPage.jsx'));
+const CandidateLoginPage = lazy(() => import('./pages/CandidateLoginPage.jsx'));
+const CandidateSignUpPage = lazy(() => import('./pages/CandidateSignUpPage.jsx'));
+const JobItem = lazy(() => import('./pages/JobItem.jsx'));
 
 const App = () => {
   return (
@@ -26,6 +29,21 @@ const App = () => {
             <>
               <EmployerPageHeader/>
               <EmployerLoginPage/>
+            </>
+          }/>
+          <Route path='/candidate-login' element={
+            <>
+              <CandidateLoginPage/>
+            </>
+          }/>
+          <Route path='/candidate-signup' element={
+            <>
+              <CandidateSignUpPage/>
+            </>
+          }/>
+          <Route path='/basic_details/basic_1' element={
+            <>
+              <Basic_1/>
             </>
           }/>
           <Route path='/jobs' element={

@@ -2,6 +2,26 @@ import { useState } from "react";
 
 const EmployerLoginPage = () => {
   const [employerNum, setEmployerNum] = useState('');
+  const [errorInNum, setErrorInNum] = useState({
+    message: '',
+    state: false
+  });
+
+  const onChangingMobileNum = (e) => {
+    const mob_number = e.target.value
+    if(mob_number.length > 10){
+      setErrorInNum({
+        message: 'Please Enter valid Number',
+        state: true
+      })
+    } else {
+      setErrorInNum({
+        message: '',
+        state: false
+      })
+      setEmployerNum(mob_number)
+    }
+  }
 
   return (
     <>
@@ -39,11 +59,15 @@ const EmployerLoginPage = () => {
               <label htmlFor="mobile-number">Mobile number</label>
               <input
                 id="mobile-number"
+                inputMode="numeric"
                 type="number"
                 placeholder="Enter 10 digit mobile number"
                 value={employerNum}
-                onChange={(e) => setEmployerNum(e.target.value)}
+                onChange={onChangingMobileNum}
               />
+              { errorInNum.state && (
+                <p>{errorInNum.message}</p>
+              )}
             </div>
             <button className="employer-login-login-button">Continue</button>
             <div className="employer-login-divider">

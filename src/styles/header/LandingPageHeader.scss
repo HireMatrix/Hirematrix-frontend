@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
+    position: relative;
     top: 0;
     background-color: #ffffff;
     z-index: 99999;
@@ -265,12 +265,23 @@
 }
 
 .candidate-btn {
-    background-color: rgb(31 130 104);
-    color: #ffffff;
-    &:hover {
-        border: 2px solid rgb(31 130 104) ;
+    border: 0;
+    outline: none;
+    button {
         background-color: transparent;
-        color: rgb(31 130 104);
+        border: 2px solid rgb(31, 130, 104);
+        outline: none;
+        color: #ffffff;
+        height: 100%;
+        width: 100%;
+        background-color: rgb(31 130 104);
+        padding: 6px 12px;
+        border-radius: 6px;
+        &:hover {
+            background-color: transparent;
+            color: rgb(31 130 104);
+            cursor: pointer;
+        }
     }
 }
 

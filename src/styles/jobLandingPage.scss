@@ -404,7 +404,7 @@
     min-height: 350px;
     display: flex;
     gap: 40px;
-    padding: 0 5rem;
+    padding: 0 1rem 0 0.5rem;
     overflow-x: auto !important;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -650,7 +650,7 @@
 }
 
 .user-rating-card {
-    min-height: 55%;
+    min-height: 53%;
     width: 500px;
     flex-shrink: 0;
     padding: 2rem;
@@ -892,6 +892,7 @@
     }
 
     .job-opening-heading {
+        font-size: 32px;
         text-align: center;
     }
     .job-opening-company-card {
@@ -942,8 +943,32 @@
         width: 100%;
         display: flex;
         justify-content: flex-start;
+        padding: 0 0.5rem 0 1rem;
     }
-    
+    .user-rating-card {
+        padding: 1rem;
+        width: 340px;
+        .user-review-text {
+            font-size: 13px;
+        }
+        .users-name-rating {
+            .rating-user-name-text {
+                font-size: 15px;
+                > span {
+                    font-size: 11px;
+                    > img {
+                        height: 15px;
+                        margin-right:5px;
+                    }
+                }
+            }
+            .rating-stars-container {
+                > p {
+                    font-size: 11px;
+                }
+            }
+        }
+    }
     .employer-card {
         display: flex;
         flex-direction: column-reverse;
