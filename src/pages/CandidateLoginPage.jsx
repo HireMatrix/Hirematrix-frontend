@@ -1,15 +1,22 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { signIn } from '../features/auth/authSlice';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
+import { Link, useNavigate } from 'react-router-dom';
 
 const CandidateLoginPage = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  // const [date, setDate] = useState(new Date());
 
   // const authSlice = useSelector(state => state.auth);
 
@@ -17,58 +24,92 @@ const CandidateLoginPage = () => {
     e.preventDefault();
 
     if(email == ''){
-      setErrorMessage('please provide the Email');
+      setErrorMessage('*Please provide the Email');
     } else if(password == ''){
-      setErrorMessage('please provide the password')
+      setErrorMessage('*Please provide the password')
     } else {
       const response = await dispatch(signIn({email, password}))
       
       if(response.type.includes('rejected')){
-        setErrorMessage(response.payload);
+        setErrorMessage(`*${response.payload}`);
         setSuccessMessage('');
       } else {
-        setSuccessMessage(response.payload.message);
-        console.log(response.payload);
+        setSuccessMessage(`*${response.payload.message}`);
+        // console.log(response.payload);
         setErrorMessage('');
+        navigate('/');
       }
 
     }
   }
   return (
-    <div className='login-form-container'>
-      <form className='login-form' onSubmit={handleLoginForm}>
-        <div>
-          <label htmlFor='email'>Email : </label>
-          <input 
-            type='text'
-            id='name'
-            name='email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor='password'>Password : </label>
-          <input
-            type='password'
-            id='password'
-            name='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className='error-msg-container'>  
-          {errorMessage == '' ? null : (
-            <p>{errorMessage}</p>
-          )}
-          {successMessage == '' ? null : (
-            <p>{successMessage}</p>
-          )}
-        </div>
-        <div>
-          <button type='submit'>Login</button>
-        </div>
-      </form>
+    <div className='login-page-main-container'>
+      <div className='login-page-image'>
+        <h1>
+          Welcome back to
+        </h1>
+        <h1>
+          The HireMatix
+        </h1>
+      </div>
+      <div className='auth-form-container'>
+        <form className='login-form' onSubmit={handleLoginForm}>
+          <h1>Login</h1>
+          <div className='input-container login-input'>
+            <input 
+              type='text'
+              id='name'
+              name='email'
+              placeholder=" "
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <div className='label-el'>Email</div>
+          </div>
+          <div className='input-container'>
+            <input
+              type='password'
+              id='password'
+              name='password'
+              placeholder=" "
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <div className='label-el'>Password</div>
+          </div>
+          <div className='forgot-signup-msg-container'>
+            <p>
+              <Link to='/'>
+                Forgot password?
+              </Link>
+            </p>
+            <p>
+              <Link to='/candidate-signup'>
+                Don't have an account?
+              </Link>
+            </p>
+          </div>
+          {/* <div className='date-picker'>
+            <LocalizationProvider 
+              dateAdapter={AdapterDayjs}>
+              <DatePicker 
+                label="Date of Birth"
+              />
+            </LocalizationProvider>
+          </div> */}
+          <div className='error-msg-container'>  
+            {errorMessage == '' ? null : (
+              <p>{errorMessage}</p>
+            )}
+            {successMessage == '' ? null : (
+              <p>{successMessage}</p>
+            )}
+          </div>
+          <div className='login-button'>
+            <button type='submit'>Login</button>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

@@ -1,19 +1,22 @@
 import { Link } from 'react-router-dom'
 import dropDownPng from '../../assets/dropdown.png'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 // import { togglePopup } from '../../features/loginpopup/loginpopupSlice'
 import hamburger from '../../assets/icons-hamburger.png'
 import { useEffect, useRef, useState } from 'react'
 import { IoMdClose } from "react-icons/io";
+import { RiArrowDropDownLine } from "react-icons/ri";
+import { FaUser } from "react-icons/fa";
+import { RiLogoutBoxLine } from "react-icons/ri";
+import { logOut } from '../../features/auth/authSlice'
 
 const LandingPageHeader = () => {
 
     const dropDownBox = useRef();
 
-    const dispatch = useDispatch()
-    const onClickingcandidateLogin = () => {
-        dispatch(togglePopup())
-    }
+    const user = useSelector(state => state.auth);
+
+    const dispatch = useDispatch();
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [activeSubMenu, setActiveSubMenu] = useState(null);
@@ -26,6 +29,10 @@ const LandingPageHeader = () => {
     const toggleSubMenu = (subMenuId) => {
       setActiveSubMenu(activeSubMenu === subMenuId ? null : subMenuId);
     };
+
+    const handleLogout = () => {
+        dispatch(logOut())
+    }
 
     useEffect(() => {
         const heightOfDropDown = dropDownBox.current.offsetHeight;
@@ -221,14 +228,31 @@ const LandingPageHeader = () => {
                     </ul>
                 </div>
             </div>
-            <div className="login-buttons-container">
-                <Link to="/employer-login" target='_blank' style={{border: 'none', outline: 'none'}}>
-                    <button className="employer-btn">Recruiter Login</button>
-                </Link>
-                <Link to="/candidate-login" className='candidate-btn'>
-                    <button onClick={onClickingcandidateLogin}>Candidate Login</button>
-                </Link>
-            </div>
+            {user.isAuthenticated ? (
+                <div className='user-details-dropDown-main-container' onClick={() => toggleSubMenu('UserDetailsMenu')}>
+                    <p>{user.user.name.charAt(0)}</p>
+                    <RiArrowDropDownLine/>
+                    <div className={`user-details-dropDown ${activeSubMenu == 'UserDetailsMenu' ? 'open' : ''}`}>
+                        <div>
+                            <FaUser/>
+                            <p>View Profile</p>
+                        </div>
+                        <div>
+                            <RiLogoutBoxLine/>
+                            <p onClick={handleLogout}>Logout</p>
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                <div className="login-buttons-container">
+                    <Link to="/employer-login" target='_blank' style={{border: 'none', outline: 'none'}}>
+                        <button className="employer-btn">Recruiter Login</button>
+                    </Link>
+                    <Link to="/candidate-login" className='candidate-btn'>
+                        <button>Candidate Login</button>
+                    </Link>
+                </div>
+            )}
             <img src={hamburger} alt='hamburger-icon' className='mobile-ham-icon' onClick={togglePopHam}/>
             <div id="popupWindow" className={`popup-window ${isPopupOpen ? 'open' : ''}`}>
                 <div className='popup-sub-window'>

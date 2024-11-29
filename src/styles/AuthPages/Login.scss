@@ -1,0 +1,145 @@
+.login-page-main-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  .login-page-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 50%;
+    > h1 {
+      font-size: 45px;
+      font-family: sans-serif;
+      width: 50%;
+      text-align: center;
+      padding: 0.2rem;
+    }
+  }
+  .auth-form-container {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.2);
+    border-top-left-radius: 30%;
+    border-bottom-left-radius: 30%;
+    animation: appera 0.3s linear;
+  
+    .login-form {
+      height: 40%;
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  
+      > h1 {
+        text-align: center;
+        margin-bottom: 5px;
+      }
+  
+      > .input-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 40px;
+        gap: 6px;
+  
+        > input {
+          position: absolute;
+          outline: none;
+          padding: 8px 5px;
+          font-size: 15px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          width: 100%;
+          height: 100%;
+          background: transparent;
+          z-index: 1;
+          transition: 0.2s ease;
+  
+          &:focus, &:hover {
+            border-color: rgb(31, 130, 104);
+          }
+  
+          &:focus + .label-el, 
+          &:not(:placeholder-shown) + .label-el {
+            top: 0;
+            left: 3.5%;
+            font-size: 12px;
+            color: rgb(31, 130, 104);
+            background-color: #fff;
+            z-index: 11;
+          }
+        }
+  
+        > .label-el {
+          position: absolute;
+          top: 50%;
+          left: 2.5%;
+          transform: translateY(-50%);
+          font-size: 16px;
+          color: #666;
+          transition: 0.2s ease;
+          pointer-events: none;
+          padding: 0 4px;
+        }
+      }
+      > .login-input {
+        margin: 1.9rem 0;
+      }
+      > .forgot-signup-msg-container {
+        display: flex;
+        justify-content: space-between;
+        width: 98.5%;
+        margin-top: 3px;
+        > p {
+          font-size: 15px;
+          > a {
+            text-decoration: underline;
+            color: rgb(0, 71, 184);
+          }
+        }
+      }
+      > .error-msg-container {
+          display: flex;
+          color: red;
+          width: 100%;
+          font-size: 13px;
+      }
+      > .login-button {
+        width: 60%;
+        margin-top: 1.2rem;
+        > button {
+          width: 100%;
+          height: 38px;
+          border-radius: 6px;
+          border-width: 0;
+          background-color: #15872f;
+          color: #fff;
+          font-size: 16px;
+          font-family: sans-serif;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  @keyframes appera {
+    from {
+      opacity: 0;
+      scale: 0.5;
+      transform: translateX(100%);
+    }
+
+    to {
+      opacity: 1;
+      scale: 1;
+      transform: translateX(0);
+    }
+  }
+}

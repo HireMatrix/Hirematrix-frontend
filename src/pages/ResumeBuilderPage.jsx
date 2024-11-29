@@ -8,7 +8,7 @@ const ResumeBuilderPage = () => {
         <h1 className = "resume-builder-h1">JobReady Toolkit</h1>
         <nav id= "resume-builder-navbar">
             <ul>
-                <li className = "resume-builder-list"><a href="#" class="active">Resumes</a></li>
+                <li className = "resume-builder-list"><a href="#" className="active">Resumes</a></li>
                 {/* <li className = "resume-builder-list"><a href="#">Cover Letters</a></li> */}
             </ul>
         </nav>
@@ -16,7 +16,7 @@ const ResumeBuilderPage = () => {
     {/* --------------- Main Section ------------------ */}
     <main>
         <div className="content">
-            <img className = "resume-builder-MainIcon" src="/src/assets/resumeBuilderPage/resume-builder-icon1.png" alt="Resume Icon" class="icon"></img>
+            <img className = "resume-builder-MainIcon" src="/src/assets/resumeBuilderPage/resume-builder-icon1.png" alt="Resume Icon"/>
             <h2>Create your best resume to advance career</h2>
             <p>Build from scratch or pre-fill it with LinkedIn, or Apna profile</p>
             <button className="resume-builder-btn">+ Create new resume</button>

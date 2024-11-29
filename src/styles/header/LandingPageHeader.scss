@@ -289,6 +289,61 @@
     display: none;
 }
 
+.user-details-dropDown-main-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    border-radius: 24px;
+    border: 1.5px solid rgb(183, 183, 183);
+    padding: 4px;
+    position: relative;
+    > p {
+        background-color: rgb(68, 32, 32);
+        font-size: 14px;
+        color: #ffffff;
+        padding: 4px 10px;
+        border-radius: 50%;
+        text-align: center;
+        border: 1px solid black;
+    }
+    > svg {
+        font-size: 27px;
+    }
+    > .user-details-dropDown {
+        display: none;
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        gap: 9px;
+        padding: 9px;
+        width: fit-content;
+        > div {
+            width: 100%;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            > p {
+                width: 100%;
+                text-wrap: nowrap;
+                font-size: 16px;
+            }
+            > svg {
+                height: 20px;
+                width: 20px;
+            }
+        }
+    }
+    > .open {
+        display: flex !important;
+        flex-direction: column;
+        background-color: #fff;
+        border: 1px solid rgb(183, 183, 183);
+        border-radius: 9px;
+    }
+}
+
 @media screen and (531px < width < 855px) {
     .nav-links-container {
         display: none;

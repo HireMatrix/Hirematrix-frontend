@@ -1,25 +1,95 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const CandidateSignUpPage = () => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
+
+    const dispatch = useDispatch();
+    
+    const handleSignUpForm = (e) => {
+      e.preventDefault();
+
+      if(email == ''){
+        setErrorMessage('*Please provide the Email');
+      } else if(password == ''){
+        setErrorMessage('*Please provide the Password');
+      } else {
+        const response = dispatch()
+      }
+    }
     
     return (
-      <div className='sign-up-form-container'>
-        <form onSubmit={handleSignUpForm}>
-          <div>
-              <input htmlFor='name'>Name : </input>
-              <input
-                  type='text'
-                  name='name'
-                  id='name'
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-              />
+      <div className='login-page-main-container'>
+      <div className='login-page-image'>
+        <h1>
+          Welcome to
+        </h1>
+        <h1>
+          The HireMatix
+        </h1>
+      </div>
+      <div className='auth-form-container'>
+        <form className='login-form' onSubmit={handleSignUpForm}>
+          <h1>Sign Up</h1>
+          <div className='input-container'>
+            <input 
+              type='text'
+              name='text'
+              placeholder=" "
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <div className='label-el'>Name</div>
+          </div>
+          <div className='input-container login-input'>
+            <input 
+              type='text'
+              id='name'
+              name='email'
+              placeholder=" "
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <div className='label-el'>Email</div>
+          </div>
+          <div className='input-container'>
+            <input
+              type='password'
+              id='password'
+              name='password'
+              placeholder=" "
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <div className='label-el'>Password</div>
+          </div>
+          <div className='forgot-signup-msg-container'>
+            <p>
+              <Link to='/candidate-login'>
+                Already have account please Login?
+              </Link>
+            </p>
+          </div>
+          <div className='error-msg-container'>  
+            {errorMessage == '' ? null : (
+              <p>{errorMessage}</p>
+            )}
+            {successMessage == '' ? null : (
+              <p>{successMessage}</p>
+            )}
+          </div>
+          <div className='login-button'>
+            <button type='submit'>Login</button>
           </div>
         </form>
       </div>
+    </div>
     )
 }
 

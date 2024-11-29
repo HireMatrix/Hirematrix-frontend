@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import { setSearchContent, setLocationContent } from '../features/jobSearch/jobSearchSlice'
 
 import {candidatesInfiniteScroll, trendingJobInfiniteScrollList} from '../assets/infiniteScrollData.json'
@@ -19,7 +19,6 @@ import tickPng from '../assets/jobLandingPageImg/tick.png'
 import CandidateInfiniteSlider from '../components/infinitescroll/CandidateInfiniteSlider'
 import TrendingInfiniteSlider_1 from '../components/infinitescroll/TrendingInfiniteSlider_1'
 import TrendingInfiniteSlider_2 from '../components/infinitescroll/TrendingInfiniteSlider_2'
-import dropDown from '../assets/dropdown.png'
 
 const placeholderTextArray = [
   "'skill'",
@@ -556,7 +555,7 @@ const JobLandingPage = () => {
         <div className="employer-card">
             <img src={employerPng} alt="employe" className="employer-img"/>
             <div className="employer-card-details">
-                <h1 className="employer-theme">UPTOSKILLS For EMPLOYER</h1>
+                <h1 className="employer-theme">HireMatrix For EMPLOYER</h1>
                 <h1 className="employer-want-text">Want to hire?</h1>
                 <p className="employer-para">Find the best candidate from 5 crore+ active job seekers!</p>
                 <button className="post-btn">Post job</button>

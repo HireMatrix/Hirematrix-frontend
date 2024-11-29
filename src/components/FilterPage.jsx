@@ -125,7 +125,7 @@ const FilterPage = () => {
   }
 
   useEffect(() => {
-    console.log(filters)
+    // console.log(filters)
     dispatch(fetchedJobs(filters))
   }, [dispatch, filters])
 
