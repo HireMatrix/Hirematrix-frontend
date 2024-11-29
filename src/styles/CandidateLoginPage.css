@@ -1,0 +1,123 @@
+/* CandidateLoginPage.css */
+
+/* Container for the login form */
+.login-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: radial-gradient(closest-side, rgba(148, 112, 255, 0.21), #fff);
+    font-family: Arial, sans-serif;
+    
+  }
+  
+  /* Styling for the login form */
+  .login-form {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  /* Form labels */
+  .login-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  /* Form input fields */
+  .login-form input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .login-form input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Error and success message container */
+  .error-msg-container {
+    margin-bottom: 1rem;
+  }
+  
+  .error-msg-container p {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  .error-msg-container p:nth-child(1) {
+    color: #d9534f; /* Error message in red */
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+  }
+  
+  .error-msg-container p:nth-child(2) {
+    color: #155724; /* Success message in green */
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+  }
+  
+  /* Login button */
+  .login-form button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-form button:hover {
+    background-color: #0056b3;
+  }
+  
+
+  .social-login-options {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+    color: black;
+  }
+  
+  .social-login-options button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: white;
+    /* border: 1px solid #ddd; */
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .social-login-options button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .social-login-options img {
+    width: 35px;
+    height: 35px;
+    
+
+  }
+  
+  .google-login{
+    color: black;
+  }
