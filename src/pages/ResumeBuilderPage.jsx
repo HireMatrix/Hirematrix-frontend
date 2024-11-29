@@ -7,15 +7,6 @@ const ResumeBuilderPage = () => {
   return (
     <div className="resume-builder-page-main-container">
       {/* ----------Hero Section ------------------ */}
-<<<<<<< HEAD
-      <header className = "resumeBHead">
-        <h1 className = "resume-builder-h1">JobReady Toolkit</h1>
-        <nav id= "resume-builder-navbar">
-            <ul>
-                <li className = "resume-builder-list"><a href="#" className="active">Resumes</a></li>
-                {/* <li className = "resume-builder-list"><a href="#">Cover Letters</a></li> */}
-            </ul>
-=======
       <header className="resumeBHead">
         <h1 className="resume-builder-h1">JobReady Toolkit</h1>
         <nav id="resume-builder-navbar">
@@ -26,18 +17,11 @@ const ResumeBuilderPage = () => {
               </a>
             </li>
           </ul>
->>>>>>> 772ebd8e175ae3c7851d7047ed68ea3d7dbe9d37
         </nav>
       </header>
       {/* --------------- Main Section ------------------ */}
       <main>
         <div className="content">
-<<<<<<< HEAD
-            <img className = "resume-builder-MainIcon" src="/src/assets/resumeBuilderPage/resume-builder-icon1.png" alt="Resume Icon"/>
-            <h2>Create your best resume to advance career</h2>
-            <p>Build from scratch or pre-fill it with LinkedIn, or Apna profile</p>
-            <button className="resume-builder-btn">+ Create new resume</button>
-=======
           <img
             className="resume-builder-MainIcon"
             src="/src/assets/resumeBuilderPage/resume-builder-icon1.png"
@@ -52,7 +36,6 @@ const ResumeBuilderPage = () => {
           >
             + Create new resume
           </button>
->>>>>>> 772ebd8e175ae3c7851d7047ed68ea3d7dbe9d37
         </div>
       </main>
       <div className="cards-container">

@@ -111,9 +111,6 @@ const CandidateLoginPage = () => {
         </form>
       </div>
     </div>
-  </form>
-</div>
-
   )
 }
 
