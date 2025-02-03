@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { signUp } from '../features/auth/authSlice';
 
 const CandidateSignUpPage = () => {
 
@@ -20,7 +21,7 @@ const CandidateSignUpPage = () => {
       } else if(password == ''){
         setErrorMessage('*Please provide the Password');
       } else {
-        const response = dispatch()
+        const response = dispatch(signUp({name, email, password}))
       }
     }
     
