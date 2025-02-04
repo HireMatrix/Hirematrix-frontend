@@ -102,7 +102,7 @@
 .search-jobs-btn {
     outline: none;
     border: 0 solid grey;
-    background-color: rgb(31, 130, 104);
+    background-color: rgb(255, 111, 0);
     color: #ffffff;
     font-size: 15px;
     font-weight: 600;
@@ -113,8 +113,8 @@
     cursor: pointer;
     &:hover {
         background-color: transparent;
-        border: 1px solid rgb(31, 130, 104);
-        color: rgb(31 130 104);
+        border: 1px solid rgb(255, 111, 0);
+        color: rgb(255, 111, 0);
     }
 }
 

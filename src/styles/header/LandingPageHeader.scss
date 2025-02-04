@@ -14,7 +14,7 @@
     align-items: center;
     position: relative;
     top: 0;
-    background-color: #ffffff;
+    background-color: #000000;
     z-index: 99999;
     border-bottom: 1px solid rgb(218, 218, 218);
 }
@@ -39,6 +39,7 @@
     align-items: center;
     gap: 1.4rem;
     > a {
+        color: white;
         font-size: 16px;
         font-weight: 600;
         font-family: sans-serif;
@@ -49,6 +50,7 @@
     }
     > img {
         display: none;
+        
     }
 }
 
@@ -71,7 +73,7 @@
 .nav-links-item {
     padding: 5px;
     > a {
-        color: black;
+        color: white;
         text-decoration: none;
         font-size: 16px;
         display: flex;
@@ -200,7 +202,7 @@
             padding: 5px;
             > a {
                 text-decoration: none;
-                color: black;
+                color: white;
                 white-space: nowrap;
             }
         }
@@ -254,7 +256,8 @@
 }
 
 .employer-btn {
-    color: rgb(31 130 104);
+    // color: rgb(31 130 104);
+    color: white;
     background-color: transparent;
     border: 0 solid grey;
     outline: none !important;
@@ -269,17 +272,17 @@
     outline: none;
     button {
         background-color: transparent;
-        border: 2px solid rgb(31, 130, 104);
+        border: 2px solid rgb(255, 111, 0);
         outline: none;
         color: #ffffff;
         height: 100%;
         width: 100%;
-        background-color: rgb(31 130 104);
+        background-color: rgb(255, 111, 0);
         padding: 6px 12px;
         border-radius: 6px;
         &:hover {
             background-color: transparent;
-            color: rgb(31 130 104);
+            color: white;
             cursor: pointer;
         }
     }

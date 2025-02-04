@@ -223,7 +223,7 @@ const JobLandingPage = () => {
 
         <div className="trending_job_container">
             <h1 className="trending_job_mainhead">
-              Popular Searches on UptoSkills
+              Popular Searches on Hire-Matrix
             </h1>
             <div className="trending_job1 t_j_1">
                 <div>
@@ -418,7 +418,7 @@ const JobLandingPage = () => {
 
       <div className="trending-job-roles-container">
         <h1 className="job-opening-heading">
-            Trending job roles on UptoSkills
+            Trending job roles on Hire-Matrix
         </h1>
         <div className="trending-job-roles-infinite-scroll-container infi-1">
             <ul className="trending-job-roles-infinite-scroll-list-items">

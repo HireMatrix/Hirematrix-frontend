@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import dropDownPng from '../../assets/dropdown.png'
 import {useDispatch, useSelector} from 'react-redux'
 // import { togglePopup } from '../../features/loginpopup/loginpopupSlice'
-import hamburger from '../../assets/icons-hamburger.png'
+import hamburger from '../../assets/icon-hamburger-white.png'
 import { useEffect, useRef, useState } from 'react'
 import { IoMdClose } from "react-icons/io";
 import { RiArrowDropDownLine } from "react-icons/ri";
@@ -45,9 +45,10 @@ const LandingPageHeader = () => {
         <div className="nav-bar-container">
             <div className="nav-bar-container-options">
                 <img src={hamburger} alt='hamburger-icon' onClick={togglePopHam}/>
-                <Link to='/'>
-                    <img src="" alt="logo"/>
-                </Link>
+                <Link to="/">
+                <img src="/src/assets/hire1.jpg" alt="logo"/>
+</Link>
+
                 {
                     window.location.pathname !== '/' && (
                         <Link to='/'>Home</Link>
