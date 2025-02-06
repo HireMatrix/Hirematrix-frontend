@@ -54,7 +54,7 @@ const CandidateLoginPage = () => {
         console.log(response);
         setSuccessMessage(`*${response.message}`);
         setErrorMessage('');
-        // navigate('/');
+        navigate(`/reset-password/${response?.user?.resetPasswordToken}`);
       } catch (error) {
         console.log("Sign in Error", error);
         setErrorMessage(`*${error}`);

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { verifyEmail } from '../features/auth/authSlice';
 
 const VerifyEmailPage = () => {
 
@@ -8,8 +9,13 @@ const VerifyEmailPage = () => {
   const {token} = useParams();
   const lengthOfOtp = 6;
   const [otp, setOtp] = useState(new Array(lengthOfOtp).fill(""));
+  const [authOtp, setAuthOtp] = useState();
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const inputRefs = useRef([]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   
   useEffect(() => {
     if(inputRefs.current[0]){
@@ -17,8 +23,29 @@ const VerifyEmailPage = () => {
     }
   }, [])
   
-  const handleVerifyEmailForm = () => {
-    
+  const handleVerifyEmailForm = async (e) => {
+    e.preventDefault();
+    setErrorMessage('');
+    setSuccessMessage('');
+
+    if(authOtp === undefined) {
+      setErrorMessage('Please enter correct otp');
+      setSuccessMessage('');
+      return;
+    }
+
+    try {
+      const response = await dispatch(verifyEmail({token, authOtp})).unwrap();
+
+      // console.log(response);
+      setSuccessMessage(`*${response?.message}`);
+      setErrorMessage('');
+      navigate('/');
+    } catch (error) {
+      console.log('Verification Error: ', error);
+      setErrorMessage(`*${error}`);
+      setSuccessMessage('');
+    }
   }
 
   const handleOtpInputChange = (index, e) =>  {
@@ -35,6 +62,10 @@ const VerifyEmailPage = () => {
 
     if(value && index < lengthOfOtp - 1 && inputRefs.current[index+1]) {
       inputRefs.current[newOtp.indexOf("")].focus();
+    }
+
+    if(combinedOtp.length === 6) {
+      setAuthOtp(combinedOtp);
     }
   }
   const handleOtpInputClick = (index) => {
@@ -67,7 +98,7 @@ const VerifyEmailPage = () => {
           <div className='otp-main-container'>
             {
               otp.map((value, index) => (
-                <div className='otp-input-container'>
+                <div className='otp-input-container' key={index}>
                   <input
                     key={index}
                     value={value}
@@ -82,7 +113,21 @@ const VerifyEmailPage = () => {
               ))
             }
           </div>
-          <div className='submit-btn'>
+          <div className='verify-error-msg-container'>
+            {
+              errorMessage === '' ? '' 
+              : <p className='error-para'>
+                {`*${errorMessage}`}
+              </p>
+            }
+            {
+              successMessage === '' ? '' 
+              : <p className='success-para'>
+                {`*${successMessage}`}
+              </p>
+            }
+          </div>
+          <div className='verify-login-btn'>
             <button type='submit'>Submit</button>
           </div>
         </form>

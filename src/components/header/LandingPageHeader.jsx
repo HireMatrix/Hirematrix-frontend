@@ -16,6 +16,8 @@ const LandingPageHeader = () => {
 
     const user = useSelector(state => state.auth);
 
+    console.log(user?.user?.name);
+
     const dispatch = useDispatch();
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -231,7 +233,7 @@ const LandingPageHeader = () => {
             </div>
             {user.isAuthenticated ? (
                 <div className='user-details-dropDown-main-container' onClick={() => toggleSubMenu('UserDetailsMenu')}>
-                    <p>{user.user.name.charAt(0)}</p>
+                    <p>{user?.user?.name.charAt(0)}</p>
                     <RiArrowDropDownLine/>
                     <div className={`user-details-dropDown ${activeSubMenu == 'UserDetailsMenu' ? 'open' : ''}`}>
                         <div>

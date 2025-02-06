@@ -92,12 +92,17 @@ export const logOut = createAsyncThunk('auth/logout', async (_, {rejectWithValue
     }
 });
 
-export const verifyEmail = createAsyncThunk('auth/verifyEmail', async(token, {rejectWithValue}) => {
+export const verifyEmail = createAsyncThunk('auth/verifyEmail', async(verificationDetails, {rejectWithValue}) => {
+
+    console.log(verificationDetails);
+    const {token} = verificationDetails;
+
     try {
-        const response = await fetch(`http://localhost:3000/api/auth/verify-email/:${token}`, {
+        const response = await fetch(`http://localhost:3000/api/auth/verify-email/${token}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            credentials: 'include'
+            credentials: 'include',
+            body: JSON.stringify(verificationDetails)
         });
 
         if(!response.ok){
@@ -114,7 +119,6 @@ export const verifyEmail = createAsyncThunk('auth/verifyEmail', async(token, {re
 });
 
 export const forgotPassword = createAsyncThunk('auth/forgotpassword', async(email, {rejectWithValue}) => {
-    console.log(email);
     try {
         const response = await fetch('http://localhost:3000/api/auth/forgot-password', {
             method: 'POST',
@@ -135,9 +139,27 @@ export const forgotPassword = createAsyncThunk('auth/forgotpassword', async(emai
     }
 });
 
+export const resetPassword = createAsyncThunk('auth/resetPassword', async (resetPassDetails, {rejectWithValue}) => {
+    const {token} = resetPassDetails;
+    try {
+        const response = await fetch(`http://localhost:3000/api/auth/reset-password/${token}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(resetPassDetails),
+            credentials: 'include'
+        })
 
+        if(!response.ok){
+            const data = response.json();
+            return rejectWithValue(data?.message || 'Error in reseting teh password');
+        }
 
-// export const resetPassword = createAsyncThunk('auth/resetPassword', async (_))
+        const data = response.json();
+        return data;
+    } catch (error) {
+        return rejectWithValue(error?.message || 'Failed to reset Password, Please try again');
+    }
+})
 
 const initialState = {
     user: null,
@@ -192,7 +214,7 @@ const authSlice = createSlice({
                 state.errMessage = null
                 state.error = false
                 state.user = action.payload.user
-                state.isAuthenticated = action.payload.user
+                state.isAuthenticated = false
             })
             .addCase(logOut.pending, (state, action) => {
                 state.isLoading = true
@@ -234,7 +256,7 @@ const authSlice = createSlice({
                 state.errMessage = null
                 state.error = false
                 state.user = action.payload.user
-                state.isAuthenticated = action.payload.isAuthenticated
+                state.isAuthenticated = action.payload?.isAuthenticated || true
             }).addCase(verifyEmail.pending, (state, action) => {
                 state.isLoading = true
                 state.errMessage = null
@@ -274,8 +296,29 @@ const authSlice = createSlice({
                 state.isLoading = false
                 state.errMessage = null
                 state.error = false
+                state.user = action.payload.user
+                state.isAuthenticated = false
+            })
+            .addCase(resetPassword.pending, (state, action) => {
+                state.isLoading = true
+                state.errMessage = null
+                state.error = false
                 state.user = null
                 state.isAuthenticated = false
+            })
+            .addCase(resetPassword.rejected, (state, action) => {
+                state.isLoading = false
+                state.errMessage = action.payload
+                state.error = true
+                state.user = null
+                state.isAuthenticated = false
+            })
+            .addCase(resetPassword.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.errMessage = null
+                state.error = false
+                state.user = action.payload.user
+                state.isAuthenticated = true
             })
     }
 })
