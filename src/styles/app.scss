@@ -10,9 +10,9 @@
 @use './basic_details_pages/basic_details_1';
 @use './verifyEmailPage';
 @use './AddResume';
-@use './AiMockInterviewPage.scss';
-@use './Blogs.scss';
-@use './resumeChecker.scss';
+@use './AiMockInterviewPage';
+@use './Blogs';
+@use './resumeChecker';
 
 :root {
     font-family: sans-serif;
