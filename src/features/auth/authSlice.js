@@ -5,17 +5,17 @@ export const checkAuth = createAsyncThunk('auth/checkAuth', async (_, { rejectWi
         const response = await fetch('http://localhost:3000/api/auth/check-auth', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
+            credentials: 'include'
         });
 
         if (!response.ok) {
             const data = await response.json();
-            console.error(data);
             return rejectWithValue(data.message || 'Failed to check auth');
         }
 
         const data = await response.json();
-        console.log(data);
+
+        console.log(data)
         return data;
     } catch (error) {
         console.error(error.message);
@@ -30,6 +30,7 @@ export const signIn = createAsyncThunk('auth/signin', async (userDetails, {rejec
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(userDetails),
+            credentials: 'include'
         })
 
         if (!response.ok) {
@@ -38,8 +39,8 @@ export const signIn = createAsyncThunk('auth/signin', async (userDetails, {rejec
         }
 
         const data = await response.json();
-        const {_id, email, name, isVerified} = data?.user;
-        localStorage.setItem('userDetails', JSON.stringify({user : {id: _id, email: email, name: name, isVerified: isVerified}, isAuthenticated: true}));
+
+        // console.log(data);
         return data;
     } catch (error) {
         return rejectWithValue(error.message == undefined ? 'An Error occurred during sign in' : error.message )
@@ -50,8 +51,9 @@ export const signUp = createAsyncThunk('auth/signup', async (userDetails, {rejec
     try {
         const response = await fetch('http://localhost:3000/api/auth/signup', {
             method: 'POST',
-            headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify(userDetails)
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(userDetails),
+            credentials: 'include'
         });
 
         if(!response.ok){
@@ -60,15 +62,86 @@ export const signUp = createAsyncThunk('auth/signup', async (userDetails, {rejec
         }
 
         const data = await response.json();
+
+        // console.log(data);
         return data;
     } catch (error) {
         return rejectWithValue(error?.message || 'Failed at sign up, Please try agian...')
     }
 });
 
+export const logOut = createAsyncThunk('auth/logout', async (_, {rejectWithValue}) => {
+    try {
+        const response = await fetch('http://localhost:3000/api/auth/logout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include'
+        });
+
+        console.log(response);
+
+        if(!response.ok) {
+            return rejectWithValue('Error in logout');
+        }
+
+        const data = await response.json();
+        return data
+
+    } catch (error) {
+        return rejectWithValue('Error in logout')
+    }
+});
+
+export const verifyEmail = createAsyncThunk('auth/verifyEmail', async(token, {rejectWithValue}) => {
+    try {
+        const response = await fetch(`http://localhost:3000/api/auth/verify-email/:${token}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include'
+        });
+
+        if(!response.ok){
+            const data = response.json();
+            return rejectWithValue(data?.message || 'Error in Verifying the Email')
+        }
+
+        const data = response.json();
+        
+        return data;
+    } catch (error) {
+        return rejectWithValue(error?.message || 'Failed to send otp, Please try again..');
+    }
+});
+
+export const forgotPassword = createAsyncThunk('auth/forgotpassword', async(email, {rejectWithValue}) => {
+    console.log(email);
+    try {
+        const response = await fetch('http://localhost:3000/api/auth/forgot-password', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify(email),
+        });
+
+        if(!response.ok) {
+            const data = response.json();
+            return rejectWithValue(data?.message || 'Error in forgot password')
+        }
+
+        const data = response.json();
+        return data;
+    } catch (error) {
+        return rejectWithValue(error?.message || 'Failed to send request for Forgot password');
+    }
+});
+
+
+
+// export const resetPassword = createAsyncThunk('auth/resetPassword', async (_))
+
 const initialState = {
-    user: JSON.parse(localStorage.getItem('userDetails'))?.user || null,
-    isAuthenticated: JSON.parse(localStorage.getItem('userDetails'))?.isAuthenticated || false,
+    user: null,
+    isAuthenticated: false,
     error: false,
     errMessage: null,
     isLoading: false,
@@ -77,16 +150,6 @@ const initialState = {
 const authSlice = createSlice({
     name: 'authSlice',
     initialState,
-    reducers: {
-        logOut: (state) => {
-            state.user = null
-            state.isAuthenticated = false
-            state.error = false
-            state.errMessage = null
-            state.isLoading = false
-            localStorage.removeItem('userDetails')
-        }
-    },
     extraReducers: (builder) => {
         builder
             .addCase(signIn.pending, (state) => {
@@ -106,7 +169,7 @@ const authSlice = createSlice({
             .addCase(signIn.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isAuthenticated  = true
-                state.user = JSON.parse(localStorage.getItem('userDetails'))?.user
+                state.user = action.payload.user
                 state.error = false
                 state.errMessage = null
             })
@@ -128,15 +191,94 @@ const authSlice = createSlice({
                 state.isLoading = false
                 state.errMessage = null
                 state.error = false
-                state.user = action.payload
+                state.user = action.payload.user
+                state.isAuthenticated = action.payload.user
+            })
+            .addCase(logOut.pending, (state, action) => {
+                state.isLoading = true
+                state.errMessage = null
+                state.error = false
+                state.user = null
+                state.isAuthenticated = false
+            })
+            .addCase(logOut.rejected, (state, action) => {
+                state.isLoading = false
+                state.errMessage = action.payload
+                state.error = true
+                state.user = null
+                state.isAuthenticated = false
+            })
+            .addCase(logOut.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.errMessage = null
+                state.error = false
+                state.user = null
+                state.isAuthenticated = false
+            })
+            .addCase(checkAuth.pending, (state, action) => {
+                state.isLoading = true
+                state.errMessage = null
+                state.error = false
+                state.user = null
+                state.isAuthenticated = false
+            })
+            .addCase(checkAuth.rejected, (state, action) => {
+                state.isLoading = false
+                state.errMessage = action.payload
+                state.error = true
+                state.user = null
+                state.isAuthenticated = false
+            })
+            .addCase(checkAuth.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.errMessage = null
+                state.error = false
+                state.user = action.payload.user
+                state.isAuthenticated = action.payload.isAuthenticated
+            }).addCase(verifyEmail.pending, (state, action) => {
+                state.isLoading = true
+                state.errMessage = null
+                state.error = false
+                state.user = null
+                state.isAuthenticated = false
+            })
+            .addCase(verifyEmail.rejected, (state, action) => {
+                state.isLoading = false
+                state.errMessage = action.payload
+                state.error = true
+                state.user = null
+                state.isAuthenticated = false
+            })
+            .addCase(verifyEmail.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.errMessage = null
+                state.error = false
+                state.user = action.payload.user
                 state.isAuthenticated = true
+            })
+            .addCase(forgotPassword.pending, (state, action) => {
+                state.isLoading = true
+                state.errMessage = null
+                state.error = false
+                state.user = null
+                state.isAuthenticated = false
+            })
+            .addCase(forgotPassword.rejected, (state, action) => {
+                state.isLoading = false
+                state.errMessage = action.payload
+                state.error = false
+                state.user = null
+                state.isAuthenticated = false
+            })
+            .addCase(forgotPassword.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.errMessage = null
+                state.error = false
+                state.user = null
+                state.isAuthenticated = false
             })
     }
 })
-
-export const {
-    logOut
-} = authSlice.actions
 
 export default authSlice.reducer
 

@@ -173,7 +173,7 @@ const LandingPageHeader = () => {
                                                     <a href="#">Download HireMatrix app</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">Blog</a>
+                                                    <a href="#">Blogs</a>
                                                 </li>
                                                 <li>
                                                     <a href="#">Contact Us</a>
@@ -195,9 +195,9 @@ const LandingPageHeader = () => {
                                             AI Resume Builder
                                         </a>
                                     </li>
-                                    <li><a href="#">AI Resume checker</a></li>
-                                    <li><a href="#">AI Mock Interview</a></li>
-                                    <li><a href="#">Blog</a></li>
+                                    <li><a href="/resume-checker">AI Resume checker</a></li>
+                                    <li><a href="/ai-mock-interviews">AI Mock Interview</a></li>
+                                    <li><a href="/blogs">Blogs</a></li>
                                 </ul>
                                 <hr className='hr-tag-landingPage-header' style={{
                                     height: `${heightOfHr}px`

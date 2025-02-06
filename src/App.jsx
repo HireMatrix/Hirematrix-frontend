@@ -9,10 +9,6 @@ import Basic_1 from './components/basic_details/Basic_1.jsx';
 import { useDispatch } from 'react-redux';
 import { checkAuth } from './features/auth/authSlice.js';
 
-// import ResumeCardsPage from "./pages/resumeBuilder/ResumeCardsPage.jsx"; 
-
-
-
 const JobLandingPage = lazy(() => import('./pages/JobLandingPage.jsx'));
 const EmployerLoginPage = lazy(() => import('./pages/EmployerLoginPage.jsx'));
 const JobSearchPage = lazy(() => import('./pages/JobSearchPage.jsx'));
@@ -21,13 +17,28 @@ const CandidateLoginPage = lazy(() => import('./pages/CandidateLoginPage.jsx'));
 const CandidateSignUpPage = lazy(() => import('./pages/CandidateSignUpPage.jsx'));
 const JobItem = lazy(() => import('./pages/JobItem.jsx'));
 const AddResume = lazy(() => import('./pages/AddResume.jsx'));
+const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage.jsx'))
+const VerifyEmailPage = lazy(() => import('./pages/VerifyEmailPage.jsx'))
+const ResumeCheckerPage = lazy(() => import('./pages/ResumeCheckerPage.jsx'))
+const AiMockInterviewsPage = lazy(() => import('./pages/AiMockInterviewsPage.jsx'))
+const Blogs = lazy(() => import('./pages/Blogs.jsx'))
 
 const App = () => {
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(checkAuth())
+  async function authCheck() {
+    try {
+      const response = await dispatch(checkAuth()).unwrap()
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  authCheck();
+
   }, [])
 
   return (
@@ -56,6 +67,12 @@ const App = () => {
               <CandidateSignUpPage/>
             </>
           }/>
+          <Route path='/reset-password/:token' element={
+            <ResetPasswordPage/>
+          }/>
+          <Route path='/verify-email/:token' element={
+            <VerifyEmailPage/>
+          }/>
           <Route path='/basic_details/basic_1' element={
             <>
               <Basic_1/>
@@ -77,6 +94,24 @@ const App = () => {
             <>
               <LandingPageHeader/>
               <ResumeBuilderPage/>
+            </>
+          }/>
+          <Route path='/resume-checker' element={
+            <>
+              <LandingPageHeader/>
+              <ResumeCheckerPage/>
+            </>
+          }/>
+          <Route path='/ai-mock-interviews' element={
+            <>
+              <LandingPageHeader/>
+              <AiMockInterviewsPage/>
+            </>
+          }/>
+          <Route path='/blogs' element={
+            <>
+              <LandingPageHeader/>
+              <Blogs/>
             </>
           }/>
           {/* <Route path="/resume-cards" element={

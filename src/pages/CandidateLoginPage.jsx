@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { signIn } from '../features/auth/authSlice';
+import { forgotPassword, signIn } from '../features/auth/authSlice';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
@@ -28,20 +28,43 @@ const CandidateLoginPage = () => {
     } else if(password == ''){
       setErrorMessage('*Please provide the password')
     } else {
-      const response = await dispatch(signIn({email, password}))
-      
-      if(response.type.includes('rejected')){
-        setErrorMessage(`*${response.payload}`);
-        setSuccessMessage('');
-      } else {
-        setSuccessMessage(`*${response.payload.message}`);
-        // console.log(response.payload);
+      try {
+        const response = await dispatch(signIn({email, password})).unwrap()
+
+        console.log(response);
+        setSuccessMessage(`*${response.message}`);
         setErrorMessage('');
         navigate('/');
+      } catch (error) {
+        console.log("Sign in Error", error);
+        setErrorMessage(`*${error}`);
+        setSuccessMessage('');
       }
 
     }
   }
+
+  const handleForgotPassword = async () => {
+    if(email == ''){
+      setErrorMessage('*Please provide the Email')
+    } else {
+      try {
+        const response = await dispatch(forgotPassword({email})).unwrap();
+
+        console.log(response);
+        setSuccessMessage(`*${response.message}`);
+        setErrorMessage('');
+        // navigate('/');
+      } catch (error) {
+        console.log("Sign in Error", error);
+        setErrorMessage(`*${error}`);
+        setSuccessMessage('');
+      }
+    }
+
+    
+  }
+
   return (
     <div className='login-page-main-container'>
       <div className='login-page-image'>
@@ -79,7 +102,7 @@ const CandidateLoginPage = () => {
           </div>
           <div className='forgot-signup-msg-container'>
             <p>
-              <Link to='/'>
+              <Link onClick={handleForgotPassword}>
                 Forgot password?
               </Link>
             </p>
@@ -99,10 +122,10 @@ const CandidateLoginPage = () => {
           </div> */}
           <div className='error-msg-container'>  
             {errorMessage == '' ? null : (
-              <p>{errorMessage}</p>
+              <p className='error-para'>{errorMessage}</p>
             )}
             {successMessage == '' ? null : (
-              <p>{successMessage}</p>
+              <p className='success-para'>{successMessage}</p>
             )}
           </div>
           <div className='login-button'>
