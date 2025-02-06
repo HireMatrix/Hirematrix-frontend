@@ -26,7 +26,9 @@ const CandidateSignUpPage = () => {
           const response = await dispatch(signUp({name, email, password})).unwrap()
 
           // console.log(response.user.temporaryRouteToken);
-          navigate(`/verify-email/:${response?.user?.temporaryRouteToken}`)
+          setErrorMessage('')
+          setSuccessMessage(`*${response.message}`);
+          navigate(`/verify-email/${response?.user?.temporaryRouteToken}`)
         } catch (error) {
           console.log("signup error:", error);
           setErrorMessage(error);
@@ -88,10 +90,14 @@ const CandidateSignUpPage = () => {
             </div>
             <div className='error-msg-container'>  
               {errorMessage == '' ? null : (
-                <p>{errorMessage}</p>
+                <p className='error-para'>
+                  {errorMessage}
+                </p>
               )}
               {successMessage == '' ? null : (
-                <p>{successMessage}</p>
+                <p className='success-para'>
+                  {successMessage}
+                </p>
               )}
             </div>
             <div className='login-button'>

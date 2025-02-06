@@ -10,9 +10,9 @@
 @use './basic_details_pages/basic_details_1';
 @use './verifyEmailPage';
 @use './AddResume';
-@use './AiMockInterviewPage.scss';
-@use './Blogs.scss';
-@use './resumeChecker.scss';
+@use './AiMockInterviewPage';
+@use './Blogs';
+@use './resumeChecker';
 
 :root {
     font-family: sans-serif;
@@ -59,4 +59,12 @@ body {
         border-bottom: 1rem solid #fff;
         animation: loader-animation 0.5s linear infinite;
     }
+}
+
+.error-para {
+    color: red;
+}
+
+.success-para {
+    color: rgb(10, 148, 10);
 }
