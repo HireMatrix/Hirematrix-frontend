@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 export const checkAuth = createAsyncThunk('auth/checkAuth', async (_, { rejectWithValue }) => {
     try {
-        const response = await fetch('http://localhost:3000/api/auth/check-auth', {
+        const response = await fetch(`${VITE_API_URL}/api/auth/check-auth`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include'
@@ -26,7 +26,7 @@ export const checkAuth = createAsyncThunk('auth/checkAuth', async (_, { rejectWi
 export const signIn = createAsyncThunk('auth/signin', async (userDetails, {rejectWithValue}) => {
     // console.log(process.env.REACT_APP_API_URL);
     try {
-        const response = await fetch('http://localhost:3000/api/auth/login', {
+        const response = await fetch(`${VITE_API_URL}/api/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(userDetails),
@@ -49,7 +49,7 @@ export const signIn = createAsyncThunk('auth/signin', async (userDetails, {rejec
 
 export const signUp = createAsyncThunk('auth/signup', async (userDetails, {rejectWithValue}) => {
     try {
-        const response = await fetch('http://localhost:3000/api/auth/signup', {
+        const response = await fetch(`${VITE_API_URL}/api/auth/signup`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(userDetails),
@@ -72,7 +72,7 @@ export const signUp = createAsyncThunk('auth/signup', async (userDetails, {rejec
 
 export const logOut = createAsyncThunk('auth/logout', async (_, {rejectWithValue}) => {
     try {
-        const response = await fetch('http://localhost:3000/api/auth/logout', {
+        const response = await fetch(`${VITE_API_URL}/api/auth/logout`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include'
@@ -98,7 +98,7 @@ export const verifyEmail = createAsyncThunk('auth/verifyEmail', async(verificati
     const {token} = verificationDetails;
 
     try {
-        const response = await fetch(`http://localhost:3000/api/auth/verify-email/${token}`, {
+        const response = await fetch(`${VITE_API_URL}/api/auth/verify-email/${token}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
@@ -120,7 +120,7 @@ export const verifyEmail = createAsyncThunk('auth/verifyEmail', async(verificati
 
 export const forgotPassword = createAsyncThunk('auth/forgotpassword', async(email, {rejectWithValue}) => {
     try {
-        const response = await fetch('http://localhost:3000/api/auth/forgot-password', {
+        const response = await fetch(`${VITE_API_URL}/api/auth/forgot-password`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
@@ -142,7 +142,7 @@ export const forgotPassword = createAsyncThunk('auth/forgotpassword', async(emai
 export const resetPassword = createAsyncThunk('auth/resetPassword', async (resetPassDetails, {rejectWithValue}) => {
     const {token} = resetPassDetails;
     try {
-        const response = await fetch(`http://localhost:3000/api/auth/reset-password/${token}`, {
+        const response = await fetch(`${VITE_API_URL}/api/auth/reset-password/${token}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(resetPassDetails),
