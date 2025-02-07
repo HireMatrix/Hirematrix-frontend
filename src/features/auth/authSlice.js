@@ -106,11 +106,11 @@ export const verifyEmail = createAsyncThunk('auth/verifyEmail', async(verificati
         });
 
         if(!response.ok){
-            const data = response.json();
+            const data = await response.json();
             return rejectWithValue(data?.message || 'Error in Verifying the Email')
         }
 
-        const data = response.json();
+        const data = await response.json();
         
         return data;
     } catch (error) {
@@ -128,11 +128,11 @@ export const forgotPassword = createAsyncThunk('auth/forgotpassword', async(emai
         });
 
         if(!response.ok) {
-            const data = response.json();
+            const data = await response.json();
             return rejectWithValue(data?.message || 'Error in forgot password')
         }
 
-        const data = response.json();
+        const data = await response.json();
         return data;
     } catch (error) {
         return rejectWithValue(error?.message || 'Failed to send request for Forgot password');
@@ -150,11 +150,11 @@ export const resetPassword = createAsyncThunk('auth/resetPassword', async (reset
         })
 
         if(!response.ok){
-            const data = response.json();
+            const data = await response.json();
             return rejectWithValue(data?.message || 'Error in reseting teh password');
         }
 
-        const data = response.json();
+        const data = await response.json();
         return data;
     } catch (error) {
         return rejectWithValue(error?.message || 'Failed to reset Password, Please try again');
