@@ -6,7 +6,7 @@ export const fetchedJobs = createAsyncThunk(
         try {
             // console.log('Filters:', filters);
             const queryParams = new URLSearchParams(filters);
-            const response = await fetch(`${VITE_API_URL}/jobs?${queryParams}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/jobs?${queryParams}`, {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
