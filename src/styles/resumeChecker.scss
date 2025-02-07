@@ -9,7 +9,7 @@ body {
     align-items: center;
     display: flex;
     flex-direction: row;
-    background: linear-gradient(135deg, #1a237e, #4a148c);
+    background: linear-gradient(135deg, #6f836c, #181817);
     color: white;
     text-align: center;
     padding: 50px 120px;
@@ -21,7 +21,7 @@ body {
 }
 
 .highlight {
-    color: #ffeb3b;
+    color:  #ff750c;
 }
 
 .cta-buttons .btn {
@@ -35,22 +35,22 @@ body {
 }
 
 .btn.primary {
-    background-color: #4caf50;
+    background-color: #ff750c;
     color: white;
 }
 
 .btn.primary:hover {
-    background-color: #388e3c;
+    background-color: #ff750c;
 }
 
 .btn.secondary {
     background-color: white;
-    color: #4a148c;
-    border: 2px solid #4a148c;
+    color:  #ff750c;
+    border: 2px solid  #ff750c;
 }
 
 .btn.secondary:hover {
-    background-color: #4a148c;
+    background-color: #ff750c;
     color: white;
 }
 
@@ -76,6 +76,7 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     text-align: center;
     border-radius: 8px;
+    margin:10px;
     transition: transform 0.3s ease;
 }
 
@@ -84,10 +85,26 @@ body {
 }
 
 .btn.upload {
-    background-color: #2196f3;
+    background-color: #ff750c;
     color: white;
+    border-color: #ff750c;
+    padding: 3%;
+    border-radius: 8px;
 }
 
 .btn.upload:hover {
-    background-color: #1976d2;
+    background-color: #ffffff;
+    color:#ff750c;
+}
+.btn-checkresume{
+    background-color: #ff750c;
+    color: white;
+    border-color: #ff750c;
+    padding: 3%;
+    border-radius: 8px;
+    &:hover{
+        background-color: #ffffff;
+        color:#ff750c;
+    }
+
 }
