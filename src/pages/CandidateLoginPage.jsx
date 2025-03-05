@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { forgotPassword, signIn } from '../features/auth/authSlice';
+import { checkAuth, forgotPassword, signIn } from '../features/auth/authSlice';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
@@ -11,6 +11,24 @@ const CandidateLoginPage = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+
+    async function authCheck(){
+      try {
+        const response = await dispatch(checkAuth()).unwrap()
+        // console.log(response.success)
+
+        if(response.success) {
+          navigate('/')
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    authCheck();
+  }, [])
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

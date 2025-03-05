@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './AddResume.scss';
 
 const Resumedashboard = () => {
   const [activeSection, setActiveSection] = useState(null);

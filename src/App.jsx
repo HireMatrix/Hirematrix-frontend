@@ -1,30 +1,16 @@
-import React, { Suspense, lazy, useEffect } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Route, Routes } from 'react-router-dom'
 
-import Loader from './components/Loader.jsx';
-import LandingPageHeader from './components/header/LandingPageHeader.jsx';
-
-import EmployerPageHeader from './components/header/EmployerPageHeader.jsx';
-import Basic_1 from './components/basic_details/Basic_1.jsx';
 import { useDispatch } from 'react-redux';
 import { checkAuth } from './features/auth/authSlice.js';
-
-const JobLandingPage = lazy(() => import('./pages/JobLandingPage.jsx'));
-const EmployerLoginPage = lazy(() => import('./pages/EmployerLoginPage.jsx'));
-const JobSearchPage = lazy(() => import('./pages/JobSearchPage.jsx'));
-const ResumeBuilderPage = lazy(() => import('./pages/ResumeBuilderPage.jsx'));
-const CandidateLoginPage = lazy(() => import('./pages/CandidateLoginPage.jsx'));
-const CandidateSignUpPage = lazy(() => import('./pages/CandidateSignUpPage.jsx'));
-const JobItem = lazy(() => import('./pages/JobItem.jsx'));
-const AddResume = lazy(() => import('./pages/AddResume.jsx'));
-const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage.jsx'))
-const VerifyEmailPage = lazy(() => import('./pages/VerifyEmailPage.jsx'))
-const ResumeCheckerPage = lazy(() => import('./pages/ResumeCheckerPage.jsx'))
-const AiMockInterviewsPage = lazy(() => import('./pages/AiMockInterviewsPage.jsx'))
-const Blogs = lazy(() => import('./pages/Blogs.jsx'))
+import PageLayout from './PageLayout/index.jsx';
+import ProtectedRoute from './core/AuthRoutesMiddleWare/ProtectedRoute.jsx';
+import PublicRoute from './core/AuthRoutesMiddleWare/PublicRoute.jsx';
+import { PRIVATE_ROUTES } from './Constants/PrivateRouteNames.jsx';
+import { PUBLIC_ROUTES } from './Constants/PublicRouteNames.jsx';
+import ErrorPage, { ERROR_PAGE_TYPES } from './core/ErrorHandler/ErrorPage.jsx';
 
 const App = () => {
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -40,95 +26,43 @@ const App = () => {
   authCheck();
 
   }, [])
-
   return (
-    <BrowserRouter>
-      <Suspense fallback={<Loader/>}>
-        <Routes>
-          <Route path='/' element={
-            <>
-              <LandingPageHeader/>
-              <JobLandingPage/>
-            </>
-          }/>
-          <Route path='/employer-login' element={
-            <>
-              <EmployerPageHeader/>
-              <EmployerLoginPage/>
-            </>
-          }/>
-          <Route path='/candidate-login' element={
-            <>
-              <CandidateLoginPage/>
-            </>
-          }/>
-          <Route path='/candidate-signup' element={
-            <>
-              <CandidateSignUpPage/>
-            </>
-          }/>
-          <Route path='/reset-password/:token' element={
-            <ResetPasswordPage/>
-          }/>
-          <Route path='/verify-email/:token' element={
-            <VerifyEmailPage/>
-          }/>
-          <Route path='/basic_details/basic_1' element={
-            <>
-              <Basic_1/>
-            </>
-          }/>
-          <Route path='/jobs' element={
-            <>
-              <LandingPageHeader/>
-              <JobSearchPage/>
-            </>
-          }/>
-          <Route path='/jobs/:id' element={
-            <>
-              <LandingPageHeader/>
-              <JobItem/>
-            </>
-          }/>
-          <Route path='/resume-builder' element={
-            <>
-              <LandingPageHeader/>
-              <ResumeBuilderPage/>
-            </>
-          }/>
-          <Route path='/resume-checker' element={
-            <>
-              <LandingPageHeader/>
-              <ResumeCheckerPage/>
-            </>
-          }/>
-          <Route path='/ai-mock-interviews' element={
-            <>
-              <LandingPageHeader/>
-              <AiMockInterviewsPage/>
-            </>
-          }/>
-          <Route path='/blogs' element={
-            <>
-              <LandingPageHeader/>
-              <Blogs/>
-            </>
-          }/>
-          {/* <Route path="/resume-cards" element={
-            <>
-              <LandingPageHeader/>
-              <ResumeCardsPage />
-            </>
-          } /> */}
-          <Route path="/resume-dashboard" element={
-            <>
-              <LandingPageHeader/>
-              <AddResume />
-            </>
-          } />
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+    <Routes>
+      <Route element={<PageLayout/>}>
+        <Route element={<ProtectedRoute />}>
+          {
+            PRIVATE_ROUTES.map((route) => {
+              return (
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={route.component}
+                />
+              )
+            })
+          }
+        </Route>
+        <Route element={<PublicRoute/>}>
+          {
+            PUBLIC_ROUTES.map((route) => {
+              return (
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={route.component}
+                />
+              )
+            })
+          }
+        </Route>
+        <Route
+          path='*'
+          element={
+            <ErrorPage ErrorType={ERROR_PAGE_TYPES.PAGE_NOT_FOUND}/>
+          }
+        />
+      </Route>
+    </Routes>
   )
 }
 

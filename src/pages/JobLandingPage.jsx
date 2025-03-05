@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import { setSearchContent, setLocationContent } from '../features/jobSearch/jobSearchSlice'
 
 import {candidatesInfiniteScroll, trendingJobInfiniteScrollList} from '../assets/infiniteScrollData.json'

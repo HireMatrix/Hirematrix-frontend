@@ -1,0 +1,144 @@
+.chatbot-floating-btn-container {
+    position: fixed;
+    bottom: 29px;
+    right: 18px;
+    z-index: 9999;
+    background-color: rgb(0, 0, 0);
+    padding: 12px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    .chatbot-container {
+        height: 0;
+        width: 380px;
+        opacity: 0;
+        transform: scale(0.9);
+        transition: all 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        .chatbot-response-container {
+            height: 85%;
+            width: 100%;
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-y: auto;
+            > div {
+                width: 90%;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                .user-history {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    color: #ffffff;
+                    > p {
+                        background-color: rgb(41, 41, 41);
+                        padding: 7px;
+                        border-radius: 9px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        > span {
+                            font-size: 13px;
+                        }
+                    }
+
+                }
+                .bot-history {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    color: #ffffff;
+                    > p {
+                        background-color: rgb(41, 41, 41);
+                        padding: 7px;
+                        border-radius: 9px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        > span {
+                            font-size: 13px;
+                        }
+                    }
+                }
+            }
+        }
+        .chatbot-response-container::-webkit-scrollbar {
+            width: 4px;
+        }
+        .chatbot-response-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .chatbot-response-container::-webkit-scrollbar-thumb {
+            background: rgb(41, 41, 41);
+        }
+        .chatbot-input-container {
+            width: 100%;
+            height: 6.5%;
+            > form {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                gap: 12px;
+                > input {
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 4px;
+                    border-width: 0;
+                    padding-left: 16px;
+                    outline: none;
+                }
+                > button {
+                    width: 45px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #fff;
+                    background-color: rgb(255, 111, 0);
+                    border-width: 0;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    > svg {
+                        font-size: 19px;
+                    }
+                }
+            }
+        }
+    }
+    .chatbot-btn {
+        height: 29px;
+        width: 29px;
+        > div {
+            height: 100%;
+            width: 100%;
+            svg {
+                height: 100%;
+                width: 100%;
+                color: rgb(255, 111, 0);
+            }
+        }
+    }
+}
+
+.chatbot-closed {
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0);
+}
+
+.chatbot-opened {
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.chatbot-opened .chatbot-container {
+    height: 500px; 
+    opacity: 1;
+    transform: scale(1);
+}
