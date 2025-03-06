@@ -42,13 +42,41 @@ const PageLayout = () => {
     ...PRIVATE_ROUTES
   ]
 
-  const isAllowed = AllRoutes.find(route => route.path == pathname);
-  const matchedRoute = AllRoutes.find(route => route.path === pathname).header == 'admin';
+  const excludedRoutes = [
+    '/candidate-login', 
+    '/candidate-signup',
+    '/reset-password',
+    '/verify-email'
+  ];
+
+  const isExcluded = excludedRoutes.some(route => pathname.startsWith(route));
+
+  let isAllowed = false;
+
+  if (!isExcluded) {
+    const filteredRoutes = AllRoutes.filter(route => 
+      !excludedRoutes.some(excluded => route.path.startsWith(excluded))
+    );
+  
+    const matchedRoute = filteredRoutes.find(route => {
+      const normalizedPath = route.path.replace(/:\w+/g, '');
+      return pathname.startsWith(normalizedPath);
+    });
+  
+    isAllowed = !!matchedRoute;
+  }
+  
+  const matchedRoute = AllRoutes.find(route => {
+    const normalizedPath = route.path.replace(/:\w+/g, '');
+    return pathname.startsWith(normalizedPath);
+  });
+  
+  const isAdminRoute = matchedRoute?.header === 'admin';
 
   return (
-    <div className={`${matchedRoute ? 'admin-pagelayout-whole-web' : 'pagelayout-whole-web'}`}>
+    <div className={`${isAdminRoute ? 'admin-pagelayout-whole-web' : 'pagelayout-whole-web'}`}>
       {
-        matchedRoute ? (
+        isAdminRoute ? (
           <AdminHeader/>
         ) : (
           <NavBar/>
