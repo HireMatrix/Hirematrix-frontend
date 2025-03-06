@@ -14,6 +14,7 @@
 @use './Blogs';
 @use './resumeChecker';
 @use './chatbotui.scss';
+@use './header/AdminPageHeader.scss';
 
 :root {
     font-family: sans-serif;
@@ -121,4 +122,9 @@ body {
         position: fixed;
         z-index: 9999;
     }
+}
+
+.admin-pagelayout-whole-web {
+    display: flex;
+    flex-direction: row;
 }

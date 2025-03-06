@@ -18,7 +18,7 @@ const ResumeCheckerPage = () => {
           
         </div>
         <div>
-          <img class="img1" src="https://res.cloudinary.com/da17s0k5a/image/upload/v1738873174/openart-image_UKJj0kCv_1738873022106_raw_ztxhhv.jpg" alt="Resume Checker"/>
+          <img className="img1" src="https://res.cloudinary.com/da17s0k5a/image/upload/v1738873174/openart-image_UKJj0kCv_1738873022106_raw_ztxhhv.jpg" alt="Resume Checker"/>
         </div>
       </div>
       
@@ -32,7 +32,7 @@ const ResumeCheckerPage = () => {
           <div className="step-card">
             <h3>Get detailed analysis</h3>
             <p>Our AI tool provides expert feedback and improvement suggestions.</p>
-            <button class="btn-checkresume" className="btn primary">Check your resume score</button>
+            <button className="btn-checkresume">Check your resume score</button>
           </div>
           <div className="step-card">
             <h3>Enhance your resume</h3>

@@ -1,8 +1,5 @@
-import React, { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-import { useDispatch } from 'react-redux';
-import { checkAuth } from './features/auth/authSlice.js';
 import PageLayout from './PageLayout/index.jsx';
 import ProtectedRoute from './core/AuthRoutesMiddleWare/ProtectedRoute.jsx';
 import PublicRoute from './core/AuthRoutesMiddleWare/PublicRoute.jsx';
@@ -11,21 +8,6 @@ import { PUBLIC_ROUTES } from './Constants/PublicRouteNames.jsx';
 import ErrorPage, { ERROR_PAGE_TYPES } from './core/ErrorHandler/ErrorPage.jsx';
 
 const App = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-  async function authCheck() {
-    try {
-      const response = await dispatch(checkAuth()).unwrap()
-      console.log(response)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  authCheck();
-
-  }, [])
   return (
     <Routes>
       <Route element={<PageLayout/>}>

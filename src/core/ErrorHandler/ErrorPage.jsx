@@ -46,17 +46,15 @@ const ErrorPage = ({ ErrorType = ERROR_PAGE_TYPES.INTERNAL_SERVER_ERROR }) => {
       return PUBLIC_ROUTES_NAMES.LOGIN.path;
     } 
 
-    console.log(PUBLIC_ROUTES_NAMES.HOME)
-      
     switch (user.user.userType) {
       case "admin":
-        return PROTECTED_ROUTE_NAMES.DEFAULT.path;
+        return PROTECTED_ROUTE_NAMES.admin.DEFAULT?.path;
       case "employer":
-        return PROTECTED_ROUTE_NAMES.DEFAULT;
+        return PROTECTED_ROUTE_NAMES.employer.DEFAULT;
       case "general":
-        return PUBLIC_ROUTES_NAMES.HOME.path;
+        return PUBLIC_ROUTES_NAMES.general.HOME.path;
       default:
-        return PUBLIC_ROUTES_NAMES.HOME.path;
+        return PUBLIC_ROUTES_NAMES.general.HOME.path;
     }
   }
 
