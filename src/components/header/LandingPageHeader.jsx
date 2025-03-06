@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import dropDownPng from '../../assets/dropdown.png'
 import {useDispatch, useSelector} from 'react-redux'
 // import { togglePopup } from '../../features/loginpopup/loginpopupSlice'
@@ -6,6 +6,7 @@ import hamburger from '../../assets/icon-hamburger-white.png'
 import { useEffect, useRef, useState } from 'react'
 import { IoMdClose } from "react-icons/io";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { MdAdminPanelSettings } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { logOut } from '../../features/auth/authSlice';
@@ -14,11 +15,14 @@ const LandingPageHeader = () => {
 
     const dropDownBox = useRef();
 
-    const user = useSelector(state => state.auth);
+    const { user, isLoading } = useSelector(state => state.auth);
 
-    console.log(user?.user?.name);
+    console.log(user);
+
+    // console.log(user?.user?.name);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [activeSubMenu, setActiveSubMenu] = useState(null);
@@ -34,6 +38,10 @@ const LandingPageHeader = () => {
 
     const handleLogout = () => {
         dispatch(logOut())
+    }
+
+    const handleAdminRouting = () => {
+        navigate('/admin-panel')
     }
 
     useEffect(() => {
@@ -231,16 +239,24 @@ const LandingPageHeader = () => {
                         </ul>
                     </div>
                 </div>
-                {user.isAuthenticated ? (
+                {user ? (
                     <div className='user-details-dropDown-main-container' onClick={() => toggleSubMenu('UserDetailsMenu')}>
-                        <p>{user?.user?.name.charAt(0)}</p>
-                        <RiArrowDropDownLine/>
+                        <p>{user.name.charAt(0)}</p>
+                        <RiArrowDropDownLine style={{color: "white"}}/>
                         <div className={`user-details-dropDown ${activeSubMenu == 'UserDetailsMenu' ? 'open' : ''}`}>
                             <div>
                                 <FaUser/>
                                 <p>View Profile</p>
                             </div>
-                            <div>
+                            {
+                                user.userType == 'admin' && (
+                                    <div onClick={handleAdminRouting}>
+                                        <MdAdminPanelSettings/>
+                                        <p>Admin</p>
+                                    </div>
+                                )
+                            }
+                            <div onClick={handleLogout} style={{cursor: "pointer"}}>
                                 <RiLogoutBoxLine/>
                                 <p onClick={handleLogout}>Logout</p>
                             </div>
