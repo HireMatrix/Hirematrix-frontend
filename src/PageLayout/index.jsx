@@ -42,6 +42,14 @@ const PageLayout = () => {
     ...PRIVATE_ROUTES
   ]
 
+  const adminMatchedRoute = AllRoutes.find(route => {
+    const normalizedPath = route.path.replace(/:\w+/g, '');
+    if (pathname === normalizedPath) {
+      return route.header === 'admin';
+    }
+    return false;
+  });  
+
   const excludedRoutes = [
     '/candidate-login', 
     '/candidate-signup',
@@ -58,25 +66,18 @@ const PageLayout = () => {
       !excludedRoutes.some(excluded => route.path.startsWith(excluded))
     );
   
-    const matchedRoute = filteredRoutes.find(route => {
+    const filterdMatchedRoute = filteredRoutes.find(route => {
       const normalizedPath = route.path.replace(/:\w+/g, '');
       return pathname.startsWith(normalizedPath);
     });
   
-    isAllowed = !!matchedRoute;
+    isAllowed = !!filterdMatchedRoute;
   }
-  
-  const matchedRoute = AllRoutes.find(route => {
-    const normalizedPath = route.path.replace(/:\w+/g, '');
-    return pathname.startsWith(normalizedPath);
-  });
-  
-  const isAdminRoute = matchedRoute?.header === 'admin';
 
   return (
-    <div className={`${isAdminRoute ? 'admin-pagelayout-whole-web' : 'pagelayout-whole-web'}`}>
+    <div className={`${adminMatchedRoute ? 'admin-pagelayout-whole-web' : 'pagelayout-whole-web'}`}>
       {
-        isAdminRoute ? (
+        adminMatchedRoute ? (
           <AdminHeader/>
         ) : (
           <NavBar/>
