@@ -180,7 +180,7 @@ const FilterPage = () => {
     <form>
         <div className='filter-icon-container'>
             <div>
-                <img src={filterIcon} alt='filter-icon'/>
+                <img src={filterIcon} loading='lazy' alt='filter-icon'/>
                 <p>Filters</p>
             </div>
             {
@@ -230,7 +230,8 @@ const FilterPage = () => {
                 <p>Sort By</p>
                 <img 
                     src={dropDown} 
-                    alt='drop-down-icon' 
+                    alt='drop-down-icon'
+                    loading='lazy'
                     className={`filter-section-dropdownimg ${active.sortBy ? 'rotate' : ''}`}
                 />
             </div>
@@ -259,6 +260,7 @@ const FilterPage = () => {
                 <p>Experience</p>
                 <img 
                 src={dropDown} 
+                loading='lazy'
                 alt='drop-down-icon' 
                 className={`filter-section-dropdownimg ${active.experience ? 'rotate' : ''}`}
                 />
@@ -287,9 +289,10 @@ const FilterPage = () => {
             <div className='dropDown-click-text' onClick={() => setActive(prev => ({...prev, salary: !prev.salary}))}>
                 <p>Salary</p>
                 <img 
-                src={dropDown} 
-                alt='drop-down-icon' 
-                className={`filter-section-dropdownimg ${active.salary ? 'rotate' : ''}`}
+                    src={dropDown}
+                    loading='lazy'
+                    alt='drop-down-icon' 
+                    className={`filter-section-dropdownimg ${active.salary ? 'rotate' : ''}`}
                 />
             </div>
             <p>Minimum monthly salary</p>
@@ -316,9 +319,10 @@ const FilterPage = () => {
             <div className='dropDown-click-text' onClick={() => setActive(prev => ({...prev, datePosted: !prev.datePosted}))}>
                 <p>Date posted</p>
                 <img
-                src={dropDown} 
-                alt='drop-down-icon' 
-                className={`filter-section-dropdownimg ${active.datePosted ? 'rotate' : ''}`}
+                    src={dropDown} 
+                    loading='lazy'
+                    alt='drop-down-icon' 
+                    className={`filter-section-dropdownimg ${active.datePosted ? 'rotate' : ''}`}
                 />
             </div>
             <div className={`${active.datePosted ? 'filter-options-group' : ''}`} style={{'display': 'none'}}>
@@ -345,9 +349,10 @@ const FilterPage = () => {
             <div className='dropDown-click-text' onClick={() => setActive(prev => ({...prev, highestEducation: !prev.highestEducation}))}>
                 <p>Highest education</p>
                 <img
-                src={dropDown} 
-                alt='drop-down-icon' 
-                className={`filter-section-dropdownimg ${active.highestEducation ? 'rotate' : ''}`}
+                    src={dropDown}
+                    loading='lazy'
+                    alt='drop-down-icon' 
+                    className={`filter-section-dropdownimg ${active.highestEducation ? 'rotate' : ''}`}
                 />
             </div>
             <p>Select your highest education level to see all eligable jobs</p>
@@ -375,9 +380,10 @@ const FilterPage = () => {
             <div className='dropDown-click-text' onClick={() => setActive(prev => ({...prev, workMode: !prev.workMode}))}>
                 <p>Work Mode</p>
                 <img
-                src={dropDown} 
-                alt='drop-down-icon' 
-                className={`filter-section-dropdownimg ${active.workMode ? 'rotate' : ''}`}
+                    src={dropDown} 
+                    alt='drop-down-icon'
+                    loading='lazy'
+                    className={`filter-section-dropdownimg ${active.workMode ? 'rotate' : ''}`}
                 />
             </div>
             <div className={`${active.workMode ? 'filter-options-group' : ''}`} style={{'display': 'none'}}>
@@ -399,9 +405,10 @@ const FilterPage = () => {
             <div className='dropDown-click-text' onClick={() => setActive(prev => ({...prev, workType: !prev.workType}))}>
                 <p>Work Type</p>
                 <img
-                src={dropDown} 
-                alt='drop-down-icon' 
-                className={`filter-section-dropdownimg ${active.workType ? 'rotate' : ''}`}
+                    src={dropDown} 
+                    alt='drop-down-icon'
+                    loading='lazy' 
+                    className={`filter-section-dropdownimg ${active.workType ? 'rotate' : ''}`}
                 />
             </div>
             <div className={`${active.workType ? 'filter-options-group' : ''}`} style={{'display': 'none'}}>
@@ -423,9 +430,10 @@ const FilterPage = () => {
             <div className='dropDown-click-text' onClick={() => setActive(prev => ({...prev, workShift: !prev.workShift}))}>
                 <p>Work Shift</p>
                 <img
-                src={dropDown} 
-                alt='drop-down-icon' 
-                className={`filter-section-dropdownimg ${active.workShift ? 'rotate' : ''}`}
+                    src={dropDown}
+                    loading='lazy'
+                    alt='drop-down-icon' 
+                    className={`filter-section-dropdownimg ${active.workShift ? 'rotate' : ''}`}
                 />
             </div>
             <div className={`${active.workShift ? 'filter-options-group' : ''}`} style={{'display': 'none'}}>
@@ -447,9 +455,10 @@ const FilterPage = () => {
             <div className='dropDown-click-text' onClick={() => setActive(prev => ({...prev, englishLevel: !prev.englishLevel}))}>
                 <p>English level</p>
                 <img
-                src={dropDown} 
-                alt='drop-down-icon' 
-                className={`filter-section-dropdownimg ${active.englishLevel ? 'rotate' : ''}`}
+                    src={dropDown}
+                    loading='lazy'
+                    alt='drop-down-icon' 
+                    className={`filter-section-dropdownimg ${active.englishLevel ? 'rotate' : ''}`}
                 />
             </div>
             <p>Select  your English level to see all eligible jobs</p>
@@ -477,9 +486,10 @@ const FilterPage = () => {
             <div className='dropDown-click-text' onClick={() => setActive(prev => ({...prev, gender: !prev.gender}))}>
                 <p>Gender</p>
                 <img
-                src={dropDown} 
-                alt='drop-down-icon' 
-                className={`filter-section-dropdownimg ${active.gender ? 'rotate' : ''}`}
+                    src={dropDown} 
+                    loading='lazy'
+                    alt='drop-down-icon' 
+                    className={`filter-section-dropdownimg ${active.gender ? 'rotate' : ''}`}
                 />
             </div>
             <div className={`${active.gender ? 'filter-options-group' : ''}`} style={{'display': 'none'}}>

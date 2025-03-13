@@ -5,7 +5,7 @@ import ProtectedRoute from './core/AuthRoutesMiddleWare/ProtectedRoute.jsx';
 import PublicRoute from './core/AuthRoutesMiddleWare/PublicRoute.jsx';
 import { PRIVATE_ROUTES } from './Constants/PrivateRouteNames.jsx';
 import { PUBLIC_ROUTES } from './Constants/PublicRouteNames.jsx';
-import ErrorPage, { ERROR_PAGE_TYPES } from './core/ErrorHandler/ErrorPage.jsx';
+import ErrorPage, { ERROR_MESSAGES, ERROR_PAGE_TYPES } from './core/ErrorHandler/ErrorPage.jsx';
 
 const App = () => {
   return (
@@ -40,7 +40,7 @@ const App = () => {
         <Route
           path='*'
           element={
-            <ErrorPage ErrorType={ERROR_PAGE_TYPES.PAGE_NOT_FOUND}/>
+            <ErrorPage ErrorType={ERROR_PAGE_TYPES.PAGE_NOT_FOUND} ErrorMsg={ERROR_MESSAGES.PAGE_NOT_FOUND}/>
           }
         />
       </Route>

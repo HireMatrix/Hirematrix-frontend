@@ -18,24 +18,24 @@ const AllJobsPage = ({jobsdata}) => {
       <div className='job-card-container'>
         <div className='job-title-container'>
           <div>
-            <img src={companyLogo} alt='company-logo'/>
+            <img src={companyLogo} loading='lazy' alt='company-logo'/>
             <h1>{jobsdata.title}</h1>
           </div>
-          <img src={dropDown} alt='drop-left-icon'/>
+          <img src={dropDown} loading='lazy' alt='drop-left-icon'/>
         </div>
         <div className='job-location-salary-container'>
-          <img src={locationLogo} alt='location-icon'/>
+          <img src={locationLogo} loading='lazy' alt='location-icon'/>
           <p>{jobsdata.location}</p>
         </div>
         <div className='job-location-salary-container'>
-          <img src={salaryLogo} alt='salary-icon'/>
+          <img src={salaryLogo} loading='lazy' alt='salary-icon'/>
           <p>{`₹ ${jobsdata.salary} monthly`}</p>
         </div>
         <div className='job-work-type-shift-experience-container'>
           {
             jobsdata.workMode.map(item => (
               <span key={item} className='job-details-box'>
-                <img src={workFromOffice} alt='work-from-office-logo'/>
+                <img src={workFromOffice} loading='lazy' alt='work-from-office-logo'/>
                 {item}
               </span>
             ))
@@ -43,7 +43,7 @@ const AllJobsPage = ({jobsdata}) => {
           {
             jobsdata.workType.map(item => (
               <span key={item} className='job-details-box'>
-                <img src={item === 'Part time' ? `${partTime}` : `${fullTime}`}/>
+                <img src={item === 'Part time' ? `${partTime}` : `${fullTime}`} alt='job-type' loading='lazy'/>
                 {item}
               </span>
             ))
@@ -52,7 +52,7 @@ const AllJobsPage = ({jobsdata}) => {
             jobsdata.workShift.map(item => (
               item !== 'Day shift' && (
                 <span key={item} className='job-details-box'>
-                  <img src={nightShift} alt='night-icon'/>
+                  <img src={nightShift} loading='lazy' alt='night-icon'/>
                   {item}
                 </span>
               )
@@ -62,20 +62,20 @@ const AllJobsPage = ({jobsdata}) => {
             (jobsdata.experience === '0') ? 
               (
                 <span className='job-details-box'>
-                  <img src={experience} alt='experience-icon'/>
+                  <img src={experience} loading='lazy' alt='experience-icon'/>
                   Fresher only</span>
               )
               : 
               (
                 <span className='job-details-box'>
-                  <img src={experience} alt='experience-icon'/>
+                  <img src={experience} loading='lazy' alt='experience-icon'/>
                   {`Min. ${jobsdata.experience} year`}
                 </span>
               )
           }
           {
             <span className='job-details-box'>
-              <img src={english} alt='english-level'/>
+              <img src={english} loading='lazy' alt='english-level'/>
               {jobsdata.englishLevel}
             </span>
           }

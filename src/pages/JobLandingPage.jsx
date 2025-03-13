@@ -157,7 +157,11 @@ const JobLandingPage = () => {
           <h1>Effortless Hiring, Maximum Efficiency</h1>
           <p>Discover 50 lakh+ career opportunities</p>
           <div className={`search-input-container ${searchInputErrMsg ? 'error-search-input-el' : ''} ${locationInputErrMsg ? 'error-search-input-el' : ''}`}>
-            <img src={searchPng} alt='search-icon'/>
+            <img 
+              src={searchPng} 
+              alt='search-icon'
+              loading='lazy'
+            />
             <input 
               type="search" 
               className={`search-input-el`}
@@ -167,7 +171,7 @@ const JobLandingPage = () => {
               onKeyDown={handleKeyDown}
             />
             <hr className='hr-tag-jobLandingPage'/>
-            <img src={locationPng} className="location-img" alt='location-icon'/> 
+            <img src={locationPng} className="location-img" alt='location-icon' loading='lazy'/> 
             <input 
               type="text" 
               className="options-input-el" 
@@ -241,7 +245,7 @@ const JobLandingPage = () => {
                     </button>
                 </div>
                 <div>  
-                  <img src={studentImg} className="trending_job_img1"/>
+                  <img src={studentImg} className="trending_job_img1" loading='lazy' alt='trending'/>
                 </div>
             </div>
             <div className="trending_job1 t_j_2 shadow mt-3 mb-3 d-flex flex-column position-relative">
@@ -260,7 +264,7 @@ const JobLandingPage = () => {
                     </button>
                 </div>
                 <div>  
-                  <img src={studentImg} className="trending_job_img1"/>
+                  <img src={studentImg} className="trending_job_img1" loading='lazy' alt='trending'/>
                 </div>
             </div>
             <div className="trending_job1 t_j_1 shadow mt-3 mb-3 d-flex flex-column position-relative">
@@ -279,7 +283,7 @@ const JobLandingPage = () => {
                     </button>
                 </div>
                 <div>  
-                  <img src={studentImg} className="trending_job_img1" />
+                  <img src={studentImg} className="trending_job_img1" loading='lazy' alt='trending'/>
                 </div>
             </div>
             <div className="trending_job1 t_j_3 shadow mt-3 mb-3 d-flex flex-column position-relative">
@@ -298,7 +302,7 @@ const JobLandingPage = () => {
                     </button>
                 </div>
                 <div>  
-                  <img src={studentImg} className="trending_job_img1" />
+                  <img src={studentImg} className="trending_job_img1" loading='lazy' alt='trending'/>
                 </div>
             </div>
             <div className="trending_job1 t_j_4 shadow mt-3 mb-3 d-flex flex-column position-relative">
@@ -317,7 +321,7 @@ const JobLandingPage = () => {
                     </button>
                 </div>
                 <div>  
-                  <img src={studentImg} className="trending_job_img1"/>
+                  <img src={studentImg} className="trending_job_img1" loading='lazy' alt='trending'/>
                 </div>
             </div>
         </div>
@@ -328,7 +332,11 @@ const JobLandingPage = () => {
           <h1 className="job-opening-heading">Job Openings in Top companies</h1>
           <div className="job-opening-company-cards-container" onScroll={onScrollingJobOpeningCards} ref={jobOpeningCardsContainer}>
               <div className="job-opening-company-card">
-                  <img src={paytmPng} alt="company-logo"/>
+                  <img 
+                    src={paytmPng} 
+                    alt="company-logo"
+                    loading='lazy'
+                  />
                   <h1 className="job-opening-company-name">
                       Paytm Service Pvt. Ltd.
                   </h1>
@@ -336,7 +344,11 @@ const JobLandingPage = () => {
                   <button className="job-opening-company-button">View jobs</button>
               </div>
               <div className="job-opening-company-card">
-                  <img src={paytmPng} alt="company-logo"/>
+                  <img 
+                    src={paytmPng} 
+                    alt="company-logo"
+                    loading='lazy'
+                  />
                   <h1 className="job-opening-company-name">
                       Paytm Service Pvt. Ltd.
                   </h1>
@@ -344,7 +356,11 @@ const JobLandingPage = () => {
                   <button className="job-opening-company-button">View jobs</button>
               </div>
               <div className="job-opening-company-card">
-                  <img src={paytmPng} alt="company-logo"/>
+                  <img 
+                    src={paytmPng} 
+                    alt="company-logo"
+                    loading='lazy'
+                  />
                   <h1 className="job-opening-company-name">
                       Paytm Service Pvt. Ltd.
                   </h1>
@@ -352,7 +368,11 @@ const JobLandingPage = () => {
                   <button className="job-opening-company-button">View jobs</button>
               </div>
               <div className="job-opening-company-card">
-                  <img src={paytmPng} alt="company-logo"/>
+                  <img 
+                    src={paytmPng} 
+                    alt="company-logo"
+                    loading='lazy'
+                  />
                   <h1 className="job-opening-company-name">
                       Paytm Service Pvt. Ltd.
                   </h1>
@@ -360,7 +380,11 @@ const JobLandingPage = () => {
                   <button className="job-opening-company-button">View jobs</button>
               </div>
               <div className="job-opening-company-card">
-                  <img src={paytmPng} alt="company-logo"/>
+                  <img 
+                    src={paytmPng} 
+                    alt="company-logo"
+                    loading='lazy'
+                  />
                   <h1 className="job-opening-company-name">
                       Paytm Service Pvt. Ltd.
                   </h1>
@@ -368,7 +392,11 @@ const JobLandingPage = () => {
                   <button className="job-opening-company-button">View jobs</button>
               </div>
               <div className="job-opening-company-card">
-                  <img src={paytmPng} alt="company-logo"/>
+                  <img 
+                    src={paytmPng} 
+                    alt="company-logo"
+                    loading='lazy'
+                  />
                   <h1 className="job-opening-company-name">
                       Paytm Service Pvt. Ltd.
                   </h1>
@@ -376,7 +404,11 @@ const JobLandingPage = () => {
                   <button className="job-opening-company-button">View jobs</button>
               </div>
               <div className="job-opening-company-card">
-                  <img src={paytmPng} alt="company-logo"/>
+                  <img 
+                    src={paytmPng} 
+                    alt="company-logo"
+                    loading='lazy'
+                  />
                   <h1 className="job-opening-company-name">
                       Paytm Service Pvt. Ltd.
                   </h1>
@@ -384,7 +416,11 @@ const JobLandingPage = () => {
                   <button className="job-opening-company-button">View jobs</button>
               </div>
               <div className="job-opening-company-card">
-                  <img src={paytmPng} alt="company-logo"/>
+                  <img 
+                    src={paytmPng} 
+                    alt="company-logo"
+                    loading='lazy'
+                  />
                   <h1 className="job-opening-company-name">
                       Paytm Service Pvt. Ltd.
                   </h1>
@@ -392,7 +428,11 @@ const JobLandingPage = () => {
                   <button className="job-opening-company-button">View jobs</button>
               </div>
               <div className="job-opening-company-card">
-                  <img src={paytmPng} alt="company-logo"/>
+                  <img 
+                    src={paytmPng} 
+                    alt="company-logo"
+                    loading='lazy'
+                  />
                   <h1 className="job-opening-company-name">
                       Paytm Service Pvt. Ltd.
                   </h1>
@@ -400,7 +440,11 @@ const JobLandingPage = () => {
                   <button className="job-opening-company-button">View jobs</button>
               </div>
               <div className="job-opening-company-card">
-                  <img src={paytmPng} alt="company-logo"/>
+                  <img 
+                    src={paytmPng} 
+                    alt="company-logo"
+                    loading='lazy'
+                  />
                   <h1 className="job-opening-company-name">
                       Paytm Service Pvt. Ltd.
                   </h1>
@@ -483,69 +527,23 @@ const JobLandingPage = () => {
 
       <div className="rating-section">
         <div className="join-community-card">
-          <img src={quoteLeftPng} className="quotes-img"/>
+          <img 
+            src={quoteLeftPng} 
+            className="quotes-img"
+            loading='lazy'
+          />
           <h1 className="join-community-text">Join the community of 5 crore satisfied job seekers...</h1>
           <div>
               <p>Play Store Ratings</p>
-              <img src={star} alt="star"/>
-              <img src={star} alt="star"/>
-              <img src={star} alt="star"/>
-              <img src={star} alt="star"/>
-              <img src={starHalf} alt="star"/>
+              <img src={star} alt="star" loading='lazy'/>
+              <img src={star} alt="star" loading='lazy'/>
+              <img src={star} alt="star" loading='lazy'/>
+              <img src={star} alt="star" loading='lazy'/>
+              <img src={starHalf} alt="star" loading='lazy'/>
           </div>
         </div>
         <div className="user-rating-container">
-          <div className="user-rating-card">
-            <img className="user-rating-profile-img" src={profile2Jpg}/>
-            <div className="users-name-rating">
-              <p className="rating-user-name-text">Jenil Ghevariya <span><img src={tickPng} alt="placed"/>Placed</span></p>
-              <div className="rating-stars-container">
-                <p>4.5</p>
-                <img src={star} alt="mini-star" className="mini-star-img"/>
-                <img src={star} alt="mini-star" className="mini-star-img"/>
-                <img src={star} alt="mini-star" className="mini-star-img"/>
-                <img src={star} alt="mini-star" className="mini-star-img"/>
-                <img src={starHalf} alt="mini-star" className="mini-star-img"/>
-              </div>
-            </div>
-            <p className="user-review-text">
-              "This app is very helpful if you are looking for a job and the team is also very supportive and friendly. They guided me through every stage. It is very easy to find a job on uptoskills because there are a lot of job options here for everyone. I got a job interview call very quickly after applying."
-            </p>
-          </div>
-          <div className="user-rating-card">
-            <img className="user-rating-profile-img" src={profile2Jpg}/>
-            <div className="users-name-rating">
-              <p className="rating-user-name-text">Jenil Ghevariya <span><img src={tickPng} alt="placed"/>Placed</span></p>
-              <div className="rating-stars-container">
-                <p>4.5</p>
-                <img src={star} alt="mini-star" className="mini-star-img"/>
-                <img src={star} alt="mini-star" className="mini-star-img"/>
-                <img src={star} alt="mini-star" className="mini-star-img"/>
-                <img src={star} alt="mini-star" className="mini-star-img"/>
-                <img src={starHalf} alt="mini-star" className="mini-star-img"/>
-              </div>
-            </div>
-            <p className="user-review-text">
-              "This app is very helpful if you are looking for a job and the team is also very supportive and friendly. They guided me through every stage. It is very easy to find a job on uptoskills because there are a lot of job options here for everyone. I got a job interview call very quickly after applying."
-            </p>
-          </div>
-          <div className="user-rating-card">
-            <img className="user-rating-profile-img" src={profile2Jpg}/>
-            <div className="users-name-rating">
-              <p className="rating-user-name-text">Jenil Ghevariya <span><img src={tickPng} alt="placed"/>Placed</span></p>
-              <div className="rating-stars-container">
-                <p>4.5</p>
-                <img src={star} alt="mini-star" className="mini-star-img"/>
-                <img src={star} alt="mini-star" className="mini-star-img"/>
-                <img src={star} alt="mini-star" className="mini-star-img"/>
-                <img src={star} alt="mini-star" className="mini-star-img"/>
-                <img src={starHalf} alt="mini-star" className="mini-star-img"/>
-              </div>
-            </div>
-            <p className="user-review-text">
-              "This app is very helpful if you are looking for a job and the team is also very supportive and friendly. They guided me through every stage. It is very easy to find a job on uptoskills because there are a lot of job options here for everyone. I got a job interview call very quickly after applying."
-            </p>
-          </div>
+          
         </div>
       </div>
 

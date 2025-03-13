@@ -13,7 +13,7 @@ const AdminHeader = () => {
     <div className='admin-header-main-contianer'>
       <div>
         <div className='logo-header'>
-          <img src={hireLogo} alt='hire-logo'/>
+          <img src={hireLogo} loading='lazy' alt='hire-logo'/>
         </div>
         <div className='admin-components'>
           <div>dashboard</div>

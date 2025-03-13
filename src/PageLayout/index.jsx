@@ -9,12 +9,14 @@ import AdminHeader from '../components/header/AdminHeader.jsx';
 import { useDispatch } from 'react-redux'
 import { checkAuth } from '../features/auth/authSlice.js'
 import Loader from '../components/Loader.jsx'
+import ErrorPage, { ERROR_MESSAGES, ERROR_PAGE_TYPES } from '../core/ErrorHandler/ErrorPage.jsx'
 
 const PageLayout = () => {
 
   const { pathname } = useLocation();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
+  // const [isUnauthorized, setIsUnauthorized] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -22,10 +24,11 @@ const PageLayout = () => {
       try {
         await dispatch(checkAuth()).unwrap();
         setLoading(false);
+        setIsUnauthorized(false);
       } catch (error) {
         console.log(error)
         setLoading(false);
-        return <ErrorPage ErrorType={ERROR_PAGE_TYPES.UNAUTHORIZED}/>
+        // setIsUnauthorized(true)
       }
     }
 
@@ -36,6 +39,10 @@ const PageLayout = () => {
   if(loading) {
     return <Loader/>
   }
+
+  // if(isUnauthorized) {
+  //   return <ErrorPage ErrorType={ERROR_PAGE_TYPES.INTERNAL_SERVER_ERROR} ErrorMsg={ERROR_MESSAGES.INTERNAL_SERVER_ERROR}/>
+  // }
 
   const AllRoutes = [
     ...PUBLIC_ROUTES,

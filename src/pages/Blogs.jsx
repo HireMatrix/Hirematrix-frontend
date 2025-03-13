@@ -1,7 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-
+/* 
+  Todo:
+  1. use the local images or download the images and then use them.
+  2. floating button is below the chatbot.
+*/
 const blogs = [
   {
     title: "Trends From Early AI Adoption in Recruitment Industry",
@@ -108,7 +112,7 @@ const BlogPage = () => {
       {/* Main Blog Section */}
       <main className="main-content">
         <section className="featured-blog">
-          <img src={blogs[0].image} alt="Featured Blog" />
+          <img src={blogs[0].image} alt="Featured Blog" loading='lazy'/>
           <div className="featured-content">
             <h2>{blogs[0].title}</h2>
             <p>{blogs[0].description}</p>
@@ -122,7 +126,7 @@ const BlogPage = () => {
         <section className="blog-list">
           {blogs.slice(1).map((blog, index) => (
             <div className="blog-card" key={index}>
-              <img src={blog.image} alt="Blog" />
+              <img src={blog.image} alt="Blog" loading='lazy'/>
               <div className="blog-info">
                 <h3>{blog.title}</h3>
                 <p>{blog.description}</p>
@@ -145,16 +149,16 @@ const BlogPage = () => {
         <p>Follow us on social media</p>
         <div className="icons">
           <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" loading='lazy'/>
           </a>
           <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" loading='lazy'/>
           </a>
           <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" loading='lazy'/>
           </a>
           <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" loading='lazy'/>
           </a>
         </div>
         <div className="footer-links">

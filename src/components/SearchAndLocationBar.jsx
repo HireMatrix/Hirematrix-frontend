@@ -68,7 +68,7 @@ const SearchAndLocationBar = () => {
   return (
     <div className='jobSearch-section-search-bar-section'>
         <div className='jobSearch-search-bar-container'>
-            <img src={searchPng}/>
+            <img src={searchPng} loading='lazy' alt='search-img'/>
             <input 
                 type="search" 
                 className="search-input-el"
@@ -77,7 +77,7 @@ const SearchAndLocationBar = () => {
                 onChange={(e) => setSearchContentValue(e.target.value)}
             />
             <div className='hr-tag-landingPage-header'></div>
-            <img src={locationPng} className="location-img"/>
+            <img src={locationPng} loading='lazy' className="location-img"/>
             <input
                 type="text"
                 placeholder="Search for an area or city"

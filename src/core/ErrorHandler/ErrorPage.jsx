@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
+import React from 'react'
+import { useSelector } from 'react-redux';
 import { PUBLIC_ROUTES_NAMES } from '../../Constants/PublicRouteNames';
 import { PROTECTED_ROUTE_NAMES } from '../../Constants/PrivateRouteNames';
 import { Link } from 'react-router-dom';
-import { checkAuth } from '../../features/auth/authSlice';
+import Loader from '../../components/Loader';
 
 export const ERROR_PAGE_TYPES = {
   INTERNAL_SERVER_ERROR: "INTERNAL_SERVER_ERROR",
@@ -13,7 +13,7 @@ export const ERROR_PAGE_TYPES = {
   BAD_REQUEST: "BAD_REQUEST",
 };
 
-const ERROR_MESSAGES = {
+export const ERROR_MESSAGES = {
   INTERNAL_SERVER_ERROR: "Something went wrong! Please try again later.",
   PAGE_NOT_FOUND: "Oops! The page you're looking for does not exist.",
   UNAUTHORIZED: "You are not authorized to access this page.",
@@ -21,47 +21,35 @@ const ERROR_MESSAGES = {
   BAD_REQUEST: "Invalid request. Please check and try again.",
 };
 
-const ErrorPage = ({ ErrorType = ERROR_PAGE_TYPES.INTERNAL_SERVER_ERROR }) => {
+const ErrorPage = ({ ErrorType = ERROR_PAGE_TYPES.INTERNAL_SERVER_ERROR, ErrorMsg = ERROR_MESSAGES.INTERNAL_SERVER_ERROR }) => {
 
-  const [user, setUser] = useState();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-  async function authCheck() {
-    try {
-      const response = await dispatch(checkAuth()).unwrap()
-      setUser(response)
-      console.log(response)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  authCheck();
-
-  }, []);
+  const {user, isLoading} = useSelector(state => state.auth);
 
   const getRedirectedPath = () => {
-    if(!user?.success){
+    if(!user){
       return PUBLIC_ROUTES_NAMES.LOGIN.path;
     } 
 
-    switch (user.user.userType) {
+    switch (user.userType) {
       case "admin":
         return PROTECTED_ROUTE_NAMES.admin.DEFAULT?.path;
       case "employer":
         return PROTECTED_ROUTE_NAMES.employer.DEFAULT;
       case "general":
-        return PUBLIC_ROUTES_NAMES.general.HOME.path;
+        return PUBLIC_ROUTES_NAMES.HOME.path;
       default:
-        return PUBLIC_ROUTES_NAMES.general.HOME.path;
+        return PUBLIC_ROUTES_NAMES.HOME.path;
     }
   }
 
+  if(isLoading) {
+    return <Loader/>
+  }
 
   return (
     <div>
-      <p>{ErrorType}</p>
+      <p>Error Type: {ErrorType}</p>
+      <p>Error Message: {ErrorMsg}</p>
       <Link to={getRedirectedPath()}>GO TO HOME</Link>
     </div>
   )

@@ -10,6 +10,7 @@ import { MdAdminPanelSettings } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { logOut } from '../../features/auth/authSlice';
+import Loader from '../Loader'
 
 const LandingPageHeader = () => {
 
@@ -18,6 +19,10 @@ const LandingPageHeader = () => {
     const { user, isLoading } = useSelector(state => state.auth);
 
     console.log(user);
+
+    if(isLoading){
+        return <Loader/>
+    }
 
     // console.log(user?.user?.name);
 
@@ -55,9 +60,9 @@ const LandingPageHeader = () => {
         <nav className="nav-bar">
             <div className="nav-bar-container">
                 <div className="nav-bar-container-options">
-                    <img src={hamburger} alt='hamburger-icon' onClick={togglePopHam}/>
+                    <img src={hamburger} loading='lazy' alt='hamburger-icon' onClick={togglePopHam}/>
                     <Link to="/">
-                        <img src="/src/assets/hire.jpg" alt="logo"/>
+                        <img src="/src/assets/hire.jpg" loading='lazy' alt="logo"/>
                     </Link>
                     {
                         window.location.pathname !== '/' && (
@@ -68,7 +73,7 @@ const LandingPageHeader = () => {
                         <ul className="nav-links-items-list">
                             <li className="nav-links-item">
                                 <a href="#">Job 
-                                    <img className="drop-down-img" src={dropDownPng}/>
+                                    <img className="drop-down-img" loading='lazy' src={dropDownPng} alt='drop-down-img'/>
                                 </a>
                                 <div className="dropdown-container">
                                     <ul className="dropdown-list" ref={dropDownBox}>
@@ -88,7 +93,7 @@ const LandingPageHeader = () => {
                                     <ul className="dropdown-sub-list">
                                         <li>
                                             <a href="#"><span>Jobs By City</span>
-                                                <img className="drop-down-img" src={dropDownPng}/>
+                                                <img className="drop-down-img" loading='lazy' src={dropDownPng} alt='drop-down-img'/>
                                             </a>
                                             <div className="dropdown-sub-container">
                                                 <ul>
@@ -109,7 +114,7 @@ const LandingPageHeader = () => {
                                         </li>
                                         <li>
                                             <a href="#"><span>Jobs By Department</span> 
-                                                <img className="drop-down-img" src={dropDownPng}/>
+                                                <img className="drop-down-img" src={dropDownPng} loading='lazy' alt='drop-down-img'/>
                                             </a>
                                             <div className="dropdown-sub-container">
                                                 <ul>
@@ -130,7 +135,7 @@ const LandingPageHeader = () => {
                                         </li>
                                         <li>
                                             <a href="#"><span>Jobs By Company</span>
-                                                <img className="drop-down-img" src={dropDownPng}/>
+                                                <img className="drop-down-img" src={dropDownPng} loading='lazy' alt='drop-down-img'/>
                                             </a>
                                             <div className="dropdown-sub-container">
                                                 <ul>
@@ -151,7 +156,7 @@ const LandingPageHeader = () => {
                                         </li>
                                         <li>
                                             <a href="#"><span>Jobs By Qualification</span>
-                                                <img className="drop-down-img" src={dropDownPng}/>
+                                                <img className="drop-down-img" src={dropDownPng} loading='lazy' alt='drop-down-img'/>
                                             </a>
                                             <div className="dropdown-sub-container">
                                                 <ul>
@@ -172,7 +177,7 @@ const LandingPageHeader = () => {
                                         </li>
                                         <li>
                                             <a href="#">Others
-                                                <img className="drop-down-img" src={dropDownPng}/>
+                                                <img className="drop-down-img" src={dropDownPng} loading='lazy' alt='drop-down-img'/>
                                             </a>
                                             <div className="dropdown-sub-container">
                                                 <ul>
@@ -196,7 +201,7 @@ const LandingPageHeader = () => {
                             </li>
                             <li className="nav-links-item">
                                 <a href="#">Career Compass 
-                                    <img className="drop-down-img" src={dropDownPng}/>
+                                    <img className="drop-down-img" src={dropDownPng} loading='lazy' alt='drop-down-img'/>
                                 </a>
                                 <div className="dropdown-container career-dropdown">
                                     <ul className="dropdown-list">
@@ -213,14 +218,15 @@ const LandingPageHeader = () => {
                                         height: `${heightOfHr}px`
                                     }}/>
                                     <div className="watch-video-container">
-                                        <img src="" alt=""/>
+                                        {/* Todo: video or remove it */}
+                                        {/* <img src="" alt="" loading='lazy'/> */}
                                         <button>Watch video</button>
                                     </div>
                                 </div>
                             </li>
                             <li className="nav-links-item">
                                 <a href="#">Community 
-                                    <img className="drop-down-img" src={dropDownPng}/>
+                                    <img className="drop-down-img" src={dropDownPng} loading='lazy' alt='drop-down-img'/>
                                 </a>
                                 <div className="dropdown-container community-dropdown">
                                     <ul className="dropdown-list">
@@ -231,7 +237,8 @@ const LandingPageHeader = () => {
                                         height: `${heightOfHr}px`
                                     }}/>
                                     <div className="watch-video-container">
-                                        <img src="" alt=""/>
+                                        {/* Todo: video or remove it */}
+                                        {/* <img src="" alt=""/> */}
                                         <button>Watch video</button>
                                     </div>
                                 </div>
@@ -269,7 +276,7 @@ const LandingPageHeader = () => {
                         </Link>
                     </div>
                 )}
-                <img src={hamburger} alt='hamburger-icon' className='mobile-ham-icon' onClick={togglePopHam}/>
+                <img src={hamburger} alt='hamburger-icon' loading='lazy' className='mobile-ham-icon' onClick={togglePopHam}/>
                 <div id="popupWindow" className={`popup-window ${isPopupOpen ? 'open' : ''}`}>
                     <div className='popup-sub-window'>
                         <div className="popup-content">

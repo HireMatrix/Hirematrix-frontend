@@ -8,7 +8,7 @@ const NoJobsFoundPage = () => {
 
   return (
     <div className='no-jobs-found-container'>
-      <img src={notFoundImg} alt='not-found-img'/>
+      <img src={notFoundImg} loading='lazy' alt='not-found-img'/>
       <h1>Sorry, no jobs found</h1>
       <p>Clear filters to see jobs or explore jobs in other cities</p>
       <button onClick={() => dispatch(resetFilter())}>Clear filters <span>x</span></button>

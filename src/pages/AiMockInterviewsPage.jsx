@@ -19,9 +19,9 @@ const AiMockInterviewsPage = () => {
         <p className="note">No credit card needed</p>
         <div className="review">
           <div className="avatars">
-            <img src="src/assets/AiMockInterviewsPage/TrustedUser-1.png" alt="User 1" />
-            <img src="src/assets/AiMockInterviewsPage/TrustedUser-2.png" alt="User 2" />
-            <img src="src/assets/AiMockInterviewsPage/TrustedUser-3.png" alt="User 3" />
+            <img src="src/assets/AiMockInterviewsPage/TrustedUser-1.png" alt="User 1" loading='lazy'/>
+            <img src="src/assets/AiMockInterviewsPage/TrustedUser-2.png" alt="User 2" loading='lazy'/>
+            <img src="src/assets/AiMockInterviewsPage/TrustedUser-3.png" alt="User 3" loading='lazy'/>
           </div>
           <p>Trusted by 41,000+ job seekers</p>
         </div>

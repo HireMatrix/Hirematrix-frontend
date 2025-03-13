@@ -18,7 +18,11 @@ const ResumeCheckerPage = () => {
           
         </div>
         <div>
-          <img className="img1" src="https://res.cloudinary.com/da17s0k5a/image/upload/v1738873174/openart-image_UKJj0kCv_1738873022106_raw_ztxhhv.jpg" alt="Resume Checker"/>
+          <img 
+            className="img1" 
+            src="https://res.cloudinary.com/da17s0k5a/image/upload/v1738873174/openart-image_UKJj0kCv_1738873022106_raw_ztxhhv.jpg" alt="Resume Checker"
+            loading="lazy"
+          />
         </div>
       </div>
       

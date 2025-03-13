@@ -26,6 +26,7 @@ const ResumeBuilderPage = () => {
             className="resume-builder-MainIcon"
             src="/src/assets/resumeBuilderPage/resume-builder-icon1.png"
             alt="Resume Icon"
+            loading="lazy"
           />
           <h2>Create your best resume to advance career</h2>
           <p>Build from scratch or pre-fill it with LinkedIn, or Apna profile</p>
@@ -43,6 +44,7 @@ const ResumeBuilderPage = () => {
           <img
             src="/src/assets/resumeBuilderPage/resume-builder-icon3.png"
             alt="Resume Icon"
+            loading="lazy"
           />
           <h3>Your Resumes</h3>
           <p>Where your skills and experiences truly shine through!</p>
@@ -53,6 +55,7 @@ const ResumeBuilderPage = () => {
           <img
             src="/src/assets/resumeBuilderPage/resume-builder-icon2.png"
             alt="Analysis Icon"
+            loading="lazy"
           />
           <h3>ATPC Score</h3>
           <p>
@@ -66,6 +69,7 @@ const ResumeBuilderPage = () => {
           <img
             src="/src/assets/resumeBuilderPage/resume-builder-icon4.png"
             alt="Share Icon"
+            loading="lazy"
           />
           <h3>Job-Specific Resume</h3>
           <p>
