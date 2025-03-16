@@ -4,7 +4,6 @@ import NoJobsFoundPage from '../components/NoJobsFoundPage'
 import SearchAndLocationBar from '../components/SearchAndLocationBar'
 import PaginationCore from '../core/paginationCore/PaginationCore';
 import { fetchAllJobs } from '../Constants/ApiUrls';
-import Loader from '../components/Loader';
 import { useSelector } from 'react-redux';
 import JobLoader from '../components/JobLoader';
 
