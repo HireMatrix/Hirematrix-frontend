@@ -2,26 +2,31 @@ import companyLogo from '../assets/jobSearchPageImg/Company_icon.png'
 import locationLogo from '../assets/jobSearchPageImg/icon-location.png'
 import salaryLogo from '../assets/jobSearchPageImg/icon-salary.png'
 import workFromOffice from '../assets/jobSearchPageImg/Work-from-office.png'
-import dropDown from '../assets/dropdown.png'
 import experience from '../assets/jobSearchPageImg/experience.png'
 import fullTime from '../assets/jobSearchPageImg/Full-time.png'
 import partTime from '../assets/jobSearchPageImg/Part-time.png'
 import english from '../assets/jobSearchPageImg/Advanced-English.png'
 import nightShift from '../assets/jobSearchPageImg/Night-shift_xxhdpi.avif'
 import { Link } from 'react-router-dom'
+import Loader from './Loader'
+import { IoMdArrowDropright } from "react-icons/io";
 
 
-const AllJobsPage = ({jobsdata}) => {
-  // console.log(jobsdata)
+const AllJobsPage = ({jobsdata, loading}) => {
+  console.log(loading)
+
+  if(loading == 'pending'){
+    return <Loader/>
+  }
   return(
-    <Link to={`/jobs/${jobsdata._id}`} target='_blank'>
-      <div className='job-card-container'>
+    <div className='job-card-container'>
+        <Link to={`/jobs/${jobsdata._id}`} target='_blank'>
         <div className='job-title-container'>
           <div>
             <img src={companyLogo} loading='lazy' alt='company-logo'/>
             <h1>{jobsdata.title}</h1>
           </div>
-          <img src={dropDown} loading='lazy' alt='drop-left-icon'/>
+          <IoMdArrowDropright/>
         </div>
         <div className='job-location-salary-container'>
           <img src={locationLogo} loading='lazy' alt='location-icon'/>
@@ -80,8 +85,8 @@ const AllJobsPage = ({jobsdata}) => {
             </span>
           }
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   )
 }
 

@@ -24,7 +24,6 @@ const PageLayout = () => {
       try {
         await dispatch(checkAuth()).unwrap();
         setLoading(false);
-        setIsUnauthorized(false);
       } catch (error) {
         console.log(error)
         setLoading(false);

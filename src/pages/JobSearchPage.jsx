@@ -1,36 +1,59 @@
-import { useSelector } from 'react-redux'
-import ReactPaginate from 'react-paginate';
 import AllJobsPage from '../components/AllJobsPage'
 import FilterPage from '../components/FilterPage'
 import NoJobsFoundPage from '../components/NoJobsFoundPage'
 import SearchAndLocationBar from '../components/SearchAndLocationBar'
-import { useState } from 'react';
+import PaginationCore from '../core/paginationCore/PaginationCore';
+import { fetchAllJobs } from '../Constants/ApiUrls';
+import Loader from '../components/Loader';
+import { useSelector } from 'react-redux';
+import JobLoader from '../components/JobLoader';
 
 const JobSearchPage = () => {
 
   const userLoggedIn = false
   
-  const allJobs = useSelector(state => state.filterFetch)
+  const filters = useSelector(state => state.filter)
 
-  const itemsPerPage = 10;
-  const [itemOffset, setItemOffset] = useState(0);
+  // pagination
 
-  const endOffset = itemOffset + itemsPerPage;
+  const {
+    data,
+    page,
+    pageSize,
+    PageNumberSelection,
+    totalItems,
+    isLoading,
+    isFetching,
+    isError,
+    error,
+    isRefetching,
+    refetch,
+  } = PaginationCore({
+    queryFn: () => fetchAllJobs(filters),
+    queryKey: ["all-jobs", filters]
+  });
 
-  const currentItems = allJobs.jobs.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(allJobs.jobs.length / itemsPerPage);
+  console.log(isLoading);
 
-  // Invoke when user click to request another page.
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % allJobs.jobs.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
-    setItemOffset(newOffset);
-  };
+  if(isLoading || isFetching){
+    <JobLoader/>
+  }
 
+  // const itemsPerPage = 10;
+  // const [itemOffset, setItemOffset] = useState(0);
 
-  const searchResults = allJobs.jobs.length
+  // const endOffset = itemOffset + itemsPerPage;
+
+  // const currentItems = jobs.slice(itemOffset, endOffset);
+  // const pageCount = Math.ceil(jobs.length / itemsPerPage);
+
+  // const handlePageClick = (event) => {
+  //   const newOffset = (event.selected * itemsPerPage) % jobs.length;
+  //   console.log(
+  //     `User requested page number ${event.selected}, which is offset ${newOffset}`
+  //   );
+  //   setItemOffset(newOffset);
+  // };
 
   // console.log(allJobs)
 
@@ -39,7 +62,7 @@ const JobSearchPage = () => {
       <SearchAndLocationBar/>
       <div className='jobSearch-filter-jobs-profileUpdate-section'>
         <div className='jobSearch-no-of-jobs-heading'>
-          <h1>{`${searchResults} search results`}</h1>
+          <h1>{`${totalItems} search results`}</h1>
         </div>
         <div>
           <div className='jobSearch-filter-container'>
@@ -47,13 +70,13 @@ const JobSearchPage = () => {
           </div>
           <div className='jobSearch-jobs-container'>
             {
-                currentItems.length === 0 ? (
-                  <NoJobsFoundPage/>
-                ) : (
-                  currentItems.map(item => (
-                    <AllJobsPage key={item._id} jobsdata={item}/>
-                  ))
-                )
+              data?.length === 0 ? (
+                <NoJobsFoundPage/>
+              ) : (
+                data?.map(item => (
+                  <AllJobsPage key={item._id} jobsdata={item} loading={status}/>
+                ))
+              )
             }
           </div>
           {userLoggedIn ? (
@@ -67,15 +90,17 @@ const JobSearchPage = () => {
           )}
         </div>
       </div>
-      <ReactPaginate
+      {/* <ReactPaginate
         breakLabel="..."
         nextLabel="next"
         onPageChange={handlePageClick}
-        pageRangeDisplayed={6}
+        pageRangeDisplayed={5}
         pageCount={pageCount}
         previousLabel="prev"
         renderOnZeroPageCount={null}
-      />
+      /> */}
+      {/* <PaginationCore/> */}
+      <PageNumberSelection/>
     </div>
   )
 }

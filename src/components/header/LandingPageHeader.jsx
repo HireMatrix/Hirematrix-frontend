@@ -1,16 +1,15 @@
-import { Link, useNavigate } from 'react-router-dom'
-import dropDownPng from '../../assets/dropdown.png'
-import {useDispatch, useSelector} from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
 // import { togglePopup } from '../../features/loginpopup/loginpopupSlice'
-import hamburger from '../../assets/icon-hamburger-white.png'
-import { useEffect, useRef, useState } from 'react'
+import hamburger from '../../assets/icon-hamburger-white.png';
+import { useEffect, useRef, useState } from 'react';
 import { IoMdClose } from "react-icons/io";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { logOut } from '../../features/auth/authSlice';
-import Loader from '../Loader'
+import Loader from '../Loader';
 
 const LandingPageHeader = () => {
 
@@ -18,7 +17,7 @@ const LandingPageHeader = () => {
 
     const { user, isLoading } = useSelector(state => state.auth);
 
-    console.log(user);
+    // console.log(user);
 
     if(isLoading){
         return <Loader/>
@@ -52,17 +51,30 @@ const LandingPageHeader = () => {
     useEffect(() => {
         const heightOfDropDown = dropDownBox.current.offsetHeight;
         setHeightOfHr(heightOfDropDown);
-    }, [])
+    }, []);
+
+    useEffect(() => {
+
+        const handleCloseSubMenuContainer = () => {
+            setActiveSubMenu(null);
+        }
+
+        document.addEventListener("mousedown", handleCloseSubMenuContainer);
+    }, [activeSubMenu])
 
 
   return (
     <>
-        <nav className="nav-bar">
+        <header className="nav-bar">
             <div className="nav-bar-container">
                 <div className="nav-bar-container-options">
                     <img src={hamburger} loading='lazy' alt='hamburger-icon' onClick={togglePopHam}/>
                     <Link to="/">
-                        <img src="/src/assets/hire.jpg" loading='lazy' alt="logo"/>
+                        <img 
+                            src="/src/assets/hire.png" 
+                            loading='lazy' 
+                            alt="logo"
+                        />
                     </Link>
                     {
                         window.location.pathname !== '/' && (
@@ -73,7 +85,7 @@ const LandingPageHeader = () => {
                         <ul className="nav-links-items-list">
                             <li className="nav-links-item">
                                 <a href="#">Job 
-                                    <img className="drop-down-img" loading='lazy' src={dropDownPng} alt='drop-down-img'/>
+                                    <RiArrowDropDownLine style={{color: "white", fontSize: "25px"}}/>
                                 </a>
                                 <div className="dropdown-container">
                                     <ul className="dropdown-list" ref={dropDownBox}>
@@ -93,7 +105,9 @@ const LandingPageHeader = () => {
                                     <ul className="dropdown-sub-list">
                                         <li>
                                             <a href="#"><span>Jobs By City</span>
-                                                <img className="drop-down-img" loading='lazy' src={dropDownPng} alt='drop-down-img'/>
+                                                <RiArrowDropDownLine 
+                                                    style={{color: "white", fontSize: "22px"}}
+                                                />
                                             </a>
                                             <div className="dropdown-sub-container">
                                                 <ul>
@@ -114,7 +128,7 @@ const LandingPageHeader = () => {
                                         </li>
                                         <li>
                                             <a href="#"><span>Jobs By Department</span> 
-                                                <img className="drop-down-img" src={dropDownPng} loading='lazy' alt='drop-down-img'/>
+                                                <RiArrowDropDownLine style={{color: "white", fontSize: "22px"}}/>
                                             </a>
                                             <div className="dropdown-sub-container">
                                                 <ul>
@@ -135,7 +149,7 @@ const LandingPageHeader = () => {
                                         </li>
                                         <li>
                                             <a href="#"><span>Jobs By Company</span>
-                                                <img className="drop-down-img" src={dropDownPng} loading='lazy' alt='drop-down-img'/>
+                                                <RiArrowDropDownLine style={{color: "white", fontSize: "22px"}}/>
                                             </a>
                                             <div className="dropdown-sub-container">
                                                 <ul>
@@ -156,7 +170,7 @@ const LandingPageHeader = () => {
                                         </li>
                                         <li>
                                             <a href="#"><span>Jobs By Qualification</span>
-                                                <img className="drop-down-img" src={dropDownPng} loading='lazy' alt='drop-down-img'/>
+                                                <RiArrowDropDownLine style={{color: "white", fontSize: "22px"}}/>
                                             </a>
                                             <div className="dropdown-sub-container">
                                                 <ul>
@@ -177,7 +191,7 @@ const LandingPageHeader = () => {
                                         </li>
                                         <li>
                                             <a href="#">Others
-                                                <img className="drop-down-img" src={dropDownPng} loading='lazy' alt='drop-down-img'/>
+                                                <RiArrowDropDownLine style={{color: "white", fontSize: "22px"}}/>
                                             </a>
                                             <div className="dropdown-sub-container">
                                                 <ul>
@@ -201,7 +215,7 @@ const LandingPageHeader = () => {
                             </li>
                             <li className="nav-links-item">
                                 <a href="#">Career Compass 
-                                    <img className="drop-down-img" src={dropDownPng} loading='lazy' alt='drop-down-img'/>
+                                    <RiArrowDropDownLine style={{color: "white", fontSize: "25px"}}/>
                                 </a>
                                 <div className="dropdown-container career-dropdown">
                                     <ul className="dropdown-list">
@@ -226,7 +240,7 @@ const LandingPageHeader = () => {
                             </li>
                             <li className="nav-links-item">
                                 <a href="#">Community 
-                                    <img className="drop-down-img" src={dropDownPng} loading='lazy' alt='drop-down-img'/>
+                                    <RiArrowDropDownLine style={{color: "white", fontSize: "25px"}}/>
                                 </a>
                                 <div className="dropdown-container community-dropdown">
                                     <ul className="dropdown-list">
@@ -321,7 +335,7 @@ const LandingPageHeader = () => {
                     </div>
                 </div>
             </div>
-        </nav>
+        </header>
     </>
   )
 }

@@ -1,7 +1,7 @@
-import searchPng from '../assets/jobLandingPageImg/search.png'
-import locationPng from '../assets/jobLandingPageImg/location.png'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { CiSearch } from "react-icons/ci";
+import { CiLocationOn } from "react-icons/ci";
 
 const placeholderTextArray = [
     "'skill'",
@@ -68,7 +68,7 @@ const SearchAndLocationBar = () => {
   return (
     <div className='jobSearch-section-search-bar-section'>
         <div className='jobSearch-search-bar-container'>
-            <img src={searchPng} loading='lazy' alt='search-img'/>
+            <CiSearch/>
             <input 
                 type="search" 
                 className="search-input-el"
@@ -77,7 +77,7 @@ const SearchAndLocationBar = () => {
                 onChange={(e) => setSearchContentValue(e.target.value)}
             />
             <div className='hr-tag-landingPage-header'></div>
-            <img src={locationPng} loading='lazy' className="location-img"/>
+            <CiLocationOn/>
             <input
                 type="text"
                 placeholder="Search for an area or city"

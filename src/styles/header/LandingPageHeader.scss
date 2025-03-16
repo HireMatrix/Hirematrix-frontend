@@ -1,9 +1,11 @@
+@use '../variables.scss' as var;
+
 .hr-tag-landingPage-header{
     display: block;
     content: '';
     width: 0.5px;
     border-width:0;
-    background-color:rgb(75, 75, 75);
+    background-color: var.$box-color-thick;
 }
 
 .nav-bar {
@@ -12,11 +14,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    top: 0;
-    background-color: #000000;
-    z-index: 99999;
-    border-bottom: 1px solid rgb(218, 218, 218);
+    position: fixed;
+    // background-color: #000000;
+    background: rgba(0, 0, 0, 0.436);
+    backdrop-filter: blur(15px); 
+    z-index: 2020;
+    // border-bottom: 1px solid rgb(218, 218, 218);
 }
 
 .nav-bar-container {
@@ -106,10 +109,11 @@
     display: flex;
     flex-direction: row;
     gap: 10px;
-    background-color: rgb(255, 255, 255);
-    border: 0.5px solid rgb(220, 220, 220);
+    background-color: var.$background-color;
+    border: 0.5px solid var.$box-color-thick;
     padding: 13px;
     border-radius: 10px;
+    color: var.$white-color;
 }
 
 .dropdown-container::before {
@@ -136,7 +140,6 @@
     > li {
         > a{
             text-decoration: none;
-            color: black;
             padding: 5px 4px;
             white-space: nowrap;
         }
@@ -162,7 +165,6 @@
             justify-content: space-between;
             align-items: center;
             > span {
-                color: black;
                 padding: 5px 4px;
                 white-space: nowrap;
             }
@@ -188,8 +190,8 @@
     top: 0;
     opacity: 0;
     visibility: hidden;
-    background-color: rgb(255, 255, 255);
-    border: 0.5px solid rgb(227, 227, 227);
+    background-color: var.$background-color;
+    border: 0.5px solid var.$box-color-thick;
     display: flex;
     border-radius: 10px;
     > ul {
@@ -309,9 +311,11 @@
         border-radius: 50%;
         text-align: center;
         border: 1px solid black;
+        cursor: pointer;
     }
     > svg {
         font-size: 27px;
+        cursor: pointer;
     }
     > .user-details-dropDown {
         display: none;
@@ -321,6 +325,7 @@
         gap: 9px;
         padding: 9px;
         width: fit-content;
+        background-color: var.$background-color;
         > div {
             width: 100%;
             display: flex;
@@ -331,19 +336,22 @@
                 width: 100%;
                 text-wrap: nowrap;
                 font-size: 16px;
+                cursor: pointer;
             }
             > svg {
                 height: 20px;
                 width: 20px;
+                cursor: pointer;
             }
         }
     }
     > .open {
         display: flex !important;
         flex-direction: column;
-        background-color: #fff;
-        border: 1px solid rgb(183, 183, 183);
+        background-color: var.$background-color;
+        border: 1px solid var.$box-color-thick;
         border-radius: 9px;
+        color: var.$white-color;
     }
 }
 

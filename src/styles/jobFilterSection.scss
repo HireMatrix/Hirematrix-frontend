@@ -1,3 +1,5 @@
+@use './_variables.scss' as var;
+
 .filter-icon-container {
     display: flex;
     justify-content: space-between;
@@ -12,7 +14,7 @@
         }
     }
     > p {
-        color: rgb(31 130 104);
+        color: var.$main-theme-color;
         font-size: 13px;
         font-weight: 600;
         cursor: pointer;
@@ -25,15 +27,15 @@
     flex-wrap: wrap;
     margin-bottom: 15px;
     > span {
-        background-color: rgb(235,243,254);
+        background-color: transparent;
         border-radius: 12px;
-        border: 1px solid rgb(88,129,189);
+        border: 1px solid var.$box-color-thick;
         padding: 0 12px;
         font-size: 14px;
-        color: rgb(40,83,153);
+        color: var.$white-color;
         cursor: pointer;
         > span {
-            color: rgb(32,85,164);
+            color: var.$main-theme-color;
             font-size: 17px;
             margin-left: 5px;
         }
@@ -46,7 +48,7 @@
     justify-content: space-between;
     margin: 8px 0;
     cursor: pointer;
-    color: #000000;
+    color: var.$white-color;
     > p {
         font-size: 15px;
         font-weight: 600;
@@ -54,13 +56,52 @@
 }
 
 .filter-section-dropdownimg {
-    height: 20px;
+    font-size: 28px;
     transition: all 0.1s linear;
 }
 
 .rotate {
     transform: rotate(180deg);
 }
+
+// .slider {
+//     -webkit-appearance: none;
+//     appearance: none;
+//     background: #ffffff;
+// }
+
+// .slider::-webkit-slider-runnable-track {
+//     background: #ffffff; /* Change track color */
+//     height: 8px;
+//     border-radius: 5px;
+// }
+
+// /* Customize the knob (thumb) */
+// .slider::-webkit-slider-thumb {
+//     -webkit-appearance: none;
+//     appearance: none;
+//     width: 15px;
+//     height: 15px;
+//     background: #ff5733; /* Change knob color */
+//     border-radius: 50%;
+//     cursor: pointer;
+//     margin-top: -6px;
+//     transform: translateY(2px);
+// }
+
+// /* For Firefox */
+// .slider::-moz-range-track {
+//     background: #4caf50;
+//     height: 8px;
+// }
+
+// .slider::-moz-range-thumb {
+//     width: 15px;
+//     height: 15px;
+//     background: #ff5733;
+//     border-radius: 50%;
+//     cursor: pointer;
+// }
 
 .filter-options-group {
     display: flex !important;
@@ -72,9 +113,9 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        color: #4b4b4b;
+        color: var.$white-color;
         > input {
-            color: rgb(31 130 104);
+            color: var.$main-theme-color;
         }
     }
     > input{
@@ -85,18 +126,18 @@
 }
 
 .filter-sortby-section {
-    border-bottom: 0.5px solid rgb(189, 189, 189);
+    border-bottom: 0.5px solid var.$box-color-thick;
 }
 
 .experience-range-filter-section {
-    border-bottom: 0.5px solid rgb(189, 189, 189);
+    border-bottom: 0.5px solid var.$box-color-thick;
     > p {
         color: #808080;
     }
 }
 
 .salary-range-filter-section {
-    border-bottom: 0.5px solid rgb(189, 189, 189);
+    border-bottom: 0.5px solid var.$box-color-thick;
     > p {
         color: #808080;
     }
@@ -127,7 +168,7 @@
 .range-top-text {
     position: absolute;
     transform: translate(-50%, -35%);
-    background-color: rgb(0,66,44);
+    background-color: var.$main-theme-color;
     color: #ffffff;
     border-radius: 20px;
     height: fit-content;
@@ -141,5 +182,5 @@
     display: flex;
     justify-content: space-between;
     font-size: 16px;
-    color: #373737;
+    color: var.$box-color-thick;
 }
