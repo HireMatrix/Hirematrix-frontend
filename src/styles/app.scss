@@ -1,18 +1,19 @@
-@use './jobLandingPage';
+@use './variables.scss' as var;
+@use './JobLandingPagesStyles/jobLandingPage';
 @use './header/LandingPageHeader';
 @use './header/EmployerPageHeader';
-@use './EmployerLoginPage';
-@use './JobSearchPage';
-@use './jobFilterSection';
-@use './jobItem';
-@use './ResumeBuilderPage';
+@use './EmployerPagesStyles/EmployerLoginPage';
+@use './JobLandingPagesStyles/JobSearchPage';
+@use './JobLandingPagesStyles/jobFilterSection';
+@use './JobLandingPagesStyles/jobItem';
+@use './ResumePagesStyles/ResumeBuilderPage';
 @use './AuthPages/Login';
 @use './basic_details_pages/basic_details_1';
-@use './verifyEmailPage';
-@use './AddResume';
+@use './AuthPages/verifyEmailPage';
+@use './ResumePagesStyles/AddResume';
 @use './AiMockInterviewPage';
 @use './Blogs';
-@use './resumeChecker';
+@use './ResumePagesStyles/resumeChecker';
 @use './chatbotui.scss';
 @use './header/AdminPageHeader.scss';
 
@@ -27,11 +28,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    // color: #ffffff;
 }
 
 a{
     text-decoration: none;
-    color: black;
+    color: var.$white-color;
 }
 
 ul {
@@ -40,6 +42,12 @@ ul {
 
 body {
   user-select: none;
+}
+
+main {
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: var.$background-color;
 }
 
 .spinner-fullpage {
@@ -127,4 +135,25 @@ body {
 .admin-pagelayout-whole-web {
     display: flex;
     flex-direction: row;
+    min-height: 100vh;
+    min-width: 100vw;
+    overflow: hidden;
+}
+
+.error-page-styling {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    > p {
+        color: var.$white-color;
+    }
+    > a {
+        background-color: var.$main-theme-color;
+        padding: 5px;
+        border-radius: 8px;
+    }
 }

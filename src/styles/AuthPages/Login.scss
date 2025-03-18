@@ -1,7 +1,10 @@
+@use "../_variables.scss" as var;
+
 .login-page-main-container {
   height: 100vh;
   width: 100vw;
   display: flex;
+
   .login-page-image {
     display: flex;
     flex-direction: column;
@@ -15,6 +18,7 @@
       width: 50%;
       text-align: center;
       padding: 0.2rem;
+      color: var.$white-color;
     }
   }
   .auth-form-container {
@@ -24,10 +28,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: -5px 0 10px rgba(255, 255, 255, 0.2);
     border-top-left-radius: 30%;
     border-bottom-left-radius: 30%;
     animation: appera 0.3s linear;
+    border: 1px solid var.$box-color-thick;
   
     .login-form {
       height: 40%;
@@ -39,6 +44,7 @@
       > h1 {
         text-align: center;
         margin-bottom: 5px;
+        color: var.$white-color;
       }
   
       > .input-container {
@@ -61,9 +67,10 @@
           background: transparent;
           z-index: 1;
           transition: 0.2s ease;
+          color: var.$white-color;
   
           &:focus, &:hover {
-            border-color: rgb(31, 130, 104);
+            border-color: var.$main-theme-color;
           }
   
           &:focus + .label-el, 
@@ -71,9 +78,10 @@
             top: 0;
             left: 3.5%;
             font-size: 12px;
-            color: rgb(31, 130, 104);
-            background-color: #fff;
+            color: var.$white-color;
+            background-color: var.$main-theme-color;
             z-index: 11;
+            border-radius: 5px;
           }
         }
   
@@ -101,7 +109,7 @@
           font-size: 15px;
           > a {
             text-decoration: underline;
-            color: rgb(0, 71, 184);
+            color: var.$white-color;
           }
         }
       }
@@ -119,7 +127,7 @@
           height: 38px;
           border-radius: 6px;
           border-width: 0;
-          background-color: #15872f;
+          background-color: var.$main-theme-color;
           color: #fff;
           font-size: 16px;
           font-family: sans-serif;

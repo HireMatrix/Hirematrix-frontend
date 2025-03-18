@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ErrorPage, { ERROR_PAGE_TYPES } from "./ErrorPage";
+import ErrorPage, { ERROR_PAGE_TYPES, ERROR_MESSAGES } from "./ErrorPage";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -39,7 +39,7 @@ class ErrorBoundary extends Component {
       //   );
       // }
 
-      return <ErrorPage type={ERROR_PAGE_TYPES.INTERNAL_SERVER_ERROR} />;
+      return <ErrorPage type={ERROR_PAGE_TYPES.INTERNAL_SERVER_ERROR} ErrorMsg={ERROR_MESSAGES.INTERNAL_SERVER_ERROR}/>;
     }
 
     return this.props.children;

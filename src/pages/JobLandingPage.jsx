@@ -1,62 +1,64 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import { setSearchContent, setLocationContent } from '../features/jobSearch/jobSearchSlice'
 
+// Data
 import {candidatesInfiniteScroll, trendingJobInfiniteScrollList} from '../assets/infiniteScrollData.json'
 
-import searchPng from '../assets/jobLandingPageImg/search.png'
+// assets
 import employerPng from '../assets/jobLandingPageImg/employer.png'
-import locationPng from '../assets/jobLandingPageImg/location.png'
-import paytmPng from '../assets/jobLandingPageImg/paytm.png'
-import profile2Jpg from '../assets/jobLandingPageImg/profile-2.jpg'
 import quoteLeftPng from '../assets/jobLandingPageImg/quote-left.png'
 import starHalf from '../assets/jobLandingPageImg/star-half-empty.png'
 import star from '../assets/jobLandingPageImg/star-rating.png'
-import studentImg from '../assets/jobLandingPageImg/studentImg.png'
-import tickPng from '../assets/jobLandingPageImg/tick.png'
 
+// Icons
+import { CiSearch } from "react-icons/ci";
+import { CiLocationOn } from "react-icons/ci";
+
+// components
 import CandidateInfiniteSlider from '../components/infinitescroll/CandidateInfiniteSlider'
 import TrendingInfiniteSlider_1 from '../components/infinitescroll/TrendingInfiniteSlider_1'
 import TrendingInfiniteSlider_2 from '../components/infinitescroll/TrendingInfiniteSlider_2'
-
-const placeholderTextArray = [
-  "'skill'",
-  "'title'",
-  "'company'",
-]
+import RatingCard from '../components/landingPageComponents/ratingCard'
+import TrendingJobs from '../components/landingPageComponents/TrendingJobs'
+import JobOpening from '../components/landingPageComponents/JobOpening'
+import PaginationCore from '../core/paginationCore/PaginationCore'
+import PlaceHolderEffect from '../components/landingPageComponents/PlaceHolderEffect'
 
 const hoverListDiffColors = [
-  'list-hover-1', 'list-hover-2', 'list-hover-3' 
+  'list-hover', 
 ]
 
 const JobLandingPage = () => {
 
   const [searchInputValue, setSearchInputValue] = useState('')
+  const [clearInputBtnVisible, setClearInputBtnVisible] = useState(false)
   const [searchInputErrMsg, setSearchInputErrMsg] = useState(false)
   const [locationInput, setLocationInput] = useState('Anywhere in india')
   const [locationInputErrMsg, setLocationInputErrMsg] = useState(false)
-  const [searchPlaceholder, setSearchPlaceholder] = useState('')
+  // const [searchPlaceholder, setSearchPlaceholder] = useState('')
   const [clearBtnVisible, setClearBtnVisible] = useState(false)
   
   const [hoverdIndex_1, setHoverdIndex_1] = useState(null)
-  const [hoverdIndex_2, setHoverdIndex_2] = useState(null)
-
-  const [scrollValue, setScrollValue] = useState('')
+  const [hoverdIndex_2, setHoverdIndex_2] = useState(null);
 
   const navigate = useNavigate();
 
   const dispatch = useDispatch()
 
-  const scrollProgressContainer = useRef()
-
-  const scroll = useRef()
-
-  const jobOpeningCardsContainer = useRef()
+  const clearSearchInput = () => {
+    setSearchInputValue('');
+    setClearInputBtnVisible(false);
+  }
 
   const clearTextLocationInput = () => {
-    setLocationInput('')
-    setClearBtnVisible(false)
+    setLocationInput('');
+    setClearBtnVisible(false);
+  }
+
+  const onChaningSearchInput = (e) => {
+    setSearchInputValue(e.target.value); setClearInputBtnVisible(true)
   }
 
   const onChangingLocationInput = (e) => {
@@ -69,16 +71,8 @@ const JobLandingPage = () => {
   }
 
   // place holder text changer
+  const searchPlaceholder = PlaceHolderEffect();
 
-  const constantText = 'Search jobs by '
-  let index = 0;
-
-  useEffect(() => {
-    setInterval(() => {
-      setSearchPlaceholder(constantText+placeholderTextArray[index]);
-      index = (index + 1) % placeholderTextArray.length;
-    }, 2000)
-  }, [])
 
   const mouseEnter_1 = (index) => {
     setHoverdIndex_1(index)
@@ -94,18 +88,6 @@ const JobLandingPage = () => {
 
   const mouseLeave_2 = () => {
     setHoverdIndex_2(null)
-  }
-
-  // scroll progress
-
-  const onScrollingJobOpeningCards = () => {
-    const scrollLeft = jobOpeningCardsContainer.current.scrollLeft;
-    // console.log(scrollLeft)
-    const scrollWidth = jobOpeningCardsContainer.current.scrollWidth - jobOpeningCardsContainer.current.clientWidth;
-    const scrollPercentage = (scrollLeft / scrollWidth) * 100;
-    const maxLeft = scrollProgressContainer.current.clientWidth - scroll.current.clientWidth;
-    const leftPosition = (scrollPercentage/100) * maxLeft;
-    setScrollValue(leftPosition + 'px');
   }
 
   const onClickingSearchJob = () => {
@@ -127,6 +109,7 @@ const JobLandingPage = () => {
   }
 
   const handleKeyDown = (e) => {
+    setClearInputBtnVisible(true);
     if(e.key === 'Enter'){
       if(searchInputValue === '') {
         setSearchInputErrMsg(true)
@@ -157,21 +140,18 @@ const JobLandingPage = () => {
           <h1>Effortless Hiring, Maximum Efficiency</h1>
           <p>Discover 50 lakh+ career opportunities</p>
           <div className={`search-input-container ${searchInputErrMsg ? 'error-search-input-el' : ''} ${locationInputErrMsg ? 'error-search-input-el' : ''}`}>
-            <img 
-              src={searchPng} 
-              alt='search-icon'
-              loading='lazy'
-            />
+            <CiSearch/>
             <input 
-              type="search" 
+              type="text" 
               className={`search-input-el`}
               placeholder={searchPlaceholder}
               value={searchInputValue}
-              onChange={(e) => setSearchInputValue(e.target.value)}
+              onChange={onChaningSearchInput}
               onKeyDown={handleKeyDown}
             />
+            <button className={`clear-text-locationIn-btn ${clearInputBtnVisible ? "clear-btn-loc-visible" : ""}`} onClick={clearSearchInput}>x</button>
             <hr className='hr-tag-jobLandingPage'/>
-            <img src={locationPng} className="location-img" alt='location-icon' loading='lazy'/> 
+            <CiLocationOn/>
             <input 
               type="text" 
               className="options-input-el" 
@@ -226,236 +206,14 @@ const JobLandingPage = () => {
         {/* <!-- trending section --> */}
 
         <div className="trending_job_container">
-            <h1 className="trending_job_mainhead">
-              Popular Searches on Hire-Matrix
-            </h1>
-            <div className="trending_job1 t_j_1">
-                <div>
-                    <h1 className="trending_job_head1">
-                        TRENDING AT #1
-                    </h1>
-                    <p className="trending_job_para1">
-                        Jobs For Freshers
-                    </p>
-                    <p className="trending-job-para2">
-                        Jobs For Freshers
-                    </p>
-                    <button className="trending_job_btn1">
-                        {`View all >`}
-                    </button>
-                </div>
-                <div>  
-                  <img src={studentImg} className="trending_job_img1" loading='lazy' alt='trending'/>
-                </div>
-            </div>
-            <div className="trending_job1 t_j_2 shadow mt-3 mb-3 d-flex flex-column position-relative">
-                <div>
-                    <h1 className="trending_job_head1">
-                        TRENDING AT #1
-                    </h1>
-                    <p className="trending_job_para1">
-                        Jobs For Freshers
-                    </p>
-                    <p className="trending-job-para2">
-                        Jobs For Freshers
-                    </p>
-                    <button className="trending_job_btn1">
-                      {`View all >`}
-                    </button>
-                </div>
-                <div>  
-                  <img src={studentImg} className="trending_job_img1" loading='lazy' alt='trending'/>
-                </div>
-            </div>
-            <div className="trending_job1 t_j_1 shadow mt-3 mb-3 d-flex flex-column position-relative">
-                <div>
-                    <h1 className="trending_job_head1">
-                        TRENDING AT #1
-                    </h1>
-                    <p className="trending_job_para1">
-                        Jobs For Freshers
-                    </p>
-                    <p className="trending-job-para2">
-                        Jobs For Freshers
-                    </p>
-                    <button className="trending_job_btn1">
-                      {`View all >`}
-                    </button>
-                </div>
-                <div>  
-                  <img src={studentImg} className="trending_job_img1" loading='lazy' alt='trending'/>
-                </div>
-            </div>
-            <div className="trending_job1 t_j_3 shadow mt-3 mb-3 d-flex flex-column position-relative">
-                <div>
-                    <h1 className="trending_job_head1">
-                        TRENDING AT #1
-                    </h1>
-                    <p className="trending_job_para1">
-                        Jobs For Freshers
-                    </p>
-                    <p className="trending-job-para2">
-                        Jobs For Freshers
-                    </p>
-                    <button className="trending_job_btn1">
-                      {`View all >`}
-                    </button>
-                </div>
-                <div>  
-                  <img src={studentImg} className="trending_job_img1" loading='lazy' alt='trending'/>
-                </div>
-            </div>
-            <div className="trending_job1 t_j_4 shadow mt-3 mb-3 d-flex flex-column position-relative">
-                <div>
-                    <h1 className="trending_job_head1">
-                        TRENDING AT #1
-                    </h1>
-                    <p className="trending_job_para1">
-                        Jobs For Freshers
-                    </p>
-                    <p className="trending-job-para2">
-                        Jobs For Freshers
-                    </p>
-                    <button className="trending_job_btn1">
-                      {`View all >`}
-                    </button>
-                </div>
-                <div>  
-                  <img src={studentImg} className="trending_job_img1" loading='lazy' alt='trending'/>
-                </div>
-            </div>
+            <TrendingJobs/>
         </div>
       </div>
+
       {/* <!-- job opening section --> */}
 
       <div className="job-opening-container">
-          <h1 className="job-opening-heading">Job Openings in Top companies</h1>
-          <div className="job-opening-company-cards-container" onScroll={onScrollingJobOpeningCards} ref={jobOpeningCardsContainer}>
-              <div className="job-opening-company-card">
-                  <img 
-                    src={paytmPng} 
-                    alt="company-logo"
-                    loading='lazy'
-                  />
-                  <h1 className="job-opening-company-name">
-                      Paytm Service Pvt. Ltd.
-                  </h1>
-                  <p className="job-opening-company-desc">Digital payment and e-commerce facilitator.</p>
-                  <button className="job-opening-company-button">View jobs</button>
-              </div>
-              <div className="job-opening-company-card">
-                  <img 
-                    src={paytmPng} 
-                    alt="company-logo"
-                    loading='lazy'
-                  />
-                  <h1 className="job-opening-company-name">
-                      Paytm Service Pvt. Ltd.
-                  </h1>
-                  <p className="job-opening-company-desc">Digital payment and e-commerce facilitator.</p>
-                  <button className="job-opening-company-button">View jobs</button>
-              </div>
-              <div className="job-opening-company-card">
-                  <img 
-                    src={paytmPng} 
-                    alt="company-logo"
-                    loading='lazy'
-                  />
-                  <h1 className="job-opening-company-name">
-                      Paytm Service Pvt. Ltd.
-                  </h1>
-                  <p className="job-opening-company-desc">Digital payment and e-commerce facilitator.</p>
-                  <button className="job-opening-company-button">View jobs</button>
-              </div>
-              <div className="job-opening-company-card">
-                  <img 
-                    src={paytmPng} 
-                    alt="company-logo"
-                    loading='lazy'
-                  />
-                  <h1 className="job-opening-company-name">
-                      Paytm Service Pvt. Ltd.
-                  </h1>
-                  <p className="job-opening-company-desc">Digital payment and e-commerce facilitator.</p>
-                  <button className="job-opening-company-button">View jobs</button>
-              </div>
-              <div className="job-opening-company-card">
-                  <img 
-                    src={paytmPng} 
-                    alt="company-logo"
-                    loading='lazy'
-                  />
-                  <h1 className="job-opening-company-name">
-                      Paytm Service Pvt. Ltd.
-                  </h1>
-                  <p className="job-opening-company-desc">Digital payment and e-commerce facilitator.</p>
-                  <button className="job-opening-company-button">View jobs</button>
-              </div>
-              <div className="job-opening-company-card">
-                  <img 
-                    src={paytmPng} 
-                    alt="company-logo"
-                    loading='lazy'
-                  />
-                  <h1 className="job-opening-company-name">
-                      Paytm Service Pvt. Ltd.
-                  </h1>
-                  <p className="job-opening-company-desc">Digital payment and e-commerce facilitator.</p>
-                  <button className="job-opening-company-button">View jobs</button>
-              </div>
-              <div className="job-opening-company-card">
-                  <img 
-                    src={paytmPng} 
-                    alt="company-logo"
-                    loading='lazy'
-                  />
-                  <h1 className="job-opening-company-name">
-                      Paytm Service Pvt. Ltd.
-                  </h1>
-                  <p className="job-opening-company-desc">Digital payment and e-commerce facilitator.</p>
-                  <button className="job-opening-company-button">View jobs</button>
-              </div>
-              <div className="job-opening-company-card">
-                  <img 
-                    src={paytmPng} 
-                    alt="company-logo"
-                    loading='lazy'
-                  />
-                  <h1 className="job-opening-company-name">
-                      Paytm Service Pvt. Ltd.
-                  </h1>
-                  <p className="job-opening-company-desc">Digital payment and e-commerce facilitator.</p>
-                  <button className="job-opening-company-button">View jobs</button>
-              </div>
-              <div className="job-opening-company-card">
-                  <img 
-                    src={paytmPng} 
-                    alt="company-logo"
-                    loading='lazy'
-                  />
-                  <h1 className="job-opening-company-name">
-                      Paytm Service Pvt. Ltd.
-                  </h1>
-                  <p className="job-opening-company-desc">Digital payment and e-commerce facilitator.</p>
-                  <button className="job-opening-company-button">View jobs</button>
-              </div>
-              <div className="job-opening-company-card">
-                  <img 
-                    src={paytmPng} 
-                    alt="company-logo"
-                    loading='lazy'
-                  />
-                  <h1 className="job-opening-company-name">
-                      Paytm Service Pvt. Ltd.
-                  </h1>
-                  <p className="job-opening-company-desc">Digital payment and e-commerce facilitator.</p>
-                  <button className="job-opening-company-button">View jobs</button>
-              </div>
-          </div>
-          <div className="job-opening-scroll-progress-container" ref={scrollProgressContainer}>
-              <div className="job-opening-scroll" ref={scroll} style={{left: `${scrollValue}`}}></div>
-          </div>
-          <button className="job-opening-viewallBtn">View all</button>
+          <JobOpening/>
       </div>
 
       {/* <!-- trending job roles section --> */}
@@ -502,7 +260,9 @@ const JobLandingPage = () => {
                   mouseEnter={() => mouseEnter_2(index)} 
                   mouseLeave={mouseLeave_2}
                   isHoverd={hoverdIndex_2 === index}
-                  randomclass={hoverListDiffColors[index % hoverListDiffColors.length]}/>
+                  // randomclass={hoverListDiffColors[index % hoverListDiffColors.length]}
+                  randomclass={hoverListDiffColors[0]}
+                  />
                 ))
               }
             </ul>
@@ -515,7 +275,9 @@ const JobLandingPage = () => {
                   mouseEnter={() => mouseEnter_2(index)} 
                   mouseLeave={mouseLeave_2}
                   isHoverd={hoverdIndex_2 === index}
-                  randomclass={hoverListDiffColors[index % hoverListDiffColors.length]}/>
+                  // randomclass={hoverListDiffColors[index % hoverListDiffColors.length]}
+                  randomclass={hoverListDiffColors[0]}
+                  />
                 ))
               }
             </ul>
@@ -527,12 +289,14 @@ const JobLandingPage = () => {
 
       <div className="rating-section">
         <div className="join-community-card">
-          <img 
-            src={quoteLeftPng} 
-            className="quotes-img"
-            loading='lazy'
-          />
-          <h1 className="join-community-text">Join the community of 5 crore satisfied job seekers...</h1>
+          <h1 className="join-community-text">
+            <img 
+              src={quoteLeftPng} 
+              className="quotes-img"
+              loading='lazy'
+            />
+            Join the community of 5 crore satisfied job seekers...
+          </h1>
           <div>
               <p>Play Store Ratings</p>
               <img src={star} alt="star" loading='lazy'/>
@@ -543,7 +307,7 @@ const JobLandingPage = () => {
           </div>
         </div>
         <div className="user-rating-container">
-          
+          <RatingCard/>
         </div>
       </div>
 
@@ -560,6 +324,8 @@ const JobLandingPage = () => {
             </div>
         </div>
       </div>
+
+      {/* <PaginationCore/> */}
     </>
   )
 }

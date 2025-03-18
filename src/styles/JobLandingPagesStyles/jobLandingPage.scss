@@ -1,18 +1,21 @@
+@use '../_variables.scss' as var;
+
 .hr-tag-jobLandingPage {
     width:1px;
     border-width:0;
     background-color:gray;
     height: 60%;
+    margin-right: 15px;
 }
 
 .home-section {
+    padding-top: 100px;
     min-width: 100vw;
-    min-height: 90vh;
+    min-height: 95vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 100px;
-    background-color: rgba(255, 255, 255, 0.319);
+    background-color: var.$background-color;
     /* backdrop-filter: blur(10px); */
     z-index: 9;
     position: relative;
@@ -21,12 +24,12 @@
 
 .home-section::before {
     position: absolute;
-    left: -5%;
-    top: 5%;
+    left: -2%;
+    top: 0;
     content: '';
-    background-image: radial-gradient(closest-side, rgba(255, 243, 134, 0.21), #fff);
-    height: 400px;
-    width: 400px;
+    background-image: radial-gradient(closest-side, rgba(255, 237, 70, 0.353), #000000);
+    height: 500px;
+    width: 500px;
     border-radius: 50%;
     z-index: -2;
     overflow: hidden;
@@ -34,12 +37,12 @@
 
 .home-section::after {
     position: absolute;
-    right: 2%;
-    top: 12%;
+    right: 1%;
+    top: 8%;
     content: '';
-    background-image: radial-gradient(closest-side, rgba(148, 112, 255, 0.21), #fff);
-    height: 350px;
-    width: 350px;
+    background-image: radial-gradient(closest-side, rgba(118, 98, 179, 0.39), #000000);
+    height: 500px;
+    width: 500px;
     border-radius: 50%;
     z-index: -2;
     overflow: hidden;
@@ -48,7 +51,7 @@
 .search-jobs-container {
     width: 80%;
     > h1:nth-child(1) {
-        color: rgb(31 130 104);
+        color: var.$main-theme-color;
         font-weight: 700;
         font-size: 22px;
         margin-top: calc(5vh + 2rem);
@@ -58,11 +61,13 @@
         font-size: 45px;
         font-weight: 700;
         margin-top: 0.4rem;
+        color: var.$white-color;
     }
     >p {
         font-size: 18px;
         font-weight: 500;
         margin-bottom: 2rem;
+        color: var.$grey-color;
     }
 }
 
@@ -70,21 +75,26 @@
     height: 60px;
     display: inline-flex;
     align-items: center;
-    border: 1px solid gainsboro;
+    border: 1px solid var.$box-color-thick;
     padding: 0 12px;
     border-radius: 8px;
-    background-color: #ffffff;
-    > img:nth-child(1) {
-        height: 26px;
+    background-color: transparent;
+    color: var.$white-color;
+    > svg {
+        font-size: 37px;
         padding-right: 10px;
     }
     > input {
         outline: none;
-        border: 0 solid grey;
+        border: 0 solid rgba(128, 128, 128, 0);
         font-size: 17px;
-        color: #000000;
+        color: #ffffff;
+        background-color: transparent;
         height: 90%;
         margin-right: 8px;
+        &::placeholder {
+            color: var.$grey-color;
+        }
     }
 }
 
@@ -113,13 +123,13 @@
     cursor: pointer;
     &:hover {
         background-color: transparent;
-        border: 1px solid rgb(255, 111, 0);
-        color: rgb(255, 111, 0);
+        border: 1px solid var.$main-theme-color;
+        color: var.$main-theme-color;
     }
 }
 
 .clear-text-locationIn-btn {
-    color: grey;
+    color: var.$white-color;
     outline: none !important;
     background-color: transparent;
     border: none;
@@ -161,6 +171,7 @@
     display: flex;
     justify-content: space-between;
     gap: var(--gap);
+    color: #ffffff;
 }
 
 .infinite-scroll ul {
@@ -175,8 +186,8 @@
 }
 
 .infinite-scroll-list {
-    background-color: rgb(255, 255, 255);
-    border: 0.8px solid #e0e0e0;
+    background-color: rgb(0, 0, 0);
+    border: 0.8px solid var.$box-color-light;
     padding: 10px 10px;
     width: 210px;
     height: 70px;
@@ -184,6 +195,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    color: #ffffff;
     > img {
         display: block;
         height: 45px;
@@ -210,26 +222,10 @@
 
 /* trending job section */
 
-.homepagehead1{
-    font-size: 20px;
-    font-weight: bold;
-    color: #000000;
-}
-
-.homepagehead2{
-    font-size: 40px;
-    font-weight: bold;
-    color:rgb(0, 0, 0);
-}
-
-.homepagepara1{
-    font-size: 18px;
-    color:black;
-}
-
 .trending_job_container{
     width: 100vw;
-    background-color:#ffffff;
+    background-color:#000000;
+    color: #ffffff;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -241,7 +237,6 @@
     font-family: sans-serif;
     font-size:55px;
     font-weight:bolder;
-    color:rgb(0, 0, 0);
     width: 30%;
 }
 
@@ -252,73 +247,74 @@
     padding: 20px;
     background-color: transparent;
     border-radius: 25px;
-    border-color: #c6c5c5;
+    border-color: #ffffff;
     transition: 0.4s ease-in-out;
     position: relative;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     width: 30%;
+    cursor: pointer;
 }
 
-.t_j_1:hover {
-    border-color: #ca4242;
-    background: linear-gradient(180deg, hsla(0, 0%, 100%, 1) 18%, hsla(0, 61%, 83%, 1) 100%);
-}
+// .t_j_1:hover {
+//     border-color: #ca4242;
+//     background: linear-gradient(180deg, rgb(0, 0, 0) 18%, hsla(0, 61%, 83%, 1) 100%);
+// }
 
 .t_j_1:hover .trending_job_btn1 {
-    background-color: #ca4242;
+    background-color: rgb(255, 111, 0);
     color: aliceblue;
     border-style: none;
 }
 
 .t_j_1:hover .trending_job_para1 {
-    color: #ca4242;
+    color: rgb(255, 111, 0);
 }
 
-.t_j_2:hover {
-    border-color: #4d2cc4;
-    background: linear-gradient(180deg, hsla(0, 0%, 100%, 1) 18%, rgb(165, 148, 216) 100%);
-}
+// .t_j_2:hover {
+//     border-color: #4d2cc4;
+//     background: linear-gradient(180deg, hsla(0, 0%, 100%, 1) 18%, rgb(165, 148, 216) 100%);
+// }
 
 .t_j_2:hover .trending_job_btn1 {
-    background-color: #4d2cc4;
+    background-color: rgb(255, 111, 0);
     color: aliceblue;
     border-style: none;
 }
 
 .t_j_2:hover .trending_job_para1 {
-    color: #4d2cc4;
+    color: rgb(255, 111, 0);
 }
 
-.t_j_3:hover {
-    border-color: #21962d;
-    background: linear-gradient(180deg, hsla(0, 0%, 100%, 1) 18%, rgb(148, 216, 158) 100%);
-}
+// .t_j_3:hover {
+//     border-color: #21962d;
+//     background: linear-gradient(180deg, hsla(0, 0%, 100%, 1) 18%, rgb(148, 216, 158) 100%);
+// }
 
 .t_j_3:hover .trending_job_btn1 {
-    background-color: #21962d;
+    background-color: rgb(255, 111, 0);
     color: aliceblue;
     border-style: none;
 }
 
 .t_j_3:hover .trending_job_para1 {
-    color: #21962d;
+    color: rgb(255, 111, 0);
 }
 
-.t_j_4:hover {
-    border-color: #3754d6;
-    background: linear-gradient(180deg, hsla(0, 0%, 100%, 1) 18%, rgb(160, 182, 242) 100%);
-}
+// .t_j_4:hover {
+//     border-color: #3754d6;
+//     background: linear-gradient(180deg, hsla(0, 0%, 100%, 1) 18%, rgb(160, 182, 242) 100%);
+// }
 
 .t_j_4:hover .trending_job_btn1 {
-    background-color: #3754d6;
+    background-color: rgb(255, 111, 0);
     color: aliceblue;
     border-style: none;
 }
 
 .t_j_4:hover .trending_job_para1 {
-    color: #3754d6;
+    color: rgb(255, 111, 0);
 }
 
 .trending_job_head1 {
@@ -382,15 +378,14 @@
 /* job opening section */
 
 .job-opening-container {
-    background-color: rgb(244,242,246);
+    background-color: var.$background-color;
     width: 100vw;
     min-height: 100vh;
-    margin: 2rem 0;
-    margin-bottom: 7rem;
-    padding: 4rem 0;
+    padding: 4rem 0.6rem 4rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: var.$white-color;
 }
 
 .job-opening-heading {
@@ -414,18 +409,19 @@
 }
 
 .job-opening-company-card {
-    background-color: #ffffff;
+    background-color: var.$background-color;
     border-radius: 9px;
-    border: 0.5px solid rgb(228, 225, 225);
+    border: 0.5px solid var.$box-color-thick;
     flex-shrink: 0;
     padding: 2rem;
     width: 400px;
+    cursor: pointer;
     > img {
         height: 80px;
         width: 90px;
     }
     &:hover .job-opening-company-button {
-        background-color: rgb(31,130,104);
+        background-color: var.$main-theme-color;
         color: #ffffff;
     }
 }
@@ -441,6 +437,7 @@
     font-size: 16px;
     font-weight: 500;
     margin-bottom: 4rem;
+    color: var.$grey-color;
 }
 
 .job-opening-company-button {
@@ -451,13 +448,14 @@
     font-weight: 600;
     padding: 0.5rem 1rem;
     border-radius: 8px;
-    color: rgb(31,130,104);
+    color: var.$main-theme-color;
+    border: 0.5px solid var.$main-theme-color;
     outline: none !important;
     cursor: pointer;
 }
 
 .job-opening-scroll-progress-container {
-    background-color: rgb(209,206,212);
+    background-color: var.$box-color-light;
     align-self: center;
     width: 60px;
     height: 8px;
@@ -467,7 +465,7 @@
 }
 
 .job-opening-scroll {
-    background-color: rgb(31,130,104);
+    background-color: var.$main-theme-color;
     width: 25px;
     height: 100%;
     border-radius: 6px;
@@ -482,11 +480,11 @@
     font-weight: 500;
     font-size: 21px;
     border-radius: 8px;
-    color: rgb(31,130,104);
-    border: 2px solid rgb(31,130,104) !important;
+    color: var.$main-theme-color;
+    border: 2px solid var.$main-theme-color !important;
     outline: none !important;
     &:hover {
-        background-color: rgb(31,130,104);
+        background-color: var.$main-theme-color;
         color: #ffffff;
         cursor: pointer;
     }
@@ -499,7 +497,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10rem 0;
+    background-color: var.$background-color;
+    color: var.$white-color;
 }
 
 .trending-job-roles-infinite-scroll-container {
@@ -556,23 +555,29 @@
     }
 }
 
-.list-hover-1 {
-    border-color: #ca4242;
-    background: linear-gradient(90deg, hsla(0, 0%, 100%, 1) 32%, rgb(241, 199, 199) 100%);
-    color: #ca4242;
+.list-hover {
+    border-color: var.$main-theme-color;
+    // background: linear-gradient(90deg, hsla(0, 0%, 100%, 1) 32%, rgb(241, 199, 199) 100%);
+    color: var.$main-theme-color;
 }
 
-.list-hover-2 {
-    border-color: #4d2cc4;
-    background: linear-gradient(90deg, hsla(0, 0%, 100%, 1) 32%, rgb(199, 186, 238) 100%);
-    color: #4d2cc4;
+.list-hover {
+    > p:nth-child(2) {
+        color: var.$white-color;
+    }
 }
 
-.list-hover-3 {
-    border-color: #21962d;
-    background: linear-gradient(90deg, hsla(0, 0%, 100%, 1) 32%, rgb(169, 224, 177) 100%);
-    color: #21962d;
-}
+// .list-hover-2 {
+//     border-color: #4d2cc4;
+//     background: linear-gradient(90deg, hsla(0, 0%, 100%, 1) 32%, rgb(199, 186, 238) 100%);
+//     color: #4d2cc4;
+// }
+
+// .list-hover-3 {
+//     border-color: #21962d;
+//     background: linear-gradient(90deg, hsla(0, 0%, 100%, 1) 32%, rgb(169, 224, 177) 100%);
+//     color: #21962d;
+// }
 
 .list-hover-4 {
     border-color: #3754d6;
@@ -588,14 +593,15 @@
     min-height: 550px;
     display: flex;
     align-items: center;
-    margin: 4rem 0;
     overflow: hidden !important;
+    padding: 5rem 0 4rem 0;
+    background-color: var.$background-color;
 }
 
 .join-community-card {
     height: 100%;
     width: 510px;
-    background-color: rgb(31, 130, 104);
+    background-color: var.$main-theme-color;
     display: flex;
     flex-shrink: 0;
     flex-direction: column;
@@ -626,15 +632,15 @@
 }
 
 .quotes-img {
-    background-color: rgb(167,206,196);
+    background-color: transparent;
     border-radius: 50%;
-    height: 100px;
-    width: 100px;
-    padding: 28px;
+    height: 50px;
+    width: 50px;
+    margin-right: 1rem;
 }
 
 .user-rating-container {
-    background-color: rgb(234,248,244);
+    background-color: var.$background-color;
     height: 100%;
     min-width: 55%;
     display: flex;
@@ -647,6 +653,8 @@
     &::-webkit-scrollbar {
         display: none;
     }
+    border-top: 1px solid var.$box-color-thick;
+    border-bottom: 1px solid var.$box-color-thick;
 }
 
 .user-rating-card {
@@ -654,11 +662,12 @@
     width: 500px;
     flex-shrink: 0;
     padding: 2rem;
-    background-color: #ffffff;
+    background-color: transparent;
     border-radius: 12px;
     position: relative;
-    border: 1px solid rgb(230, 230, 230);
+    border: 1px solid var.$box-color-thick;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 4px 14px 0 rgba(0, 0, 0, 0.19);
+    color: var.$white-color;
 }
 
 .user-rating-profile-img {
@@ -684,17 +693,17 @@
     display: flex;
     align-items: center;
     margin-bottom: 0;
-    > span {
-        margin-left: 1rem;
-        display: flex;
-        align-items: center;
-        color: rgb(31,130,104);
-        font-size: 14px;
-        font-weight: 600;
-        border: 0.5px solid grey;
-        border-radius: 8px;
-        padding: 4px;
-    }
+    // > span {
+    //     margin-left: 1rem;
+    //     display: flex;
+    //     align-items: center;
+    //     color: rgb(31,130,104);
+    //     font-size: 14px;
+    //     font-weight: 600;
+    //     border: 0.5px solid grey;
+    //     border-radius: 8px;
+    //     padding: 4px;
+    // }
 }
 
 .rating-stars-container {
@@ -726,17 +735,18 @@
     justify-content: center;
     width: 100vw;
     padding: 4rem 0;
+    background-color: var.$background-color;
 }
 
 .employer-card {
-    background-color: rgb(234,248,244);
+    background-color: var.$background-color;
     width: 80%;
     display: flex;
     align-items: flex-end;
     justify-content: space-around;
     padding: 1rem 2rem 0 2rem;
     border-radius: 12px;
-    border: 0.5px solid rgb(206, 206, 206);
+    border: 0.5px solid var.$box-color-thick;
 }
 
 .employer-card-details {
@@ -747,11 +757,11 @@
 }
 
 .employer-theme {
-    color: rgb(31,130,104);
+    color: var.$main-theme-color;
     font-size: 21px;
     font-weight: 700;
     padding: 10px;
-    background-color: rgb(227, 246, 240);
+    background-color: var.$box-color-light;
     border-radius: 4px;
     width: fit-content;
     display: block;
@@ -760,7 +770,7 @@
 
 .employer-want-text {
     font-weight: 700;
-    color: rgb(6, 101, 76);
+    color: var.$main-theme-color;
     font-size: 41px;
 }
 
@@ -771,14 +781,15 @@
 .post-btn {
     display: block;
     width: 50%;
-    border: 1.7px solid rgb(6, 101, 76);
-    padding: 0.5rem 0;
+    border: 1.7px solid var.$main-theme-color;
+    padding: 0.6rem 0;
     outline: none;
     border-radius: 8px;
-    background-color: #ffffff;
+    background-color: transparent;
     font-weight: 600;
+    color: var.$main-theme-color;
     &:hover {
-        background-color: rgb(6, 101, 76);
+        background-color: var.$main-theme-color;
         color: #ffffff;
         cursor: pointer;
     }

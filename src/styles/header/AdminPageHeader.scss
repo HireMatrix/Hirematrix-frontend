@@ -1,27 +1,64 @@
+@use '../_variables.scss' as var;
+
 .admin-header-main-contianer {
-    min-height: 100vh;
-    max-height: 100vh;
-    width: 15%;
+    min-height: 100%;
+    min-width: 15%;
+    max-width: 20%;
     padding: 14px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    
-    border-color: black;
+    background-color: var.$background-color;
     > div {
+        border: 1px solid var.$box-color-thick;
+        height: 100%;
+        border-radius: 12px;
         display: flex;
         flex-direction: column;
-        gap: 19px;
-        .logo-header {
-            > img {
-                height: 34px;
-                width: 32px;
-            }
-        }
-        .admin-components {
+        justify-content: space-between;
+        .admin-sidebar {
             display: flex;
             flex-direction: column;
             gap: 9px;
+            > .logo-header {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 12px;
+                padding: 12px;
+                > img {
+                    height: 34px;
+                    width: 32px;
+                }
+                > p {
+                    padding-top: 5px;
+                    color: var.$main-theme-color;
+                    font-size: 16px;                
+                }
+            }
+            > .admin-components {
+                display: flex;
+                flex-direction: column;
+                gap: 9px;
+                width: 100%;
+                padding: 8px;
+                > div {
+                    padding: 5px;
+                    color: var.$white-color;
+                    > a {
+                        padding: 4px;
+                    }
+                }
+                > .active-nav {
+                    background-color: var.$box-color-thick;
+                    border-radius: 5px;
+                }
+            }
         }
+    }
+}
+
+.admin-details {
+    padding: 12px;
+    > p {
+        color: var.$white-color;
     }
 }

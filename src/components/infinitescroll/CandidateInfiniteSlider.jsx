@@ -1,6 +1,6 @@
 
 const CandidateInfiniteSlider = ({candidateList}) => {
-    const {imgUrl, text} = candidateList
+    const {imgUrl, text} = candidateList;
   return (
     <li className='infinite-scroll-list'>
         <img src={imgUrl} alt='user-img' loading='lazy'/>

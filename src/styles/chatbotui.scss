@@ -1,3 +1,5 @@
+@use './variables.scss' as var;
+
 .chatbot-floating-btn-container {
     position: fixed;
     bottom: 34px;
@@ -7,6 +9,7 @@
     padding: 12px;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
+    border: 0.5px solid var.$box-color-thick;
     .chatbot-container {
         height: 0;
         width: 380px;

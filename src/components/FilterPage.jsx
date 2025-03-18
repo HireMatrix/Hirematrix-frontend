@@ -1,9 +1,9 @@
-import filterIcon from '../assets/jobSearchPageImg/filter-icon.png'
-import dropDown from '../assets/dropdown.png'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateFilter, removeFilter, initialState, resetFilter } from '../features/filter/filterSlice'
-import { fetchedJobs } from '../features/filter/filterFetchSlice'
+import { CiFilter } from "react-icons/ci";
+import { MdOutlineArrowDropDown } from "react-icons/md";
+// import { fetchedJobs } from '../features/filter/filterFetchSlice'
 
 const FilterPage = () => {
 
@@ -63,7 +63,7 @@ const FilterPage = () => {
         englishLevel: true,
         gender: true
     })
-
+    const [experience, setExperience] = useState(filters.experience)
     const [experienceValueText, setExperienceValueText] = useState('')
     const [salaryValueText, setSalaryValueText] = useState('₹ 0')
 
@@ -85,49 +85,54 @@ const FilterPage = () => {
 
   // search results
 
-  const onchangingWorkmodeCheckBox = (e) => {
-    const { name } = e.target
-    setWorkModeChechBox(prev => 
-        prev.map(item => 
-            item.label === name ? {...item, checked: !item.checked} : item
-        )
-    )
-    const newWorkMode = filters.workMode.includes(name) ? filters.workMode.filter(item => item !== name) : [...filters.workMode, name]
-    dispatch(updateFilter({
-        key: 'workMode', value: newWorkMode
-    }));
-  }
+    const onchangingWorkmodeCheckBox = (e) => {
+      const { name } = e.target
+      setWorkModeChechBox(prev => 
+          prev.map(item => 
+              item.label === name ? {...item, checked: !item.checked} : item
+          )
+      )
+      const newWorkMode = filters.workMode.includes(name) ? filters.workMode.filter(item => item !== name) : [...filters.workMode, name]
+      dispatch(updateFilter({
+          key: 'workMode', value: newWorkMode
+      }));
+    }
 
-  const onchangingWorktypeCheckBox = (e) => {
-    const { name } = e.target
-    setWorkTypeCheckBox(prev => 
-        prev.map(item => 
-            item.label === name ? {...item, checked: !item.checked} : item
-        )
-    )
-    const newWorkType = filters.workType.includes(name) ? filters.workType.filter(item => item !== name) : [...filters.workType, name]
-    dispatch(updateFilter({
-        key: 'workType', value: newWorkType
-    }));
-  }
+    const onchangingWorktypeCheckBox = (e) => {
+      const { name } = e.target
+      setWorkTypeCheckBox(prev => 
+          prev.map(item => 
+              item.label === name ? {...item, checked: !item.checked} : item
+          )
+      )
+      const newWorkType = filters.workType.includes(name) ? filters.workType.filter(item => item !== name) : [...filters.workType, name]
+      dispatch(updateFilter({
+          key: 'workType', value: newWorkType
+      }));
+    }
 
-  const onchangingWorkshiftCheckBox = (e) => {
-    const { name } = e.target
-    setWorkShiftCheckBox(prev =>
-        prev.map(item => 
-            item.label === name ? {...item, checked: !item.checked} : item
-        )
-    )
-    const newWorkShift = filters.workShift.includes(name) ? filters.workShift.filter(item => item !== name) : [...filters.workShift, name]
-    dispatch(updateFilter({
-        key: 'workShift', value: newWorkShift
-    }));
-  }
+    const onchangingWorkshiftCheckBox = (e) => {
+      const { name } = e.target
+      setWorkShiftCheckBox(prev =>
+          prev.map(item => 
+              item.label === name ? {...item, checked: !item.checked} : item
+          )
+      )
+      const newWorkShift = filters.workShift.includes(name) ? filters.workShift.filter(item => item !== name) : [...filters.workShift, name]
+      dispatch(updateFilter({
+          key: 'workShift', value: newWorkShift
+      }));
+    }
 
-  useEffect(() => {
-    // console.log(filters)
-    dispatch(fetchedJobs(filters))
-  }, [dispatch, filters])
+    const handleSliderRelease = () => 
+        dispatch(updateFilter({
+        key: 'experience', value: experience
+    }))
+
+//   useEffect(() => {
+//     // console.log(filters)
+//     dispatch(fetchedJobs(filters))
+//   }, [dispatch, filters])
 
   useEffect(() => {
     const hasDifferences = Object.keys(filters).some(
@@ -146,20 +151,20 @@ const FilterPage = () => {
     const min = exprangeref.current.min;
     const max = exprangeref.current.max;
 
-    if(filters.experience === '21'){
+    if(experience === '21'){
         setExperienceValueText('any')
     }
-    else if(filters.experience === '0') {
+    else if(experience === '0') {
         setExperienceValueText('Fresher')
     }
     else {
-        setExperienceValueText(`${filters.experience}`)
+        setExperienceValueText(`${experience}`)
     }
 
-    const percentage = (filters.experience - min) / (max - min) * 100;
+    const percentage = (experience - min) / (max - min) * 100;
     explabelRef.current.style.left = `calc(${percentage}% + (${8}px))`;
 
-  }, [filters.experience])
+  }, [experience])
 
   useEffect(() => {
     const min = Number(salaryrangeRef.current.min);
@@ -180,7 +185,7 @@ const FilterPage = () => {
     <form>
         <div className='filter-icon-container'>
             <div>
-                <img src={filterIcon} loading='lazy' alt='filter-icon'/>
+                <CiFilter/>
                 <p>Filters</p>
             </div>
             {
@@ -228,11 +233,7 @@ const FilterPage = () => {
         <div className='filter-sortby-section'>
             <div className='dropDown-click-text' onClick={() => setActive(prev => ({...prev, sortBy: !prev.sortBy}))}>
                 <p>Sort By</p>
-                <img 
-                    src={dropDown} 
-                    alt='drop-down-icon'
-                    loading='lazy'
-                    className={`filter-section-dropdownimg ${active.sortBy ? 'rotate' : ''}`}
+                <MdOutlineArrowDropDown                     className={`filter-section-dropdownimg ${active.sortBy ? 'rotate' : ''}`}
                 />
             </div>
             <div className={`${active.sortBy ? 'filter-options-group' : ''}`} style={{'display': 'none'}}>
@@ -258,11 +259,7 @@ const FilterPage = () => {
         <div className='experience-range-filter-section'>
             <div className='dropDown-click-text' onClick={() => setActive(prev => ({...prev, experience: !prev.experience}))}>
                 <p>Experience</p>
-                <img 
-                src={dropDown} 
-                loading='lazy'
-                alt='drop-down-icon' 
-                className={`filter-section-dropdownimg ${active.experience ? 'rotate' : ''}`}
+                <MdOutlineArrowDropDown                 className={`filter-section-dropdownimg ${active.experience ? 'rotate' : ''}`}
                 />
             </div>
             <p>Your work experience</p>
@@ -271,14 +268,14 @@ const FilterPage = () => {
                     type='range'
                     min={0}
                     max={21}
-                    value={filters.experience}
-                    onChange={(e) => 
-                        dispatch(updateFilter({
-                        key: 'experience' ,value: e.target.value
-                    }))}
+                    value={experience}
+                    onChange={(e) => setExperience(e.target.value)}
+                    onMouseUp={handleSliderRelease}
+                    onTouchEnd={handleSliderRelease}
                     ref={exprangeref}
+                    className='slider'
                 />
-                <span className='range-top-text' ref={explabelRef}>{filters.experience === 21 ? 'any' : filters.experience === 0 ? 'Fresher' : experienceValueText}</span>
+                <span className='range-top-text' ref={explabelRef}>{experience === 21 ? 'any' : experience === 0 ? 'Fresher' : experienceValueText}</span>
                 <div className='experience-label-container'>
                     <p>0 years</p>
                     <p>20 years</p>
@@ -288,10 +285,7 @@ const FilterPage = () => {
         <div className='salary-range-filter-section'>
             <div className='dropDown-click-text' onClick={() => setActive(prev => ({...prev, salary: !prev.salary}))}>
                 <p>Salary</p>
-                <img 
-                    src={dropDown}
-                    loading='lazy'
-                    alt='drop-down-icon' 
+                <MdOutlineArrowDropDown  
                     className={`filter-section-dropdownimg ${active.salary ? 'rotate' : ''}`}
                 />
             </div>
@@ -318,10 +312,7 @@ const FilterPage = () => {
         <div className='datePosted-radio-options-section'>
             <div className='dropDown-click-text' onClick={() => setActive(prev => ({...prev, datePosted: !prev.datePosted}))}>
                 <p>Date posted</p>
-                <img
-                    src={dropDown} 
-                    loading='lazy'
-                    alt='drop-down-icon' 
+                <MdOutlineArrowDropDown 
                     className={`filter-section-dropdownimg ${active.datePosted ? 'rotate' : ''}`}
                 />
             </div>
@@ -348,10 +339,7 @@ const FilterPage = () => {
         <div className='highestEdu-radio-options-section'>
             <div className='dropDown-click-text' onClick={() => setActive(prev => ({...prev, highestEducation: !prev.highestEducation}))}>
                 <p>Highest education</p>
-                <img
-                    src={dropDown}
-                    loading='lazy'
-                    alt='drop-down-icon' 
+                <MdOutlineArrowDropDown 
                     className={`filter-section-dropdownimg ${active.highestEducation ? 'rotate' : ''}`}
                 />
             </div>
@@ -379,11 +367,7 @@ const FilterPage = () => {
         <div className='workMode-checkBox-section'>
             <div className='dropDown-click-text' onClick={() => setActive(prev => ({...prev, workMode: !prev.workMode}))}>
                 <p>Work Mode</p>
-                <img
-                    src={dropDown} 
-                    alt='drop-down-icon'
-                    loading='lazy'
-                    className={`filter-section-dropdownimg ${active.workMode ? 'rotate' : ''}`}
+                <MdOutlineArrowDropDown                    className={`filter-section-dropdownimg ${active.workMode ? 'rotate' : ''}`}
                 />
             </div>
             <div className={`${active.workMode ? 'filter-options-group' : ''}`} style={{'display': 'none'}}>
@@ -404,11 +388,7 @@ const FilterPage = () => {
         <div className='workMode-checkBox-section'>
             <div className='dropDown-click-text' onClick={() => setActive(prev => ({...prev, workType: !prev.workType}))}>
                 <p>Work Type</p>
-                <img
-                    src={dropDown} 
-                    alt='drop-down-icon'
-                    loading='lazy' 
-                    className={`filter-section-dropdownimg ${active.workType ? 'rotate' : ''}`}
+                <MdOutlineArrowDropDown                    className={`filter-section-dropdownimg ${active.workType ? 'rotate' : ''}`}
                 />
             </div>
             <div className={`${active.workType ? 'filter-options-group' : ''}`} style={{'display': 'none'}}>
@@ -429,10 +409,7 @@ const FilterPage = () => {
         <div className='workMode-checkBox-section'>
             <div className='dropDown-click-text' onClick={() => setActive(prev => ({...prev, workShift: !prev.workShift}))}>
                 <p>Work Shift</p>
-                <img
-                    src={dropDown}
-                    loading='lazy'
-                    alt='drop-down-icon' 
+                <MdOutlineArrowDropDown 
                     className={`filter-section-dropdownimg ${active.workShift ? 'rotate' : ''}`}
                 />
             </div>
@@ -454,10 +431,7 @@ const FilterPage = () => {
         <div className='english-radio-options-section'>
             <div className='dropDown-click-text' onClick={() => setActive(prev => ({...prev, englishLevel: !prev.englishLevel}))}>
                 <p>English level</p>
-                <img
-                    src={dropDown}
-                    loading='lazy'
-                    alt='drop-down-icon' 
+                <MdOutlineArrowDropDown 
                     className={`filter-section-dropdownimg ${active.englishLevel ? 'rotate' : ''}`}
                 />
             </div>
@@ -485,10 +459,7 @@ const FilterPage = () => {
         <div className='gender-radio-options-section'>
             <div className='dropDown-click-text' onClick={() => setActive(prev => ({...prev, gender: !prev.gender}))}>
                 <p>Gender</p>
-                <img
-                    src={dropDown} 
-                    loading='lazy'
-                    alt='drop-down-icon' 
+                <MdOutlineArrowDropDown 
                     className={`filter-section-dropdownimg ${active.gender ? 'rotate' : ''}`}
                 />
             </div>

@@ -1,10 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { checkAuth, forgotPassword, signIn } from '../features/auth/authSlice';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
-import dayjs from 'dayjs';
 import { Link, useNavigate } from 'react-router-dom';
 
 const CandidateLoginPage = () => {
@@ -130,14 +126,6 @@ const CandidateLoginPage = () => {
               </Link>
             </p>
           </div>
-          {/* <div className='date-picker'>
-            <LocalizationProvider 
-              dateAdapter={AdapterDayjs}>
-              <DatePicker 
-                label="Date of Birth"
-              />
-            </LocalizationProvider>
-          </div> */}
           <div className='error-msg-container'>  
             {errorMessage == '' ? null : (
               <p className='error-para'>{errorMessage}</p>

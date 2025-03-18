@@ -1,42 +1,44 @@
+@use '../_variables.scss' as var;
+
 .jobSearch-section {
-    padding-top: 100px;
     min-height: 100vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var.$background-color;
+    padding-top: 100px;
     > ul {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 26px;
-        background-color: rgba(244, 242, 246);
+        background-color: transparent;
         width: 100%;
         padding-bottom: 5vh;
     }
     > ul li{
-        background-color: #ffffff;
+        background-color: transparent;
         padding: 4px 14px;
         border-radius: 4px;
         cursor: pointer;
     }
     > ul .selected {
-        background-color: #ffffff;
-        border: 1.5px solid #206d49;
-        color: #206d49;
-    }
-    > ul .previous{
-        color: #000000;
         background-color: transparent;
+        border: 1.5px solid var.$main-theme-color;
+        color: var.$main-theme-color;
+    }
+    > ul .prev{
+        color: var.$white-color;
+        background-color: var.$main-theme-color;
         cursor: pointer;
     }
     > ul .next {
-        color: #000000;
-        background-color: transparent;
+        color: var.$white-color;
+        background-color: var.$main-theme-color;
         cursor: pointer;
     }
     >ul .disabled{
-        color: #4b4b4b;
         cursor: no-drop;
     }
 }
@@ -56,18 +58,20 @@
     width: 70%;
     display: inline-flex;
     align-items: center;
-    border: 1px solid gainsboro;
+    border: 1px solid var.$box-color-thick;
     border-radius: 10px;
-    background-color: rgb(244,242,246);
+    background-color: transparent;
     padding: 12px 17px;
-    > img:nth-child(1) {
-        padding-right: 10px;
+    > svg {
+        color: var.$white-color;
+        font-size: 64px;
+        margin-right: 0.6rem;
     }
     > input {
         outline: none;
         border: 0 solid grey;
         font-size: 17px;
-        color: #000000;
+        color: var.$white-color;
         height: 100%;
         margin-right: 8px;
         background-color: transparent;
@@ -77,15 +81,16 @@
 
 .jobSearch-filter-jobs-profileUpdate-section {
     width: 100%;
-    background-color: rgb(244,242,246);
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-bottom: 40px;
+    border-top: 1px solid var.$box-color-thick;
     > div:nth-child(2) {
         display: flex;
-        justify-content: center;
-        gap: 15px;
+        justify-content: space-between;
+        width: 80%;
     }
 }
 
@@ -93,6 +98,7 @@
     display: flex;
     justify-content: flex-start;
     width: 100%;
+    color: var.$white-color;
     > h1 {
         font-size: 19px;
         margin: 15px;
@@ -103,26 +109,39 @@
     width: 20%;
     min-width: 230px;
     > form {
-        background-color: #ffffff;
-        border: 0.5px solid gainsboro;
+        background-color: transparent;
+        border: 1px solid var.$box-color-thick;
         padding: 22px;
         padding-bottom: 0 !important;
         border-radius: 14px;
+        color: var.$white-color;
     }
 }
 
 .jobSearch-jobs-container {
-    width: 40%;
-    min-width: 280px;
+    width: 45%;
     display: flex;
     flex-direction: column;
     gap: 15px;
+    color: var.$white-color;
+}
+
+.jobSearch-jobs-loader-container {
+    width: 100%;
+    height: 220px;
+    padding: 20px;
+    border: 1px solid var.$box-color-thick;
+    border-radius: 9px;
+    > div {
+        width: 80%;
+        height: 10px;
+        background-color: var.$box-color-light;
+    }
 }
 
 .no-jobs-found-container {
     width: 100%;
-    min-width: 440px;
-    background-color: #ffffff;
+    background-color: transparent;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -130,6 +149,7 @@
     align-items: center;
     gap: 1.2rem;
     padding: 2.5rem;
+    border: 1px solid var.$box-color-thick;
     > img {
         height: 130px;
         width: 130px;
@@ -162,7 +182,8 @@
     display: flex;
     flex-direction: column;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: transparent;
+    border: 1px solid var.$box-color-thick;
     border-radius: 10px;
 }
 
@@ -225,4 +246,6 @@
 .jobSearch-userLogin-card {
     width: 20%;
     min-width: 180px;
+    background-color: transparent;
+    color: var.$white-color;
 }
