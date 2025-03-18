@@ -29,7 +29,8 @@ const JobSearchPage = () => {
     refetch,
   } = PaginationCore({
     queryFn: () => fetchAllJobs(filters),
-    queryKey: ["all-jobs", filters]
+    queryKey: ["all-jobs", filters],
+    defaultPageSize: 10,
   });
 
   console.log(isLoading);

@@ -14,8 +14,12 @@
 @use './AiMockInterviewPage';
 @use './Blogs';
 @use './ResumePagesStyles/resumeChecker';
-@use './chatbotui.scss';
-@use './header/AdminPageHeader.scss';
+@use './chatbotui';
+@use './header/AdminPageHeader';
+@use './AdminStyles/AdminDashboard';
+@use './AdminStyles/AdminJobs';
+@use './AdminStyles/AdminUsers';
+@use './AdminStyles/AdminWebScraping';
 
 :root {
     font-family: sans-serif;
@@ -148,6 +152,7 @@ main {
     justify-content: center;
     align-items: center;
     gap: 5px;
+    background-color: var.$background-color;
     > p {
         color: var.$white-color;
     }
