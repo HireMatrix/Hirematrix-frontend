@@ -2,8 +2,10 @@ import React from 'react'
 
 const AdminDashboard = () => {
   return (
-    <div>
-      home admin
+    <div className='admin-dashboard-main-container'>
+      <div className='admin-container'>
+        Admin Dashboard
+      </div>
     </div>
   )
 }

@@ -23,7 +23,6 @@ import TrendingInfiniteSlider_2 from '../components/infinitescroll/TrendingInfin
 import RatingCard from '../components/landingPageComponents/ratingCard'
 import TrendingJobs from '../components/landingPageComponents/TrendingJobs'
 import JobOpening from '../components/landingPageComponents/JobOpening'
-import PaginationCore from '../core/paginationCore/PaginationCore'
 import PlaceHolderEffect from '../components/landingPageComponents/PlaceHolderEffect'
 
 const hoverListDiffColors = [
@@ -324,8 +323,6 @@ const JobLandingPage = () => {
             </div>
         </div>
       </div>
-
-      {/* <PaginationCore/> */}
     </>
   )
 }
