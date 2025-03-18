@@ -47,9 +47,10 @@ const ErrorPage = ({ ErrorType = ERROR_PAGE_TYPES.INTERNAL_SERVER_ERROR, ErrorMs
   }
 
   return (
-    <div>
+    <div className='error-page-styling'>
       <p>Error Type: {ErrorType}</p>
       <p>Error Message: {ErrorMsg}</p>
+      <p>To return to the default page, please click the "Go to Home" button</p>
       <Link to={getRedirectedPath()}>GO TO HOME</Link>
     </div>
   )

@@ -1,4 +1,4 @@
-@use './variables.scss' as var;
+@use '../_variables.scss' as var;
 
 .hr-tag-jobLandingPage {
     width:1px;
@@ -9,6 +9,7 @@
 }
 
 .home-section {
+    padding-top: 100px;
     min-width: 100vw;
     min-height: 95vh;
     display: flex;

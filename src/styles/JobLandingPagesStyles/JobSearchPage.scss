@@ -1,4 +1,4 @@
-@use './variables.scss' as var;
+@use '../_variables.scss' as var;
 
 .jobSearch-section {
     min-height: 100vh;
@@ -7,6 +7,7 @@
     flex-direction: column;
     align-items: center;
     background-color: var.$background-color;
+    padding-top: 100px;
     > ul {
         display: flex;
         align-items: center;

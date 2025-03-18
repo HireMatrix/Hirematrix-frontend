@@ -41,11 +41,14 @@ const LandingPageHeader = () => {
     };
 
     const handleLogout = () => {
+        console.log("logout clicked")
         dispatch(logOut())
+        navigate('/')
     }
 
     const handleAdminRouting = () => {
-        navigate('/admin-panel')
+        console.log("handle admin route")
+        navigate('/admin-panel/dashboard')
     }
 
     useEffect(() => {
@@ -53,14 +56,14 @@ const LandingPageHeader = () => {
         setHeightOfHr(heightOfDropDown);
     }, []);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const handleCloseSubMenuContainer = () => {
-            setActiveSubMenu(null);
-        }
+    //     const handleCloseSubMenuContainer = () => {
+    //         setActiveSubMenu(null);
+    //     }
 
-        document.addEventListener("mousedown", handleCloseSubMenuContainer);
-    }, [activeSubMenu])
+    //     document.addEventListener("mousedown", handleCloseSubMenuContainer);
+    // }, [activeSubMenu])
 
 
   return (
@@ -270,7 +273,7 @@ const LandingPageHeader = () => {
                                 <p>View Profile</p>
                             </div>
                             {
-                                user.userType == 'admin' && (
+                                user.userType === 'admin' && (
                                     <div onClick={handleAdminRouting}>
                                         <MdAdminPanelSettings/>
                                         <p>Admin</p>
@@ -279,7 +282,7 @@ const LandingPageHeader = () => {
                             }
                             <div onClick={handleLogout} style={{cursor: "pointer"}}>
                                 <RiLogoutBoxLine/>
-                                <p onClick={handleLogout}>Logout</p>
+                                <p>Logout</p>
                             </div>
                         </div>
                     </div>
