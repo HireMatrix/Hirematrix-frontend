@@ -1,7 +1,7 @@
-
 import { useRef, useState } from 'react';
 
 const Resumedashboard = () => {
+
   const [activeSection, setActiveSection] = useState(null);
   const [resumeData, setResumeData] = useState({
     personalInformation: {},
@@ -19,8 +19,6 @@ const Resumedashboard = () => {
     setActiveSection(activeSection === section ? null : section);
   };
 
- 
-
   const handleChange = (section, field, value) => {
     if (errors[section]?.[field]){
       setErrors({
@@ -32,41 +30,38 @@ const Resumedashboard = () => {
       });
     }
     if (field === 'profileImg') {
-        const file = value;
-        const reader = new FileReader();
+      const file = value;
+      const reader = new FileReader();
 
-        reader.onload = (e) => {
-            setResumeData({
-                ...resumeData,
-                [section]: {
-                    ...resumeData[section],
-                    [field]: e.target.result // Store image as a data URL
-                }
-            });
-        };
-
-        if (file) {
-            reader.readAsDataURL(file); // Convert image to data URL for preview
-        }
-    } else {
+      reader.onload = (e) => {
         setResumeData({
-            ...resumeData,
-            [section]: {
-                ...resumeData[section],
-                [field]: value
-            }
+          ...resumeData,
+          [section]: {
+              ...resumeData[section],
+              [field]: e.target.result
+          }
         });
+      };
+
+      if (file) {
+          reader.readAsDataURL(file);
+      }
+    } else {
+      setResumeData({
+        ...resumeData,
+        [section]: {
+            ...resumeData[section],
+            [field]: value
+        }
+      });
     }
-};
+  };
 
- const handleImgChange =(e) =>{
-  console.log(e.target.files[0])
-  handleChange('personalInformation', 'profileImg', e.target.files[0])}
-
+  const handleImgChange =(e) =>{
+    handleChange('personalInformation', 'profileImg', e.target.files[0])
+  }
   
-
   const imageUpload =()=>{
-    // document.getElementById("uploadimgId").click()
     if (uploadimgId.current){
       uploadimgId.current.value=""
       uploadimgId.current.click()
@@ -76,7 +71,7 @@ const Resumedashboard = () => {
 
   const validateFields =(section, fields) =>{
     const newErrors = {};
-    fields.forEach((field) =>{
+    fields.forEach((field) => {
       if(!resumeData[section]?.[field]){
         if(!newErrors[section]) newErrors[section]={};
         newErrors[section][field]='*This field is required';
@@ -84,9 +79,6 @@ const Resumedashboard = () => {
     });
     setErrors((prevErrors) =>({...prevErrors, ...newErrors}));
   };
-
-
-
 
   return (
     <div className="resume-dashboard">
@@ -97,12 +89,9 @@ const Resumedashboard = () => {
           <h1 id='download' className='h1'>Download</h1>
         </div>
       </div>
-
       <section className='section'>
-        
         <div className='information'>
           <div className='col-1-information'>
-            
             <div className='row' onClick={() => toggleSection('personalInformation')}>
               <h1>Personal Information</h1>
               <i className="arrow"></i>
@@ -117,8 +106,6 @@ const Resumedashboard = () => {
                    />
                    {errors.personalInformation?.fullName && <p className="error">{errors.personalInformation.fullName}</p>}
                 </label>
-               
-                  
                 <div>
                   <label>
                    <input id="uploadimgId" ref={uploadimgId} style={{display:"none"}}
@@ -128,13 +115,10 @@ const Resumedashboard = () => {
                    />
                    {errors.personalInformation?.profileImg && <p className="error">{errors.personalInformation.profileImg}</p>}
                   </label>
-                  </div>
-              
+                </div>
                 <div onClick={imageUpload}> 
                   <p>Upload Photo</p>
                 </div>
-
-
                 <div className='mobile'>
                   <label className='email'>Email: 
                     <input type='text' 
@@ -152,11 +136,12 @@ const Resumedashboard = () => {
                   </label>
                 </div>
                 <label>Address<input type='text' onChange={(e) => handleChange('personalInformation', 'address', e.target.value)} /></label>
-                <label>Professional Summary:<br/> <textarea style={{height:"100px",width:"100%"}} onChange={(e) => handleChange('personalInformation', 'professionalSummary', e.target.value)}> 
-                  </textarea></label>
+                <label>Professional Summary:
+                  <br/> 
+                  <textarea style={{height:"100px",width:"100%"}} onChange={(e) => handleChange('personalInformation', 'professionalSummary', e.target.value)}></textarea>
+                </label>
               </div>
             )}
-
             <div className='row' onClick={() => toggleSection('workExperience')}>
               <h1>Work Experience</h1>
               <i className="arrow"></i>
@@ -190,7 +175,6 @@ const Resumedashboard = () => {
                 </div>
               </div>
             )}
-
             <div className='row' onClick={() => toggleSection('education')}>
               <h1>Education</h1>
               <i className="arrow"></i>
@@ -256,7 +240,6 @@ const Resumedashboard = () => {
                 </label>
               </div>
             )}
-
             <div className='row' onClick={() => toggleSection('skills')}>
               <h1>Skills</h1>
               <i className="arrow"></i>
@@ -339,29 +322,24 @@ const Resumedashboard = () => {
                   </label>
                 </div>
               </div>
-            )}
-                   
+            )}     
           </div>
         </div>
-
         <div className='format'>
-                <div className="top-column">
-                {resumeData.personalInformation.profileImg && (
-        <img 
-            src={resumeData.personalInformation.profileImg} 
-            alt="Profile" 
-            style={{ width: '100px', height: '100px', borderRadius: '50%' }}
-        />
-    )}
-                  <p>Full Name: {resumeData.personalInformation.fullName}</p>
-
-                </div>
-                
-          
+          <div className="top-column">
+            {
+              resumeData.personalInformation.profileImg && (
+                <img 
+                  src={resumeData.personalInformation.profileImg} 
+                  alt="Profile" 
+                  style={{ width: '100px', height: '100px', borderRadius: '50%' }}
+                />
+              )
+            }
+            <p>Full Name: {resumeData.personalInformation.fullName}</p>
+          </div>
           <div className='preview-section'>
-               
               <div>
-                
                 <div>
                   <h2>Contact</h2>
                   <p>Address: {resumeData.personalInformation.address}</p>
@@ -382,12 +360,8 @@ const Resumedashboard = () => {
                   <p>Certification Name: </p>
                   <p>discription:</p>                
                 </div>
-       
               </div>
-
-
               <div>
-
                 <div>
                   <h2>PROFESSIONAL SUMMARY</h2>
                   <p> Summary: {resumeData.personalInformation.professionalSummary} </p>
@@ -396,8 +370,7 @@ const Resumedashboard = () => {
                   <h2>SKILLS</h2>
                   <p>Skill 1: {resumeData.skills.skill1}</p>
                   <p>Skill Level: {resumeData.skills.skillLevel}</p>
-                </div>
-               
+                </div>  
                 <div>
                   <h2>WORK EXPERIENCE</h2>
                   <p>Company Name: {resumeData.workExperience.companyName}</p>
@@ -416,10 +389,8 @@ const Resumedashboard = () => {
                   <h2>REFERENCES</h2>
                   <p>Role: {resumeData.personalInformation.role}</p>
                 </div>
-
               </div>
           </div>
-
         </div>
       </section>
     </div>

@@ -1,0 +1,24 @@
+@use './_variables.scss' as var;
+
+.custome-table-main-container {
+    width: 95%;
+    table-layout: auto;
+    border: 1px solid var.$box-color-thick;
+    border-collapse: collapse;
+    margin-top: 12px;
+    > thead {
+        > tr {
+            > th {
+                border: 1px solid var.$box-color-thick;
+            }
+        }
+    }
+    > tbody {
+        > tr {
+            > td {
+                border: 1px solid var.$box-color-thick;
+                padding: 3px 0;
+            }
+        }
+    }
+}
