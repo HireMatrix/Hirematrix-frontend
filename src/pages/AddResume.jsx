@@ -1,8 +1,23 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+/* Satya: TODO: -
+  1. here in this code we are displaying error for only one field at a time right if multiple it would
+  be nice to use this implementation so modify the error logic it need to be this overwhelming for updating the things
+  please look it that for making this simple you can refer similar kind of implementation in the admin header page like
+  generally we manage to do for active tabs for example in admin header if users tab is active we will display a backgroud 
+  effect right so make a similar kind of thing....!!
+
+  2. also look for some improvements in the handle change function like for now this implementation can look after only each one input element at a time not suitable for managing multiple as this problem faced in the skills section
+
+  3. implemented the skills try to make that skills handle function also handled by this single function, i have implemented the delete functionality also i hope you can manage the css for that 😊😊 
+*/
 
 const Resumedashboard = () => {
 
   const [activeSection, setActiveSection] = useState(null);
+  const [skills, setSkills] = useState('');
+  const [skillLevel, setSkillLevel] = useState('');
+  const [arraySkills, setArraySkills] = useState([]); 
   const [resumeData, setResumeData] = useState({
     personalInformation: {},
     workExperience: {},
@@ -11,6 +26,8 @@ const Resumedashboard = () => {
     Internship: {},
     Project: {}
   });
+
+  console.log(arraySkills);
 
   const uploadimgId=useRef(null)
   const[errors,setErrors] =useState({})
@@ -37,31 +54,58 @@ const Resumedashboard = () => {
         setResumeData({
           ...resumeData,
           [section]: {
-              ...resumeData[section],
-              [field]: e.target.result
+            ...resumeData[section],
+            [field]: e.target.result
           }
         });
       };
 
       if (file) {
-          reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
       }
     } else {
       setResumeData({
         ...resumeData,
         [section]: {
-            ...resumeData[section],
-            [field]: value
+          ...resumeData[section],
+          [field]: value
         }
       });
     }
   };
 
-  const handleImgChange =(e) =>{
+  const handleSkillsChange = (e) => {
+    if(errors?.skills?.skill1){
+      setErrors((prev) => ({...prev, skills: { skill1: '' }}))
+    }
+    setSkills(e.target.value)
+  }
+
+  const handleSkillLevelChange = (e) => {
+    if(skills == '') {
+      setErrors((prev) => ({...prev, skills: { skill1: "*This field is required" }}))
+      setSkillLevel('');
+      return;
+    };
+
+    console.log(e.target.value);
+    setSkillLevel(e.target.value);
+
+    const level = e.target.value;
+    setArraySkills((prev) => ([...prev, {skill: skills, level: level}]));
+    setSkills('');
+    setSkillLevel('');
+  }
+
+  const handleDeleteSkill = (index) => {
+    setArraySkills((prev) => prev.filter((_, i) => i != index))
+  }
+
+  const handleImgChange = (e) =>{
     handleChange('personalInformation', 'profileImg', e.target.files[0])
   }
   
-  const imageUpload =()=>{
+  const imageUpload = ()=>{
     if (uploadimgId.current){
       uploadimgId.current.value=""
       uploadimgId.current.click()
@@ -270,16 +314,19 @@ const Resumedashboard = () => {
                   <label >
                     Enter Skill: 
                     <input 
+                      value={skills}
                       type='text' 
-                      onBlur={() => validateFields('skills',['skill1'])}
-                      onChange={(e) => handleChange('skills', 'skill1', e.target.value)} 
+                      // onBlur={() => validateFields('skills', ['skill1'])}
+                      onChange={handleSkillsChange} 
                     />
-                    {errors.skills?.skills1 && <p className='error'>{errors.skills.skills1}</p>}
+                    {/* handleChange('skills', 'skill1', e.target.value) */}
+                    {errors?.skills?.skill1 && <p className='error'>{errors?.skills?.skill1}</p>}
                   </label>
                   <label className='level'>
                     Level:
                     <select
-                      onChange={(e) => handleChange('skills', 'skillLevel', e.target.value)}
+                      onChange={handleSkillLevelChange}
+                      value={skillLevel}
                     >
                       <option value="">Select an option</option>
                       <option value="Beginner">Beginner</option>
@@ -288,6 +335,17 @@ const Resumedashboard = () => {
                     </select>
                   </label>
                 </div>
+                {
+                  arraySkills.map((item, index)=> (
+                    <div key={index}>
+                      <div>
+                        <p>{item.skill} </p>
+                        <span>{item.level}</span>
+                      </div>
+                      <p onClick={() => handleDeleteSkill(index)}>x</p>
+                    </div>
+                  ))
+                }
               </div>
             )}
             <div className='row' onClick={() => toggleSection('Internship')}>
@@ -385,8 +443,14 @@ const Resumedashboard = () => {
                 </div>
                 <div>
                   <h2>SKILLS</h2>
-                  <p>Skill 1: {resumeData.skills.skill1}</p>
-                  <p>Skill Level: {resumeData.skills.skillLevel}</p>
+                  {
+                    arraySkills.map((item, index) => (
+                      <div key={index}>
+                        <p>{item.skill}</p>
+                        <p>{item.level}</p>
+                      </div>
+                    ))
+                  }
                 </div>  
                 <div>
                   <h2>WORK EXPERIENCE</h2>
