@@ -99,21 +99,25 @@ const Resumedashboard = () => {
             {activeSection === 'personalInformation' && (
               <div className='dropdown-content'>
                 <label>Full Name:
-                   <input value={resumeData.personalInformation.fullName}
-                   type='text' 
-                   onBlur={() => validateFields('personalInformation', ['fullName'])}
-                   onChange={(e) => handleChange('personalInformation', 'fullName', e.target.value)} 
-                   />
-                   {errors.personalInformation?.fullName && <p className="error">{errors.personalInformation.fullName}</p>}
+                   <input 
+                    value={resumeData.personalInformation.fullName}
+                    type='text' 
+                    onBlur={() => validateFields('personalInformation', ['fullName'])}
+                    onChange={(e) => handleChange('personalInformation', 'fullName', e.target.value)} 
+                  />
+                  {errors.personalInformation?.fullName && <p className="error">{errors.personalInformation.fullName}</p>}
                 </label>
                 <div>
                   <label>
-                   <input id="uploadimgId" ref={uploadimgId} style={{display:"none"}}
-                   type='file'  accept='image/jpeg, image/png'
-                   onBlur={() => validateFields('personalInformation', ['profileImg'])}
-                   onChange={handleImgChange}
-                   />
-                   {errors.personalInformation?.profileImg && <p className="error">{errors.personalInformation.profileImg}</p>}
+                   <input 
+                    id="uploadimgId" 
+                    ref={uploadimgId} 
+                    style={{display:"none"}}
+                    type='file'  accept='image/jpeg, image/png'
+                    onBlur={() => validateFields('personalInformation', ['profileImg'])}
+                    onChange={handleImgChange}
+                  />
+                  {errors.personalInformation?.profileImg && <p className="error">{errors.personalInformation.profileImg}</p>}
                   </label>
                 </div>
                 <div onClick={imageUpload}> 
@@ -121,24 +125,29 @@ const Resumedashboard = () => {
                 </div>
                 <div className='mobile'>
                   <label className='email'>Email: 
-                    <input type='text' 
-                    onBlur={() => validateFields('personalInformation',['email'])}
-                    onChange={(e) => handleChange('personalInformation', 'email', e.target.value)}
-                     />
-                     {errors.personalInformation?.email && <p className="error" >{errors.personalInformation.email}</p>}
+                    <input 
+                      type='text' 
+                      onBlur={() => validateFields('personalInformation',['email'])}
+                      onChange={(e) => handleChange('personalInformation', 'email', e.target.value)}
+                    />
+                    {errors.personalInformation?.email && <p className="error" >{errors.personalInformation.email}</p>}
                   </label>
                   <label className='number'>Mobile Number: 
-                    <input type='text'
-                    onBlur={() => validateFields('personalInformation', ['mobileNumber'])}
-                    onChange={(e) => handleChange('personalInformation', 'mobileNumber', e.target.value)}
-                     />
+                    <input 
+                      type='text'
+                      onBlur={() => validateFields('personalInformation', ['mobileNumber'])}
+                      onChange={(e) => handleChange('personalInformation', 'mobileNumber', e.target.value)}
+                    />
                     {errors.personalInformation?.mobileNumber && <p className="error">{errors.personalInformation.mobileNumber}</p>} 
                   </label>
                 </div>
                 <label>Address<input type='text' onChange={(e) => handleChange('personalInformation', 'address', e.target.value)} /></label>
                 <label>Professional Summary:
                   <br/> 
-                  <textarea style={{height:"100px",width:"100%"}} onChange={(e) => handleChange('personalInformation', 'professionalSummary', e.target.value)}></textarea>
+                  <textarea 
+                    style={{height:"100px",width:"100%"}} 
+                    onChange={(e) => handleChange('personalInformation', 'professionalSummary', e.target.value)}
+                  ></textarea>
                 </label>
               </div>
             )}
@@ -148,8 +157,18 @@ const Resumedashboard = () => {
             </div>
             {activeSection === 'workExperience' && (
               <div className='dropdown-content'>
-                <label>Company Name: <input type='text' onChange={(e) => handleChange('workExperience', 'companyName', e.target.value)} /></label>
-                <label>Job Title: <input type='text' onChange={(e) => handleChange('workExperience', 'jobTitle', e.target.value)} /></label>
+                <label>Company Name: 
+                  <input 
+                    type='text' 
+                    onChange={(e) => handleChange('workExperience', 'companyName', e.target.value)} 
+                  />
+                </label>
+                <label>Job Title: 
+                  <input 
+                    type='text'
+                    onChange={(e) => handleChange('workExperience', 'jobTitle', e.target.value)} 
+                  />
+                </label>
                 <label>Are you currently working in this company:
                   <br/>
                   <div className="currentWorking">
@@ -159,17 +178,19 @@ const Resumedashboard = () => {
                 </label>
                 <div className='mobile'>
                   <label className='email'>Start Date
-                    <input type='date' 
-                    onBlur={() => validateFields('workExperience',['workexpstDate'])}
-                    onChange={(e) => handleChange('workExperience', 'workexpstDate', e.target.value)}
-                     />
-                     {errors.workExperience?.workexpstDate && <p className="error" >{errors.workExperience.workexpstDate}</p>}
+                    <input 
+                      type='date' 
+                      onBlur={() => validateFields('workExperience',['workexpstDate'])}
+                      onChange={(e) => handleChange('workExperience', 'workexpstDate', e.target.value)}
+                    />
+                    {errors.workExperience?.workexpstDate && <p className="error" >{errors.workExperience.workexpstDate}</p>}
                   </label>
                   <label className='number'>End Date
-                    <input type='date'
-                    onBlur={() => validateFields('workExperience', ['workexpendDate'])}
-                    onChange={(e) => handleChange('workExperience', 'workexpendDate', e.target.value)}
-                     />
+                    <input 
+                      type='date'
+                      onBlur={() => validateFields('workExperience', ['workexpendDate'])}
+                      onChange={(e) => handleChange('workExperience', 'workexpendDate', e.target.value)}
+                    />
                     {errors.workExperience?.workexpendDate && <p className="error">{errors.workExperience.workexpendDate}</p>} 
                   </label>
                 </div>
@@ -188,15 +209,15 @@ const Resumedashboard = () => {
                    type='text'
                    onBlur={() => validateFields('education', ['clgName10th'])}
                    onChange={(e) => handleChange('education', 'clgName10th', e.target.value)}
-                    />
-                     {errors.education?.clgName10th && <p className='error'>{errors.education.clgName10th}</p>}
+                  />
+                  {errors.education?.clgName10th && <p className='error'>{errors.education.clgName10th}</p>}
                 </label>
                    
                 <label>GPA:
                     <input 
-                    type='text'
-                    onBlur={() => validateFields('education',['gpa10th'])}
-                    onChange={(e) => handleChange('education', 'gpa10th', e.target.value)}
+                      type='text'
+                      onBlur={() => validateFields('education',['gpa10th'])}
+                      onChange={(e) => handleChange('education', 'gpa10th', e.target.value)}
                     />
                     {errors.education?.gpa10th && <p className="error">{errors.education.gpa10th}</p>}
                 </label>
@@ -207,17 +228,16 @@ const Resumedashboard = () => {
                    type='text'
                    onBlur={() => validateFields('education', ['clgName12th'])}
                    onChange={(e) => handleChange('education', 'clgName12th', e.target.value)}
-                    />
-                     {errors.education?.clgName12th && <p className='error'>{errors.education.clgName12th}</p>}
+                  />
+                  {errors.education?.clgName12th && <p className='error'>{errors.education.clgName12th}</p>}
                 </label>
-                   
                 <label>GPA:
-                    <input 
+                  <input 
                     type='text'
                     onBlur={() => validateFields('education',['gpa12th'])}
                     onChange={(e) => handleChange('education', 'gpa12th', e.target.value)}
-                    />
-                    {errors.education?.gpa12th && <p className="error">{errors.education.gpa12th}</p>}
+                  />
+                  {errors.education?.gpa12th && <p className="error">{errors.education.gpa12th}</p>}
                 </label>
                 <label>Graduate
                   <br/>
@@ -226,17 +246,17 @@ const Resumedashboard = () => {
                    type='text'
                    onBlur={() => validateFields('education', ['clgNameGraduate'])}
                    onChange={(e) => handleChange('education', 'clgNameGraduate', e.target.value)}
-                    />
-                    {errors.education?.clgNameGraduate && <p className='error'>{errors.education.clgNameGraduate}</p>}
+                  />
+                  {errors.education?.clgNameGraduate && <p className='error'>{errors.education.clgNameGraduate}</p>}
                 </label>
                     
                 <label>GPA:
-                    <input 
+                  <input 
                     type='text'
                     onBlur={() => validateFields('education',['gpaGraduateh'])}
                     onChange={(e) => handleChange('education', 'gpaGraduate', e.target.value)}
-                    />
-                    {errors.education?.gpaGraduateh && <p className="error">{errors.education.gpaGraduateh}</p>}
+                  />
+                  {errors.education?.gpaGraduateh && <p className="error">{errors.education.gpaGraduateh}</p>}
                 </label>
               </div>
             )}
@@ -250,18 +270,16 @@ const Resumedashboard = () => {
                   <label >
                     Enter Skill: 
                     <input 
-                    type='text' 
-                    onBlur={() => validateFields('skills',['skill1'])}
-                    onChange={(e) => handleChange('skills', 'skill1', e.target.value)} 
+                      type='text' 
+                      onBlur={() => validateFields('skills',['skill1'])}
+                      onChange={(e) => handleChange('skills', 'skill1', e.target.value)} 
                     />
                     {errors.skills?.skills1 && <p className='error'>{errors.skills.skills1}</p>}
-                    </label>
+                  </label>
                   <label className='level'>
                     Level:
-                    
                     <select
-                    onChange={(e) => handleChange('skills', 'skillLevel', e.target.value)}
-                    
+                      onChange={(e) => handleChange('skills', 'skillLevel', e.target.value)}
                     >
                       <option value="">Select an option</option>
                       <option value="Beginner">Beginner</option>
@@ -272,52 +290,51 @@ const Resumedashboard = () => {
                 </div>
               </div>
             )}
-
             <div className='row' onClick={() => toggleSection('Internship')}>
-                        <h1>Internship Experience</h1>
-                        <i className="arrow"></i>
+              <h1>Internship Experience</h1>
+              <i className="arrow"></i>
             </div>
             {activeSection === 'Internship' && (
               <div className='dropdown-content'>
                 <label>Company Name
-                   <input
-                   type='text' 
-                   onBlur={() => validateFields('Internship', ['internCompanyname'])}
-                   onChange={(e) => handleChange('Internship', 'internCompanyname', e.target.value)} 
-                   />
-                   {errors.Internship?.internCompanyname && <p className="error">{errors.Internship.internCompanyname}</p>}
+                  <input
+                    type='text' 
+                    onBlur={() => validateFields('Internship', ['internCompanyname'])}
+                    onChange={(e) => handleChange('Internship', 'internCompanyname', e.target.value)} 
+                  />
+                  {errors.Internship?.internCompanyname && <p className="error">{errors.Internship.internCompanyname}</p>}
                 </label>
                 <label>Job Title:
                   <input
-                  type='text'
-                  onBlur={() => validateFields('Internship', ['internJobtitle'])}
-                  onChange={(e) => handleChange('Internship','internJobtitle',e.target.value)}
+                    type='text'
+                    onBlur={() => validateFields('Internship', ['internJobtitle'])}
+                    onChange={(e) => handleChange('Internship','internJobtitle',e.target.value)}
                   />
                   {errors.Internship?.internJobtitle && <p className="error">{errors.Internship.internJobtitle}</p>}
                 </label>
                 <label>Employement Type :
                   <input
-                  type='text'
-                  onBlur={() => validateFields('Internship', ['internEmployementtype'])}
-                  onChange={(e) => handleChange('Internship','internEmployementtype',e.target.value)}
+                    type='text'
+                    onBlur={() => validateFields('Internship', ['internEmployementtype'])}
+                    onChange={(e) => handleChange('Internship','internEmployementtype',e.target.value)}
                   />
                   {errors.Internship?.internEmployementtype && <p className="error">{errors.Internship.internEmployementtype}</p>}
                 </label>
-
-
                 <div className='mobile'>
                   <label className='email'>Start Date 
-                    <input type='date' 
-                    onBlur={() => validateFields('Internship',['internStartdate'])}
-                    onChange={(e) => handleChange('Internship', 'internStartdate', e.target.value)}
-                     />
-                     {errors.Internship?.internStartdate && <p className="error" >{errors.Internship.internStartdate}</p>}
+                    <input 
+                      type='date' 
+                      onBlur={() => validateFields('Internship',['internStartdate'])}
+                      onChange={(e) => handleChange('Internship', 'internStartdate', e.target.value)}
+                    />
+                    {errors.Internship?.internStartdate && <p className="error" >{errors.Internship.internStartdate}</p>}
                   </label>
                   <label className='number'>End Date 
-                    <input type='date'
-                    onBlur={() => validateFields('Internship', ['internEnddate'])}
-                    onChange={(e) => handleChange('Internship', 'internEnddate', e.target.value)}
-                     />
+                    <input 
+                      type='date'
+                      onBlur={() => validateFields('Internship', ['internEnddate'])}
+                      onChange={(e) => handleChange('Internship', 'internEnddate', e.target.value)}
+                    />
                     {errors.Internship?.internEnddate && <p className="error">{errors.Internship.internEnddate}</p>} 
                   </label>
                 </div>
