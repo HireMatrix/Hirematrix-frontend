@@ -1,7 +1,7 @@
-
 import { useRef, useState } from 'react';
 
 const Resumedashboard = () => {
+
   const [activeSection, setActiveSection] = useState(null);
   const [resumeData, setResumeData] = useState({
     personalInformation: {},
@@ -14,14 +14,11 @@ const Resumedashboard = () => {
 
   const uploadimgId=useRef(null)
 
-
   const[errors,setErrors] =useState({})
 
   const toggleSection = (section) => {
     setActiveSection(activeSection === section ? null : section);
   };
-
- 
 
   const handleChange = (section, field, value) => {
     if (errors[section]?.[field]){
@@ -34,39 +31,38 @@ const Resumedashboard = () => {
       });
     }
     if (field === 'profileImg') {
-        const file = value;
-        const reader = new FileReader();
+      const file = value;
+      const reader = new FileReader();
 
-        reader.onload = (e) => {
-            setResumeData({
-                ...resumeData,
-                [section]: {
-                    ...resumeData[section],
-                    [field]: e.target.result // Store image as a data URL
-                }
-            });
-        };
-
-        if (file) {
-            reader.readAsDataURL(file); // Convert image to data URL for preview
-        }
-    } else {
+      reader.onload = (e) => {
         setResumeData({
-            ...resumeData,
-            [section]: {
-                ...resumeData[section],
-                [field]: value
-            }
+          ...resumeData,
+          [section]: {
+              ...resumeData[section],
+              [field]: e.target.result
+          }
         });
-    }
-};
+      };
 
- const handleImgChange =(e) =>{
-  console.log(e.target.files[0])
-  handleChange('personalInformation', 'profileImg', e.target.files[0])}
+      if (file) {
+          reader.readAsDataURL(file);
+      }
+    } else {
+      setResumeData({
+        ...resumeData,
+        [section]: {
+            ...resumeData[section],
+            [field]: value
+        }
+      });
+    }
+  };
+
+  const handleImgChange =(e) =>{
+    handleChange('personalInformation', 'profileImg', e.target.files[0])
+  }
 
   const imageUpload =()=>{
-    // document.getElementById("uploadimgId").click()
     if (uploadimgId.current){
       uploadimgId.current.value=""
       uploadimgId.current.click()
@@ -76,7 +72,7 @@ const Resumedashboard = () => {
 
   const validateFields =(section, fields) =>{
     const newErrors = {};
-    fields.forEach((field) =>{
+    fields.forEach((field) => {
       if(!resumeData[section]?.[field]){
         if(!newErrors[section]) newErrors[section]={};
         newErrors[section][field]='*This field is required';
@@ -84,9 +80,6 @@ const Resumedashboard = () => {
     });
     setErrors((prevErrors) =>({...prevErrors, ...newErrors}));
   };
-
-
-
 
   return (
     <div className="resume-dashboard">
@@ -97,12 +90,9 @@ const Resumedashboard = () => {
           <h1 id='download' className='h1'>Download</h1>
         </div>
       </div>
-
       <section className='section'>
-        
         <div className='information'>
           <div className='col-1-information'>
-            
             <div className='row' onClick={() => toggleSection('personalInformation')}>
               <h1>Personal Information</h1>
               <i className="arrow"></i>
@@ -117,8 +107,6 @@ const Resumedashboard = () => {
                    />
                    {errors.personalInformation?.fullName && <p className="error">{errors.personalInformation.fullName}</p>}
                 </label>
-               
-                  
                 <div>
                   <label>
                    <input id="uploadimgId" ref={uploadimgId} style={{display:"none"}}
@@ -128,13 +116,10 @@ const Resumedashboard = () => {
                    />
                    {errors.personalInformation?.profileImg && <p className="error">{errors.personalInformation.profileImg}</p>}
                   </label>
-                  </div>
-              
+                </div>
                 <div onClick={imageUpload}> 
                   <p>Upload Photo</p>
                 </div>
-
-
                 <div className='mobile'>
                   <label className='email'>Email: 
                     <input type='text' 
@@ -152,8 +137,10 @@ const Resumedashboard = () => {
                   </label>
                 </div>
                 <label>Address<input type='text' onChange={(e) => handleChange('personalInformation', 'address', e.target.value)} /></label>
-                <label>Professional Summary:<br/> <textarea style={{height:"100px",width:"100%"}} onChange={(e) => handleChange('personalInformation', 'professionalSummary', e.target.value)}> 
-                  </textarea></label>
+                <label>Professional Summary:
+                  <br/> 
+                  <textarea style={{height:"100px",width:"100%"}} onChange={(e) => handleChange('personalInformation', 'professionalSummary', e.target.value)}></textarea>
+                </label>
               </div>
             )}
 
@@ -335,87 +322,73 @@ const Resumedashboard = () => {
                   </label>
                 </div>
               </div>
-            )}
-                   
+            )}     
           </div>
         </div>
-
         <div className='format'>
-                <div className="top-column">
-                {resumeData.personalInformation.profileImg && (
-        <img 
-            src={resumeData.personalInformation.profileImg} 
-            alt="Profile" 
-            style={{ width: '100px', height: '100px', borderRadius: '50%' }}
-        />
-    )}
-                  <p>Full Name: {resumeData.personalInformation.fullName}</p>
-
-                </div>
-                
-          
-          <div className='preview-section'>
-               
-              <div>
-                
-                <div>
-                  <h2>Contact</h2>
-                  <p>Address: {resumeData.personalInformation.address}</p>
-                  <p>Mobile: {resumeData.personalInformation.mobileNumber}</p>
-                  <p>Email: {resumeData.personalInformation.email}</p>
-                </div>
-                <div>
-                  <h2>Education</h2>
-                  <p>10th College Name: {resumeData.education.clgName10th}</p>
-                  <p>GPA: {resumeData.education.gpa10th}</p>
-                  <p>12th College Name: {resumeData.education.clgName12th}</p>
-                  <p>GPA: {resumeData.education.gpa12th}</p>
-                  <p>Grauate College Name: {resumeData.education.clgNameGraduate}</p>
-                  <p>GPA: {resumeData.education.gpaGraduate}</p>
-                </div>
-                <div>
-                  <h2>CERTIFICATIONS</h2>
-                  <p>Certification Name: </p>
-                  <p>discription:</p>                
-                </div>
-       
-              </div>
-
-
-              <div>
-
-                <div>
-                  <h2>PROFESSIONAL SUMMARY</h2>
-                  <p> Summary: {resumeData.personalInformation.professionalSummary} </p>
-                </div>
-                <div>
-                  <h2>SKILLS</h2>
-                  <p>Skill 1: {resumeData.skills.skill1}</p>
-                  <p>Skill 2: {resumeData.skills.skill2}</p>
-                </div>
-               
-                <div>
-                  <h2>WORK HISTORY</h2>
-                  <p>Company Name: {resumeData.workExperience.companyName}</p>
-                  <p>Job Title: {resumeData.workExperience.jobTitle}</p>
-                </div>
-                <div>
-                  <h2>INTERNSHIP</h2>
-                  <p>CompanyName:{resumeData.Internship.internCompanyname}</p>
-                  <p>jobTitle: {resumeData.Internship.internJobtitle} </p>
-                  <p>Duration: {resumeData.Internship.internStartdate} to {resumeData.Internship.internEnddate}</p>
-                </div>
-                <div>
-                  <h2>PROJECTS</h2>
-                </div>
-                <div>
-                  <h2>REFERENCES</h2>
-                  <p>Role: {resumeData.personalInformation.role}</p>
-                </div>
-
-              </div>
+          <div className="top-column">
+            {resumeData.personalInformation.profileImg && (
+              <img 
+                src={resumeData.personalInformation.profileImg} 
+                alt="Profile" 
+                style={{ width: '100px', height: '100px', borderRadius: '50%' }}
+              />
+            )}
+            <p>Full Name: {resumeData.personalInformation.fullName}</p>
           </div>
-
+          <div className='preview-section'>
+            <div>
+              <div>
+                <h2>Contact</h2>
+                <p>Address: {resumeData.personalInformation.address}</p>
+                <p>Mobile: {resumeData.personalInformation.mobileNumber}</p>
+                <p>Email: {resumeData.personalInformation.email}</p>
+              </div>
+              <div>
+                <h2>Education</h2>
+                <p>10th College Name: {resumeData.education.clgName10th}</p>
+                <p>GPA: {resumeData.education.gpa10th}</p>
+                <p>12th College Name: {resumeData.education.clgName12th}</p>
+                <p>GPA: {resumeData.education.gpa12th}</p>
+                <p>Grauate College Name: {resumeData.education.clgNameGraduate}</p>
+                <p>GPA: {resumeData.education.gpaGraduate}</p>
+              </div>
+              <div>
+                <h2>CERTIFICATIONS</h2>
+                <p>Certification Name: </p>
+                <p>discription:</p>                
+              </div>
+            </div>
+            <div>
+              <div>
+                <h2>PROFESSIONAL SUMMARY</h2>
+                <p> Summary: {resumeData.personalInformation.professionalSummary} </p>
+              </div>
+              <div>
+                <h2>SKILLS</h2>
+                <p>Skill 1: {resumeData.skills.skill1}</p>
+                <p>Skill 2: {resumeData.skills.skill2}</p>
+              </div>
+              <div>
+                <h2>WORK HISTORY</h2>
+                <p>Company Name: {resumeData.workExperience.companyName}</p>
+                <p>Job Title: {resumeData.workExperience.jobTitle}</p>
+              </div>
+              <div>
+                <h2>INTERNSHIP</h2>
+                <p>CompanyName:{resumeData.Internship.internCompanyname}</p>
+                <p>jobTitle: {resumeData.Internship.internJobtitle} </p>
+                <p>Duration: {resumeData.Internship.internStartdate} to {resumeData.Internship.internEnddate}</p>
+              </div>
+              <div>
+                <h2>PROJECTS</h2>
+              </div>
+              <div>
+                <h2>REFERENCES</h2>
+                <p>Role: {resumeData.personalInformation.role}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>

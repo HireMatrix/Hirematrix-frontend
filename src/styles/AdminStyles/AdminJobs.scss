@@ -6,13 +6,26 @@
     min-width: 85%;
     height: 100%;
     color: var.$white-color;
-    .admin-container {
+    > .admin-container {
         width: 100%;
         height: 100%;
         border-radius: 8px;
         border: 1px solid var.$box-color-thick;
         > p {
             color: var.$white-color;
+        }
+        > .admin-table-wrap-main-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            > div {
+                width: 95%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
         }
     }
 }

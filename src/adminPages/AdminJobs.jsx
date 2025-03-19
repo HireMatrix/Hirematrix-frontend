@@ -1,12 +1,26 @@
+import { useMemo } from 'react';
 import { fetchAllJobsAdmin } from '../Constants/ApiUrls';
 import Loader from '../components/Loader';
 import ErrorPage from '../core/ErrorHandler/ErrorPage';
 import PaginationCore from '../core/paginationCore/PaginationCore';
+import { useCustomeTable } from '../core/TableCore';
+import CustomeTableComp from '../core/TableCore/CustomeTableComp';
 
 const AdminJobs = () => {
 
+  const columns = useMemo(() => [
+    {
+      Header: "Id",
+      accessor: "_id",
+    }, 
+    {
+      Header: "Title",
+      accessor: "title",
+    }
+  ], [])
+
   const {
-    data,
+    data: paginatedData = [],
     page,
     pageSize,
     PageNumberSelection,
@@ -23,7 +37,12 @@ const AdminJobs = () => {
     queryKey: ["adminUsers"],
   });
     
-  console.log(data);
+  // console.log(paginatedData);
+
+  const tableInstances = useCustomeTable({
+    columns: columns,
+    data: paginatedData
+  })
 
   if(isLoading || isRefetching || isFetching) {
     <Loader/>
@@ -33,16 +52,18 @@ const AdminJobs = () => {
     <ErrorPage/>
   }
 
-  console.log(data);
-
   return (
     <div className='admin-jobs-main-container'>
       <div className='admin-container'>
-        {
-          data?.map((item, index) => (
-            <p key={index}>{item.title}</p>
-          ))
-        }
+        <div className='admin-table-wrap-main-container'>
+          <CustomeTableComp
+            {...tableInstances}
+          />
+          <div>
+            <PageSizeSelection/>
+            <PageNumberSelection/>
+          </div>
+        </div>
       </div>
     </div>
   )
