@@ -13,8 +13,6 @@ const Resumedashboard = () => {
   });
 
   const uploadimgId=useRef(null)
-
-
   const[errors,setErrors] =useState({})
 
   const toggleSection = (section) => {
@@ -64,6 +62,8 @@ const Resumedashboard = () => {
  const handleImgChange =(e) =>{
   console.log(e.target.files[0])
   handleChange('personalInformation', 'profileImg', e.target.files[0])}
+
+  
 
   const imageUpload =()=>{
     // document.getElementById("uploadimgId").click()
@@ -264,30 +264,34 @@ const Resumedashboard = () => {
             {activeSection === 'skills' && (
               <div className='dropdown-content'>
                 <div className='skill'>
-                  <label className='skill'>
+                  <label >
                     Enter Skill: 
                     <input 
                     type='text' 
-                    onBlur={() => validateFields('skills',['skills1'])}
+                    onBlur={() => validateFields('skills',['skill1'])}
                     onChange={(e) => handleChange('skills', 'skill1', e.target.value)} 
                     />
                     {errors.skills?.skills1 && <p className='error'>{errors.skills.skills1}</p>}
                     </label>
                   <label className='level'>
                     Level:
-                    <input 
-                    type='text' 
-                    onBlur={() => validateFields('skills',['skill2'])}
-                    onChange={(e) => handleChange('skills', 'skill2', e.target.value)} 
-                    />
-                    {errors.skills?.skill2 && <p className='error'>{errors.skills.skill2}</p>}
+                    
+                    <select
+                    onChange={(e) => handleChange('skills', 'skillLevel', e.target.value)}
+                    
+                    >
+                      <option value="">Select an option</option>
+                      <option value="Beginner">Beginner</option>
+                      <option value="Intermediate">Intermediate</option>
+                      <option value="Advanced">Advanced</option>
+                    </select>
                   </label>
                 </div>
               </div>
             )}
 
             <div className='row' onClick={() => toggleSection('Internship')}>
-                        <h1>Internship</h1>
+                        <h1>Internship Experience</h1>
                         <i className="arrow"></i>
             </div>
             {activeSection === 'Internship' && (
@@ -391,16 +395,16 @@ const Resumedashboard = () => {
                 <div>
                   <h2>SKILLS</h2>
                   <p>Skill 1: {resumeData.skills.skill1}</p>
-                  <p>Skill 2: {resumeData.skills.skill2}</p>
+                  <p>Skill Level: {resumeData.skills.skillLevel}</p>
                 </div>
                
                 <div>
-                  <h2>WORK HISTORY</h2>
+                  <h2>WORK EXPERIENCE</h2>
                   <p>Company Name: {resumeData.workExperience.companyName}</p>
                   <p>Job Title: {resumeData.workExperience.jobTitle}</p>
                 </div>
                 <div>
-                  <h2>INTERNSHIP</h2>
+                  <h2>INTERNSHIP EXPERIENCE</h2>
                   <p>CompanyName:{resumeData.Internship.internCompanyname}</p>
                   <p>jobTitle: {resumeData.Internship.internJobtitle} </p>
                   <p>Duration: {resumeData.Internship.internStartdate} to {resumeData.Internship.internEnddate}</p>
