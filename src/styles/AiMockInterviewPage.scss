@@ -1,118 +1,130 @@
 .ai-mock-interview-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 3rem;
-    background: #f9fafb;
-    font-family: Arial, sans-serif;
-  
-    .left-section {
-      width: 45%;
-      .tag {
-        background: #f5ddd0;
-        color: rgb(255,111,0);
-        font-weight: bold;
-        padding: 6px 12px;
-        border-radius: 12px;
-        display: inline-block;
-        margin-bottom: 10px;
-      }
-      h1 {
-        font-size: 2.5rem;
-        font-weight: bold;
-        color: #1e293b;
-        span {
-          background: #e0f7fa;
-          padding: 0 4px;
-        }
-      }
-      p {
-        color: #475569;
-        margin: 15px 0;
-      }
-      .try-now {
-        background: rgb(255,111,0);
-        color: black;
-        padding: 12px 24px;
-        border: none;
-        border-radius: 8px;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: 0.3s;
-      }
-      .try-now:hover {
-        background: black;
-        color: rgb(255,111,0);
-      }
-      .note{
-        margin-left: 5px;
-      }
-      .review {
-        display: flex-column;
-        align-items: center;
-        margin-top: 15px;
-        margin-left: 5px;
-        .avatars img {
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          margin-right: 5px;
-        }
-        
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  padding: 3rem;
+  background-image: radial-gradient(closest-side, rgba(255, 237, 70, 0.353), #000000);
+  font-family: Arial, sans-serif;
+  margin-top: 0; /* Remove margin-top */
+  min-height: 100vh; /* Full viewport height */
+  width: 100%; /* Ensure full width */
+
+  .left-section {
+    width: 45%;
+    .tag {
+      background: #f5ddd0;
+      color: rgb(255,111,0);
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color:  #ffffff;
+      span {
+        // background: #e0f7fa;
+        padding: 0 4px;
       }
     }
-  
-    .right-section {
-      width: 50%;
-      background: #f4f4fb;
-      padding: 2rem;
-      border-radius: 10px;
-      
-      text-align: left;
+    p {
+      color: #dee1e4;
+      margin: 15px 0;
+    }
+    .try-now {
+      background: rgb(255,111,0);
+      color: black;
+      font-weight: 700;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .try-now:hover {
+      background: transparent;
+      color: rgb(255, 111, 0);
+      border: 1px solid rgb(255, 111, 0);
+      box-shadow: 0 0 30px rgba(255, 111, 0, 0.5); /* Glow effect instead of scaling */
+    }
     
-      .job-tags button {
-        background: #f1f1f1;
-        border: none;
-        padding: 8px 16px;
-        margin: 5px;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: 0.3s;
+    .note{
+      margin-left: 5px;
+    }
+    .review {
+      display: flex-column;
+      align-items: center;
+      margin-top: 15px;
+      margin-left: 5px;
+      .avatars img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 5px;
       }
       
-      .interview-box {
-        background-color: #ffff;
-        width: 100%;
-        margin: auto;
-        margin-top: 20px;
-        border: 1px solid #c6c9cf;
-        border-radius: 9px;
-        overflow: hidden;
-        box-shadow: 0 0 16px rgba(15, 24, 56, .1);
-        box-sizing: border-box;
-        text-align: center;
-        padding: 15px 5px;
-        
-        p {
-          font-size: 1.2rem;
-          font-weight: bold;
-          color: #1e293b;
-        }
-        .timer {
-          font-size: 1.5rem;
-          color: #64748b;
-          margin-top: 10px;
-        }
-        .record-btn {
-          background: red;
-          color: white;
-          border: none;
-          padding: 14px;
-          border-radius: 50%;
-          cursor: pointer;
-          margin-top: 10px;
-          font-size: 1.5rem;
-        }
+    }
+  }
+
+  .right-section {
+    width: 50%;
+    background: #f4f4fb;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: 0 0 30px rgba(255, 111, 0, 0.5);
+  
+    .job-tags button {
+      background: #f1f1f1;
+      border: 1px solid #c6c9cf;
+      padding: 5px 10px;
+      margin: 5px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s
+    }
+   
+    .job-tags button:hover {
+      background: #c8f7c5;
+      
+    }
+    
+    .interview-box {
+      background-color: #ffff;
+      width: 100%;
+      margin: auto;
+      margin-top: 20px;
+      border: 1px solid #c6c9cf;
+      border-radius: 9px;
+      overflow: hidden;
+      box-shadow: 0 0 16px rgba(15, 24, 56, .1);
+      box-sizing: border-box;
+      text-align: center;
+      padding: 15px 5px;
+      
+      p {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #1e293b;
+      }
+      .timer {
+        font-size: 1.5rem;
+        color: #64748b;
+        margin-top: 10px;
+      }
+      .record-btn {
+        background: red;
+        color: white;
+        border: none;
+        padding: 14px;
+        border-radius: 50%;
+        cursor: pointer;
+        margin-top: 10px;
+        font-size: 1.5rem;
       }
     }
   }
+}

@@ -3,6 +3,7 @@ import Loader from "../components/Loader"
 import { USER_TYPES } from "../core/UserTypes";
 
 const AddResume = lazy(() => import('../pages/AddResume'));
+const RoleSelectionPage = lazy(() => import('../pages/RoleSelectionPage'));
 const AdminDashboard = lazy(() => import('../adminPages/AdminDashboard'));
 const AdminJobs = lazy(() => import('../adminPages/AdminJobs'))
 const AdminUsers = lazy(() => import('../adminPages/AdminUsers'))
@@ -14,6 +15,18 @@ const RESUME_BUILDER_PAGE = {
     component: (
         <Suspense fallback={<Loader isFullpage={true}/>}>
             <AddResume/>
+        </Suspense>
+    )
+}
+
+//Ai-Mock
+const ROLE_SELECTION_PAGE = {
+    path: '/ai-mock-interviews/role-selection',
+    pageTitle: 'Role-Selection',
+    header: 'landing',
+    component: (
+        <Suspense fallback={<Loader isFullpage={true}/>}>
+            <RoleSelectionPage/>
         </Suspense>
     )
 }
@@ -53,6 +66,7 @@ const ADMIN_USERS_ROUTE = {
 }
 
 export const PRIVATE_ROUTES = [
+    ROLE_SELECTION_PAGE,
     RESUME_BUILDER_PAGE,
     ADMIN_DASHBOARD_HOME_ROUTE,
     ADMIN_JOBS_ROUTE,
@@ -61,12 +75,14 @@ export const PRIVATE_ROUTES = [
 
 export const PROTECTED_ROUTE_NAMES = {
     [USER_TYPES.GENERAL]: {
-        RESUME_BUILDER_PAGE: RESUME_BUILDER_PAGE
+        RESUME_BUILDER_PAGE: RESUME_BUILDER_PAGE,
+        ROLE_SELECTION_PAGE: ROLE_SELECTION_PAGE
     }, 
     [USER_TYPES.EMPLOYER]: {},
     [USER_TYPES.ADMIN]: {
         DEFAULT: ADMIN_DASHBOARD_HOME_ROUTE, 
         RESUME_BUILDER_PAGE: RESUME_BUILDER_PAGE,
+        ROLE_SELECTION_PAGE: ROLE_SELECTION_PAGE,
         ADMIN_JOBS_ROUTE: ADMIN_JOBS_ROUTE,
         ADMIN_USERS_ROUTE: ADMIN_USERS_ROUTE
     }
