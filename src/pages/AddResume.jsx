@@ -1,15 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 
-/* Satya: TODO: -
+/* Satya: TODO:-
   1. here in this code we are displaying error for only one field at a time right if multiple it would
   be nice to use this implementation so modify the error logic it need to be this overwhelming for updating the things
   please look it that for making this simple you can refer similar kind of implementation in the admin header page like
   generally we manage to do for active tabs for example in admin header if users tab is active we will display a backgroud 
   effect right so make a similar kind of thing....!!
 
-  2. also look for some improvements in the handle change function like for now this implementation can look after only each one input element at a time not suitable for managing multiple as this problem faced in the skills section
+  2. also look for some improvements in the handle change function like for now this implementation can look after only each one
+   input element at a time not suitable for managing multiple as this problem faced in the skills section
 
-  3. implemented the skills try to make that skills handle function also handled by this single function, i have implemented the delete functionality also i hope you can manage the css for that 😊😊 
+  3. implemented the skills try to make that skills handle function also handled by this single function, 
+  i have implemented the delete functionality also i hope you can manage the css for that 😊😊 
 */
 
 const Resumedashboard = () => {
@@ -27,7 +29,7 @@ const Resumedashboard = () => {
     Project: {}
   });
 
-  console.log(arraySkills);
+ 
 
   const uploadimgId=useRef(null)
   const[errors,setErrors] =useState({})
@@ -75,15 +77,16 @@ const Resumedashboard = () => {
   };
 
   const handleSkillsChange = (e) => {
-    if(errors?.skills?.skill1){
-      setErrors((prev) => ({...prev, skills: { skill1: '' }}))
+    
+    if(errors.skills?.skill_x){
+      setErrors((prev) => ({...prev, skills: { skill_x: '' }}))
     }
     setSkills(e.target.value)
   }
 
   const handleSkillLevelChange = (e) => {
     if(skills == '') {
-      setErrors((prev) => ({...prev, skills: { skill1: "*This field is required" }}))
+      setErrors((prev) => ({...prev, skills: { skill_x: "*This field is required" }}))
       setSkillLevel('');
       return;
     };
@@ -320,7 +323,7 @@ const Resumedashboard = () => {
                       onChange={handleSkillsChange} 
                     />
                     {/* handleChange('skills', 'skill1', e.target.value) */}
-                    {errors?.skills?.skill1 && <p className='error'>{errors?.skills?.skill1}</p>}
+                    {errors?.skills?.skill_x && <p className='error'>{errors?.skills?.skill_x}</p>}
                   </label>
                   <label className='level'>
                     Level:
@@ -401,76 +404,78 @@ const Resumedashboard = () => {
           </div>
         </div>
         <div className='format'>
-          <div className="top-column">
-            {
-              resumeData.personalInformation.profileImg && (
-                <img 
-                  src={resumeData.personalInformation.profileImg} 
-                  alt="Profile" 
-                  style={{ width: '100px', height: '100px', borderRadius: '50%' }}
-                />
-              )
-            }
-            <p>Full Name: {resumeData.personalInformation.fullName}</p>
-          </div>
           <div className='preview-section'>
-              <div>
+            <div className='sub-preview-section1'>
+              {
+                resumeData.personalInformation.profileImg && (
+                  <img 
+                    src={resumeData.personalInformation.profileImg} 
+                    alt="Profile" 
+                  
+                  />
+                )
+              }
+              <p>Full Name: {resumeData.personalInformation.fullName}</p>
+            </div>
+            <div className='sub-preview-section2'>
                 <div>
-                  <h2>Contact</h2>
-                  <p>Address: {resumeData.personalInformation.address}</p>
-                  <p>Mobile: {resumeData.personalInformation.mobileNumber}</p>
-                  <p>Email: {resumeData.personalInformation.email}</p>
+                  <div>
+                    <h2>Contact</h2>
+                    <p>Address: {resumeData.personalInformation.address}</p>
+                    <p>Mobile: {resumeData.personalInformation.mobileNumber}</p>
+                    <p>Email: {resumeData.personalInformation.email}</p>
+                  </div>
+                  <div>
+                    <h2>Education</h2>
+                    <p>10th College Name: {resumeData.education.clgName10th}</p>
+                    <p>GPA: {resumeData.education.gpa10th}</p>
+                    <p>12th College Name: {resumeData.education.clgName12th}</p>
+                    <p>GPA: {resumeData.education.gpa12th}</p>
+                    <p>Grauate College Name: {resumeData.education.clgNameGraduate}</p>
+                    <p>GPA: {resumeData.education.gpaGraduate}</p>
+                  </div>
+                  <div>
+                    <h2>CERTIFICATIONS</h2>
+                    <p>Certification Name: </p>
+                    <p>discription:</p>                
+                  </div>
                 </div>
                 <div>
-                  <h2>Education</h2>
-                  <p>10th College Name: {resumeData.education.clgName10th}</p>
-                  <p>GPA: {resumeData.education.gpa10th}</p>
-                  <p>12th College Name: {resumeData.education.clgName12th}</p>
-                  <p>GPA: {resumeData.education.gpa12th}</p>
-                  <p>Grauate College Name: {resumeData.education.clgNameGraduate}</p>
-                  <p>GPA: {resumeData.education.gpaGraduate}</p>
+                  <div>
+                    <h2>PROFESSIONAL SUMMARY</h2>
+                    <p> Summary: {resumeData.personalInformation.professionalSummary} </p>
+                  </div>
+                  <div>
+                    <h2>SKILLS</h2>
+                    {
+                      arraySkills.map((item, index) => (
+                        <div key={index}>
+                          <p>{item.skill}</p>
+                          <p>{item.level}</p>
+                        </div>
+                      ))
+                    }
+                  </div>  
+                  <div>
+                    <h2>WORK EXPERIENCE</h2>
+                    <p>Company Name: {resumeData.workExperience.companyName}</p>
+                    <p>Job Title: {resumeData.workExperience.jobTitle}</p>
+                  </div>
+                  <div>
+                    <h2>INTERNSHIP EXPERIENCE</h2>
+                    <p>CompanyName:{resumeData.Internship.internCompanyname}</p>
+                    <p>jobTitle: {resumeData.Internship.internJobtitle} </p>
+                    <p>Duration: {resumeData.Internship.internStartdate} to {resumeData.Internship.internEnddate}</p>
+                  </div>
+                  <div>
+                    <h2>PROJECTS</h2>
+                  </div>
+                  <div>
+                    <h2>REFERENCES</h2>
+                    <p>Role: {resumeData.personalInformation.role}</p>
+                  </div>
                 </div>
-                <div>
-                  <h2>CERTIFICATIONS</h2>
-                  <p>Certification Name: </p>
-                  <p>discription:</p>                
-                </div>
-              </div>
-              <div>
-                <div>
-                  <h2>PROFESSIONAL SUMMARY</h2>
-                  <p> Summary: {resumeData.personalInformation.professionalSummary} </p>
-                </div>
-                <div>
-                  <h2>SKILLS</h2>
-                  {
-                    arraySkills.map((item, index) => (
-                      <div key={index}>
-                        <p>{item.skill}</p>
-                        <p>{item.level}</p>
-                      </div>
-                    ))
-                  }
-                </div>  
-                <div>
-                  <h2>WORK EXPERIENCE</h2>
-                  <p>Company Name: {resumeData.workExperience.companyName}</p>
-                  <p>Job Title: {resumeData.workExperience.jobTitle}</p>
-                </div>
-                <div>
-                  <h2>INTERNSHIP EXPERIENCE</h2>
-                  <p>CompanyName:{resumeData.Internship.internCompanyname}</p>
-                  <p>jobTitle: {resumeData.Internship.internJobtitle} </p>
-                  <p>Duration: {resumeData.Internship.internStartdate} to {resumeData.Internship.internEnddate}</p>
-                </div>
-                <div>
-                  <h2>PROJECTS</h2>
-                </div>
-                <div>
-                  <h2>REFERENCES</h2>
-                  <p>Role: {resumeData.personalInformation.role}</p>
-                </div>
-              </div>
+            </div>
           </div>
         </div>
       </section>

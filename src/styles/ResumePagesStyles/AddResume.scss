@@ -1,8 +1,4 @@
-.resume-dashboard * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+
 
 .resume-dashboard {
   font-family: Arial, sans-serif;
@@ -11,6 +7,8 @@
   color: rgb(23, 43, 77);
   font-weight: 600;
   line-height: 24px;
+  padding-top: 80px;
+  
 }
 
 .resume-dashboard .header {
@@ -90,13 +88,7 @@
   padding: 24px;
 }
 
-.resume-dashboard .format {
-  width: 40%;
-  padding: 20px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+
 
 .resume-dashboard .row {
   padding: 10px;
@@ -212,24 +204,43 @@
     margin-top: 5px;
 }
 
-.format .top-column {
-  color:green;
-  display: flex;
-  padding:2rem;
-  align-items: center;
-  
+.format{
+  width: 45%;
+  height: 100vh;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden  scroll ;
+ 
+
+    > .preview-section{
+      
+        > .sub-preview-section1 {
+          color:green;
+          display: flex;
+          padding:2rem;
+          align-items: center;
+          > img {
+            width: 100px;
+            height: 100px;
+            margin-right:3rem ;
+            border-Radius: 50% ;
+          }
+          
+        }
+        > .sub-preview-section2 {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+      }
+    } 
+     
 }
 
-.top-column img {
-  width: 70px;
-  height: 100px;
-  margin-right:3rem ;
-}
 
-.preview-section {
-  display: flex;
-  flex-direction: row;
-}
+
+
 .currentWorking .option{
   margin: 2%;
   background-color: rgb(207, 207, 207);
