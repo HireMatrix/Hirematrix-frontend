@@ -1,4 +1,4 @@
-@use './variables.scss' as var;
+@use './_variables.scss' as var;
 @use './JobLandingPagesStyles/jobLandingPage';
 @use './header/LandingPageHeader';
 @use './header/EmployerPageHeader';
@@ -21,6 +21,8 @@
 @use './AdminStyles/AdminJobs';
 @use './AdminStyles/AdminUsers';
 @use './AdminStyles/AdminWebScraping';
+@use './customeTable';
+@use './customePagination';
 
 :root {
     font-family: sans-serif;

@@ -57,7 +57,7 @@ const PaginationCore = ({
         }
 
         return (
-            <div>
+            <div className="page-size-selction-main-container">
                 <span>show</span>
                 <select
                     value={pageSize}
