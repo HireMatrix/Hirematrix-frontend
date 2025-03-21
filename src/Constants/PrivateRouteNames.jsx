@@ -4,6 +4,7 @@ import { USER_TYPES } from "../core/UserTypes";
 
 const AddResume = lazy(() => import('../pages/AddResume'));
 const RoleSelectionPage = lazy(() => import('../pages/RoleSelectionPage'));
+const InterviewQuestionsPage = lazy(() => import('../pages/InterviewQuestionsPage'));
 const AdminDashboard = lazy(() => import('../adminPages/AdminDashboard'));
 const AdminJobs = lazy(() => import('../adminPages/AdminJobs'))
 const AdminUsers = lazy(() => import('../adminPages/AdminUsers'))
@@ -27,6 +28,18 @@ const ROLE_SELECTION_PAGE = {
     component: (
         <Suspense fallback={<Loader isFullpage={true}/>}>
             <RoleSelectionPage/>
+        </Suspense>
+    )
+}
+
+//Interview Questions 
+const INTERVIEW_QUESTIONS_PAGE = {
+    path: '/ai-mock-interviews/role-selection/InterviewQuestionsPage',
+    pageTitle: 'Interview-questions',
+    header: 'landing',
+    component: (
+        <Suspense fallback={<Loader isFullpage={true}/>}>
+            <InterviewQuestionsPage/>
         </Suspense>
     )
 }
@@ -67,6 +80,7 @@ const ADMIN_USERS_ROUTE = {
 
 export const PRIVATE_ROUTES = [
     ROLE_SELECTION_PAGE,
+    INTERVIEW_QUESTIONS_PAGE,
     RESUME_BUILDER_PAGE,
     ADMIN_DASHBOARD_HOME_ROUTE,
     ADMIN_JOBS_ROUTE,
@@ -76,13 +90,15 @@ export const PRIVATE_ROUTES = [
 export const PROTECTED_ROUTE_NAMES = {
     [USER_TYPES.GENERAL]: {
         RESUME_BUILDER_PAGE: RESUME_BUILDER_PAGE,
-        ROLE_SELECTION_PAGE: ROLE_SELECTION_PAGE
+        ROLE_SELECTION_PAGE: ROLE_SELECTION_PAGE,
+        INTERVIEW_QUESTIONS_PAGE: INTERVIEW_QUESTIONS_PAGE
     }, 
     [USER_TYPES.EMPLOYER]: {},
     [USER_TYPES.ADMIN]: {
         DEFAULT: ADMIN_DASHBOARD_HOME_ROUTE, 
         RESUME_BUILDER_PAGE: RESUME_BUILDER_PAGE,
         ROLE_SELECTION_PAGE: ROLE_SELECTION_PAGE,
+        INTERVIEW_QUESTIONS_PAGE: INTERVIEW_QUESTIONS_PAGE,
         ADMIN_JOBS_ROUTE: ADMIN_JOBS_ROUTE,
         ADMIN_USERS_ROUTE: ADMIN_USERS_ROUTE
     }
