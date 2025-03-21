@@ -3,7 +3,7 @@
 .resume-dashboard {
   font-family: Arial, sans-serif;
   font-size: 16px;
-  background-color: #f4f4f4;
+background-color: #000000;
   color: rgb(23, 43, 77);
   font-weight: 600;
   line-height: 24px;
@@ -84,7 +84,8 @@
 .resume-dashboard .information {
   width: 50%;
   height: 600px;
-  background-color: #f4f4f4;
+  background: linear-gradient(135deg, hsl(28, 100%, 38%), #181817);
+
   padding: 24px;
 }
 
@@ -130,12 +131,22 @@
   font-size: 0.9em;
   display: block;
 }
+.resume-dashboard textarea{
+  height: 100px;
+  width: 100%;
+  resize: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  
+}
 
 .resume-dashboard input[type='text']:focus,
-.resume-dashboard input[type='date']:focus{
+.resume-dashboard input[type='date']:focus,
+.resume-dashboard textarea:focus{
   outline: none;
-  border-color: rgb(66, 157, 119);
-  box-shadow: 0 0 5px rgba(3, 105, 63, 0.5);
+  border-color: rgb(233, 131, 67);
+  box-shadow: 0 0 5px rgb(204, 121, 57);
 }
 
 .resume-dashboard button {

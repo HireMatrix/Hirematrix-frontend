@@ -20,6 +20,10 @@ const Resumedashboard = () => {
   const [skills, setSkills] = useState('');
   const [skillLevel, setSkillLevel] = useState('');
   const [arraySkills, setArraySkills] = useState([]); 
+  const [pj_title,setProjectTitle]=useState('');
+  const [pj_description,setProjectDescription]=useState('');
+  const [pj_link,setProjectLink]=useState('');
+  const [arrayProjects,setArrayProjects]=useState([]);
   const [resumeData, setResumeData] = useState({
     personalInformation: {},
     workExperience: {},
@@ -103,6 +107,50 @@ const Resumedashboard = () => {
   const handleDeleteSkill = (index) => {
     setArraySkills((prev) => prev.filter((_, i) => i != index))
   }
+
+  const handleProjectTitle =(e) => {
+    if(errors.Projects?.projectTitle) {
+      setErrors((prev) => ({...prev, Projects: { projectTitle: '' }}))
+    }
+    setProjectTitle(e.target.value)
+  }
+  const handleProjectDescription= (e) =>{
+    if(errors.Projects?.projectDescription) {
+      setErrors((prev) => ({...prev, Projects: { projectDescription: '' }}))
+    }
+    setProjectDescription(e.target.value)
+  }
+  const handleProjectLink = (e) =>{
+    if(errors.Projects?.projectLink) {
+      setErrors((prev) => ({...prev, Projects: { projectLink: '' }}))
+    }
+    setProjectLink(e.target.value)
+  }
+  const handleProjectArray = () => {
+
+    if(pj_title==""){
+      setErrors((prev) => ({...prev, projects: {...prev.projects, projectTitle: "*This field is required" }}))
+      if(pj_description==""){
+        setErrors((prev) => ({...prev, projects: {...prev.projects, projectDescription: "*This field is required"}}))
+        if(pj_link==""){
+          setErrors((prev) => ({...prev, projects: {...prev.projects, projectLink: "*This field is required"}}))   
+        }        
+      }
+    }
+    else if(pj_description == "") {
+        setErrors((prev) => ({...prev, projects: {...prev.projects, projectDescription: "*This field is required"}}))
+        if(pj_link==""){
+          setErrors((prev) => ({...prev, projects: {...prev.projects, projectLink: "*This field is required"}}))   
+        }
+    }
+    else if(pj_link == "") {
+        setErrors((prev) => ({...prev, projects: {...prev.projects, projectLink: "*This field is required"}}))   
+    }
+    else{
+      setArrayProjects((prev) => ([...prev, { projectTitle: pj_title, projectDescription: pj_description, projectLink:pj_link}])) 
+    }
+
+}
 
   const handleImgChange = (e) =>{
     handleChange('personalInformation', 'profileImg', e.target.files[0])
@@ -189,10 +237,10 @@ const Resumedashboard = () => {
                   </label>
                 </div>
                 <label>Address<input type='text' onChange={(e) => handleChange('personalInformation', 'address', e.target.value)} /></label>
-                <label>Professional Summary:
+                <label>Professional Summary:        
                   <br/> 
                   <textarea 
-                    style={{height:"100px",width:"100%"}} 
+                    
                     onChange={(e) => handleChange('personalInformation', 'professionalSummary', e.target.value)}
                   ></textarea>
                 </label>
@@ -401,8 +449,50 @@ const Resumedashboard = () => {
                 </div>
               </div>
             )}     
+            <div className='row' onClick={() => toggleSection('Projects')}>
+              <h1>Projects</h1>
+              <i className="arrow"></i>
+            </div>
+            {activeSection === 'Projects' && (
+              <div className='dropdown-content'>
+                <label>Project Title
+                  <input
+                    type='text' 
+                    // onBlur={() => validateFields('Projects', ['projectTitle'])}
+                    // onChange={(e) => handleChange('Projects', 'projectTitle', e.target.value)}
+                    onChange={handleProjectTitle}  
+                  />
+                  {errors?.projects?.projectTitle && <p className="error">{errors.projects.projectTitle}</p>}
+                </label>
+                <label>Project Description
+                  <br/>
+                  <textarea
+                 
+                  // onBlur={() => validateFields('Projects', ['projectDescription'])}
+                    // onChange={(e) => handleChange('Projects','projectDescription',e.target.value)}
+                    onChange={handleProjectDescription}>
+                  </textarea>
+                  {errors.projects?.projectDescription && <p className="error">{errors.projects.projectDescription}</p>}
+                </label>
+                <label>project Link
+                  <input
+                    type='text'
+                    onChange={handleProjectLink}
+                    // onBlur={() => validateFields('Projects', ['projectLink'])}
+                    // onChange={(e) => handleChange('Projects','projectLink',e.target.value)}
+                  />
+                  {errors.projects?.projectLink && <p className="error">{errors.projects.projectLink}</p>}
+                </label>
+                <button 
+                  onClick={handleProjectArray}
+                  >Add
+                </button>
+                
+              </div>
+            )}     
           </div>
         </div>
+        
         <div className='format'>
           <div className='preview-section'>
             <div className='sub-preview-section1'>
@@ -410,8 +500,7 @@ const Resumedashboard = () => {
                 resumeData.personalInformation.profileImg && (
                   <img 
                     src={resumeData.personalInformation.profileImg} 
-                    alt="Profile" 
-                  
+                    alt="Profile"
                   />
                 )
               }
@@ -469,6 +558,14 @@ const Resumedashboard = () => {
                   </div>
                   <div>
                     <h2>PROJECTS</h2>
+                   {
+                    arrayProjects.map((item, index) => (
+                      <div key={index}>
+                        <p>Project Name: {item.projectTitle}</p>
+                        <p>Project Description: {item.projectDescription}</p>
+                        <p>project Link:{item.projectLink}</p>
+                        </div>))
+                   }
                   </div>
                   <div>
                     <h2>REFERENCES</h2>
