@@ -8,14 +8,26 @@ import CustomeTableComp from '../core/TableCore/CustomeTableComp';
 
 const AdminJobs = () => {
 
-  const columns = useMemo(() => [
-    {
-      Header: "Id",
-      accessor: "_id",
-    }, 
+  const columns = useMemo(() => [ 
     {
       Header: "Title",
       accessor: "title",
+    },
+    {
+      Header: 'Experience',
+      accessor: 'experience',
+    },
+    {
+      Header: 'Salary',
+      accessor: 'salary',
+    },
+    {
+      Header: 'Date of Posted',
+      accessor: 'datePosted',
+    },
+    {
+      Header: 'Work Mode',
+      accessor: 'workMode',
     }
   ], [])
 
@@ -56,13 +68,21 @@ const AdminJobs = () => {
     <div className='admin-jobs-main-container'>
       <div className='admin-container'>
         <div className='admin-table-wrap-main-container'>
-          <CustomeTableComp
-            {...tableInstances}
-          />
-          <div>
-            <PageSizeSelection/>
-            <PageNumberSelection/>
-          </div>
+          {
+            !paginatedData ? (
+              <Loader/>
+            ) : (
+              <>
+                <CustomeTableComp
+                  {...tableInstances}
+                />
+                <div>
+                  <PageSizeSelection/>
+                  <PageNumberSelection/>
+                </div>
+              </>
+            )
+          }
         </div>
       </div>
     </div>

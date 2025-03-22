@@ -1,12 +1,17 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Import navigation hook
+import { useNavigate } from "react-router-dom";
 
+/* SATYA: 
+  Todo: 
+  ** I don't know why are you using the header tag and main tag (which is i have removed), these kind of things are managed globally you should not use them agian here and write styles for them it would create a impact on global structuring please try to figure out this thing and remove those kind of tags from here and please improve the css..
+
+  **** don't use header and nav tags here while designing a page...!!!!!!!!
+*/
 const ResumeBuilderPage = () => {
   const navigate = useNavigate();
 
   return (
     <div className="resume-builder-page-main-container">
-      {/* ----------Hero Section ------------------ */}
       <header className="resumeBHead">
         <h1 className="resume-builder-h1">JobReady Toolkit</h1>
         <nav id="resume-builder-navbar">
@@ -19,8 +24,6 @@ const ResumeBuilderPage = () => {
           </ul>
         </nav>
       </header>
-      {/* --------------- Main Section ------------------ */}
-      <main>
         <div className="content">
           <img
             className="resume-builder-MainIcon"
@@ -30,15 +33,13 @@ const ResumeBuilderPage = () => {
           />
           <h2>Create your best resume to advance career</h2>
           <p>Build from scratch or pre-fill it with LinkedIn, or Apna profile</p>
-          {/* Button to navigate to the Resume Cards page */}
           <button
             className="resume-builder-btn"
-            onClick={() => navigate("/resume-dashboard")} // Navigate to the cards page
+            onClick={() => navigate("/resume-dashboard")}
           >
             + Create new resume
           </button>
         </div>
-      </main>
       <div className="cards-container">
         <div className="card">
           <img

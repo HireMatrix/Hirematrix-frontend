@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,6 +5,8 @@ import { useNavigate } from "react-router-dom";
   Todo:
   1. use the local images or download the images and then use them.
   2. floating button is below the chatbot.
+  3. agian here also same mistake don't use the main layout tags for designing the pages whole styling would get clumsy..!! don't use the tag's like main, header, footer, nav here..
+  4. also remove the footer we will create a one for all the pages in future and also match this colors with the projects main color theme..
 */
 const blogs = [
   {

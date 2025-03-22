@@ -1,7 +1,8 @@
 @use '../_variables.scss' as var;
 
 .jobSearch-section {
-    min-height: 100vh;
+    height: 100vh;
+    overflow-y: auto;
     width: 100vw;
     display: flex;
     flex-direction: column;

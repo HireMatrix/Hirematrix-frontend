@@ -41,8 +41,6 @@ const AdminUsers = () => {
     queryFn: fetchAllusersAdmin,
     queryKey: ["adminUsers"],
   });
-    
-  // console.log(paginatedData);
 
   const tableInstances = useCustomeTable({
     columns: columns,

@@ -3,6 +3,8 @@
 
 .resume-builder-page-main-container {
     margin-top: 10vh;
+    height: 100vh;
+    overflow-y: auto;
 
     header.resumeBHead {
         width: 100%;

@@ -1,8 +1,14 @@
 import React from 'react'
 
+/*
+  TODO: 
+
+  ** Improve the desing of the components here..
+*/
+
 const ResumeCheckerPage = () => {
   return (
-    <div>
+    <div className='resume-checker-main-container'>
       <div className="resumechecker-container">
         <div>
           <h1>

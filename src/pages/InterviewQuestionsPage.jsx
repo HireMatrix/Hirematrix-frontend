@@ -2,6 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaVideo, FaMicrophone, FaCog, FaMoon, FaPhoneAlt, FaArrowDown, FaSun } from "react-icons/fa";
 
+/*
+  ToDo: 
+  1. why we should have to add the theme setup for this page only??
+  2. Please try to make the color theme to be matching one..
+  3. ultimately, i expect to not touch these pages so please try to discuss with team mates what is our goal and try to design according to that..
+*/
 
 const MockInterview = () => {
   const location = useLocation();
@@ -372,7 +378,6 @@ const MockInterview = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

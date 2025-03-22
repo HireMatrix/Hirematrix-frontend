@@ -1,3 +1,9 @@
+.resume-checker-main-container {
+    height: 100vh;
+    overflow-y: auto;
+    padding-top: 100px;
+}
+
 .resumechecker-container {
     align-items: center;
     display: flex;
@@ -6,7 +12,6 @@
     color: white;
     text-align: center;
     padding: 50px 120px;
-    
 }
 .img1{
     width: 350px;
