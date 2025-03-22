@@ -4,20 +4,28 @@
     width: 95%;
     table-layout: auto;
     border: 1px solid var.$box-color-thick;
+    border-radius: 8px;
     border-collapse: collapse;
     margin-top: 12px;
     > thead {
         > tr {
             > th {
-                border: 1px solid var.$box-color-thick;
+                border-bottom: 1px solid var.$box-color-thick;
+                text-align: left;
+                padding: 8px;
             }
         }
     }
     > tbody {
         > tr {
+            color: rgba(255, 255, 255, 0.881);
+            &:hover {
+                background-color: rgba(25, 25, 25, 0.677);
+                color: white;
+            }
             > td {
-                border: 1px solid var.$box-color-thick;
-                padding: 3px 0;
+                border-bottom: 1px solid var.$box-color-thick;
+                padding: 9px;
             }
         }
     }

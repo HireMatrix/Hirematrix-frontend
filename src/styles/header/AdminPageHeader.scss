@@ -1,7 +1,8 @@
 @use '../_variables.scss' as var;
 
 .admin-header-main-contianer {
-    min-height: 100%;
+    height: 100vh;
+    position: sticky;
     min-width: 15%;
     padding: 14px;
     background-color: var.$background-color;

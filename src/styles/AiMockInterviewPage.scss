@@ -6,9 +6,9 @@
   background-image: radial-gradient(closest-side, rgba(255, 237, 70, 0.353), #000000);
   font-family: Arial, sans-serif;
   margin-top: 0; /* Remove margin-top */
-  min-height: 100vh; /* Full viewport height */
+  height: 100vh; /* Full viewport height */
   width: 100%; /* Ensure full width */
-
+  overflow-y: auto;
   .left-section {
     width: 45%;
     .tag {

@@ -129,7 +129,7 @@ const JobLandingPage = () => {
   }
 
   return (
-    <>
+    <div className='job-landing-page-main-container'>
       <div className="home-section">
 
         {/* <!-- search section --> */}
@@ -323,7 +323,7 @@ const JobLandingPage = () => {
             </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

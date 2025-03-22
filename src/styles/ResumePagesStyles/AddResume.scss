@@ -1,5 +1,5 @@
-
 @use '../_variables.scss' as var;
+
 .resume-dashboard {
   font-family: Arial, sans-serif;
   font-size: 16px;
@@ -8,6 +8,8 @@
   font-weight: 600;
   line-height: 24px;
   padding-top: 80px;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .resume-dashboard .header {

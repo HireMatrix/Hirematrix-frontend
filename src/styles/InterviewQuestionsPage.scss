@@ -1,10 +1,11 @@
 .interview-container {
   display: flex;
   flex-direction: column;
-  height: 125vh;
+  padding-top: 100px;
+  height: 100vh;
+  overflow-y: auto;
   font-family: Arial, sans-serif;
   transition: background-color 0.3s, color 0.3s;
-  padding-top: 4rem;
   background-image: radial-gradient(closest-side, rgba(255, 237, 70, 0.353), #000000);
 }
 

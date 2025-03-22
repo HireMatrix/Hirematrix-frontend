@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query"
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
+import { TfiAngleDown } from "react-icons/tfi";
+import { TfiAngleUp } from "react-icons/tfi";
 
 const PaginationCore = ({
     pageSizeOptions = [10, 25, 50, 100],
-    defaultPageSize = 8,
+    defaultPageSize = 10,
     pageKey,
     pageSizeKey,
     isLocal = true,
@@ -16,8 +18,11 @@ const PaginationCore = ({
     const [pageSize, setPageSize] = useState(defaultPageSize);
     const [totalItems, setTotalItems] = useState(0);
 
+    const [activeSelect, setActiveSelect] = useState(false);
+
     const changePageSize = (_pageSize) => {
         _pageSize = Number(_pageSize);
+        setActiveSelect(false);
 
         if(_pageSize !== pageSize){
             setPageSize(_pageSize);
@@ -59,18 +64,30 @@ const PaginationCore = ({
         return (
             <div className="page-size-selction-main-container">
                 <span>show</span>
-                <select
-                    value={pageSize}
-                    onChange={(e) => changePageSize(e.target.value)}
-                >
-                    {
-                        pageSizeOptions.map((size) => (
-                            <option key={size} value={size}>
-                                {size}
-                            </option>
-                        ))
-                    }
-                </select>
+                <div>
+                    <button type="button" onClick={() => setActiveSelect(!activeSelect)}>
+                        {pageSize} 
+                        {activeSelect ? (
+                                <span>
+                                    <TfiAngleUp/>
+                                </span>
+                            ) : (
+                                <span>
+                                    <TfiAngleDown/>
+                                </span>
+                            )
+                        }
+                    </button>
+                    <ul className={`${activeSelect ? '' : 'hidden'}`}>
+                        {
+                            pageSizeOptions.map((size) => (
+                                <li key={size} onClick={() => changePageSize(size)}>
+                                    {size}
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
             </div>
         )
     };
