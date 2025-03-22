@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
+import { useNavigate } from "react-router-dom";
 
 const MockInterviewPage = () => {
-  const navigate = useNavigate(); // ✅ Use useNavigate hook properly
+  const navigate = useNavigate();
 
   const jobRoles = [
     "Custom Job Description",
@@ -53,7 +53,11 @@ const MockInterviewPage = () => {
 
       <button
         className="start-interview-btn"
-        onClick={() => navigate("/ai-mock-interviews/role-selection/InterviewQuestionsPage")}
+        onClick={() =>
+          navigate("/ai-mock-interviews/role-selection/InterviewQuestionsPage", {
+            state: { selectedRole }, // Pass the selected role as state
+          })
+        }
       >
         Start Interview →
       </button>

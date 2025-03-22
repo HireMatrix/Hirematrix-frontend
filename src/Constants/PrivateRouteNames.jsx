@@ -5,9 +5,11 @@ import { USER_TYPES } from "../core/UserTypes";
 const AddResume = lazy(() => import('../pages/AddResume'));
 const RoleSelectionPage = lazy(() => import('../pages/RoleSelectionPage'));
 const InterviewQuestionsPage = lazy(() => import('../pages/InterviewQuestionsPage'));
+const InterviewReviewPage = lazy(() => import('../pages/InterviewReviewPage'));
 const AdminDashboard = lazy(() => import('../adminPages/AdminDashboard'));
 const AdminJobs = lazy(() => import('../adminPages/AdminJobs'))
 const AdminUsers = lazy(() => import('../adminPages/AdminUsers'))
+
 
 const RESUME_BUILDER_PAGE = {
     path: '/resume-dashboard',
@@ -32,14 +34,26 @@ const ROLE_SELECTION_PAGE = {
     )
 }
 
-//Interview Questions 
+//Interview Questions
 const INTERVIEW_QUESTIONS_PAGE = {
     path: '/ai-mock-interviews/role-selection/InterviewQuestionsPage',
-    pageTitle: 'Interview-questions',
+    pageTitle: 'InterviewQuestionsPage',
     header: 'landing',
     component: (
         <Suspense fallback={<Loader isFullpage={true}/>}>
             <InterviewQuestionsPage/>
+        </Suspense>
+    )
+}
+
+//Interview Reveiw Page
+const INTERVIEW_REVIEW_PAGE = {
+    path: '/ai-mock-interviews/role-selection/InterviewQuestionsPage/InterviewReviewPage',
+    pageTitle: 'InterviewReviewPage',
+    header: 'landing',
+    component: (
+        <Suspense fallback={<Loader isFullpage={true}/>}>
+            <InterviewReviewPage/>
         </Suspense>
     )
 }
@@ -82,6 +96,8 @@ export const PRIVATE_ROUTES = [
     ROLE_SELECTION_PAGE,
     INTERVIEW_QUESTIONS_PAGE,
     RESUME_BUILDER_PAGE,
+    INTERVIEW_QUESTIONS_PAGE,
+    INTERVIEW_REVIEW_PAGE,
     ADMIN_DASHBOARD_HOME_ROUTE,
     ADMIN_JOBS_ROUTE,
     ADMIN_USERS_ROUTE
@@ -91,7 +107,9 @@ export const PROTECTED_ROUTE_NAMES = {
     [USER_TYPES.GENERAL]: {
         RESUME_BUILDER_PAGE: RESUME_BUILDER_PAGE,
         ROLE_SELECTION_PAGE: ROLE_SELECTION_PAGE,
-        INTERVIEW_QUESTIONS_PAGE: INTERVIEW_QUESTIONS_PAGE
+        INTERVIEW_QUESTIONS_PAGE: INTERVIEW_QUESTIONS_PAGE,
+        INTERVIEW_REVIEW_PAGE: INTERVIEW_REVIEW_PAGE
+
     }, 
     [USER_TYPES.EMPLOYER]: {},
     [USER_TYPES.ADMIN]: {
@@ -99,6 +117,7 @@ export const PROTECTED_ROUTE_NAMES = {
         RESUME_BUILDER_PAGE: RESUME_BUILDER_PAGE,
         ROLE_SELECTION_PAGE: ROLE_SELECTION_PAGE,
         INTERVIEW_QUESTIONS_PAGE: INTERVIEW_QUESTIONS_PAGE,
+        INTERVIEW_REVIEW_PAGE: INTERVIEW_REVIEW_PAGE,
         ADMIN_JOBS_ROUTE: ADMIN_JOBS_ROUTE,
         ADMIN_USERS_ROUTE: ADMIN_USERS_ROUTE
     }
