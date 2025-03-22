@@ -1,5 +1,8 @@
+
+@use '../_variables.scss' as var;
+
 .resume-builder-page-main-container {
-    margin-top: 5vh;
+    margin-top: 10vh;
 
     header.resumeBHead {
         width: 100%;
@@ -12,7 +15,7 @@
     }
     
     h1.resume-builder-h1 {
-        color: rgb(23, 43, 77);
+        color:rgb(255, 111, 0);
         font-size: 20px;
         font-weight: 600;
         margin-left: 65px;
@@ -21,33 +24,7 @@
         line-height: 28px;
     }
     
-    nav ul {
-        display: flex;
-        list-style: none;
-        margin-right: 20px;
-    }
-    
-    nav ul li {
-        margin-left: 20px;
-        margin-bottom: 8px;
-    }
-    
-    nav ul li a {
-        text-decoration: none;
-        color: #2C3E50;
-        padding: 10px;
-        border-bottom: 2px solid transparent;
-        font-family: 'Arial', 'Helvetica', sans-serif;
-        
-        padding: 9px 0px;
-        margin-left: 45px;
-    }
-    
-    nav ul li a.active {
-        border-bottom: 2px solid #2C9E6C;
-        color: #2C9E6C;
-    }
-    
+   
     main {
         text-align: center;
         padding: 60px 20px;
@@ -66,20 +43,20 @@
     }
     
     h2 {
-        color: #2C3E50;
+        color:rgb(255, 111, 0);
         font-size: 22px;
         margin-bottom: 10px;
     }
     
     p {
-        color: #707070;
+        color: rgb(255, 255, 255);
         font-size: 17px;
         margin-bottom: 30px;
         letter-spacing: 0.5px;
     }
     
     .resume-builder-btn {
-        background-color: #2C9E6C;
+        background-color: rgb(255, 111, 0);
         color: white;
         border: none;
         padding: 10px 20px;
@@ -89,7 +66,9 @@
     }
     
     .resume-builder-btn:hover {
-        background-color: #218a55;
+        background-color: transparent;
+        border: 1px solid var.$main-theme-color;
+        color: var.$main-theme-color;
     }
 
 
