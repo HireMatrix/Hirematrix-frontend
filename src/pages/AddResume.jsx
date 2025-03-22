@@ -1,4 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+
 
 /* Satya: TODO:-
   1. here in this code we are displaying error for only one field at a time right if multiple it would
@@ -37,7 +40,38 @@ const Resumedashboard = () => {
 
   const uploadimgId=useRef(null)
   const[errors,setErrors] =useState({})
+  const printRef=React.useRef(null);
 
+
+  
+  const handleDownloadPdf = () => {
+    const element = printRef.current;
+  
+    html2canvas(element, { scale: 2 }).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "mm", "a4");
+  
+      const imgWidth = 210; // A4 width in mm
+      const pageHeight = 297; // A4 height in mm
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+  
+      let heightLeft = imgHeight;
+      let position = 0;
+  
+      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+  
+      while (heightLeft > 0) {
+        position -= pageHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+  
+      pdf.save("resume.pdf");
+    });
+  };
+  
   const toggleSection = (section) => {
     setActiveSection(activeSection === section ? null : section);
   };
@@ -179,9 +213,9 @@ const Resumedashboard = () => {
     <div className="resume-dashboard">
       <div className='header'>
         <div className='container'>
-          <h1 id='resume' className='h1'>Resume Analysis</h1>
+          <h1 id='resume'  className='h1'>Resume Analysis</h1>
           <h1 id='template' className='h1'>Templates</h1>
-          <h1 id='download' className='h1'>Download</h1>
+          <h1 id='download' onClick={handleDownloadPdf} className='h1'>Download</h1>
         </div>
       </div>
       <section className='section'>
@@ -494,7 +528,7 @@ const Resumedashboard = () => {
         </div>
         
         <div className='format'>
-          <div className='preview-section'>
+          <div  ref={printRef}  className='preview-section'>
             <div className='sub-preview-section1'>
               {
                 resumeData.personalInformation.profileImg && (
@@ -532,7 +566,7 @@ const Resumedashboard = () => {
                 <div>
                   <div>
                     <h2>PROFESSIONAL SUMMARY</h2>
-                    <p> Summary: {resumeData.personalInformation.professionalSummary} </p>
+                    <p style={{whiteSpace:"pre-line"}}>  Summary: {resumeData.personalInformation.professionalSummary} </p>
                   </div>
                   <div>
                     <h2>SKILLS</h2>

@@ -328,12 +328,17 @@ const MockInterview = () => {
                 </button>
               </>
             )}
+            <p>Job Role <span className="status ready">Here</span></p>
+            <div className="status-indicator ready"></div>
+          </div>
+          <div className="room-selection">
+            <p>User Video Appear Here</p>
+            <button className="select-btn">Select</button>
           </div>
           <div className="transcript-info">
             <p>User Cam Allow chesina taruwata ikkada video display avutundi</p>
           </div>
         </div>
-
         {/* Middle Panel: Questions */}
         <div className="middle-panel">
           <div className="panel-header">
@@ -349,6 +354,9 @@ const MockInterview = () => {
           </div>
           <div className="panel-content">
             <p>{questions[currentQuestionIndex]}</p>
+              <button className="control-btn">Previous</button>
+              <button className="control-btn">Next</button>
+            </div>
           </div>
         </div>
 
