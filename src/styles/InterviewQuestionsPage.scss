@@ -1,0 +1,175 @@
+.interview-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #1a1a1a;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #2a2a2a;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-left h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.badge {
+  background-color: #ff8c00;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.timer {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.icon {
+  font-size: 18px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.orange-icon {
+  color: #ff8c00;
+}
+
+.leave-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #ff4d4d;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  padding: 20px;
+  gap: 20px;
+}
+
+.left-panel, .middle-panel, .right-panel {
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  padding: 20px;
+  flex: 1;
+}
+
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.interviewer-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status {
+  font-size: 14px;
+}
+
+.status.ready {
+  color: #00ff00;
+}
+
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.status-indicator.ready {
+  background-color: #00ff00;
+}
+
+.room-selection {
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.room-selection p {
+  margin: 0 0 10px;
+}
+
+.select-btn {
+  background-color: #ff8c00;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.transcript-info {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.middle-panel, .right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-header h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.panel-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.control-btn {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.panel-content {
+  flex: 1;
+  font-size: 14px;
+  color: #ccc;
+}
