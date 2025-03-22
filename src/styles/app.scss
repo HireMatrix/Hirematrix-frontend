@@ -13,6 +13,8 @@
 @use './ResumePagesStyles/AddResume';
 @use './AiMockInterviewPage';
 @use './MockInterviewPage';
+@use './InterviewQuestionsPage';
+@use './InterviewReviewPage';
 @use './Blogs';
 @use './ResumePagesStyles/resumeChecker';
 @use './chatbotui';
@@ -23,6 +25,7 @@
 @use './AdminStyles/AdminWebScraping';
 @use './customeTable';
 @use './customePagination';
+
 
 :root {
     font-family: sans-serif;
