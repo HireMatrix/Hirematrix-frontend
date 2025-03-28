@@ -14,7 +14,8 @@ const JobItem = lazy(() => import('../pages/JobItem.jsx'));
 const ResumeBuilderPage = lazy(() => import('../pages/ResumeBuilderPage.jsx'));
 const ResumeCheckerPage = lazy(() => import('../pages/ResumeCheckerPage.jsx'));
 const AiMockInterviewsPage = lazy(() => import('../pages/AiMockInterviewsPage.jsx'));
-const Blogs = lazy(() => import('../pages/Blogs.jsx'));
+const BlogPage = lazy(() => import('../pages/BlogPage.jsx')); // Updated from Blogs.jsx
+const BlogDetail = lazy(() => import('../pages/BlogDetail.jsx'));
 
 // CANDIDATE AUTH ROUTES
 const CANDIDATE_LOGIN_ROUTE = {
@@ -35,7 +36,7 @@ const CANDIDATE_SIGNUP_PAGE = {
             <CandidateSignUpPage/>
         </Suspense>
     ) 
-}
+};
 
 const RESET_PASSWORD_ROUTE = {
     path: '/reset-password/:token',
@@ -45,7 +46,7 @@ const RESET_PASSWORD_ROUTE = {
             <ResetPasswordPage/>
         </Suspense>
     )
-}
+};
 
 const VERIFY_EMAIL_ROUTE = {
     path: '/verify-email/:token',
@@ -55,7 +56,7 @@ const VERIFY_EMAIL_ROUTE = {
             <VerifyEmailPage/>
         </Suspense>
     )
-}
+};
 
 // CANDIDATE ROUTES
 const JOB_LANDING_PAGE_ROUTE = {
@@ -67,7 +68,7 @@ const JOB_LANDING_PAGE_ROUTE = {
             <JobLandingPage/>
         </Suspense>
     )
-}
+};
 
 const ALL_JOBS_ROUTE = {
     path: '/jobs',
@@ -78,7 +79,7 @@ const ALL_JOBS_ROUTE = {
             <JobSearchPage/>
         </Suspense>
     )
-}
+};
 
 const JOB_ITEM = {
     path: '/jobs/:id',
@@ -89,7 +90,7 @@ const JOB_ITEM = {
             <JobItem/>
         </Suspense>
     )
-}
+};
 
 const RESUME_BUILDER_LANDING_PAGE = {
     path: '/resume-builder',
@@ -100,7 +101,7 @@ const RESUME_BUILDER_LANDING_PAGE = {
             <ResumeBuilderPage/>
         </Suspense>
     )
-}
+};
 
 const RESUME_CHECKER_LANDING_PAGE = {
     path: '/resume-checker',
@@ -111,7 +112,7 @@ const RESUME_CHECKER_LANDING_PAGE = {
             <ResumeCheckerPage/>
         </Suspense>
     )
-}
+};
 
 const AI_MOCK_INTERVIEW_LANDING_PAGE = {
     path: '/ai-mock-interviews',
@@ -122,7 +123,7 @@ const AI_MOCK_INTERVIEW_LANDING_PAGE = {
             <AiMockInterviewsPage/>
         </Suspense>
     )
-}
+};
 
 const BLOGS_LANDING_PAGE = {
     path: '/blogs',
@@ -130,11 +131,21 @@ const BLOGS_LANDING_PAGE = {
     header: 'landing',
     component: (
         <Suspense fallback={<Loader/>}>
-            <Blogs/>
+            <BlogPage/> // Updated from Blogs
         </Suspense>
     )
-}
+};
 
+const BLOG_DETAIL_PAGE = {
+    path: '/blogs/:id',
+    pageTitle: 'Blog Detail',
+    header: 'landing',
+    component: (
+        <Suspense fallback={<Loader/>}>
+            <BlogDetail/>
+        </Suspense>
+    )
+};
 
 export const PUBLIC_ROUTES = [
     CANDIDATE_LOGIN_ROUTE,
@@ -147,8 +158,9 @@ export const PUBLIC_ROUTES = [
     RESUME_BUILDER_LANDING_PAGE,
     RESUME_CHECKER_LANDING_PAGE,
     AI_MOCK_INTERVIEW_LANDING_PAGE,
-    BLOGS_LANDING_PAGE
-]
+    BLOGS_LANDING_PAGE,
+    BLOG_DETAIL_PAGE
+];
 
 export const PUBLIC_ROUTES_NAMES = {
     LOGIN: CANDIDATE_LOGIN_ROUTE,
@@ -160,7 +172,7 @@ export const PUBLIC_ROUTES_NAMES = {
     JOB_ITEM: JOB_ITEM,
     RESUME_BUILDER_LANDING: RESUME_BUILDER_LANDING_PAGE,
     RESUME_CHECKER_LANDING: RESUME_CHECKER_LANDING_PAGE,
-    AI_MOCK_INTERVIEW_LANDING:
-    AI_MOCK_INTERVIEW_LANDING_PAGE,
-    BLOGS_LANDING: BLOGS_LANDING_PAGE
-}
+    AI_MOCK_INTERVIEW_LANDING: AI_MOCK_INTERVIEW_LANDING_PAGE,
+    BLOGS_LANDING: BLOGS_LANDING_PAGE,
+    BLOG_DETAIL: BLOG_DETAIL_PAGE
+};

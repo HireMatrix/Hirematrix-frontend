@@ -1,0 +1,188 @@
+ {
+ "blogs":[
+  {
+      "title": "Trends From Early AI Adoption in Recruitment Industry",
+      "author": "Neha Sharma",
+      "date": "March 25, 2024",
+      "updatedDate": "March 25, 2024",
+      "description": "From writing computer code to creating jokes, AI is transforming industries. Learn how recruitment is evolving.",
+      "image": "https://apna.co/career-central/wp-content/uploads/2024/03/shutterstock_1431767984-4-1536x1045.jpg",
+      "toc": [
+          { "title": "Introduction to AI in Recruitment", "key": "intro" },
+          { "title": "Benefits of AI Adoption", "key": "benefits" },
+          { "title": "Challenges and Solutions", "key": "challenges" },
+          { "title": "Future Outlook", "key": "future" }
+      ],
+      "content": {
+          "intro": "Artificial Intelligence (AI) is revolutionizing the recruitment industry by automating repetitive tasks, improving candidate matching, and enhancing the overall hiring process.",
+          "benefits": "Early adopters of AI in recruitment have seen significant benefits, including reduced time-to-hire and improved quality of hires. This section explores how AI is being used in recruitment.",
+          "challenges": "We discuss the challenges, such as potential biases in AI algorithms, and how companies are addressing them to ensure fair hiring practices.",
+          "future": "What does the future hold for AI in recruitment? This section looks at emerging trends and predictions for the industry."
+      }
+  },
+  {
+      "title": "India’s Favorite Portal to Find Genuine Jobs",
+      "author": "HiringNews",
+      "date": "February 21, 2024",
+      "updatedDate": "February 21, 2024",
+      "description": "Over 2 crore Indians are using this platform to find jobs. Explore career opportunities now!",
+      "image": "https://apna.co/career-central/wp-content/uploads/2024/03/shutterstock_1431767984-4-1536x1045.jpg",
+      "toc": [
+          { "title": "Why It’s Popular", "key": "popularity" },
+          { "title": "Key Features", "key": "features" },
+          { "title": "User Experience", "key": "experience" }
+      ],
+      "content": {
+          "popularity": "With over 2 crore users, this job portal has become a go-to platform for job seekers in India. This section explores why it’s so popular.",
+          "features": "It offers a wide range of opportunities across various industries, from tech to manufacturing. Learn about its user-friendly interface, verified job listings, and community features.",
+          "experience": "This section covers how to make the most of this platform to land your dream job with its unique features."
+      }
+  },
+  {
+      "title": "Hiring Guide – How to Hire a Candidate Through the App?",
+      "author": "Recruitment Hub",
+      "date": "February 7, 2024",
+      "updatedDate": "February 7, 2024",
+      "description": "Looking for the right candidate? Here's how you can hire faster and smarter.",
+      "image": "https://apna.co/career-central/wp-content/uploads/2024/03/shutterstock_1431767984-4-1536x1045.jpg",
+      "toc": [
+          { "title": "Getting Started", "key": "start" },
+          { "title": "Step-by-Step Guide", "key": "guide" },
+          { "title": "Tips for Success", "key": "tips" }
+      ],
+      "content": {
+          "start": "Hiring through a mobile app is becoming increasingly popular among recruiters. This section covers the basics of getting started.",
+          "guide": "This guide walks you through the steps to post a job, screen candidates, and conduct interviews—all from your smartphone.",
+          "tips": "We share tips on how to optimize your job listings to attract top talent and streamline the hiring process."
+      }
+  },
+  {
+      "title": "Top 5 Skills Employers Look for in 2025",
+      "author": "Career Insights",
+      "date": "January 10, 2024",
+      "updatedDate": "January 10, 2024",
+      "description": "Stay ahead of the curve by mastering these in-demand skills for the future job market.",
+      "image": "https://apna.co/career-central/wp-content/uploads/2024/03/shutterstock_1431767984-4-1536x1045.jpg",
+      "toc": [
+          { "title": "Skill 1: Adaptability", "key": "adaptability" },
+          { "title": "Skill 2: Digital Literacy", "key": "digitalLiteracy" },
+          { "title": "Skill 3: Emotional Intelligence", "key": "emotionalIntelligence" },
+          { "title": "How to Develop These Skills", "key": "development" }
+      ],
+      "content": {
+          "adaptability": "As the job market evolves, adaptability is a critical skill for employers in 2025.",
+          "digitalLiteracy": "Digital literacy is increasingly important as technology continues to shape the workplace.",
+          "emotionalIntelligence": "Emotional intelligence helps professionals navigate workplace relationships and is highly valued.",
+          "development": "This section provides actionable advice on how to develop these skills, whether you're a recent graduate or a seasoned professional."
+      }
+  },
+  {
+      "title": "The Rise of Gig Economy: Opportunities and Challenges",
+      "author": "Job Trends",
+      "date": "December 20, 2023",
+      "updatedDate": "December 20, 2023",
+      "description": "Explore how the gig economy is reshaping work and what it means for job seekers.",
+      "image": "https://apna.co/career-central/wp-content/uploads/2024/03/shutterstock_1431767984-4-1536x1045.jpg",
+      "toc": [
+          { "title": "What is the Gig Economy?", "key": "definition" },
+          { "title": "Opportunities in the Gig Economy", "key": "opportunities" },
+          { "title": "Challenges to Consider", "key": "challenges" }
+      ],
+      "content": {
+          "definition": "The gig economy is growing rapidly, offering flexibility and new opportunities for workers. This section defines what the gig economy is.",
+          "opportunities": "Explore the opportunities the gig economy provides for job seekers and freelancers.",
+          "challenges": "This section discusses challenges like job insecurity and lack of benefits, along with tips to manage them."
+      }
+  },
+  {
+      "title": "How to Negotiate Your Salary Like a Pro",
+      "author": "Career Coach",
+      "date": "November 15, 2023",
+      "updatedDate": "November 15, 2023",
+      "description": "Learn expert tips to confidently negotiate your salary and get what you deserve.",
+      "image": "https://apna.co/career-central/wp-content/uploads/2024/03/shutterstock_1431767984-4-1536x1045.jpg",
+      "toc": [
+          { "title": "Preparation Steps", "key": "preparation" },
+          { "title": "Negotiation Techniques", "key": "techniques" },
+          { "title": "Common Mistakes", "key": "mistakes" }
+      ],
+      "content": {
+          "preparation": "Negotiating your salary can be intimidating, but with the right approach, you can secure the compensation you deserve. This section covers preparation steps.",
+          "techniques": "Learn how to present your case and handle counteroffers effectively during salary negotiations.",
+          "mistakes": "We discuss common mistakes to avoid and how to negotiate with confidence, even if you're new to the workforce."
+      }
+  },
+  {
+      "title": "Mastering Remote Hiring: Strategies for Success",
+      "author": "TalentPro",
+      "date": "January 15, 2024",
+      "updatedDate": "January 15, 2024",
+      "description": "Remote hiring is becoming the new norm. Discover the best practices to find top talent online.",
+      "image": "https://apna.co/career-central/wp-content/uploads/2024/03/shutterstock_1431767984-4-1536x1045.jpg",
+      "toc": [
+          { "title": "Virtual Interview Tips", "key": "virtualInterviews" },
+          { "title": "Assessing Remote Skills", "key": "remoteSkills" },
+          { "title": "Onboarding Best Practices", "key": "onboarding" }
+      ],
+      "content": {
+          "virtualInterviews": "With remote work here to stay, hiring managers need to adapt their strategies. This section covers how to conduct effective virtual interviews.",
+          "remoteSkills": "Learn how to assess candidates' remote work skills to ensure they thrive in a remote environment.",
+          "onboarding": "This section discusses how to create a seamless onboarding experience for remote hires."
+      }
+  },
+  {
+      "title": "How Soft Skills Impact Your Career Growth",
+      "author": "Career Experts",
+      "date": "December 30, 2023",
+      "updatedDate": "December 30, 2023",
+      "description": "Technical skills can get you the job, but soft skills will make you thrive in the workplace.",
+      "image": "https://apna.co/career-central/wp-content/uploads/2024/03/shutterstock_1431767984-4-1536x1045.jpg",
+      "toc": [
+          { "title": "Importance of Soft Skills", "key": "importance" },
+          { "title": "Key Soft Skills", "key": "keySkills" },
+          { "title": "Developing Soft Skills", "key": "development" }
+      ],
+      "content": {
+          "importance": "Soft skills like communication, teamwork, and problem-solving are increasingly important in today’s workplace. This section explains why.",
+          "keySkills": "Explore the key soft skills that can impact your career growth, from landing a job to advancing into leadership roles.",
+          "development": "We share practical tips on how to develop and showcase your soft skills to stand out to employers and colleagues."
+      }
+  },
+  {
+      "title": "Networking Tips for Introverts: Building Connections",
+      "author": "Job Seeker Hub",
+      "date": "November 1, 2023",
+      "updatedDate": "November 1, 2023",
+      "description": "Networking doesn’t have to be daunting. Learn how introverts can build meaningful connections.",
+      "image": "https://apna.co/career-central/wp-content/uploads/2024/03/shutterstock_1431767984-4-1536x1045.jpg",
+      "toc": [
+          { "title": "Networking Challenges", "key": "challenges" },
+          { "title": "Effective Strategies", "key": "strategies" },
+          { "title": "Online Networking", "key": "online" }
+      ],
+      "content": {
+          "challenges": "Networking can be challenging for introverts, but it’s a crucial skill for career growth. This section discusses common challenges.",
+          "strategies": "This section offers tailored tips for introverts, including how to prepare for networking events.",
+          "online": "Learn how to leverage online platforms like LinkedIn to build authentic connections without feeling overwhelmed."
+      }
+  },
+  {
+      "title": "The Future of AI in Job Interviews",
+      "author": "Tech Visionaries",
+      "date": "October 10, 2023",
+      "updatedDate": "October 10, 2023",
+      "description": "AI is changing how interviews are conducted. Prepare for the future with these insights.",
+      "image": "https://apna.co/career-central/wp-content/uploads/2024/03/shutterstock_1431767984-4-1536x1045.jpg",
+      "toc": [
+          { "title": "AI in Interviews", "key": "aiUsage" },
+          { "title": "Benefits for Employers", "key": "benefits" },
+          { "title": "Preparing for AI Interviews", "key": "preparation" }
+      ],
+      "content": {
+          "aiUsage": "AI is transforming the job interview process, from automated video interviews to AI-driven candidate assessments.",
+          "benefits": "This section explores how AI is being used in interviews and the benefits it offers to employers.",
+          "preparation": "Understand what job seekers need to know to succeed in AI-driven interviews and how to prepare for this evolving trend."
+      }
+  }
+]
+ }
