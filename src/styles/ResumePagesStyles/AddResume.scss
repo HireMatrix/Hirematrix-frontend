@@ -3,9 +3,8 @@
 .resume-dashboard {
   font-family: Arial, sans-serif;
   font-size: 16px;
-  background-image:radial-gradient( rgb(99, 49, 16)2%,rgb(2, 2, 2) 98%) ;
+  background-image:radial-gradient( rgb(52, 26, 8)2%,rgb(2, 2, 2) 98%) ;
   color: rgb(23, 43, 77);
-  font-weight: 600;
   line-height: 24px;
   padding-top: 80px;
   height: 100vh;
@@ -24,9 +23,11 @@
   margin-right: 20px;
 }
 
-.resume-dashboard .mobile,
+.resume-dashboard .input-subrows,
 .resume-dashboard .skill {
   display: flex;
+  align-items: top;
+  height: 6rem;
 }
 
 .resume-dashboard #skill, 
@@ -97,44 +98,56 @@
   padding: 24px;
   >.col-1-information{
     background-color:transparent;
+    .upload-profile-pic{
+      font-size: 12px;
+      display: flex;
+      flex-direction: row;
+      padding: 0px;
+      margin: 0px;
+      align-items: center;
+      padding: 5px;
+      border-radius: 8px;
+    }
+    .upload-profile-pic:hover{
+      background-color: #ffd09b;
+      cursor: pointer;
+      transition: .3s;
+    }
   }
 
-
 }
-
 
 
 .resume-dashboard .row {
   padding: 10px;
   margin-top: 10px;
-  background-color: rgb(255, 111, 0);
-  color: #ffffff;
+  background-color: transparent;
+  color: var.$main-theme-color;
   cursor: pointer;
   border-radius: 10px;
-  border:solid 0px;
-  border-color: rgb(133, 62, 15);
+  border:solid 1px var.$main-theme-color;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px, rgba(0, 0, 0, 0.08) 0px 2px 2px 0px;
     &:hover {
-      border: 1px solid var.$main-theme-color;
-    background-color:rgb(255, 255, 255);
     transition: all 0.26s ease-in-out;
     font-size: 1.1rem;
     padding: 12px;
-    color:rgb(255, 138, 4);
+    color: var.$main-theme-color;
+    background-color: transparent;
+    border: 1px solid var.$main-theme-color;
+    }
     > .arrow {
       transition:0.26s ;
       border-color:rgb(255, 138, 4);;
-    }
     }
 }
 
 
 .resume-dashboard .dropdown-content {
   padding: 10px;
-  background-color: white;
+  background-color:rgb(255, 235, 216);
   margin-top: 0px;
   border-radius: 0px 0px 8px 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -144,6 +157,7 @@
   display: block;
   margin-bottom: 10px;
   font-size: 0.9em;
+  font-weight: 600;
 }
 
 .resume-dashboard input[type='text'],
@@ -155,6 +169,7 @@
   border-radius: 5px;
   font-size: 0.9em;
   display: block;
+  
 }
 .resume-dashboard textarea{
   height: 100px;
@@ -238,8 +253,11 @@
 .error {
     color: rgb(255, 42, 42);
     font-size: 12px;
-    margin-top: 5px;
+    min-height: 16px; 
+    display: block;
+    position: relative; 
 }
+
 
 .format{
   width: 45%;
@@ -249,40 +267,82 @@
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow: hidden  scroll ;
- 
-
     > .preview-section{
-      border:solid;
+      font-family:Arial;
+      font-size: 12px;
+      border:solid 10px rgb(105, 167, 209);
       height: auto;
-
-
+      padding-bottom: 12px;
+      line-height: 1.5;
+      h2{
+        font-size: 14px;
+      }
       
         > .sub-preview-section1 {
-          color:green;
-          display: flex;
-          padding:2rem;
-          align-items: center;
-          > img {
-            width: 100px;
-            height: 100px;
-            margin-right:3rem ;
-            border-Radius: 50% ;
-          }
-          
+        color:rgb(0, 0, 0);
+        display: flex;
+        margin-bottom: 1.5rem;
+        align-items: center;
+        > img {
+          width: 100px;
+          height: 100px;
+          margin-right:7rem;
+          margin-left: 15px;
         }
-        > .sub-preview-section2 {
+        > p{
+          margin: 0;
+          font-size: 1.5rem;
+          line-height: 40px;
+          padding: .5rem;
+          border-bottom: solid  rgb(105, 167, 209);
+
+        }
+      }
+      > .sub-preview-section2 {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        > .sub2-sec1{
+          width:35%; 
+          > .pr-contact-sec{
+            background-color:rgb(181, 225, 255);
+            padding: 15px;
+            span{
+              font-weight: bold;
+            }
+          }
+          > .pr-education-sec{
+            padding-left: 15px;
+            padding-top: 15px;
+            p{
+              margin-bottom:8px;
+            }
+            span{
+              font-weight: bold;
+            }
+          }
+          >.pr-certification-sec{
+            padding: 15px;
+            p{
+              margin-bottom:8px;
+            }
+          }
+        }
+        > .sub2-sec2{
           display: flex;
-          flex-direction: row;
-          width: 100%;
-         
+          flex-direction: column;
+          overflow-block:auto;
+          width: 65%;
+          border-left: solid;
+          border-width: 2px;
+          padding-left: 15px;
+          word-wrap: break-word; /* Wrap long words */
+          overflow-wrap: break-word;
+          white-space: pre-wrap; /* Preserve line breaks and spaces */
+        } 
       }
     } 
-     
 }
-
-
-
-
 .currentWorking .option{
   margin: 2%;
   background-color: rgb(207, 207, 207);
