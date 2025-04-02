@@ -16,6 +16,7 @@
 @use './BlogPage';
 @use './BlogDetail';
 @use './ResumePagesStyles/resumeChecker';
+@use './ResumePagesStyles/ResumeReviewPage';
 @use './chatbotui';
 @use './header/AdminPageHeader';
 @use './AdminStyles/AdminDashboard';
@@ -24,7 +25,8 @@
 @use './AdminStyles/AdminWebScraping';
 @use './customeTable';
 @use './customePagination';
-@use './InterviewQuestionsPage.scss';
+@use './InterviewQuestionsPage';
+@use './InterviewReviewPage';
 
 :root {
     font-family: sans-serif;

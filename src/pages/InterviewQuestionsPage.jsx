@@ -260,11 +260,6 @@ const MockInterview = () => {
     navigate("/ai-mock-interviews/role-selection/InterviewQuestionsPage/InterviewReviewPage");
   };
 
-  
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
   return (
     <div className={`interview-container ${isDarkMode ? "dark-mode" : "light-mode"}`}>
       {/* Header Section */}
@@ -273,9 +268,6 @@ const MockInterview = () => {
         <h2 className="hire-matrix-title">Hire-Matrix: </h2> <h2>{selectedRole}</h2>
         </div>
          <div className="header-right">
-         <button onClick={toggleTheme} className="theme-btn">
-            {isDarkMode ? <FaSun className="icon" /> : <FaMoon className="icon" />}
-          </button>
           <button onClick={toggleCamera}>
         <FaVideo className={`icon orange-icon ${isCameraOn ? "active" : "inactive"}`} />
         </button>

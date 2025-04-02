@@ -13,8 +13,10 @@ const JobSearchPage = lazy(() => import('../pages/JobSearchPage.jsx'));
 const JobItem = lazy(() => import('../pages/JobItem.jsx'));
 const ResumeBuilderPage = lazy(() => import('../pages/ResumeBuilderPage.jsx'));
 const ResumeCheckerPage = lazy(() => import('../pages/ResumeCheckerPage.jsx'));
+const ResumeReviewPage = lazy(() => import('../pages/ResumeReviewPage.jsx'));
 const AiMockInterviewsPage = lazy(() => import('../pages/AiMockInterviewsPage.jsx'));
-const BlogPage = lazy(() => import('../pages/BlogPage.jsx')); // Updated from Blogs.jsx
+const InterviewReviewPage = lazy(() => import('../pages/InterviewReviewPage.jsx'));
+const BlogPage = lazy(() => import('../pages/BlogPage.jsx')); 
 const BlogDetail = lazy(() => import('../pages/BlogDetail.jsx'));
 
 // CANDIDATE AUTH ROUTES
@@ -103,6 +105,8 @@ const RESUME_BUILDER_LANDING_PAGE = {
     )
 };
 
+
+//Resume-Checker-Landing Page
 const RESUME_CHECKER_LANDING_PAGE = {
     path: '/resume-checker',
     pageTitle: 'Resume checker',
@@ -114,9 +118,24 @@ const RESUME_CHECKER_LANDING_PAGE = {
     )
 };
 
+
+//Resume Review Page
+const RESUME_REVIEW_PAGE = {
+    path: '/ResumeReviewPage',
+    pageTitle: 'Resume Review',
+    header: 'landing',
+    component: (
+        <Suspense fallback={<Loader/>}>
+            <ResumeReviewPage/>
+        </Suspense>
+    )
+};
+
+
+
 const AI_MOCK_INTERVIEW_LANDING_PAGE = {
     path: '/ai-mock-interviews',
-    pageTitle: 'Ai Mock Interviews',
+    pageTitle: 'Interview Review Page',
     header: 'landing',
     component: (
         <Suspense fallback={<Loader/>}>
@@ -124,6 +143,19 @@ const AI_MOCK_INTERVIEW_LANDING_PAGE = {
         </Suspense>
     )
 };
+
+const INTERVIEW_REVIEW_PAGE = {
+    path: '/ai-mock-interviews/role-selection/InterviewQuestionsPage/InterviewReviewPage',
+    pageTitle: 'Ai Mock Interviews',
+    header: 'landing',
+    component: (
+        <Suspense fallback={<Loader/>}>
+            <InterviewReviewPage/>
+        </Suspense>
+    )
+};
+
+
 
 const BLOGS_LANDING_PAGE = {
     path: '/blogs',
@@ -157,7 +189,9 @@ export const PUBLIC_ROUTES = [
     JOB_ITEM,
     RESUME_BUILDER_LANDING_PAGE,
     RESUME_CHECKER_LANDING_PAGE,
+    RESUME_REVIEW_PAGE,
     AI_MOCK_INTERVIEW_LANDING_PAGE,
+    INTERVIEW_REVIEW_PAGE,
     BLOGS_LANDING_PAGE,
     BLOG_DETAIL_PAGE
 ];
@@ -172,7 +206,9 @@ export const PUBLIC_ROUTES_NAMES = {
     JOB_ITEM: JOB_ITEM,
     RESUME_BUILDER_LANDING: RESUME_BUILDER_LANDING_PAGE,
     RESUME_CHECKER_LANDING: RESUME_CHECKER_LANDING_PAGE,
+    RESUME_REVIEW_PAGE: RESUME_REVIEW_PAGE,
     AI_MOCK_INTERVIEW_LANDING: AI_MOCK_INTERVIEW_LANDING_PAGE,
+    INTERVIEW_REVIEW_PAGE: INTERVIEW_REVIEW_PAGE,
     BLOGS_LANDING: BLOGS_LANDING_PAGE,
     BLOG_DETAIL: BLOG_DETAIL_PAGE
 };

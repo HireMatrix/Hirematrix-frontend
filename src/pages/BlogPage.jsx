@@ -1,12 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { blogs } from "../assets/blogs"; // Import the blogs array
-
-// Social media icons (replace with local assets in a real project)
-const facebookIcon = "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg";
-const instagramIcon = "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png";
-const linkedinIcon = "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png";
-const youtubeIcon = "https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png";
+import { blogs } from "../assets/blogs"; 
 
 const BlogPage = () => {
   const navigate = useNavigate();
@@ -15,7 +9,7 @@ const BlogPage = () => {
     return <div>No blog posts available</div>;
   }
 
-  // Function to handle blog post click
+  
   const handleBlogClick = (blogId) => {
     navigate(`/blogs/${blogId}`);
   };
@@ -46,7 +40,7 @@ const BlogPage = () => {
         </div>
       </section>
 
-      {/* Latest Blogs Section - Now showing 6 posts */}
+      {/* Latest Blogs Section */}
       <section className="latest-blogs">
         <h2 className="section-heading">The latest from the blog</h2>
         <div className="blog-grid">
@@ -69,7 +63,7 @@ const BlogPage = () => {
                 alt={blog.title} 
                 loading="lazy"
                 onError={(e) => {
-                  e.target.src = "path/to/fallback-image.jpg"; // Add a fallback image
+                  e.target.src = "path/to/fallback-image.jpg";
                 }}
               />
               <div className="blog-info">
@@ -82,7 +76,7 @@ const BlogPage = () => {
         </div>
       </section>
 
-      {/* Most Popular Posts Section - Now showing 1 featured and 4 smaller posts */}
+      {/* Most Popular Posts Section */}
       <section className="popular-posts">
         <h2 className="section-heading">Most popular posts</h2>
         <div className="popular-posts-container">
@@ -103,7 +97,7 @@ const BlogPage = () => {
               alt={blogs[6].title} 
               loading="lazy"
               onError={(e) => {
-                e.target.src = "path/to/fallback-image.jpg"; // Add a fallback image
+                e.target.src = "path/to/fallback-image.jpg";
               }}
             />
           </div>
@@ -122,7 +116,6 @@ const BlogPage = () => {
                 }}
                 aria-label={`View blog post: ${blog.title}`}
               >
-                <span className="blog-author">{blog.author}</span>
                 <h3>{blog.title}</h3>
                 <p>{blog.description}</p>
               </div>
@@ -130,17 +123,6 @@ const BlogPage = () => {
           </div>
         </div>
       </section>
-
-      {/* Floating Button */}
-      <button 
-        className="floating-btn" 
-        onClick={() => navigate("/jobs")}
-        aria-label="Navigate to job search page"
-      >
-        Looking for a Job?
-      </button>
-
-     
     </div>
   );
 };

@@ -1,337 +1,562 @@
-/* src/components/ResumeCheckerPage.css */
-
-/* Parent container */
 .resume-checker-page {
-    font-family: 'Poppins', sans-serif;
-    // background-image: radial-gradient(closest-side, rgba(255, 237, 70, 0.353), #000000);
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+
+  .landing-content {
+    transition: filter 0.3s ease;
+
+    &.blurred {
+      filter: blur(5px);
+    }
   }
-  
+
+  /* Modal Overlay */
+  .modal-overlay {
+    position: fixed;
+    top: 1rem;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: hidden; 
+  }
+
+  /* Modal Content */
+  .modal-content {
+    background: #1a1a3d;
+    border-radius: 10px;
+    padding: 40px;
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+    
+    &::-webkit-scrollbar {
+      display: none; 
+    }
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #ff750c;
+      }
+    }
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .back-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #ff750c;
+      }
+    }
+  }
+
   /* Section 1: Hero Section */
-  .resume-checker-page .hero-section {
-   
+  .hero-section {
     background-image: radial-gradient(closest-side, rgba(255, 237, 70, 0.353), #000000);
     padding: 80px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 600px;
-  }
-  
-  .resume-checker-page .hero-section .hero-content {
-    display: flex;
-    max-width: 1200px;
-    width: 100%;
-    gap: 40px;
-    flex-wrap: wrap;
-  }
-  
-  .resume-checker-page .hero-section .hero-content .hero-left {
-    flex: 1;
-    color: #fff;
-    min-width: 300px;
-  }
-  
-  .resume-checker-page .hero-section .hero-content .hero-left h1 {
-    font-size: 48px;
-    font-weight: 700;
-    margin-bottom: 20px;
-  }
-  
-  .resume-checker-page .hero-section .hero-content .hero-left p {
-    font-size: 18px;
-    margin-bottom: 30px;
-  }
-  
-  .resume-checker-page .hero-section .hero-content .hero-left .upload-box {
-    background: #fff;
-    border: 2px dashed #ccc;
-    border-radius: 10px;
-    padding: 30px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .resume-checker-page .hero-section .hero-content .hero-left .upload-box p {
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-  
-  .resume-checker-page .hero-section .hero-content .hero-left .upload-box .btn.primary {
-    background-color: #ff750c;
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .resume-checker-page .hero-section .hero-content .hero-left .upload-box .btn.primary:hover {
-    background-color: #e66800;
-  }
-  
-  .resume-checker-page .hero-section .hero-content .hero-left .upload-box .privacy-note {
-    font-size: 12px;
-    color: #666;
-    margin-top: 10px;
-  }
-  
-  .resume-checker-page .hero-section .hero-content .hero-right {
-    flex: 1;
-    min-width: 300px;
-  }
-  
-  .resume-checker-page .hero-section .hero-content .hero-right img {
-    max-width: 100%;
-    border-radius: 10px;
-  }
-  
-  /* Section 2: Sticky Image + Content */
-  .resume-checker-page .sticky-section {
-    
-    display: flex;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 60px 20px;
-    gap: 40px;
-    flex-wrap: wrap;
-  
-  }
-  
-  .resume-checker-page .sticky-section .sticky-left {
-    flex: 1;
-    position: sticky;
-    top: 20px;
-    min-width: 300px;
-  }
-  
-  .resume-checker-page .sticky-section .sticky-left img {
-    max-width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .resume-checker-page .sticky-section .sticky-right {
-    flex: 1;
-    min-width: 300px;
-    color: #ffffff; /* Dark text color for visibility */
-  }
-  
-  .resume-checker-page .sticky-section .sticky-right h2 {
-    font-size: 36px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: #ffffff; /* Ensure heading is visible */
-  }
-  
-  .resume-checker-page .sticky-section .sticky-right p {
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    color: #ffffff; /* Ensure paragraph text is visible */
-  }
-  
-  .resume-checker-page .sticky-section .sticky-right .step {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .resume-checker-page .sticky-section .sticky-right .step .step-number {
-    background: #ff750c;
-    color: #fff; /* White text for contrast against orange background */
-    width: 50px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-  }
-  
-  .resume-checker-page .sticky-section .sticky-right .step h3 {
-    color: #ffffff; /* Ensure step heading is visible */
-  }
-  
-  .resume-checker-page .sticky-section .sticky-right .step p {
-    color: #ffffff; /* Ensure step paragraph is visible */
-  }
-  
-  /* Section 3: Resume Check Categories */
-  .resume-checker-page .categories-section {
-    // background: linear-gradient(135deg, #181817, #2a2a2a);
-    padding: 60px 20px;
-    color: #fff;
-  }
-  
-  .resume-checker-page .categories-section .categories-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .resume-checker-page .categories-section .categories-grid .category-card {
-    background: #fff;
-    color: #333;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, background 0.3s;
-  }
-  
-  .resume-checker-page .categories-section .categories-grid .category-card:hover {
-    transform: translateY(10px);
-    background: #ff750c;
-  }
-  
-  .resume-checker-page .categories-section .categories-grid .category-card h3 {
-    font-size: 20px;
-    margin-bottom: 15px;
-  }
-  
-  .resume-checker-page .categories-section .categories-grid .category-card ul {
-    list-style: none;
-  }
-  
-  .resume-checker-page .categories-section .categories-grid .category-card li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
-  .resume-checker-page .categories-section .categories-grid .category-card li::before {
-    content: "✔";
-    color: #ff750c;
-  }
-  
-  /* Section 4: Final Call-to-Action */
-  .resume-checker-page .cta-section {
-    // background-image: radial-gradient(closest-side, rgba(255, 237, 70, 0.353), #000000);
-    padding: 80px 20px;
-    text-align: center;
-    color: #fff;
-  }
-  
-  .resume-checker-page .cta-section h2 {
-    font-size: 36px;
-    font-weight: 700;
-    margin-bottom: 20px;
-  }
-  
-  .resume-checker-page .cta-section p {
-    font-size: 16px;
-    margin-bottom: 30px;
-  }
-  
-  .resume-checker-page .cta-section .upload-box {
-    max-width: 600px;
-    margin: 0 auto;
-    background: #fff;
-    border: 2px dashed #ccc;
-    border-radius: 10px;
-    padding: 30px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .resume-checker-page .cta-section .upload-box p {
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-  
-  .resume-checker-page .cta-section .upload-box .btn.primary {
-    background-color: #ff750c;
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .resume-checker-page .cta-section .upload-box .btn.primary:hover {
-    background-color: #e66800;
-  }
-  
-  .resume-checker-page .cta-section .upload-box .privacy-note {
-    font-size: 12px;
-    color: #666;
-    margin-top: 10px;
-  }
-  
-  /* Highlight class */
-  .resume-checker-page .highlight {
-    color: #ff750c;
-  }
 
-  /* Add these to your existing SCSS under .categories-section */
-.resume-checker-page .categories-section .categories-grid .category-card {
-  ul {
-    li {
-      strong {
-        &.ai-check {
-          color: #ff750c; // Orange for AI checks
+    .hero-content {
+      display: flex;
+      max-width: 1200px;
+      width: 100%;
+      gap: 40px;
+      flex-wrap: wrap;
+
+      .hero-left {
+        flex: 1;
+        color: #fff;
+        min-width: 300px;
+
+        h1 {
+          font-size: 48px;
+          font-weight: 700;
+          margin-bottom: 20px;
         }
-        &.manual-check {
-          color: #00cc00; // Green for manual checks
+
+        p {
+          font-size: 18px;
+          margin-bottom: 30px;
+        }
+
+        .upload-box {
+          background: #fff;
+          border: 2px dashed #ccc;
+          border-radius: 10px;
+          padding: 30px;
+          text-align: center;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+          p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+          }
+
+          .btn.primary {
+            background-color: #ff750c;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+
+            &:hover {
+              background-color: #e66800;
+            }
+          }
+        }
+      }
+
+      .hero-right {
+        flex: 1;
+        min-width: 300px;
+
+        img {
+          max-width: 100%;
+          border-radius: 10px;
         }
       }
     }
   }
-}
 
-/* Update the li::before to not interfere with strong tags */
-.resume-checker-page .categories-section .categories-grid .category-card li {
-  display: flex;
-  align-items: flex-start; // Align items at the top for multi-line content
-  gap: 10px;
-  font-size: 14px;
-  margin-bottom: 10px;
+  .career-level-section {
+    text-align: center;
+    color: #fff;
+    background-color: #171616;
+    
 
-  &::before {
-    content: "✔";
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+
+    .level-options {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .level-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: left;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      .level-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+
+        .icon {
+          font-size: 24px;
+        }
+
+        h3 {
+          font-size: 20px;
+          font-weight: 600;
+          color: #333;
+          margin: 0;
+        }
+      }
+
+      p {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 20px;
+      }
+
+      .choose-btn {
+        background: #f0e7ff;
+        color: #ff750c;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s, color 0.3s;
+        text-transform: uppercase;
+
+        &:hover {
+          background: #e66800;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .resume-upload-section {
+    background-image: radial-gradient(closest-side, rgba(255, 237, 70, 0.353), #000000);
+    .upload-section {
+      text-align: center;
+      
+     
+
+      h1 {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #ff750c;
+      }
+
+      p {
+        font-size: 16px;
+        color: #ccc;
+        margin-bottom: 30px;
+      }
+
+      .upload-box {
+        background: #fff; 
+        border: 2px dashed #ccc;
+        border-radius: 10px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        
+
+        .upload-area {
+          margin-bottom: 20px;
+
+          .cloud-icon {
+            font-size: 40px;
+            display: block;
+            margin-bottom: 10px;
+          }
+
+          p {
+            font-size: 16px;
+            color: #ccc;
+            margin: 0;
+          }
+
+          .file-requirements {
+            font-size: 14px;
+            color: #999;
+            margin-top: 5px;
+          }
+        }
+
+        .btn.primary {
+          background-color: #ff750c;
+          color: white;
+          border: none;
+          padding: 12px 30px;
+          border-radius: 5px;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background 0.3s;
+
+          &:hover {
+            background-color: #e66800;
+          }
+        }
+      }
+    }
+
+    .privacy-section {
+      text-align: center;
+      margin: 20px 0;
+
+      p {
+        font-size: 14px;
+        color: #ccc;
+
+        .lock-icon {
+          margin-right: 5px;
+        }
+      }
+    }
+
+    .guidelines-section {
+      text-align: center;
+     
+
+      h2 {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #ff750c;
+      }
+
+      p {
+        font-size: 16px;
+        color: #ccc;
+        margin-bottom: 20px;
+      }
+
+      .guidelines-list {
+        list-style: none;
+        padding: 0;
+        background: #2a2a5a;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: left;
+        margin-bottom: 20px;
+        background-color: #fff;
+
+        li {
+          font-size: 14px;
+          color: #000000;
+          margin-bottom: 10px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          &::before {
+            content: "➔";
+            color: #ff750c;
+          }
+        }
+      }
+
+      .help-link a {
+        color: #ff750c;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .tip {
+        font-size: 14px;
+        color: #999;
+        font-style: italic;
+      }
+    }
+  }
+
+  .sticky-section {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    gap: 40px;
+    flex-wrap: wrap;
+
+    .sticky-left {
+      flex: 1;
+      position: sticky;
+      top: 20px;
+      min-width: 300px;
+
+      img {
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .sticky-right {
+      flex: 1;
+      min-width: 300px;
+      color: #ffffff;
+
+      h2 {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #ffffff;
+      }
+
+      p {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        color: #ffffff;
+      }
+
+      .step {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+
+        .step-number {
+          background: #ff750c;
+          color: #fff;
+          width: 50px;
+          height: 20px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 15px;
+        }
+
+        h3 {
+          color: #ffffff;
+        }
+
+        p {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+
+  .categories-section {
+    padding: 60px 20px;
+    color: #fff;
+
+    .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 30px;
+      color: #ccc;
+      text-align: center;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+
+      .category-card {
+        background: #fff;
+        color: #333;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, background 0.3s;
+
+        &:hover {
+          transform: translateY(10px);
+        }
+
+        h3 {
+          font-size: 20px;
+          margin-bottom: 15px;
+        }
+
+        ul {
+          list-style: none;
+
+          li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            margin-bottom: 10px;
+
+            &::before {
+              content: "✔";
+              color: #ff750c;
+              flex-shrink: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .cta-section {
+    padding: 80px 20px;
+    text-align: center;
+    color: #fff;
+
+    h2 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    .upload-box {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+      p {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+
+      .btn.primary {
+        background-color: #ff750c;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+    }
+  }
+
+  .highlight {
     color: #ff750c;
-    flex-shrink: 0; // Prevent shrinking
   }
 }
-
-.resume-checker-page .categories-section {
-  padding: 60px 20px;
-  color: #fff;
-
-  .section-title {
-    font-size: 36px; // Similar to h3 sizing
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #fff; // White text for visibility on dark background
-    text-align: center; // Center-align for better presentation
-  }
-
-  .section-subtitle {
-    font-size: 20px; // Similar to h4 sizing
-    font-weight: 400;
-    margin-bottom: 30px;
-    color: #ccc; // Slightly lighter for contrast
-    text-align: center; // Center-align to match title
-  }
-}
-// .resume-checker-page .categories-section .categories-grid .category-card {
-//   ul {
-//     li {
-//       strong {
-//         color: #ff750c; // Orange to highlight key terms
-//         font-weight: 600;
-//       }
-//     }
-//   }
-// }
-  

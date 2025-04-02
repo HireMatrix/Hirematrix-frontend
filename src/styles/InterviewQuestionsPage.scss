@@ -53,8 +53,6 @@
   color: #000;
 }
 
-/* Removed the .timer class since the timer is no longer used */
-
 .header-right {
   display: flex;
   align-items: center;
@@ -337,22 +335,22 @@
 
 // Add this for the orange title
 .hire-matrix-title {
-  color: #ff8c00; // Your website's orange color
+  color: #ff8c00; 
 }
 
-// Update these existing classes to ensure proper icon state visibility
+
 .icon {
   font-size: 18px;
   cursor: pointer;
-  transition: color 0.3s; // Add smooth transition
+  transition: color 0.3s; 
 }
 
 .icon.active {
-  color: #00ff00 !important; // Green when active, !important to override orange-icon
+  color: #00ff00 !important; 
 }
 
 .icon.inactive {
-  color: #ff4d4d !important; // Red when inactive, !important to override orange-icon
+  color: #ff4d4d !important; 
 }
 
 .orange-icon {
@@ -365,7 +363,6 @@
   }
 }
 
-// Update header-right to ensure buttons are styled properly
 .header-right {
   display: flex;
   align-items: center;
@@ -390,7 +387,7 @@
     padding: 0;
     cursor: pointer;
     
-    // Add exception for leave-btn
+   
     &.leave-btn {
       background-color: #ff4d4d;
       padding: 5px 10px;
@@ -403,18 +400,14 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  background-color: #ff4d4d; // Keep this as fallback
+  background-color: #ff4d4d; 
   color: #fff;
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
   
-  // &:hover {
-  //   background-color: darken(#ff4d4d, 10%); // Optional: darken on hover
-  // }
-  
   .icon {
-    color: #fff; // Ensure icon inside leave button is white
+    color: #fff; 
   }
 }
