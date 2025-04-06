@@ -2,12 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaVideo, FaMicrophone, FaCog, FaMoon, FaPhoneAlt, FaArrowDown, FaSun } from "react-icons/fa";
 
-/*
-  ToDo: 
-  1. why we should have to add the theme setup for this page only??
-  2. Please try to make the color theme to be matching one..
-  3. ultimately, i expect to not touch these pages so please try to discuss with team mates what is our goal and try to design according to that..
-*/
+// import interviewerVideoRef from '../assets/AiMockInterviewsPage/Interviewer1.mp4';
 
 const MockInterview = () => {
   const location = useLocation();
@@ -15,6 +10,7 @@ const MockInterview = () => {
   const selectedRole = location.state?.selectedRole || "Customer Service Representative";
 
   // Role questions
+ 
   const roleQuestions = {
     "Customer Service Representative": [
       "How do you handle a situation where a customer is very upset and dissatisfied with our service?",
@@ -130,7 +126,7 @@ const MockInterview = () => {
         console.log("Video stream set successfully");
       } else {
         console.log("userVideoRef is still null, retrying...");
-        setTimeout(setVideoStream, 100); // Retry after 100ms
+        setTimeout(setVideoStream, 100); 
       }
     };
 
@@ -174,7 +170,6 @@ const MockInterview = () => {
     }
   };
 
-  // Stop webcam stream
   const stopWebcam = () => {
     if (streamRef.current) {
       streamRef.current.getTracks().forEach((track) => track.stop());
@@ -186,7 +181,7 @@ const MockInterview = () => {
     setIsMicOn(false);
   };
 
-  // Function to speak the current question using SpeechSynthesisUtterance
+ 
   const speakQuestion = () => {
     if (isSpeakingRef.current) {
       speechSynthesis.cancel();
@@ -219,19 +214,18 @@ const MockInterview = () => {
     speechSynthesis.speak(utterance);
   };
 
-  // Speak when the video is allowed
   useEffect(() => {
     if (!isVideoAllowed || hasSpokenRef.current) return;
     speakQuestion();
   }, [isVideoAllowed]);
 
-  // Speak when the question changes
+ 
   useEffect(() => {
     if (!isVideoAllowed || hasSpokenRef.current) return;
     speakQuestion();
   }, [currentQuestionIndex, questions]);
 
-  // Stop webcam and speech when navigating away
+ 
   useEffect(() => {
     return () => {
       stopWebcam();
@@ -242,7 +236,6 @@ const MockInterview = () => {
     };
   }, []);
 
-  // Functions for Previous and Next buttons
   const handlePrevious = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
@@ -257,7 +250,6 @@ const MockInterview = () => {
     }
   };
 
-  // Handle Leave button
   const handleLeave = () => {
     stopWebcam();
     speechSynthesis.cancel();
@@ -266,25 +258,17 @@ const MockInterview = () => {
     navigate("/ai-mock-interviews/role-selection/InterviewQuestionsPage/InterviewReviewPage");
   };
 
-  // Toggle Dark/Light Mode
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
   return (
     <div className={`interview-container ${isDarkMode ? "dark-mode" : "light-mode"}`}>
       {/* Header Section */}
       <div className="header">
         <div className="header-left">
-          <h2>{selectedRole}</h2>
+          <h2 className="hire-matrix-title">Hire-Matrix: </h2> <h2>{selectedRole}</h2>
         </div>
         <div className="header-right">
-          <button onClick={toggleTheme} className="theme-btn">
-            {isDarkMode ? <FaSun className="icon" /> : <FaMoon className="icon" />}
+          <button onClick={toggleCamera}>
+            <FaVideo className={`icon orange-icon ${isCameraOn ? "active" : "inactive"}`} />
           </button>
-          <FaCog className="icon" />
-          <FaVideo className="icon orange-icon" />
-          <FaArrowDown className="icon" />
           <button className="leave-btn" onClick={handleLeave}>
             <FaPhoneAlt /> Leave
           </button>
@@ -305,7 +289,7 @@ const MockInterview = () => {
                 <div className="video-wrapper">
                   <h4>Interviewer</h4>
                   <video
-                    ref={interviewerVideoRef}
+                    // ref={interviewerVideoRef}
                     src="src/assets/AiMockInterviewsPage/Interviewer1.mp4"
                     autoPlay
                     loop
@@ -317,13 +301,13 @@ const MockInterview = () => {
                   <h4>You</h4>
                   <video ref={userVideoRef} autoPlay playsInline className="user-video" />
                   <div className="video-controls">
-                    <button onClick={toggleCamera}>
-                      <FaVideo className={`icon ${isCameraOn ? "active" : "inactive"}`} />
-                    </button>
-                    <button onClick={toggleMic}>
-                      <FaMicrophone className={`icon ${isMicOn ? "active" : "inactive"}`} />
-                    </button>
-                  </div>
+                  <button onClick={toggleCamera}>
+                    <FaVideo className={`icon ${isCameraOn ? "active" : "inactive"}`} />
+                  </button>
+                  <button onClick={toggleMic}>
+                    <FaMicrophone className={`icon ${isMicOn ? "active" : "inactive"}`} />
+                  </button>
+                </div>
                 </div>
               </div>
             ) : (
@@ -334,15 +318,9 @@ const MockInterview = () => {
                 </button>
               </>
             )}
-            <p>Job Role <span className="status ready">Here</span></p>
-            <div className="status-indicator ready"></div>
-          </div>
-          <div className="room-selection">
-            <p>User Video Appear Here</p>
-            <button className="select-btn">Select</button>
           </div>
           <div className="transcript-info">
-            <p>User Cam Allow chesina taruwata ikkada video display avutundi</p>
+            
           </div>
         </div>
         {/* Middle Panel: Questions */}
@@ -360,9 +338,6 @@ const MockInterview = () => {
           </div>
           <div className="panel-content">
             <p>{questions[currentQuestionIndex]}</p>
-              <button className="control-btn">Previous</button>
-              <button className="control-btn">Next</button>
-            </div>
           </div>
         </div>
 
@@ -378,6 +353,7 @@ const MockInterview = () => {
           </div>
         </div>
       </div>
+    </div>
   );
 };
 

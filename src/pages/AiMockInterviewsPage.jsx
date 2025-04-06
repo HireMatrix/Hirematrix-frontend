@@ -28,14 +28,6 @@ const AiMockInterviewsPage = () => {
         </p>
         <button className="try-now" onClick={() => navigate("/ai-mock-interviews/role-selection")}>Start Now →</button>
         <p className="note">What are you waiting for? <br/>start now</p>
-        {/* <div className="review">
-          <div className="avatars">
-            <img src="src/assets/AiMockInterviewsPage/TrustedUser-1.png" alt="User 1" loading='lazy'/>
-            <img src="src/assets/AiMockInterviewsPage/TrustedUser-2.png" alt="User 2" loading='lazy'/>
-            <img src="src/assets/AiMockInterviewsPage/TrustedUser-3.png" alt="User 3" loading='lazy'/>
-          </div>
-          <p>Trusted by 41,000+ job seekers</p>
-        </div> */}
       </div>
       <div className="right-section">
         <h3>
