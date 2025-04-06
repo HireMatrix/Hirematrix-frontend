@@ -4,7 +4,7 @@
     width: 95%;
     table-layout: auto;
     border: 1px solid var.$box-color-thick;
-    border-radius: 8px;
+    border-radius: 5px;
     border-collapse: collapse;
     margin-top: 12px;
     > thead {
@@ -26,6 +26,48 @@
             > td {
                 border-bottom: 1px solid var.$box-color-thick;
                 padding: 9px;
+            }
+        }
+    }
+}
+
+.edit-content-dropDown {
+    border-top: 1px solid var.$box-color-thick;
+}
+
+.drop-down-main-container {
+    position: relative;
+}
+
+.drop-down-card {
+    position: absolute;
+    top: 105%;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    background-color: var.$background-color;
+    border: 1px solid var.$box-color-thick;
+    z-index: 999;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100px;
+    > div {
+        width: 100%;
+        > button {
+            width: 100%;
+            background-color: transparent;
+            border: 1px solid var.$box-color-thick;
+            border-radius: 5px;
+            color: var.$white-color;
+            padding: 5px 0;
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            justify-content: center;
+            > svg {
+                color: var.$white-color;
+                font-size: 13px;
             }
         }
     }

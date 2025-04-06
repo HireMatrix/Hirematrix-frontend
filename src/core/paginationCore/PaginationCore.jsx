@@ -120,6 +120,7 @@ const PaginationCore = ({
                 previousClassName={`${page === 1 ? "disabled" : ""} prev`}
                 nextClassName={`${page === pageCount ? "disabled" : ""} next`}
                 className="jobs-pagination"
+                activeClassName="active-job-pagination"
             />
         )
     };

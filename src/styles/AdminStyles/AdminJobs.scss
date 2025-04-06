@@ -1,17 +1,26 @@
 @use '../_variables.scss' as var;
 
+// .active-add-data-popup {
+//     overflow: hidden !important;
+// }
+
 .admin-jobs-main-container {
     padding: 14px;
     width: 85%;
     min-width: 85%;
     color: var.$white-color;
     height: 100vh;
+    min-height: 100vh;
     overflow-y: auto;
+    position: relative;
     > .admin-container {
         width: 100%;
         min-height: 100%;
         border-radius: 8px;
         border: 1px solid var.$box-color-thick;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         > p {
             color: var.$white-color;
         }
@@ -20,12 +29,223 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            gap: 25px;
+            margin-bottom: 14px;
             > div {
                 width: 95%;
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
+            }
+        }
+        > .admin-jobs-search-view-container {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 32px;
+            > .admin-job-serach-container {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                > div {
+                    width: 250px;
+                    height: 30px;
+                    margin-top: 5px;
+                    > input {
+                        width: 100%;
+                        height: 100%;
+                        background-color: transparent;
+                        border: 1px solid var.$box-color-thick;
+                        color: var.$white-color;
+                        border-radius: 4px;
+                        padding-left: 5px;
+                        font-size: 14px;
+                    }
+                }
+            }
+            > .admin-add-job-view-columns-container {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 14px;
+                > div {
+                    > button {
+                        background-color: transparent;
+                        border-radius: 5px;
+                        border: 1px solid var.$box-color-thick;
+                        color: var.$white-color;
+                        padding: 7px 14px;
+                        display: flex;
+                        align-items: center;
+                        gap: 9px;
+                        > svg {
+                            font-size: 16px;
+                        }
+                        > svg:nth-child(1) {
+                            font-size: 19px;
+                        }
+                        &:hover {
+                            background-color: var.$box-color-light;
+                            cursor: pointer;
+                        }
+                    }
+                }
+                > .sliderView-container {
+                    position: relative;
+                    > div {
+                        display: flex;
+                        flex-direction: column;
+                        position: absolute;
+                        top: 130%;
+                        right: 0;
+                        background-color: var.$background-color;
+                        color: var.$white-color;
+                        border-radius: 5px;
+                        border: 1px solid var.$box-color-thick;
+                        padding: 5px;
+                        > div {
+                            display: flex;
+                            align-items: center;
+                            white-space: nowrap;
+                            padding: 2px;
+                            gap: 5px;
+                            cursor: pointer;
+                            > div {
+                                width: 17px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            }
+                        }
+                    }
+                    > .hidden {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.add-single-data-main-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    position: fixed;
+    inset: 0;
+    backdrop-filter: blur(4px);
+    flex-grow: 1;
+    > .add-single-data-container {
+        width: 40%;
+        max-height: 99vh;
+        overflow-y: auto;
+        background-color: var.$background-color;
+        padding: 22px;
+        border: 1px solid var.$box-color-thick;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 23px;
+        &::-webkit-scrollbar {
+            width: 3px;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: var.$box-color-light;
+            border-radius: 6px;
+        }
+        > .context-close-button-container {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            > .context-container {
+                display: flex;
+                flex-direction: column;
+                > h1 {
+                    font-size: 21px;
+                }
+                > p {
+                    font-size: 15px;
+                }
+            }
+        }
+        > .data-entry-container {
+            width: 100%;
+            > form {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 17px;
+                > div {
+                    width: 100%;
+                    gap: 15px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    > label {
+                        width: 110px;
+                    }
+                    > input {
+                        height: 37px;
+                        width: 70%;
+                        background-color: transparent;
+                        border-radius: 5px;
+                        border: 1px solid var.$box-color-thick;
+                        padding-left: 5px;
+                        color: var.$white-color;
+                    }
+                    > button {
+                        width: 155px;
+                        height: 35px;
+                        border-radius: 5px;
+                        background-color: transparent;
+                        color: var.$white-color;
+                        border: 1px solid var.$box-color-thick;
+                        &:hover {
+                            background-color: var.$box-color-light;
+                            color: var.$white-color;
+                            cursor: pointer;
+                        }
+                    }
+                    > div {
+                        display: grid;
+                        grid-template-columns: repeat(2, 1fr);
+                        gap: 17px;
+                        > .highest-education-label {
+                            display: flex;
+                            gap: 8px;
+                        }
+                        > .work-mode-label {
+                            display: flex;
+                            gap: 8px;
+                        }
+                        > .work-type-label {
+                            display: flex;
+                            gap: 8px;
+                        }
+                        > .work-shift-label {
+                            display: flex;
+                            gap: 8px;
+                        }
+                        > .english-level-label {
+                            display: flex;
+                            gap: 8px;
+                        }
+                        > .gender-level-label {
+                            display: flex;
+                            gap: 8px;
+                        }
+                    }
+                }
             }
         }
     }

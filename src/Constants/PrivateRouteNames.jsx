@@ -9,6 +9,7 @@ const InterviewReviewPage = lazy(() => import('../pages/InterviewReviewPage'));
 const AdminDashboard = lazy(() => import('../adminPages/AdminDashboard'));
 const AdminJobs = lazy(() => import('../adminPages/AdminJobs'))
 const AdminUsers = lazy(() => import('../adminPages/AdminUsers'))
+const AdminWebScraping = lazy(() => import('../adminPages/AdminWebScraping'))
 
 
 const RESUME_BUILDER_PAGE = {
@@ -22,7 +23,7 @@ const RESUME_BUILDER_PAGE = {
     )
 }
 
-//Ai-Mock
+//Ai-Mock Interview Routes
 const ROLE_SELECTION_PAGE = {
     path: '/ai-mock-interviews/role-selection',
     pageTitle: 'Role-Selection',
@@ -34,7 +35,6 @@ const ROLE_SELECTION_PAGE = {
     )
 }
 
-//Interview Questions
 const INTERVIEW_QUESTIONS_PAGE = {
     path: '/ai-mock-interviews/role-selection/InterviewQuestionsPage',
     pageTitle: 'InterviewQuestionsPage',
@@ -46,7 +46,6 @@ const INTERVIEW_QUESTIONS_PAGE = {
     )
 }
 
-//Interview Reveiw Page
 const INTERVIEW_REVIEW_PAGE = {
     path: '/ai-mock-interviews/role-selection/InterviewQuestionsPage/InterviewReviewPage',
     pageTitle: 'InterviewReviewPage',
@@ -92,6 +91,17 @@ const ADMIN_USERS_ROUTE = {
     )
 }
 
+const ADMIN_WEBSCRAPING_ROUTE = {
+    path: '/admin-panel/web-scraping',
+    pageTitle: 'Admin WebScraping',
+    header: 'admin',
+    component: (
+        <Suspense>
+            <AdminWebScraping/>
+        </Suspense>
+    )
+}
+
 export const PRIVATE_ROUTES = [
     ROLE_SELECTION_PAGE,
     INTERVIEW_QUESTIONS_PAGE,
@@ -100,7 +110,8 @@ export const PRIVATE_ROUTES = [
     INTERVIEW_REVIEW_PAGE,
     ADMIN_DASHBOARD_HOME_ROUTE,
     ADMIN_JOBS_ROUTE,
-    ADMIN_USERS_ROUTE
+    ADMIN_USERS_ROUTE,
+    ADMIN_WEBSCRAPING_ROUTE
 ]
 
 export const PROTECTED_ROUTE_NAMES = {
@@ -109,7 +120,6 @@ export const PROTECTED_ROUTE_NAMES = {
         ROLE_SELECTION_PAGE: ROLE_SELECTION_PAGE,
         INTERVIEW_QUESTIONS_PAGE: INTERVIEW_QUESTIONS_PAGE,
         INTERVIEW_REVIEW_PAGE: INTERVIEW_REVIEW_PAGE
-
     }, 
     [USER_TYPES.EMPLOYER]: {},
     [USER_TYPES.ADMIN]: {
@@ -119,6 +129,7 @@ export const PROTECTED_ROUTE_NAMES = {
         INTERVIEW_QUESTIONS_PAGE: INTERVIEW_QUESTIONS_PAGE,
         INTERVIEW_REVIEW_PAGE: INTERVIEW_REVIEW_PAGE,
         ADMIN_JOBS_ROUTE: ADMIN_JOBS_ROUTE,
-        ADMIN_USERS_ROUTE: ADMIN_USERS_ROUTE
+        ADMIN_USERS_ROUTE: ADMIN_USERS_ROUTE,
+        ADMIN_WEBSCRAPING_ROUTE: ADMIN_WEBSCRAPING_ROUTE
     }
 }
