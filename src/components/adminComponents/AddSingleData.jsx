@@ -196,7 +196,7 @@ const AddSingleData = ({handleCloseAddJob}) => {
                         <input
                             id='department-text'
                             type='text'
-                            placeholder='Job Title'
+                            placeholder='Department'
                             value={addJob.department}
                             onChange={(e) => setAddJob(prev => ({...prev, department: e.target.value}))}
                         />
@@ -250,7 +250,7 @@ const AddSingleData = ({handleCloseAddJob}) => {
                         <input
                             id='location'
                             type='text'
-                            placeholder='Job Title'
+                            placeholder='Location'
                             value={addJob.location}
                             onChange={(e) => setAddJob(prev => ({...prev, location: e.target.value}))}
                         />
