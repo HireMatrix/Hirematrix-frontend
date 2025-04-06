@@ -4,7 +4,7 @@ export const fetchAllJobs = async (filters) => {
     const queryParams = new URLSearchParams(filters);
 
     try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/jobs?${queryParams}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/jobs?${queryParams}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
@@ -22,7 +22,7 @@ export const fetchAllJobs = async (filters) => {
 // Admin Routes
 export const fetchAllJobsAdmin = async () => {
     try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/jobs`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/admin/jobs`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
@@ -39,7 +39,7 @@ export const fetchAllJobsAdmin = async () => {
 
 export const fetchAllusersAdmin = async () => {
     try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/users`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/admin/users`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
