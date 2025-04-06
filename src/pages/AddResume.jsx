@@ -25,23 +25,25 @@ const Resumedashboard = () => {
   const [arraySkills, setArraySkills] = useState([]); 
   const [pj_title,setProjectTitle]=useState('');
   const [pj_description,setProjectDescription]=useState('');
-  const [pj_link,setProjectLink]=useState('');
   const [arrayProjects,setArrayProjects]=useState([]);
+  const [cer_title,setCertificationTitle]=useState('');
+  const [cer_description,setCertificationDescription]=useState('');
+  const [arrayCertifications,setArrayCertifications]=useState([]);
   const [resumeData, setResumeData] = useState({
     personalInformation: {},
     workExperience: {},
     skills: {},
     education: {},
+    Certifications:{},
     Internship: {},
-    Project: {}
+    Project: {},
+   
   });
-
  
 
   const uploadimgId=useRef(null)
   const[errors,setErrors] =useState({})
   const printRef=React.useRef(null);
-
 
   
   const handleDownloadPdf = () => {
@@ -143,48 +145,65 @@ const Resumedashboard = () => {
   }
 
   const handleProjectTitle =(e) => {
-    if(errors.Projects?.projectTitle) {
-      setErrors((prev) => ({...prev, Projects: { projectTitle: '' }}))
+    if(errors.projects?.projectTitle) {
+      setErrors((prev) => ({...prev, projects: { projectTitle: '' }}))
     }
     setProjectTitle(e.target.value)
   }
   const handleProjectDescription= (e) =>{
-    if(errors.Projects?.projectDescription) {
-      setErrors((prev) => ({...prev, Projects: { projectDescription: '' }}))
+    if(errors.projects?.projectDescription) {
+      setErrors((prev) => ({...prev, projects: { projectDescription: '' }}))
     }
     setProjectDescription(e.target.value)
   }
-  const handleProjectLink = (e) =>{
-    if(errors.Projects?.projectLink) {
-      setErrors((prev) => ({...prev, Projects: { projectLink: '' }}))
-    }
-    setProjectLink(e.target.value)
-  }
+  
   const handleProjectArray = () => {
 
     if(pj_title==""){
       setErrors((prev) => ({...prev, projects: {...prev.projects, projectTitle: "*This field is required" }}))
       if(pj_description==""){
-        setErrors((prev) => ({...prev, projects: {...prev.projects, projectDescription: "*This field is required"}}))
-        if(pj_link==""){
-          setErrors((prev) => ({...prev, projects: {...prev.projects, projectLink: "*This field is required"}}))   
-        }        
+        setErrors((prev) => ({...prev, projects: {...prev.projects, projectDescription: "*This field is required"}}))       
       }
     }
     else if(pj_description == "") {
         setErrors((prev) => ({...prev, projects: {...prev.projects, projectDescription: "*This field is required"}}))
-        if(pj_link==""){
-          setErrors((prev) => ({...prev, projects: {...prev.projects, projectLink: "*This field is required"}}))   
-        }
-    }
-    else if(pj_link == "") {
-        setErrors((prev) => ({...prev, projects: {...prev.projects, projectLink: "*This field is required"}}))   
     }
     else{
-      setArrayProjects((prev) => ([...prev, { projectTitle: pj_title, projectDescription: pj_description, projectLink:pj_link}])) 
+      setArrayProjects((prev) => ([...prev, { projectTitle: pj_title, projectDescription: pj_description}])) 
     }
 
-}
+  }
+
+const handleCertificationTitle =(e) => {
+  if(errors.Certifications?.certificationTitle) {
+    setErrors((prev) => ({...prev, Certifications: { certificationTitle: '' }}))
+  }
+  setCertificationTitle(e.target.value)
+  }
+
+const handleCertificationDescription= (e) =>{
+  if(errors.Certifications?.certificationDescription) {
+    setErrors((prev) => ({...prev, Certifications: { certificationDescription: '' }}))
+  }
+  setCertificationDescription(e.target.value)
+  }
+
+const handleCertificationArray = () => {
+
+  if(cer_title==""){
+    setErrors((prev) => ({...prev, Certifications: {...prev.Certifications, certificationTitle: "*This field is required" }}))
+    if(cer_description==""){
+      setErrors((prev) => ({...prev, Certifications: {...prev.Certifications, certificationDescription: "*This field is required"}}))       
+    }
+  }
+  else if(cer_description == "") {
+      setErrors((prev) => ({...prev, Certifications: {...prev.Certifications, certificationDescription: "*This field is required"}}))
+  }
+  else{
+    setArrayCertifications((prev) => ([...prev, { certificationTitle: cer_title, certificationDescription: cer_description}]))
+  }
+
+  }
 
   const handleImgChange = (e) =>{
     handleChange('personalInformation', 'profileImg', e.target.files[0])
@@ -236,23 +255,8 @@ const Resumedashboard = () => {
                   />
                   {errors.personalInformation?.fullName && <p className="error">{errors.personalInformation.fullName}</p>}
                 </label>
-                <div>
-                  <label>
-                   <input 
-                    id="uploadimgId" 
-                    ref={uploadimgId} 
-                    style={{display:"none"}}
-                    type='file'  accept='image/jpeg, image/png'
-                    onBlur={() => validateFields('personalInformation', ['profileImg'])}
-                    onChange={handleImgChange}
-                  />
-                  {errors.personalInformation?.profileImg && <p className="error">{errors.personalInformation.profileImg}</p>}
-                  </label>
-                </div>
-                <div onClick={imageUpload}> 
-                  <p>Upload Photo</p>
-                </div>
-                <div className='mobile'>
+                
+                <div className='input-subrows'>
                   <label className='email'>Email: 
                     <input 
                       type='text' 
@@ -269,6 +273,28 @@ const Resumedashboard = () => {
                     />
                     {errors.personalInformation?.mobileNumber && <p className="error">{errors.personalInformation.mobileNumber}</p>} 
                   </label>
+                  <div>
+                  <label>
+                   <input 
+                    id="uploadimgId" 
+                    ref={uploadimgId} 
+                    style={{display:"none"}}
+                    type='file'  accept='image/jpeg, image/png'
+                    onBlur={() => validateFields('personalInformation', ['profileImg'])}
+                    onChange={handleImgChange}
+                  />
+                  {errors.personalInformation?.profileImg && <p className="error">{errors.personalInformation.profileImg}</p>}
+                  </label>
+                </div>
+                <div onClick={imageUpload} className='upload-profile-pic'> 
+                  <div>
+                    <img src='src\assets\addResumePage\upload-profilepic.png'/>
+                  </div>
+                  <div>
+                    <p>Upload Photo</p>
+                    <p>Allowed jpeg/png</p>
+                  </div>
+                </div>
                 </div>
                 <label>Address<input type='text' onChange={(e) => handleChange('personalInformation', 'address', e.target.value)} /></label>
                 <label>Professional Summary:        
@@ -298,23 +324,29 @@ const Resumedashboard = () => {
                     onChange={(e) => handleChange('workExperience', 'jobTitle', e.target.value)} 
                   />
                 </label>
+                <label>Location:
+                  <input 
+                    type='text' 
+                    onChange={(e) => handleChange('workExperience', 'workLocation', e.target.value)} 
+                  />
+                </label>
                 <label>Are you currently working in this company:
                   <br/>
                   <div className="currentWorking">
-                    <spam className="option">yes</spam>
-                    <spam className="option">No</spam>
+                    <span className="option">yes</span>
+                    <span className="option">No</span>
                   </div>
                 </label>
-                <div className='mobile'>
-                  <label className='email'>Start Date
+                <div className='input-subrows'>
+                  <label >Start Date
                     <input 
-                      type='date' 
+                      type='date'  
                       onBlur={() => validateFields('workExperience',['workexpstDate'])}
                       onChange={(e) => handleChange('workExperience', 'workexpstDate', e.target.value)}
                     />
                     {errors.workExperience?.workexpstDate && <p className="error" >{errors.workExperience.workexpstDate}</p>}
                   </label>
-                  <label className='number'>End Date
+                  <label>End Date
                     <input 
                       type='date'
                       onBlur={() => validateFields('workExperience', ['workexpendDate'])}
@@ -323,6 +355,14 @@ const Resumedashboard = () => {
                     {errors.workExperience?.workexpendDate && <p className="error">{errors.workExperience.workexpendDate}</p>} 
                   </label>
                 </div>
+                <label>Work Description
+                  <br/>
+                  <textarea 
+                    onBlur={() => validateFields('workExperience', ['WorkDescription'])}
+                    onChange={(e) => handleChange('workExperience', 'WorkDescription', e.target.value)}
+                  ></textarea>
+                  {errors.workExperience?.WorkDescription && <p className="error">{errors.workExperience.WorkDescription}</p>}
+                </label>
               </div>
             )}
             <div className='row' onClick={() => toggleSection('education')}>
@@ -331,62 +371,110 @@ const Resumedashboard = () => {
             </div>
             {activeSection === 'education' && (
               <div className='dropdown-content'>
-                <label>10th
-                  <br/>
-                  CollegeName
-                  <input
-                   type='text'
-                   onBlur={() => validateFields('education', ['clgName10th'])}
-                   onChange={(e) => handleChange('education', 'clgName10th', e.target.value)}
-                  />
-                  {errors.education?.clgName10th && <p className='error'>{errors.education.clgName10th}</p>}
-                </label>
-                   
-                <label>GPA:
+                <div className='input-subrows'>
+                  <label>10th CollegeName
+                      <input
+                    type='text'
+                    onBlur={() => validateFields('education', ['clgName10th'])}
+                    onChange={(e) => handleChange('education', 'clgName10th', e.target.value)}
+                    />
+                    {errors.education?.clgName10th && <p className='error'>{errors.education.clgName10th}</p>}
+                  </label>
+                    
+                  <label>GPA:
+                      <input 
+                        type='text'
+                        onBlur={() => validateFields('education',['gpa10th'])}
+                        onChange={(e) => handleChange('education', 'gpa10th', e.target.value)}
+                      />
+                      {errors.education?.gpa10th && <p className="error">{errors.education.gpa10th}</p>}
+                  </label>
+                  <label >Start Date
+                    <input 
+                      type='date' 
+                      onBlur={() => validateFields('education',['stDate10th'])}
+                      onChange={(e) => handleChange('education', 'stDate10th', e.target.value)}
+                    />
+                    {errors.education?.stDate10th && <p className="error" >{errors.education.stDate10th}</p>}
+                  </label>
+                  <label>End Date
+                    <input 
+                      type='date'
+                      onBlur={() => validateFields('education', ['endDate10th'])}
+                      onChange={(e) => handleChange('education', 'endDate10th', e.target.value)}
+                    />
+                    {errors.education?.endDate10th && <p className="error">{errors.education.endDate10th}</p>} 
+                  </label>
+                </div> 
+                <div className='input-subrows'>
+                  <label>12th CollegeName
+                    <input
+                    type='text'
+                    onBlur={() => validateFields('education', ['clgName12th'])}
+                    onChange={(e) => handleChange('education', 'clgName12th', e.target.value)}
+                    />
+                    {errors.education?.clgName12th && <p className='error'>{errors.education.clgName12th}</p>}
+                  </label>
+                  <label>GPA:
                     <input 
                       type='text'
-                      onBlur={() => validateFields('education',['gpa10th'])}
-                      onChange={(e) => handleChange('education', 'gpa10th', e.target.value)}
+                      onBlur={() => validateFields('education',['gpa12th'])}
+                      onChange={(e) => handleChange('education', 'gpa12th', e.target.value)}
                     />
-                    {errors.education?.gpa10th && <p className="error">{errors.education.gpa10th}</p>}
-                </label>
-                <label>12th
-                  <br/>
-                  CollegeName
-                  <input
-                   type='text'
-                   onBlur={() => validateFields('education', ['clgName12th'])}
-                   onChange={(e) => handleChange('education', 'clgName12th', e.target.value)}
-                  />
-                  {errors.education?.clgName12th && <p className='error'>{errors.education.clgName12th}</p>}
-                </label>
-                <label>GPA:
-                  <input 
+                    {errors.education?.gpa12th && <p className="error">{errors.education.gpa12th}</p>}
+                  </label>
+                  <label >Start Date
+                    <input 
+                      type='date' 
+                      onBlur={() => validateFields('education',['stDate12th'])}
+                      onChange={(e) => handleChange('education', 'stDate12th', e.target.value)}
+                    />
+                    {errors.education?.stDate10th && <p className="error" >{errors.education.stDate12th}</p>}
+                  </label>
+                  <label>End Date
+                    <input 
+                      type='date'
+                      onBlur={() => validateFields('education', ['endDate12th'])}
+                      onChange={(e) => handleChange('education', 'endDate12th', e.target.value)}
+                    />
+                    {errors.education?.endDate10th && <p className="error">{errors.education.endDate12th}</p>} 
+                  </label>
+                </div>
+                <div className='input-subrows'>
+                  <label>Graduate CollegeName
+                    <input
                     type='text'
-                    onBlur={() => validateFields('education',['gpa12th'])}
-                    onChange={(e) => handleChange('education', 'gpa12th', e.target.value)}
-                  />
-                  {errors.education?.gpa12th && <p className="error">{errors.education.gpa12th}</p>}
-                </label>
-                <label>Graduate
-                  <br/>
-                  CollegeName
-                  <input
-                   type='text'
-                   onBlur={() => validateFields('education', ['clgNameGraduate'])}
-                   onChange={(e) => handleChange('education', 'clgNameGraduate', e.target.value)}
-                  />
-                  {errors.education?.clgNameGraduate && <p className='error'>{errors.education.clgNameGraduate}</p>}
-                </label>
-                    
-                <label>GPA:
-                  <input 
-                    type='text'
-                    onBlur={() => validateFields('education',['gpaGraduateh'])}
-                    onChange={(e) => handleChange('education', 'gpaGraduate', e.target.value)}
-                  />
-                  {errors.education?.gpaGraduateh && <p className="error">{errors.education.gpaGraduateh}</p>}
-                </label>
+                    onBlur={() => validateFields('education', ['clgNameGraduate'])}
+                    onChange={(e) => handleChange('education', 'clgNameGraduate', e.target.value)}
+                    />
+                    {errors.education?.clgNameGraduate && <p className='error'>{errors.education.clgNameGraduate}</p>}
+                  </label>
+                      
+                  <label>GPA:
+                    <input 
+                      type='text'
+                      onBlur={() => validateFields('education',['gpaGraduateh'])}
+                      onChange={(e) => handleChange('education', 'gpaGraduate', e.target.value)}
+                    />
+                    {errors.education?.gpaGraduateh && <p className="error">{errors.education.gpaGraduateh}</p>}
+                  </label>
+                  <label >Start Date
+                    <input 
+                      type='date' 
+                      onBlur={() => validateFields('education',['stDateGraduate'])}
+                      onChange={(e) => handleChange('education', 'stDateGraduate', e.target.value)}
+                    />
+                    {errors.education?.stDate10th && <p className="error" >{errors.education.stDateGraduate}</p>}
+                  </label>
+                  <label>End Date
+                    <input 
+                      type='date'
+                      onBlur={() => validateFields('education', ['endDateGraduate'])}
+                      onChange={(e) => handleChange('education', 'endDateGraduate', e.target.value)}
+                    />
+                    {errors.education?.endDate10th && <p className="error">{errors.education.endDateGraduate}</p>} 
+                  </label>
+                 </div> 
               </div>
             )}
             <div className='row' onClick={() => toggleSection('skills')}>
@@ -433,6 +521,34 @@ const Resumedashboard = () => {
                 }
               </div>
             )}
+            <div className='row' onClick={() => toggleSection('Certifications')}>
+              <h1>Certifications</h1>
+              <i className="arrow"></i>
+            </div>
+            {activeSection === 'Certifications' && (
+              <div className='dropdown-content'>
+                <label>Certification Name
+                  <input
+                    type='text' 
+                    
+                   onChange={handleCertificationTitle} 
+                  />
+                  {errors.Certifications?.certificationTitle && <p className="error">{errors.Certifications.certificationTitle}</p>}
+                </label>
+                
+                <label>CertificationDescription
+                  <br/>
+                  <textarea
+                    onChange={handleCertificationDescription}
+                  ></textarea>
+                  {errors.Certifications?.certificationDescription && <p className="error">{errors.Certifications.certificationDescription}</p>}
+                </label>
+                <button 
+                  onClick={handleCertificationArray}
+                  >Add
+                </button>
+              </div>
+            )} 
             <div className='row' onClick={() => toggleSection('Internship')}>
               <h1>Internship Experience</h1>
               <i className="arrow"></i>
@@ -455,15 +571,14 @@ const Resumedashboard = () => {
                   />
                   {errors.Internship?.internJobtitle && <p className="error">{errors.Internship.internJobtitle}</p>}
                 </label>
-                <label>Employement Type :
-                  <input
-                    type='text'
-                    onBlur={() => validateFields('Internship', ['internEmployementtype'])}
-                    onChange={(e) => handleChange('Internship','internEmployementtype',e.target.value)}
+                <label>Location:
+                  <input 
+                    type='text' 
+                    onChange={(e) => handleChange('Internship', 'internLocation', e.target.value)} 
                   />
-                  {errors.Internship?.internEmployementtype && <p className="error">{errors.Internship.internEmployementtype}</p>}
                 </label>
-                <div className='mobile'>
+                
+                <div className='input-subrows'>
                   <label className='email'>Start Date 
                     <input 
                       type='date' 
@@ -481,6 +596,14 @@ const Resumedashboard = () => {
                     {errors.Internship?.internEnddate && <p className="error">{errors.Internship.internEnddate}</p>} 
                   </label>
                 </div>
+                <label>intern Description
+                  <br/>
+                  <textarea 
+                    onBlur={() => validateFields('Internship', ['internDescription'])}
+                    onChange={(e) => handleChange('Internship', 'internDescription', e.target.value)}
+                  ></textarea>
+                  {errors.Internship?.internDescription && <p className="error">{errors.Internship.internDescription}</p>}
+                </label>
               </div>
             )}     
             <div className='row' onClick={() => toggleSection('Projects')}>
@@ -508,20 +631,11 @@ const Resumedashboard = () => {
                   </textarea>
                   {errors.projects?.projectDescription && <p className="error">{errors.projects.projectDescription}</p>}
                 </label>
-                <label>project Link
-                  <input
-                    type='text'
-                    onChange={handleProjectLink}
-                    // onBlur={() => validateFields('Projects', ['projectLink'])}
-                    // onChange={(e) => handleChange('Projects','projectLink',e.target.value)}
-                  />
-                  {errors.projects?.projectLink && <p className="error">{errors.projects.projectLink}</p>}
-                </label>
+                
                 <button 
                   onClick={handleProjectArray}
                   >Add
                 </button>
-                
               </div>
             )}     
           </div>
@@ -538,32 +652,50 @@ const Resumedashboard = () => {
                   />
                 )
               }
-              <p>Full Name: {resumeData.personalInformation.fullName}</p>
+              <p>Dandamudi Satya Nikith{resumeData.personalInformation.fullName}</p>
             </div>
             <div className='sub-preview-section2'>
-                <div>
-                  <div>
-                    <h2>Contact</h2>
+                <div className="sub2-sec1">
+                  <div className="pr-contact-sec">
+                    <h2>CONTACT</h2>
                     <p>Address: {resumeData.personalInformation.address}</p>
-                    <p>Mobile: {resumeData.personalInformation.mobileNumber}</p>
+                    <p><span>Mobile:</span>{resumeData.personalInformation.mobileNumber}</p>
                     <p>Email: {resumeData.personalInformation.email}</p>
                   </div>
-                  <div>
+                  <div className="pr-education-sec">
                     <h2>Education</h2>
-                    <p>10th College Name: {resumeData.education.clgName10th}</p>
-                    <p>GPA: {resumeData.education.gpa10th}</p>
-                    <p>12th College Name: {resumeData.education.clgName12th}</p>
-                    <p>GPA: {resumeData.education.gpa12th}</p>
-                    <p>Grauate College Name: {resumeData.education.clgNameGraduate}</p>
-                    <p>GPA: {resumeData.education.gpaGraduate}</p>
+                    <p>{resumeData.education.stDate10th} to {resumeData.education.endDate10th}
+                      <br/> 
+                      <span>10th College Name: {resumeData.education.clgName10th}</span>
+                      <br/>
+                      GPA: {resumeData.education.gpa10th}
+                    </p>
+                    <p>{resumeData.education.stDate12th} to {resumeData.education.endDate12th}
+                      <br/>
+                      <span>12th College Name: {resumeData.education.clgName12th}</span>
+                      <br/>
+                      GPA: {resumeData.education.gpa12th}
+                    </p>
+                    <p>{resumeData.education.stDateGraduate} to {resumeData.education.endDateGraduate}
+                      <br/>
+                      <span>Grauate College Name: {resumeData.education.clgNameGraduate}</span>
+                      <br/>
+                      GPA: {resumeData.education.gpaGraduate}
+                    </p>
                   </div>
-                  <div>
+                  <div className="pr-certification-sec" >
                     <h2>CERTIFICATIONS</h2>
-                    <p>Certification Name: </p>
-                    <p>discription:</p>                
+                    {
+                    arrayCertifications.map((item, index) => (
+                      <div key={index}>
+                        <p>c Name: {item.certificationTitle}
+                          <br/>
+                        c Description: {item.certificationDescription}</p>
+                      </div>))
+                    }          
                   </div>
                 </div>
-                <div>
+                <div className="sub2-sec2">
                   <div>
                     <h2>PROFESSIONAL SUMMARY</h2>
                     <p style={{whiteSpace:"pre-line"}}>  Summary: {resumeData.personalInformation.professionalSummary} </p>
@@ -581,14 +713,19 @@ const Resumedashboard = () => {
                   </div>  
                   <div>
                     <h2>WORK EXPERIENCE</h2>
-                    <p>Company Name: {resumeData.workExperience.companyName}</p>
-                    <p>Job Title: {resumeData.workExperience.jobTitle}</p>
+                    <p>Duration: {resumeData.workExperience.workexpstDate} to {resumeData.workExperience.workexpendDate}</p>
+                    <p>Job Title:{resumeData.workExperience.jobTitle},
+                       Company Name:{resumeData.workExperience.companyName}, 
+                       Location:{resumeData.workExperience.workLocation}</p>
+                    <p>{resumeData.workExperience.WorkDescription}</p>
                   </div>
                   <div>
                     <h2>INTERNSHIP EXPERIENCE</h2>
-                    <p>CompanyName:{resumeData.Internship.internCompanyname}</p>
-                    <p>jobTitle: {resumeData.Internship.internJobtitle} </p>
-                    <p>Duration: {resumeData.Internship.internStartdate} to {resumeData.Internship.internEnddate}</p>
+                    <p>Duration:2025 - 2025 {resumeData.Internship.internStartdate} to {resumeData.Internship.internEnddate}</p>
+                    <p>jobTitle:{resumeData.Internship.internJobtitle},
+                      CompanyName:{resumeData.Internship.internCompanyname},
+                      Location: {resumeData.Internship.internLocation}</p>
+                    <p>descripton:{resumeData.Internship.internDescription}</p>
                   </div>
                   <div>
                     <h2>PROJECTS</h2>
@@ -597,7 +734,6 @@ const Resumedashboard = () => {
                       <div key={index}>
                         <p>Project Name: {item.projectTitle}</p>
                         <p>Project Description: {item.projectDescription}</p>
-                        <p>project Link:{item.projectLink}</p>
                         </div>))
                    }
                   </div>
