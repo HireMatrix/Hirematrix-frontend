@@ -2,31 +2,61 @@
 
 .jobs-pagination {
     display: flex;
-    gap: 12px;
+    gap: 9px;
+    justify-content: center;
+    align-items: center;
+    > li {
+        padding: 0 12px;
+    }
 }
 
 .page-size-selction-main-container {
     display: flex;
+    align-items: center;
     gap: 8px;
     > div {
         position: relative;
         display: inline-block;
         > button {
+            background-color: transparent;
+            border: 1px solid var.$box-color-thick;
+            border-radius: 5px;
+            padding: 6px;
+            color: var.$white-color;
+            gap: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            > span {
+                > svg {
+                    padding-top: 3px;
+                    font-size: 15px;
+                }
+            }
         }
         > ul {
             display: flex;
             flex-direction: column;
-            background-color: var.$white-color;
-            color: var.$background-color;
+            gap: 5px;
+            background-color: var.$background-color;
+            color: var.$white-color;
             position: absolute;
-            left: -25%;
             border-radius: 8px;
             border: 1px solid var.$box-color-thick;
-            bottom: 110%;
-            padding: 5px;
+            bottom: 130%;
+            padding: 10px;
+            transition: all ease-in-out;
+            > li:hover{
+                cursor: pointer;
+            }
         }
         > .hidden {
             display: none;
         }
     }
+}
+
+.active-job-pagination {
+    border: 1px solid var.$main-theme-color;
 }
