@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; 
 
 const MockInterviewPage = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   const jobRoles = [
     "Custom Job Description",

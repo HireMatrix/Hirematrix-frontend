@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 /* SATYA: 
   Todo: 
-  ** I don't know why are you using the header tag and main tag (which is i have removed), these kind of things are managed globally you should not use them agian here and write styles for them it would create a impact on global structuring please try to figure out this thing and remove those kind of tags from here and please improve the css..
+  ** I don't know why are you using the header tag and main tag (which is i have removed), these kind of things are managed globally
+  you should not use them agian here and write styles for them it would create a impact on global structuring please try to figure out this thing and
+   remove those kind of tags from here and please improve the css..
 
   **** don't use header and nav tags here while designing a page...!!!!!!!!
 */

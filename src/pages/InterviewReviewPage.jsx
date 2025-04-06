@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 const ReviewPage = () => {
   const navigate = useNavigate();
   const [experience, setExperience] = useState("");
   const [rating, setRating] = useState(0);
 
   const handleSubmit = () => {
-    // You can save the review data here (e.g., to a backend or local storage)
     alert("Thank you for your feedback!");
-    navigate("/ai-mock-interviews/role-selection"); // Redirect back to role selection page
+    navigate("/ai-mock-interviews/role-selection"); 
   };
 
   return (
