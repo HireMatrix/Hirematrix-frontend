@@ -33,11 +33,11 @@ const JobSearchPage = () => {
     defaultPageSize: 10,
   });
 
-  console.log(isLoading);
-
   if(isLoading || isFetching){
     <JobLoader/>
   }
+
+  console.log(data);
 
   // const itemsPerPage = 10;
   // const [itemOffset, setItemOffset] = useState(0);
@@ -70,7 +70,7 @@ const JobSearchPage = () => {
           </div>
           <div className='jobSearch-jobs-container'>
             {
-              data?.length === 0 ? (
+              data?.length === 0 || !data? (
                 <NoJobsFoundPage/>
               ) : (
                 data?.map(item => (

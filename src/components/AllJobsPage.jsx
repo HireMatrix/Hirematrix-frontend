@@ -13,7 +13,6 @@ import { IoMdArrowDropright } from "react-icons/io";
 
 
 const AllJobsPage = ({jobsdata, loading}) => {
-  console.log(loading)
 
   if(loading == 'pending'){
     return <Loader/>

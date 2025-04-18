@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Loader = ({isFullpage = true}) => {
+const Loader = (isFullpage = false) => {
   return (
-    <div className='spinner'>
+    <div className={isFullpage ? 'spinner-fullpage' : 'spinner'}>
       <div className="bounce1"></div>
       <div className="bounce2"></div>
       <div className="bounce3"></div>

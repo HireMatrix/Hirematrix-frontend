@@ -6,6 +6,16 @@
     overflow-x: hidden;
 }
 
+.job-landing-page-main-container::-webkit-scrollbar {
+    width: 4px;
+}
+.job-landing-page-main-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+.job-landing-page-main-container::-webkit-scrollbar-thumb {
+    background: rgb(41, 41, 41);
+}
+
 .hr-tag-jobLandingPage {
     width:1px;
     border-width:0;

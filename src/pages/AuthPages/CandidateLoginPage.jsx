@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { checkAuth, forgotPassword, signIn } from '../features/auth/authSlice';
+import { checkAuth, forgotPassword, signIn } from '../../features/auth/authSlice';
 import { Link, useNavigate } from 'react-router-dom';
 
 const CandidateLoginPage = () => {

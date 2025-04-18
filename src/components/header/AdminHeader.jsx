@@ -8,7 +8,8 @@ const locations = {
   dashboard: '/admin-panel/dashboard',
   users: '/admin-panel/users',
   jobs: '/admin-panel/jobs',
-  webscraping: '/admin-panel/web-scraping'
+  webscraping: '/admin-panel/web-scraping',
+  scrapedData: '/admin-panel/scraped-data'
 }
 
 const AdminHeader = () => {
@@ -53,7 +54,12 @@ const AdminHeader = () => {
             </div>
             <div onClick={() => setActiveMenu(locations.webscraping)} className={`${activeMenu == locations.webscraping ? 'active-nav' : ''}`}>
               <Link to={`${locations.webscraping}`}>
-                webscraping
+                Webscraping
+              </Link>
+            </div>
+            <div onClick={() => setActiveMenu(locations.scrapedData)} className={`${activeMenu == locations.scrapedData ? 'active-nav' : ''}`}>
+              <Link to={`${locations.scrapedData}`}>
+                Scraped Data
               </Link>
             </div>
           </div>

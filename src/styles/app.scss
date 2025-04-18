@@ -68,10 +68,20 @@ main {
 }
 
 .spinner-fullpage {
-    margin: 100px auto 0;
-    width: 70px;
-    height: 70px;
-    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > div {
+        width: 18px;
+        height: 18px;
+        background-color: #ffffff;
+        border-radius: 100%;
+        display: inline-block;
+        -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
 }
   
 .spinner {
@@ -84,12 +94,21 @@ main {
         width: 18px;
         height: 18px;
         background-color: #ffffff;
-
         border-radius: 100%;
         display: inline-block;
         -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
         animation: sk-bouncedelay 1.4s infinite ease-in-out both;
     }
+}
+
+.spinner-fullpage .bounce1 {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+}
+
+.spinner-fullpage .bounce2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
 }
 
 .spinner .bounce1 {

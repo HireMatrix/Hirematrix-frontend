@@ -3,11 +3,11 @@
   margin: 0;
   padding: 0;
   background-image: radial-gradient(closest-side, rgba(255, 237, 70, 0.353), #000000);
-  min-height: 100vh;
+  height: 100vh;
   padding-top:4rem;
   color: #fff;
- 
- 
+  overflow-y: auto;
+  overflow-x: hidden;
 
   /* Blog Intro Section */
   .blog-intro {
@@ -243,4 +243,14 @@
           bottom: 1500px;
       }
   }
+}
+
+.blog-container::-webkit-scrollbar {
+    width: 4px;
+}
+.blog-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+.blog-container::-webkit-scrollbar-thumb {
+    background: rgb(41, 41, 41);
 }

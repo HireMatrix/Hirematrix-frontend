@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useLocation } from 'react-router-dom';
 import { PUBLIC_ROUTES } from '../Constants/PublicRouteNames';
 import { PRIVATE_ROUTES } from '../Constants/PrivateRouteNames';
@@ -16,7 +16,13 @@ const NavBar = () => {
         ...PRIVATE_ROUTES
     ]
     
-    const matchedRoute = AllRoutes.find(route => route.path === pathname);
+    const matchedRoute = AllRoutes.find(route => {
+        const routePattern = route.path.replace(/:\w+/g, '[^/]+');
+        const regex = new RegExp(`^${routePattern}$`);
+        return regex.test(pathname);
+    });
+
+    console.log(matchedRoute)
 
     const renderHeader = () => {
         switch (matchedRoute?.header) {
