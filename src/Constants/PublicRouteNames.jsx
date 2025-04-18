@@ -3,12 +3,12 @@ import { lazy, Suspense } from "react";
 import Loader from "../components/Loader";
 import { USER_TYPES } from "../core/UserTypes.jsx";
 
-const CandidateLoginPage = lazy(() => import('../pages/CandidateLoginPage.jsx'));
-const CandidateSignUpPage = lazy(() => import('../pages/CandidateSignUpPage.jsx'));
-const EmployerLoginPage = lazy(() => import('../pages/EmployerLoginPage.jsx'));
+const CandidateLoginPage = lazy(() => import('../pages/AuthPages/CandidateLoginPage.jsx'));
+const CandidateSignUpPage = lazy(() => import('../pages/AuthPages/CandidateSignUpPage.jsx'));
+const EmployerLoginPage = lazy(() => import('../pages/AuthPages/EmployerLoginPage.jsx'));
 const JobLandingPage = lazy(() => import('../pages/JobLandingPage.jsx'));
-const ResetPasswordPage = lazy(() => import('../pages/ResetPasswordPage.jsx'));
-const VerifyEmailPage = lazy(() => import('../pages/VerifyEmailPage.jsx'));
+const ResetPasswordPage = lazy(() => import('../pages/AuthPages/ResetPasswordPage.jsx'));
+const VerifyEmailPage = lazy(() => import('../pages/AuthPages/VerifyEmailPage.jsx'));
 const JobSearchPage = lazy(() => import('../pages/JobSearchPage.jsx'));
 const JobItem = lazy(() => import('../pages/JobItem.jsx'));
 const ResumeBuilderPage = lazy(() => import('../pages/ResumeBuilderPage.jsx'));
@@ -16,15 +16,15 @@ const ResumeCheckerPage = lazy(() => import('../pages/ResumeCheckerPage.jsx'));
 const ResumeReviewPage = lazy(() => import('../pages/ResumeReviewPage.jsx'));
 const AiMockInterviewsPage = lazy(() => import('../pages/AiMockInterviewsPage.jsx'));
 const InterviewReviewPage = lazy(() => import('../pages/InterviewReviewPage.jsx'));
-const BlogPage = lazy(() => import('../pages/BlogPage.jsx')); 
-const BlogDetail = lazy(() => import('../pages/BlogDetail.jsx'));
+const BlogPage = lazy(() => import('../pages/BlogPages/BlogPage.jsx')); 
+const BlogDetail = lazy(() => import('../pages/BlogPages/BlogDetail.jsx'));
 
 // CANDIDATE AUTH ROUTES
 const CANDIDATE_LOGIN_ROUTE = {
     path: '/candidate-login',
     pageTitle: "Candidate Login",
     component: (
-        <Suspense fallback={<Loader/>}>
+        <Suspense fallback={<Loader isFullpage={true}/>}>
             <CandidateLoginPage/>
         </Suspense>
     )
@@ -34,7 +34,7 @@ const CANDIDATE_SIGNUP_PAGE = {
     path: '/candidate-signup',
     pageTitle: "Candidate Signup",
     component: (
-        <Suspense fallback={<Loader/>}>
+        <Suspense fallback={<Loader isFullpage={true}/>}>
             <CandidateSignUpPage/>
         </Suspense>
     ) 
@@ -44,7 +44,7 @@ const RESET_PASSWORD_ROUTE = {
     path: '/reset-password/:token',
     pageTitle: 'Reset password',
     component: (
-        <Suspense fallback={<Loader/>}>
+        <Suspense fallback={<Loader isFullpage={true}/>}>
             <ResetPasswordPage/>
         </Suspense>
     )
@@ -54,7 +54,7 @@ const VERIFY_EMAIL_ROUTE = {
     path: '/verify-email/:token',
     pageTitle: 'Verify email',
     component: (
-        <Suspense fallback={<Loader/>}>
+        <Suspense fallback={<Loader isFullpage={true}/>}>
             <VerifyEmailPage/>
         </Suspense>
     )
@@ -66,7 +66,7 @@ const JOB_LANDING_PAGE_ROUTE = {
     pageTitle: 'Job Landing Page',
     header: 'landing',
     component: (
-        <Suspense fallback={<Loader/>}>
+        <Suspense fallback={<Loader isFullpage={true}/>}>
             <JobLandingPage/>
         </Suspense>
     )
@@ -77,7 +77,7 @@ const ALL_JOBS_ROUTE = {
     pageTitle: 'All Jobs',
     header: 'landing',
     component: (
-        <Suspense fallback={<Loader/>}>
+        <Suspense fallback={<Loader isFullpage={true}/>}>
             <JobSearchPage/>
         </Suspense>
     )
@@ -88,7 +88,7 @@ const JOB_ITEM = {
     pageTitle: 'Job Item',
     header: 'landing',
     component: (
-        <Suspense fallback={<Loader/>}>
+        <Suspense fallback={<Loader isFullpage={true}/>}>
             <JobItem/>
         </Suspense>
     )
@@ -99,7 +99,7 @@ const RESUME_BUILDER_LANDING_PAGE = {
     pageTitle: 'Resume Builder',
     header: 'landing',
     component: (
-        <Suspense fallback={<Loader/>}>
+        <Suspense fallback={<Loader isFullpage={true}/>}>
             <ResumeBuilderPage/>
         </Suspense>
     )
@@ -112,7 +112,7 @@ const RESUME_CHECKER_LANDING_PAGE = {
     pageTitle: 'Resume checker',
     header: 'landing',
     component: (
-        <Suspense fallback={<Loader/>}>
+        <Suspense fallback={<Loader isFullpage={true}/>}>
             <ResumeCheckerPage/>
         </Suspense>
     )
@@ -125,20 +125,18 @@ const RESUME_REVIEW_PAGE = {
     pageTitle: 'Resume Review',
     header: 'landing',
     component: (
-        <Suspense fallback={<Loader/>}>
+        <Suspense fallback={<Loader isFullpage={true}/>}>
             <ResumeReviewPage/>
         </Suspense>
     )
 };
-
-
 
 const AI_MOCK_INTERVIEW_LANDING_PAGE = {
     path: '/ai-mock-interviews',
     pageTitle: 'Interview Review Page',
     header: 'landing',
     component: (
-        <Suspense fallback={<Loader/>}>
+        <Suspense fallback={<Loader isFullpage={true}/>}>
             <AiMockInterviewsPage/>
         </Suspense>
     )
@@ -149,7 +147,7 @@ const INTERVIEW_REVIEW_PAGE = {
     pageTitle: 'Ai Mock Interviews',
     header: 'landing',
     component: (
-        <Suspense fallback={<Loader/>}>
+        <Suspense fallback={<Loader isFullpage={true}/>}>
             <InterviewReviewPage/>
         </Suspense>
     )
@@ -162,8 +160,8 @@ const BLOGS_LANDING_PAGE = {
     pageTitle: 'Blogs',
     header: 'landing',
     component: (
-        <Suspense fallback={<Loader/>}>
-            <BlogPage/> // Updated from Blogs
+        <Suspense fallback={<Loader isFullpage={true}/>}>
+            <BlogPage/>
         </Suspense>
     )
 };
@@ -173,7 +171,7 @@ const BLOG_DETAIL_PAGE = {
     pageTitle: 'Blog Detail',
     header: 'landing',
     component: (
-        <Suspense fallback={<Loader/>}>
+        <Suspense fallback={<Loader isFullpage={true}/>}>
             <BlogDetail/>
         </Suspense>
     )

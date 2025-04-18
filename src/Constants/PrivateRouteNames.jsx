@@ -10,6 +10,7 @@ const AdminDashboard = lazy(() => import('../adminPages/AdminDashboard'));
 const AdminJobs = lazy(() => import('../adminPages/AdminJobs'))
 const AdminUsers = lazy(() => import('../adminPages/AdminUsers'))
 const AdminWebScraping = lazy(() => import('../adminPages/AdminWebScraping'))
+const AdminScrapedData = lazy(() => import('../adminPages/AdminScrapedData'))
 
 
 const RESUME_BUILDER_PAGE = {
@@ -63,7 +64,7 @@ const ADMIN_DASHBOARD_HOME_ROUTE = {
     pageTitle: 'Admin Dasboard',
     header: 'admin',
     component: (
-        <Suspense>
+        <Suspense fallback={<Loader isFullpage={true}/>}>
             <AdminDashboard/>
         </Suspense>
     )
@@ -74,7 +75,7 @@ const ADMIN_JOBS_ROUTE = {
     pageTitle: 'Admin Jobs',
     header: 'admin',
     component: (
-        <Suspense>
+        <Suspense fallback={<Loader isFullpage={true}/>}>
             <AdminJobs/>
         </Suspense>
     )
@@ -85,7 +86,7 @@ const ADMIN_USERS_ROUTE = {
     pageTitle: 'Admin users',
     header: 'admin',
     component: (
-        <Suspense>
+        <Suspense fallback={<Loader isFullpage={true}/>}>
             <AdminUsers/>
         </Suspense>
     )
@@ -96,8 +97,19 @@ const ADMIN_WEBSCRAPING_ROUTE = {
     pageTitle: 'Admin WebScraping',
     header: 'admin',
     component: (
-        <Suspense>
+        <Suspense fallback={<Loader isFullpage={true}/>}>
             <AdminWebScraping/>
+        </Suspense>
+    )
+}
+
+const ADMIN_SCRAPEDDATA_ROUTE = {
+    path: '/admin-panel/scraped-data',
+    pageTitle: 'Admin ScrapedData',
+    header: 'admin',
+    component: (
+        <Suspense fallback={<Loader isFullpage={true}/>}>
+            <AdminScrapedData/>
         </Suspense>
     )
 }
@@ -111,7 +123,8 @@ export const PRIVATE_ROUTES = [
     ADMIN_DASHBOARD_HOME_ROUTE,
     ADMIN_JOBS_ROUTE,
     ADMIN_USERS_ROUTE,
-    ADMIN_WEBSCRAPING_ROUTE
+    ADMIN_WEBSCRAPING_ROUTE,
+    ADMIN_SCRAPEDDATA_ROUTE
 ]
 
 export const PROTECTED_ROUTE_NAMES = {
@@ -130,6 +143,7 @@ export const PROTECTED_ROUTE_NAMES = {
         INTERVIEW_REVIEW_PAGE: INTERVIEW_REVIEW_PAGE,
         ADMIN_JOBS_ROUTE: ADMIN_JOBS_ROUTE,
         ADMIN_USERS_ROUTE: ADMIN_USERS_ROUTE,
-        ADMIN_WEBSCRAPING_ROUTE: ADMIN_WEBSCRAPING_ROUTE
+        ADMIN_WEBSCRAPING_ROUTE: ADMIN_WEBSCRAPING_ROUTE,
+        ADMIN_SCRAPEDDATA_ROUTE: ADMIN_SCRAPEDDATA_ROUTE
     }
 }

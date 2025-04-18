@@ -1,7 +1,9 @@
 .resume-checker-page {
   font-family: 'Poppins', sans-serif;
   position: relative;
-
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
   .landing-content {
     transition: filter 0.3s ease;
 
@@ -559,4 +561,14 @@
   .highlight {
     color: #ff750c;
   }
+}
+
+.resume-checker-page::-webkit-scrollbar {
+  width: 4px;
+}
+.resume-checker-page::-webkit-scrollbar-track {
+  background: transparent;
+}
+.resume-checker-page::-webkit-scrollbar-thumb {
+  background: rgb(41, 41, 41);
 }

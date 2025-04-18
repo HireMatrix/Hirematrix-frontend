@@ -63,7 +63,7 @@ export const deleteJobAdmin = async (jobId) => {
             credentials: 'include',
         })
 
-        if(response.status == 200) {
+        if(response.status === 200) {
             const data = await response.json()
             return data;
         }
@@ -80,7 +80,7 @@ export const updateJobAdmin = async (jobId) => {
             credentials: 'include'
         })
 
-        if(response.status == 200){
+        if(response.status === 200){
             const data = await response.json();
             return data;
         }
@@ -115,7 +115,7 @@ export const deleteUserAdmin = async (userId) => {
             credentials: 'include',
         })
 
-        if(response.status == 200) {
+        if(response.status === 200) {
             const data = await response.json()
             return data;
         }
@@ -132,7 +132,7 @@ export const updateUserAdmin = async (userId) => {
             credentials: 'include'
         })
 
-        if(response.status == 200){
+        if(response.status === 200){
             const data = await response.json();
             return data;
         }
@@ -156,5 +156,22 @@ export const webScrapingUrlAdmin = async(url) => {
         }
     } catch (error) {
         console.log(error);
+    }
+}
+
+export const fetchAllscrapedJobDataAdmin = async() => {
+    try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/admin/scraped-data`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+        });
+    
+        if(response.status === 200) {
+            const data = await response.json()
+            return data;
+        }
+    } catch (error) {
+        console.log(error); 
     }
 }

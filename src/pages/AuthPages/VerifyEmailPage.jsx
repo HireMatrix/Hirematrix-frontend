@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { verifyEmail } from '../features/auth/authSlice';
+import { verifyEmail } from '../../features/auth/authSlice';
 
 const VerifyEmailPage = () => {
 

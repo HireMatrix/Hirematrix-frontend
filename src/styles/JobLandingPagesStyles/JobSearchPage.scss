@@ -1,5 +1,16 @@
 @use '../_variables.scss' as var;
 
+
+.jobSearch-section::-webkit-scrollbar {
+    width: 4px;
+}
+.jobSearch-section::-webkit-scrollbar-track {
+    background: transparent;
+}
+.jobSearch-section::-webkit-scrollbar-thumb {
+    background: rgb(41, 41, 41);
+}
+
 .jobSearch-section {
     height: 100vh;
     overflow-y: auto;

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { resetPassword } from '../features/auth/authSlice';
+import { resetPassword } from '../../features/auth/authSlice';
 
 const ResetPasswordPage = () => {
   const user = useSelector(state => state.auth);

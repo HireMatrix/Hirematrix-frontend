@@ -116,6 +116,8 @@ const AdminJobs = () => {
     data: paginatedData
   })
 
+  console.log(paginatedData)
+
   if(isLoading || isRefetching || isFetching) {
     return <Loader/>
   }

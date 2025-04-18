@@ -11,7 +11,8 @@ const PaginationCore = ({
     pageSizeKey,
     isLocal = true,
     queryFn,
-    queryKey
+    queryKey,
+    enabled
 }) => {
 
     const [page, setPage] = useState(1);
@@ -53,6 +54,7 @@ const PaginationCore = ({
             return response;
         },
         queryKey: [...queryKey, page, pageSize],
+        enabled: enabled
     });
 
     const PageSizeSelection = () => {
