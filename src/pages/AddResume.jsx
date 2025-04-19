@@ -508,17 +508,17 @@ const handleCertificationArray = () => {
                     </select>
                   </label>
                 </div>
-                {
+                <div className='skills_edit_container' >{
                   arraySkills.map((item, index)=> (
-                    <div key={index}>
-                      <div>
+                    <div className='Skills' key={index}>
+                      <div className='skillpart'>
                         <p>{item.skill} </p>
-                        <span>{item.level}</span>
+                        <span className='skill_level' >{item.level}</span>
                       </div>
-                      <p onClick={() => handleDeleteSkill(index)}>x</p>
+                      <img className='remove_skillicon' onClick={() => handleDeleteSkill(index)} src='src\assets\addResumePage\remove-skill.png' />
                     </div>
                   ))
-                }
+                }</div>
               </div>
             )}
             <div className='row' onClick={() => toggleSection('Certifications')}>
