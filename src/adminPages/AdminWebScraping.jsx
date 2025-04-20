@@ -91,13 +91,6 @@ const AdminWebScraping = () => {
     }
   }
 
-  const tableInstances = useCustomeTable({
-    columns: columns,
-    data: paginatedData,
-  })
-
-  console.log(paginatedData);
-
   if(isLoading) {
     return (
       <div className='admin-webscraping-main-container'>
@@ -111,40 +104,24 @@ const AdminWebScraping = () => {
   return (
     <div className='admin-webscraping-main-container'>
       <div className='admin-container'>
-        {
-          paginatedData.length > 0 ? (
-            <div className="">
-              <>
-                <CustomeTableComp
-                  {...tableInstances}
-                />
-                <div>
-                  <PageSizeSelection/>
-                  <PageNumberSelection/>
-                </div>
-              </>
-            </div>
-          ) : (
-            <div className="admin-scraping-input-container">
-              <h1>Web Scraping</h1>
-              <p>Enter a Url which will have the Jobs data in it.</p>
-              <div>
-                <input
-                  type="text"
-                  placeholder="Enter a url, e.g. https://www.example.com"
-                  value={urlValue}
-                  onChange={(e) => handleUrlChange(e.target.value)}
-                />
-                <button onClick={handleSendUrl}>
-                  Send
-                </button>
-              </div>
-              {
-                noUrl && (<p>*Please insert a working url</p>)
-              }
-            </div>
-          )
-        }
+        <div className="admin-scraping-input-container">
+          <h1>Web Scraping</h1>
+          <p>Enter a Url which will have the Jobs data in it.</p>
+          <div>
+            <input
+              type="text"
+              placeholder="Enter a url, e.g. https://www.example.com"
+              value={urlValue}
+              onChange={(e) => handleUrlChange(e.target.value)}
+            />
+            <button onClick={handleSendUrl}>
+              Send
+            </button>
+          </div>
+          {
+            noUrl && (<p>*Please insert a working url</p>)
+          }
+        </div>
       </div>
     </div>
   )
