@@ -22,8 +22,6 @@ const NavBar = () => {
         return regex.test(pathname);
     });
 
-    console.log(matchedRoute)
-
     const renderHeader = () => {
         switch (matchedRoute?.header) {
             case "landing":

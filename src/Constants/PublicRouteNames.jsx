@@ -9,6 +9,7 @@ const EmployerLoginPage = lazy(() => import('../pages/AuthPages/EmployerLoginPag
 const JobLandingPage = lazy(() => import('../pages/JobLandingPage.jsx'));
 const ResetPasswordPage = lazy(() => import('../pages/AuthPages/ResetPasswordPage.jsx'));
 const VerifyEmailPage = lazy(() => import('../pages/AuthPages/VerifyEmailPage.jsx'));
+const CandidateDetails = lazy(() => import('../pages/AuthPages/CandidateDetails.jsx'));
 const JobSearchPage = lazy(() => import('../pages/JobSearchPage.jsx'));
 const JobItem = lazy(() => import('../pages/JobItem.jsx'));
 const ResumeBuilderPage = lazy(() => import('../pages/ResumeBuilderPage.jsx'));
@@ -56,6 +57,16 @@ const VERIFY_EMAIL_ROUTE = {
     component: (
         <Suspense fallback={<Loader isFullpage={true}/>}>
             <VerifyEmailPage/>
+        </Suspense>
+    )
+};
+
+const CANDIDATE_DETAILS_ROUTE = {
+    path: '/candidate-details',
+    pageTitle: 'Candidate Details',
+    component: (
+        <Suspense fallback={<Loader isFullpage={true}/>}>
+            <CandidateDetails/>
         </Suspense>
     )
 };
@@ -183,6 +194,7 @@ export const PUBLIC_ROUTES = [
     JOB_LANDING_PAGE_ROUTE,
     RESET_PASSWORD_ROUTE,
     VERIFY_EMAIL_ROUTE,
+    CANDIDATE_DETAILS_ROUTE,
     ALL_JOBS_ROUTE,
     JOB_ITEM,
     RESUME_BUILDER_LANDING_PAGE,
@@ -200,6 +212,7 @@ export const PUBLIC_ROUTES_NAMES = {
     HOME: JOB_LANDING_PAGE_ROUTE,
     RESET_PASSWORD: RESET_PASSWORD_ROUTE,
     VERIFY_EMAIL: VERIFY_EMAIL_ROUTE,
+    CANDIDATE_DETAILS: CANDIDATE_DETAILS_ROUTE,
     ALL_JOBS: ALL_JOBS_ROUTE,
     JOB_ITEM: JOB_ITEM,
     RESUME_BUILDER_LANDING: RESUME_BUILDER_LANDING_PAGE,

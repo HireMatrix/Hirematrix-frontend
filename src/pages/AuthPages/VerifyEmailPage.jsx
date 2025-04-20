@@ -18,6 +18,7 @@ const VerifyEmailPage = () => {
   const navigate = useNavigate();
   
   useEffect(() => {
+
     if(inputRefs.current[0]){
       inputRefs.current[0].focus();
     }
@@ -40,7 +41,7 @@ const VerifyEmailPage = () => {
       // console.log(response);
       setSuccessMessage(`*${response?.message}`);
       setErrorMessage('');
-      navigate('/');
+      navigate('/candidate-details');
     } catch (error) {
       console.log('Verification Error: ', error);
       setErrorMessage(`*${error}`);

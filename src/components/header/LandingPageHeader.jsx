@@ -17,10 +17,8 @@ const LandingPageHeader = () => {
 
     const { user, isLoading } = useSelector(state => state.auth);
 
-    // console.log(user);
-
     if(isLoading){
-        return <Loader/>
+        return <Loader isFullpage={true}/>
     }
 
     // console.log(user?.user?.name);
@@ -31,6 +29,8 @@ const LandingPageHeader = () => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [activeSubMenu, setActiveSubMenu] = useState(null);
     const [heightOfHr, setHeightOfHr] = useState(0);
+    const [logoutLoding, setLogoutLoading] = useState(false);
+
 
     const togglePopHam = () => {
       setIsPopupOpen(!isPopupOpen);
@@ -40,10 +40,23 @@ const LandingPageHeader = () => {
       setActiveSubMenu(activeSubMenu === subMenuId ? null : subMenuId);
     };
 
-    const handleLogout = () => {
+    const handleLogout = async () => {
         console.log("logout clicked")
-        dispatch(logOut())
-        navigate('/')
+        setLogoutLoading(true);
+        await dispatch(logOut()).unwrap();
+        setLogoutLoading(false);
+        window.location.href = '/'
+    }
+
+    const handleViewProfileClick = () => {
+        if(user.hasCompletedOnboarding) {
+            return;
+        }
+        navigate('/candidate-details')
+    }
+
+    if(logoutLoding) {
+        return <Loader isFullpage={true}/>
     }
 
     const handleAdminRouting = () => {
@@ -270,7 +283,7 @@ const LandingPageHeader = () => {
                         <div className={`user-details-dropDown ${activeSubMenu == 'UserDetailsMenu' ? 'open' : ''}`}>
                             <div>
                                 <FaUser/>
-                                <p>View Profile</p>
+                                <p onClick={handleViewProfileClick}>View Profile</p>
                             </div>
                             {
                                 user.userType === 'admin' && (

@@ -60,7 +60,8 @@ const PageLayout = () => {
     '/candidate-login', 
     '/candidate-signup',
     '/reset-password',
-    '/verify-email'
+    '/verify-email',
+    '/candidate-details'
   ];
 
   const isExcluded = excludedRoutes.some(route => pathname.startsWith(route));

@@ -19,6 +19,25 @@ export const fetchAllJobs = async (filters) => {
     }
 }
 
+// To update user's data
+export const updateCandidateDetails = async (formattedData) => {
+    try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/auth/update-candidate-details`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify(formattedData)
+        })
+
+        if(response.status === 200){
+            const data = await response.json();
+            return data;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 // Admin Routes - Jobs
 export const fetchAllJobsAdmin = async (searchValue = '') => {
     try {
