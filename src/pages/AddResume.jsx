@@ -508,17 +508,17 @@ const handleCertificationArray = () => {
                     </select>
                   </label>
                 </div>
-                {
+                <div className='skills_edit_container' >{
                   arraySkills.map((item, index)=> (
-                    <div key={index}>
-                      <div>
+                    <div className='Skills' key={index}>
+                      <div className='skillpart'>
                         <p>{item.skill} </p>
-                        <span>{item.level}</span>
+                        <span className='skill_level' >{item.level}</span>
                       </div>
-                      <p onClick={() => handleDeleteSkill(index)}>x</p>
+                      <img className='remove_skillicon' onClick={() => handleDeleteSkill(index)} src='src\assets\addResumePage\remove-skill.png' />
                     </div>
                   ))
-                }
+                }</div>
               </div>
             )}
             <div className='row' onClick={() => toggleSection('Certifications')}>
@@ -700,17 +700,20 @@ const handleCertificationArray = () => {
                     <h2>PROFESSIONAL SUMMARY</h2>
                     <p style={{whiteSpace:"pre-line"}}>  Summary: {resumeData.personalInformation.professionalSummary} </p>
                   </div>
-                  <div>
-                    <h2>SKILLS</h2>
+                  <div className='skill_card' >
+                  <h2>SKILLS</h2>
+                  <div  className='skill_priview'>
+                    
                     {
                       arraySkills.map((item, index) => (
-                        <div key={index}>
-                          <p>{item.skill}</p>
-                          <p>{item.level}</p>
+                        <div className='skill_items'  key={index}>
+                          <li className='sk_item' >{item.skill}</li> 
+                          <p className='sk_lvl' >   {item.level}Level</p>
                         </div>
                       ))
                     }
-                  </div>  
+                  </div> 
+                  </div> 
                   <div>
                     <h2>WORK EXPERIENCE</h2>
                     <p>Duration: {resumeData.workExperience.workexpstDate} to {resumeData.workExperience.workexpendDate}</p>
