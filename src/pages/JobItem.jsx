@@ -6,7 +6,7 @@ const JobItem = () => {
         <div className="applyjob-section-container">
             <div className="applyjob-main-container">
                 <div className="applyjob-sub-container1">
-                    <img src="assets/companys-icon.png"
+                    <img src="/src/assets/JobItem/companys-icon.png"
                     className="companys-icon1"/>
                     <div className="applyjob-sub-container2">
                         <h1>Front-end Developer(react.js)</h1>
@@ -14,12 +14,12 @@ const JobItem = () => {
                     </div>
                 </div>
                 <div className="applyjob-sub-container3">
-                    <img src="assets/location-icon.png"
+                    <img src="/src/assets/JobItem/location-icon.png"
                     className="location-icon"/>
                     <p>Begumpet, Hyderabad</p>
                 </div>
                 <div className="applyjob-sub-container3">
-                    <img src="assets/money-icon.png"
+                    <img src="/src/assets/JobItem/money-icon.png"
                     className="money-icon"/>
                     <p>₹35,000 -₹53,000 monthly</p>
                 </div>
@@ -35,22 +35,22 @@ const JobItem = () => {
                 </div>
                 <div className="applyjob-sub-container5">
                     <div className="applyjob-sub-container5-1">
-                        <img src="assets/company-icon2.png"
+                        <img src="/src/assets/JobItem/company-icon2.png"
                         className="small-icons"/>
                         <p>Work From Office</p>
                     </div>
                     <div className="applyjob-sub-container5-1">
-                        <img src="assets/emp-time-icon.png"
+                        <img src="/src/assets/JobItem/emp-time-icon.png"
                         className="small-icons"/>
                         <p>Full Time</p>
                     </div>
                     <div className="applyjob-sub-container5-1">
-                        <img src="assets/exp-icon.png"
+                        <img src="/src/assets/JobItem/exp-icon.png"
                         className="small-icons"/>
                         <p>Min. 2 Years</p>
                     </div>
                     <div className="applyjob-sub-container5-1">
-                        <img src="assets/eng-icon.png"
+                        <img src="/src/assets/JobItem/eng-icon.png"
                         className="small-icons"/>
                         <p>Basic English</p>
                     </div> 
@@ -66,7 +66,7 @@ const JobItem = () => {
                 <div className="job-hilights-section">
                     <h1>Job highlights</h1>
                     <div className="job-hilights-sub1">
-                        <img src="assets/people-icon.png"
+                        <img src="/src/assets/JobItem/people-icon.png"
                         className="small-icons"/>
                         <p>26 applicatiions</p>
                     </div>
@@ -93,21 +93,21 @@ const JobItem = () => {
                     <div style={{'display': 'flex', 'flexDirection': 'row'}}>
                         <div className="job-down-position">
                             <div className="job-down-sub1">
-                                <img src="assets/company-icon2.png" className="small-icons"/>
+                                <img src="/src/assets/JobItem/company-icon2.png" className="small-icons"/>
                                 <div className="job-down-sub1-1">
                                     <h1>work location</h1>
                                     <p>Indian Airlines Colony, Patigadda, Begumpet, Hyderabad, Telangana, India</p>
                                 </div>
                             </div>
                             <div className="job-down-sub1">
-                                <img src="assets/role-icon.png" className="small-icons"/>
+                                <img src="/src/assets/JobItem/role-icon.png" className="small-icons"/>
                                 <div className="job-down-sub1-1">
                                     <h1>Role / Category</h1>
                                     <p>Software Development</p>
                                 </div>
                             </div>
                             <div className="job-down-sub1">
-                                <img src="assets/workshifts-icon.png" className="small-icons"/>
+                                <img src="/src/assets/JobItem/workshifts-icon.png" className="small-icons"/>
                                 <div className="job-down-sub1-1">
                                     <h1>Shift</h1>
                                     <p>day Shift</p>
@@ -116,14 +116,14 @@ const JobItem = () => {
                         </div>
                         <div className="job-down-position">
                             <div className="job-down-sub1">
-                                <img src="assets/department-icon.png" className="small-icons"/>
+                                <img src="/src/assets/JobItem/department-icon.png" className="small-icons"/>
                                 <div className="job-down-sub1-1">
                                     <h1>Department</h1>
                                     <p>Software Engineering</p>
                                 </div>
                             </div>
                             <div className="job-down-sub1">
-                                <img src="assets/emp-time-icon.png" className="small-icons"/>
+                                <img src="/src/assets/JobItem/emp-time-icon.png" className="small-icons"/>
                                 <div className="job-down-sub1-1">
                                     <h1>Employer type</h1>
                                     <p>Full Time</p>
@@ -140,14 +140,14 @@ const JobItem = () => {
                     <div style={{'display': 'flex', 'flexDirection': 'row'}}>
                         <div className="job-down-position">
                             <div className="job-down-sub1">
-                                <img src="assets/exp-icon.png" className="small-icons"/>
+                                <img src="/src/assets/JobItem/exp-icon.png" className="small-icons"/>
                                 <div className="job-down-sub1-1">
                                     <h1>Experience</h1>
                                     <p>min. 2 Years</p>
                                 </div>
                             </div>
                             <div className="job-down-sub1">
-                                <img src="assets/eng-icon.png" className="small-icons"/>
+                                <img src="/src/assets/JobItem/eng-icon.png" className="small-icons"/>
                                 <div className="job-down-sub1-1">
                                     <h1>English level</h1>
                                     <p>Basic English</p>
@@ -156,14 +156,14 @@ const JobItem = () => {
                         </div>
                         <div className="job-down-position">
                             <div className="job-down-sub1">
-                                <img src="assets/education-icon.png" className="small-icons"/>
+                                <img src="/src/assets/JobItem/education-icon.png" className="small-icons"/>
                                 <div className="job-down-sub1-1">
                                     <h1>Education</h1>
                                     <p>Graduate</p>
                                 </div>
                             </div>
                             <div className="job-down-sub1">
-                                <img src="assets/gender-icon.png" className="small-icons"/>
+                                <img src="/src/assets/JobItem/gender-icon.png" className="small-icons"/>
                                 <div className="job-down-sub1-1">
                                     <h1>Gender</h1>
                                     <p>Any gender</p>
@@ -180,7 +180,7 @@ const JobItem = () => {
                     <div style={{'display': 'flex', 'flexDirection': 'row'}}>
                         <div className="job-down-position">
                             <div className="job-down-sub1">
-                                <img src="assets/phone-icon.png" className="money-icon"/>
+                                <img src="/src/assets/JobItem/phone-icon.png" className="money-icon"/>
                                 <div className="job-down-sub1-1">
                                     <h1>interview mode</h1>
                                     <p>Online/Telephonic</p>
@@ -197,14 +197,14 @@ const JobItem = () => {
                     <div style={{'display': 'flex', 'flexDirection': 'row'}}>
                         <div className="job-down-position">
                             <div className="job-down-sub1">
-                                <img src="assets/company-icon2.png" className="money-icon"/>
+                                <img src="/src/assets/JobItem/company-icon2.png" className="money-icon"/>
                                 <div className="job-down-sub1-1">
                                     <h1>Name</h1>
                                     <p>Kotammal Thunai Saanvi Structural Soln Private Limited</p>
                                 </div>
                             </div>
                             <div className="job-down-sub1">
-                                <img src="assets/company-icon2.png" className="money-icon"/>
+                                <img src="/src/assets/JobItem/company-icon2.png" className="money-icon"/>
                                 <div className="job-down-sub1-1">
                                     <h1>Address</h1>
                                     <p>Indian Airlines Colony, Patigadda, Begumpet, Hyderabad, Telangana, India</p>
@@ -223,7 +223,7 @@ const JobItem = () => {
             <div className="applyjob-side-section1"> 
                 <div className="applyjob-side-container">
                     <div className="applyjob-sidesub-container1">
-                        <img src="assets/companys-icon.png" className="companys-icon1"/>
+                        <img src="/src/assets/JobItem/companys-icon.png" className="companys-icon1"/>
                         <div className="applyjob-sub-container2">
                             <h1>Front-end Developer(react.js)</h1>
                             <p>kotammal Thunai Saanvi Structural Slon Private Limited</p>
@@ -234,7 +234,7 @@ const JobItem = () => {
             <div className="applyjob-side-section2"> 
                 <div className="applyjob-side-container">
                     <div className="applyjob-sidesub-container1">
-                        <img src="assets/companys-icon.png"
+                        <img src="/src/assets/JobItem/companys-icon.png"
                         className="companys-iconsmall"/>
                         <div className="applyjob-sub-container2">
                             <h1>Front-end Developer(react.js)</h1>
@@ -242,28 +242,28 @@ const JobItem = () => {
                         </div>
                     </div>
                     <div className="applyjob-sidesub-container3">
-                        <img src="assets/location-icon.png"
+                        <img src="/src/assets/JobItem/location-icon.png"
                         className="location-icon"/>
                         <p>Begumpet, Hyderabad</p>
                     </div>
                     <div className="applyjob-sidesub-container3">
-                        <img src="assets/money-icon.png"
+                        <img src="/src/assets/JobItem/money-icon.png"
                         className="location-icon"/>
                         <p>₹35,000 -₹53,000 monthly</p>
                     </div>         
                     <div className="applyjob-sidesub-container5">
                         <div className="applyjob-sidesub-container5-1">
-                            <img src="assets/company-icon2.png"
+                            <img src="/src/assets/JobItem/company-icon2.png"
                             className="small-icons"/>
                             <p>Work From Office</p>
                         </div>
                         <div className="applyjob-sidesub-container5-1">
-                            <img src="assets/emp-time-icon.png"
+                            <img src="/src/assets/JobItem/emp-time-icon.png"
                             className="small-icons"/>
                             <p>Full Time</p>
                         </div>
                         <div className="applyjob-sidesub-container5-1">
-                            <img src="assets/exp-icon.png"
+                            <img src="/src/assets/JobItem/exp-icon.png"
                             className="small-icons"/>
                             <p>Min. 2 Years</p>
                         </div>                   
@@ -272,7 +272,7 @@ const JobItem = () => {
                     <hr style={{'width': '100%', 'borderWidth': '0', 'backgroundColor':'rgb(179, 179, 179)', 'height': '1px'}}/>
 
                     <div className="applyjob-sidesub-container1">
-                        <img src="assets/companys-icon.png"
+                        <img src="/src/assets/JobItem/companys-icon.png"
                         className="companys-iconsmall"/>
                         <div className="applyjob-sub-container2">
                             <h1>Front-end Developer(react.js)</h1>
@@ -280,28 +280,28 @@ const JobItem = () => {
                         </div>
                     </div>
                     <div className="applyjob-sidesub-container3">
-                        <img src="assets/location-icon.png"
+                        <img src="/src/assets/JobItem/location-icon.png"
                         className="location-icon"/>
                         <p>Begumpet, Hyderabad</p>
                     </div>
                     <div className="applyjob-sidesub-container3">
-                        <img src="assets/money-icon.png"
+                        <img src="/src/assets/JobItem/money-icon.png"
                         className="location-icon"/>
                         <p>₹35,000 -₹53,000 monthly</p>
                     </div>         
                     <div className="applyjob-sidesub-container5">
                         <div className="applyjob-sidesub-container5-1">
-                            <img src="assets/company-icon2.png"
+                            <img src="/src/assets/JobItem/company-icon2.png"
                             className="small-icons"/>
                             <p>Work From Office</p>
                         </div>
                         <div className="applyjob-sidesub-container5-1">
-                            <img src="assets/emp-time-icon.png"
+                            <img src="/src/assets/JobItem/emp-time-icon.png"
                             className="small-icons"/>
                             <p>Full Time</p>
                         </div>
                         <div className="applyjob-sidesub-container5-1">
-                            <img src="assets/exp-icon.png"
+                            <img src="/src/assets/JobItem/exp-icon.png"
                             className="small-icons"/>
                             <p>Min. 2 Years</p>
                         </div>                   
@@ -310,7 +310,7 @@ const JobItem = () => {
                     <hr style={{'width': '100%', 'borderWidth': '0', 'backgroundColor':'rgb(179, 179, 179)', 'height': '1px'}}/>
 
                     <div className="applyjob-sidesub-container1">
-                        <img src="assets/companys-icon.png"
+                        <img src="/src/assets/JobItem/companys-icon.png"
                         className="companys-iconsmall"/>
                         <div className="applyjob-sub-container2">
                             <h1>Front-end Developer(react.js)</h1>
@@ -318,28 +318,28 @@ const JobItem = () => {
                         </div>
                     </div>
                     <div className="applyjob-sidesub-container3">
-                        <img src="assets/location-icon.png"
+                        <img src="/src/assets/JobItem/location-icon.png"
                         className="location-icon"/>
                         <p>Begumpet, Hyderabad</p>
                     </div>
                     <div className="applyjob-sidesub-container3">
-                        <img src="assets/money-icon.png"
+                        <img src="/src/assets/JobItem/money-icon.png"
                         className="location-icon"/>
                         <p>₹35,000 -₹53,000 monthly</p>
                     </div>         
                     <div className="applyjob-sidesub-container5">
                         <div className="applyjob-sidesub-container5-1">
-                            <img src="assets/company-icon2.png"
+                            <img src="/src/assets/JobItem/company-icon2.png"
                             className="small-icons"/>
                             <p>Work From Office</p>
                         </div>
                         <div className="applyjob-sidesub-container5-1">
-                            <img src="assets/emp-time-icon.png"
+                            <img src="/src/assets/JobItem/emp-time-icon.png"
                             className="small-icons"/>
                             <p>Full Time</p>
                         </div>
                         <div className="applyjob-sidesub-container5-1">
-                            <img src="assets/exp-icon.png"
+                            <img src="/src/assets/JobItem/exp-icon.png"
                             className="small-icons"/>
                             <p>Min. 2 Years</p>
                         </div>                   

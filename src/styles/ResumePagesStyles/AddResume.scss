@@ -115,6 +115,7 @@
 .resume-dashboard #resume {
   font-size: 12px;
   font-style: normal;
+  border:1px solid transparent;
   background-color: rgb(255, 111, 0);
   color: white;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px, rgba(0, 0, 0, 0.08) 0px 2px 2px 0px;
@@ -122,6 +123,10 @@
     background-color: transparent;
     border: 1px solid var.$main-theme-color;
     color: var.$main-theme-color;
+    font-size: 13.5px;
+    transition: all 0.26s ease-in-out;
+    
+   
 }
 }
 
@@ -160,8 +165,10 @@
 
 
 .resume-dashboard .row {
-  padding: 10px;
+  padding: 12px;
   margin-top: 10px;
+  margin-bottom: 25px;
+
   background-color: transparent;
   color: var.$main-theme-color;
   cursor: pointer;
@@ -172,9 +179,11 @@
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px, rgba(0, 0, 0, 0.08) 0px 2px 2px 0px;
     &:hover {
-    transition: all 0.26s ease-in-out;
-    font-size: 1.1rem;
+    transition: all 0.3s ease-in-out ;
+    font-size: 1.3rem;
     padding: 12px;
+    
+    
     color: var.$main-theme-color;
     background-color: transparent;
     border: 1px solid var.$main-theme-color;
@@ -396,6 +405,22 @@
           word-wrap: break-word; /* Wrap long words */
           overflow-wrap: break-word;
           white-space: pre-wrap; /* Preserve line breaks and spaces */
+          > .skill_card{
+            > .skill_priview{
+              display: grid;
+              grid-template-columns: repeat(2, 1fr); /* 2 columns */
+              gap: 1px;
+            
+              > .skill_items{
+                display: flex;
+                flex-direction: row;
+                > .sk_item{
+                  font-weight: 600;
+                }
+              }
+            }
+          }
+         
         } 
       }
     } 
