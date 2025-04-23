@@ -7,11 +7,14 @@ import { fetchAllJobs } from '../Constants/ApiUrls';
 import { useSelector } from 'react-redux';
 import JobLoader from '../components/JobLoader';
 
+const jobLoaderNum = 5;
+
 const JobSearchPage = () => {
 
   const userLoggedIn = false
   
-  const filters = useSelector(state => state.filter)
+  const filters = useSelector(state => state.filter);
+  const user = useSelector(state => state.auth);
 
   // pagination
 
@@ -28,16 +31,10 @@ const JobSearchPage = () => {
     isRefetching,
     refetch,
   } = PaginationCore({
-    queryFn: () => fetchAllJobs(filters),
+    queryFn: () => fetchAllJobs(filters, user.user._id),
     queryKey: ["all-jobs", filters],
     defaultPageSize: 10,
   });
-
-  if(isLoading || isFetching){
-    <JobLoader/>
-  }
-
-  console.log(data);
 
   // const itemsPerPage = 10;
   // const [itemOffset, setItemOffset] = useState(0);
@@ -55,8 +52,6 @@ const JobSearchPage = () => {
   //   setItemOffset(newOffset);
   // };
 
-  // console.log(allJobs)
-
   return (
     <div className='jobSearch-section'>
       <SearchAndLocationBar/>
@@ -70,12 +65,19 @@ const JobSearchPage = () => {
           </div>
           <div className='jobSearch-jobs-container'>
             {
-              data?.length === 0 || !data? (
-                <NoJobsFoundPage/>
+              isLoading || isFetching ? (
+                [...Array(jobLoaderNum)].map((_, index) => <JobLoader key={index} />)
               ) : (
-                data?.map(item => (
-                  <AllJobsPage key={item._id} jobsdata={item} loading={status}/>
-                ))
+                data?.length === 0 || !data ? (
+                  <NoJobsFoundPage/>
+                ) : (
+                  data?.map(item => (
+                    <AllJobsPage 
+                      key={item._id} 
+                      jobsdata={item} 
+                    />
+                  ))
+                )
               )
             }
           </div>

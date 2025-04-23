@@ -8,15 +8,10 @@ import partTime from '../assets/jobSearchPageImg/Part-time.png'
 import english from '../assets/jobSearchPageImg/Advanced-English.png'
 import nightShift from '../assets/jobSearchPageImg/Night-shift_xxhdpi.avif'
 import { Link } from 'react-router-dom'
-import Loader from './Loader'
 import { IoMdArrowDropright } from "react-icons/io";
 
 
-const AllJobsPage = ({jobsdata, loading}) => {
-
-  if(loading == 'pending'){
-    return <Loader/>
-  }
+const AllJobsPage = ({jobsdata}) => {
   return(
     <div className='job-card-container'>
         <Link to={`/jobs/${jobsdata._id}`} target='_blank'>

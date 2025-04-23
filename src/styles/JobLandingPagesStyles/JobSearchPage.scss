@@ -144,12 +144,46 @@
     padding: 20px;
     border: 1px solid var.$box-color-thick;
     border-radius: 9px;
-    > div {
-        width: 80%;
-        height: 10px;
-        background-color: var.$box-color-light;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  
+    .skeleton {
+      background: linear-gradient(90deg, var.$box-color-light 25%, #888888 50%, var.$box-color-light 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 4px;
+  
+      &.title {
+        width: 60%;
+        height: 20px;
+      }
+  
+      &.subtitle {
+        width: 40%;
+        height: 16px;
+      }
+  
+      &.info-line {
+        width: 100%;
+        height: 12px;
+      }
+  
+      &.info-line.short {
+        width: 70%;
+      }
     }
 }
+  
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+  
 
 .no-jobs-found-container {
     width: 100%;
