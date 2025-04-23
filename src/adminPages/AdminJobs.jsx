@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { deleteJobAdmin, fetchAllJobsAdmin } from '../Constants/ApiUrls';
 import Loader from '../components/Loader';
 import ErrorPage from '../core/ErrorHandler/ErrorPage';
@@ -50,14 +50,15 @@ const AdminJobs = () => {
     )
   }
 
+  const handleClickOutside = useCallback((event) => {
+    if (
+      sliderViewRef.current && !sliderViewRef.current.contains(event.target)
+    ) {
+      setActiveSliderView(false);
+    }
+  }, []);
+
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        sliderViewRef.current && !sliderViewRef.current.contains(event.target)
-      ) {
-        setActiveSliderView(false);
-      }
-    };
   
     if (activeSliderView) {
       document.addEventListener("mousedown", handleClickOutside);

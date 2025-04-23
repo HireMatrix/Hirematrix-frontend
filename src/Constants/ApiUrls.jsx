@@ -1,7 +1,7 @@
 // To get all jobs
-export const fetchAllJobs = async (filters) => {
+export const fetchAllJobs = async (filters, userId) => {
     
-    const queryParams = new URLSearchParams(filters);
+    const queryParams = new URLSearchParams({...filters, userId});
 
     try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/jobs?${queryParams}`, {

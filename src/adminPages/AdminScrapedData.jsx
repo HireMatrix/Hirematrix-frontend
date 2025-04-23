@@ -1,16 +1,17 @@
-import React, { useRef, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import PaginationCore from '../core/paginationCore/PaginationCore';
 import { fetchAllscrapedJobDataAdmin } from '../Constants/ApiUrls';
 
 import { MdWork } from "react-icons/md";
 import { PiSlidersHorizontal } from "react-icons/pi";
 import { TiTick } from "react-icons/ti";
+import CustomeTableComp from '../core/TableCore/CustomeTableComp';
+import { useCustomeTable } from '../core/TableCore';
 
 const jobSchema = {
   title: "Title",
   experience: "Experience",
   salary: "Salary",
-  datePosted: "Date Posted",
   highestEducation: "Highest Education",
   workMode: "Work Mode",
   workType: "Work Type",
@@ -29,9 +30,17 @@ const AdminScrapedData = () => {
     "title",
     "experience",
     "salary",
-    "datePosted",
     "workMode"
   ])
+
+  const columns = useMemo(
+    () => 
+      activeSliderViewOptions.map((item) => ({
+        Header: jobSchema[item],
+        accessor: item
+      })),
+    [activeSliderViewOptions]
+  )
 
   const {
     data: paginatedData = [],
@@ -51,11 +60,24 @@ const AdminScrapedData = () => {
     queryKey: ["scrapedJobData"],
   });
 
+  console.log(paginatedData);
+
+  const tableInstances = useCustomeTable({
+    columns: columns,
+    data: paginatedData
+  })
+
   const handleEditJob = () => {}
 
   const handleDeleteJob = () => {}
 
-  const toggleActiveSliderViewOptions = () => {}
+  const toggleActiveSliderViewOptions = (item) => {
+    setActiveSliderViewOptions((prev) => 
+      prev.includes(item) ? 
+        prev.filter((value) => value != item) 
+      : Object.keys(jobSchema).filter(key => prev.includes(key) || key === item)
+    )
+  }
 
   return (
     <div
