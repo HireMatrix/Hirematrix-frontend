@@ -2,21 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
-
-/* Satya: TODO:-
-  1. here in this code we are displaying error for only one field at a time right if multiple it would
-  be nice to use this implementation so modify the error logic it need to be this overwhelming for updating the things
-  please look it that for making this simple you can refer similar kind of implementation in the admin header page like
-  generally we manage to do for active tabs for example in admin header if users tab is active we will display a backgroud 
-  effect right so make a similar kind of thing....!!
-
-  2. also look for some improvements in the handle change function like for now this implementation can look after only each one
-   input element at a time not suitable for managing multiple as this problem faced in the skills section
-
-  3. implemented the skills try to make that skills handle function also handled by this single function, 
-  i have implemented the delete functionality also i hope you can manage the css for that 😊😊 
-*/
-
 const Resumedashboard = () => {
 
   const [activeSection, setActiveSection] = useState(null);
@@ -241,7 +226,10 @@ const handleCertificationArray = () => {
         <div className='information'>
           <div className='col-1-information'>
             <div className='row' onClick={() => toggleSection('personalInformation')}>
-              <h1>Personal Information</h1>
+              <div className='row-info'>
+                <img src='src/assets/addResumePage/pi-icon.png'/>
+                <h1>Personal Information</h1>
+              </div>
               <i className="arrow"></i>
             </div>
             {activeSection === 'personalInformation' && (
@@ -259,6 +247,7 @@ const handleCertificationArray = () => {
                 <div className='input-subrows'>
                   <label className='email'>Email: 
                     <input 
+                    value={resumeData.personalInformation.email}
                       type='text' 
                       onBlur={() => validateFields('personalInformation',['email'])}
                       onChange={(e) => handleChange('personalInformation', 'email', e.target.value)}
@@ -267,6 +256,7 @@ const handleCertificationArray = () => {
                   </label>
                   <label className='number'>Mobile Number: 
                     <input 
+                     value={resumeData.personalInformation.mobileNumber}
                       type='text'
                       onBlur={() => validateFields('personalInformation', ['mobileNumber'])}
                       onChange={(e) => handleChange('personalInformation', 'mobileNumber', e.target.value)}
@@ -296,10 +286,16 @@ const handleCertificationArray = () => {
                   </div>
                 </div>
                 </div>
-                <label>Address<input type='text' onChange={(e) => handleChange('personalInformation', 'address', e.target.value)} /></label>
+                <label>Address
+                  <input
+                    value={resumeData.personalInformation.address}  
+                    type='text' onChange={(e) => handleChange('personalInformation', 'address', e.target.value)}
+                     />
+                </label>
                 <label>Professional Summary:        
                   <br/> 
                   <textarea 
+                     value={resumeData.personalInformation.professionalSummary}
                     
                     onChange={(e) => handleChange('personalInformation', 'professionalSummary', e.target.value)}
                   ></textarea>
@@ -307,39 +303,40 @@ const handleCertificationArray = () => {
               </div>
             )}
             <div className='row' onClick={() => toggleSection('workExperience')}>
-              <h1>Work Experience</h1>
+              <div className='row-info'>
+                <img src='src/assets/addResumePage/work-experience-icon.png'/>
+                <h1>Work Experience</h1>
+              </div>
               <i className="arrow"></i>
             </div>
             {activeSection === 'workExperience' && (
               <div className='dropdown-content'>
                 <label>Company Name: 
                   <input 
+                    value={resumeData.workExperience.companyName}
                     type='text' 
                     onChange={(e) => handleChange('workExperience', 'companyName', e.target.value)} 
                   />
                 </label>
                 <label>Job Title: 
                   <input 
+                    value={resumeData.workExperience.jobTitle}
                     type='text'
                     onChange={(e) => handleChange('workExperience', 'jobTitle', e.target.value)} 
                   />
                 </label>
                 <label>Location:
                   <input 
+                    value={resumeData.workExperience.workLocation}
                     type='text' 
                     onChange={(e) => handleChange('workExperience', 'workLocation', e.target.value)} 
                   />
                 </label>
-                <label>Are you currently working in this company:
-                  <br/>
-                  <div className="currentWorking">
-                    <span className="option">yes</span>
-                    <span className="option">No</span>
-                  </div>
-                </label>
+               
                 <div className='input-subrows'>
                   <label >Start Date
                     <input 
+                      value={resumeData.workExperience.workexpstDate}
                       type='date'  
                       onBlur={() => validateFields('workExperience',['workexpstDate'])}
                       onChange={(e) => handleChange('workExperience', 'workexpstDate', e.target.value)}
@@ -348,6 +345,7 @@ const handleCertificationArray = () => {
                   </label>
                   <label>End Date
                     <input 
+                      value={resumeData.workExperience.workexpendDate}
                       type='date'
                       onBlur={() => validateFields('workExperience', ['workexpendDate'])}
                       onChange={(e) => handleChange('workExperience', 'workexpendDate', e.target.value)}
@@ -358,6 +356,7 @@ const handleCertificationArray = () => {
                 <label>Work Description
                   <br/>
                   <textarea 
+                    value={resumeData.workExperience.WorkDescription}
                     onBlur={() => validateFields('workExperience', ['WorkDescription'])}
                     onChange={(e) => handleChange('workExperience', 'WorkDescription', e.target.value)}
                   ></textarea>
@@ -366,7 +365,10 @@ const handleCertificationArray = () => {
               </div>
             )}
             <div className='row' onClick={() => toggleSection('education')}>
-              <h1>Education</h1>
+              <div className='row-info'>
+                <img src='src/assets/addResumePage/education-icon.png'/>
+                <h1>Education</h1>
+              </div>
               <i className="arrow"></i>
             </div>
             {activeSection === 'education' && (
@@ -374,6 +376,7 @@ const handleCertificationArray = () => {
                 <div className='input-subrows'>
                   <label>10th CollegeName
                       <input
+                      value={resumeData.education.clgName10th}
                     type='text'
                     onBlur={() => validateFields('education', ['clgName10th'])}
                     onChange={(e) => handleChange('education', 'clgName10th', e.target.value)}
@@ -383,6 +386,7 @@ const handleCertificationArray = () => {
                     
                   <label>GPA:
                       <input 
+                        value={resumeData.education.gpa10th}
                         type='text'
                         onBlur={() => validateFields('education',['gpa10th'])}
                         onChange={(e) => handleChange('education', 'gpa10th', e.target.value)}
@@ -391,6 +395,7 @@ const handleCertificationArray = () => {
                   </label>
                   <label >Start Date
                     <input 
+                      value={resumeData.education.stDate10th}
                       type='date' 
                       onBlur={() => validateFields('education',['stDate10th'])}
                       onChange={(e) => handleChange('education', 'stDate10th', e.target.value)}
@@ -399,6 +404,7 @@ const handleCertificationArray = () => {
                   </label>
                   <label>End Date
                     <input 
+                      value={resumeData.education.endDate10th}
                       type='date'
                       onBlur={() => validateFields('education', ['endDate10th'])}
                       onChange={(e) => handleChange('education', 'endDate10th', e.target.value)}
@@ -409,14 +415,16 @@ const handleCertificationArray = () => {
                 <div className='input-subrows'>
                   <label>12th CollegeName
                     <input
-                    type='text'
-                    onBlur={() => validateFields('education', ['clgName12th'])}
-                    onChange={(e) => handleChange('education', 'clgName12th', e.target.value)}
+                      value={resumeData.education.clgName12th}
+                      type='text'
+                      onBlur={() => validateFields('education', ['clgName12th'])}
+                      onChange={(e) => handleChange('education', 'clgName12th', e.target.value)}
                     />
                     {errors.education?.clgName12th && <p className='error'>{errors.education.clgName12th}</p>}
                   </label>
                   <label>GPA:
                     <input 
+                       value={resumeData.education.gpa12th}
                       type='text'
                       onBlur={() => validateFields('education',['gpa12th'])}
                       onChange={(e) => handleChange('education', 'gpa12th', e.target.value)}
@@ -425,6 +433,7 @@ const handleCertificationArray = () => {
                   </label>
                   <label >Start Date
                     <input 
+                       value={resumeData.education.stDate12th}
                       type='date' 
                       onBlur={() => validateFields('education',['stDate12th'])}
                       onChange={(e) => handleChange('education', 'stDate12th', e.target.value)}
@@ -433,6 +442,7 @@ const handleCertificationArray = () => {
                   </label>
                   <label>End Date
                     <input 
+                       value={resumeData.education.endDate12th}
                       type='date'
                       onBlur={() => validateFields('education', ['endDate12th'])}
                       onChange={(e) => handleChange('education', 'endDate12th', e.target.value)}
@@ -443,6 +453,7 @@ const handleCertificationArray = () => {
                 <div className='input-subrows'>
                   <label>Graduate CollegeName
                     <input
+                     value={resumeData.education.clgNameGraduate}
                     type='text'
                     onBlur={() => validateFields('education', ['clgNameGraduate'])}
                     onChange={(e) => handleChange('education', 'clgNameGraduate', e.target.value)}
@@ -452,14 +463,16 @@ const handleCertificationArray = () => {
                       
                   <label>GPA:
                     <input 
+                       value={resumeData.education.gpaGraduate}
                       type='text'
-                      onBlur={() => validateFields('education',['gpaGraduateh'])}
+                      onBlur={() => validateFields('education',['gpaGraduate'])}
                       onChange={(e) => handleChange('education', 'gpaGraduate', e.target.value)}
                     />
                     {errors.education?.gpaGraduateh && <p className="error">{errors.education.gpaGraduateh}</p>}
                   </label>
                   <label >Start Date
                     <input 
+                       value={resumeData.education.stDateGraduate}
                       type='date' 
                       onBlur={() => validateFields('education',['stDateGraduate'])}
                       onChange={(e) => handleChange('education', 'stDateGraduate', e.target.value)}
@@ -468,6 +481,7 @@ const handleCertificationArray = () => {
                   </label>
                   <label>End Date
                     <input 
+                       value={resumeData.education.endDateGraduate}
                       type='date'
                       onBlur={() => validateFields('education', ['endDateGraduate'])}
                       onChange={(e) => handleChange('education', 'endDateGraduate', e.target.value)}
@@ -478,7 +492,10 @@ const handleCertificationArray = () => {
               </div>
             )}
             <div className='row' onClick={() => toggleSection('skills')}>
-              <h1>Skills</h1>
+              <div className='row-info'>
+                <img src='src/assets/addResumePage/skills-icon.png'/>
+                <h1>Skills</h1>
+              </div>
               <i className="arrow"></i>
             </div>
             {activeSection === 'skills' && (
@@ -522,7 +539,10 @@ const handleCertificationArray = () => {
               </div>
             )}
             <div className='row' onClick={() => toggleSection('Certifications')}>
-              <h1>Certifications</h1>
+              <div className='row-info'>
+                <img src='src/assets/addResumePage/certification-icon.png'/>
+                <h1>Certifications</h1>
+              </div>
               <i className="arrow"></i>
             </div>
             {activeSection === 'Certifications' && (
@@ -550,13 +570,17 @@ const handleCertificationArray = () => {
               </div>
             )} 
             <div className='row' onClick={() => toggleSection('Internship')}>
-              <h1>Internship Experience</h1>
+              <div className='row-info'>
+                <img src='src/assets/addResumePage/internship-icon.png'/>
+                <h1>Internship Experience</h1>
+              </div>
               <i className="arrow"></i>
             </div>
             {activeSection === 'Internship' && (
               <div className='dropdown-content'>
                 <label>Company Name
                   <input
+                    value={resumeData.Internship.internCompanyname}
                     type='text' 
                     onBlur={() => validateFields('Internship', ['internCompanyname'])}
                     onChange={(e) => handleChange('Internship', 'internCompanyname', e.target.value)} 
@@ -565,6 +589,7 @@ const handleCertificationArray = () => {
                 </label>
                 <label>Job Title:
                   <input
+                    value={resumeData.Internship.internJobtitle}
                     type='text'
                     onBlur={() => validateFields('Internship', ['internJobtitle'])}
                     onChange={(e) => handleChange('Internship','internJobtitle',e.target.value)}
@@ -573,6 +598,7 @@ const handleCertificationArray = () => {
                 </label>
                 <label>Location:
                   <input 
+                    value={resumeData.Internship.internLocation}
                     type='text' 
                     onChange={(e) => handleChange('Internship', 'internLocation', e.target.value)} 
                   />
@@ -581,6 +607,7 @@ const handleCertificationArray = () => {
                 <div className='input-subrows'>
                   <label className='email'>Start Date 
                     <input 
+                      value={resumeData.Internship.internStartdate}
                       type='date' 
                       onBlur={() => validateFields('Internship',['internStartdate'])}
                       onChange={(e) => handleChange('Internship', 'internStartdate', e.target.value)}
@@ -589,6 +616,7 @@ const handleCertificationArray = () => {
                   </label>
                   <label className='number'>End Date 
                     <input 
+                      value={resumeData.Internship.internEnddate}
                       type='date'
                       onBlur={() => validateFields('Internship', ['internEnddate'])}
                       onChange={(e) => handleChange('Internship', 'internEnddate', e.target.value)}
@@ -599,6 +627,7 @@ const handleCertificationArray = () => {
                 <label>intern Description
                   <br/>
                   <textarea 
+                    value={resumeData.Internship.internDescription}
                     onBlur={() => validateFields('Internship', ['internDescription'])}
                     onChange={(e) => handleChange('Internship', 'internDescription', e.target.value)}
                   ></textarea>
@@ -607,8 +636,12 @@ const handleCertificationArray = () => {
               </div>
             )}     
             <div className='row' onClick={() => toggleSection('Projects')}>
-              <h1>Projects</h1>
+              <div className='row-info'>
+                <img src='src/assets/addResumePage/projects-icon.png'/>
+                <h1>Projects</h1>
+                </div>
               <i className="arrow"></i>
+              
             </div>
             {activeSection === 'Projects' && (
               <div className='dropdown-content'>
@@ -657,51 +690,52 @@ const handleCertificationArray = () => {
             <div className='sub-preview-section2'>
                 <div className="sub2-sec1">
                   <div className="pr-contact-sec">
-                    <h2>CONTACT</h2>
+                    <h1>CONTACT</h1>
                     <p>Address: {resumeData.personalInformation.address}</p>
                     <p><span>Mobile:</span>{resumeData.personalInformation.mobileNumber}</p>
                     <p>Email: {resumeData.personalInformation.email}</p>
                   </div>
                   <div className="pr-education-sec">
-                    <h2>Education</h2>
-                    <p>{resumeData.education.stDate10th} to {resumeData.education.endDate10th}
+                    <h1>EDUCATION</h1>
+                    <p>{resumeData.education.stDate10th}  to {resumeData.education.endDate10th}
                       <br/> 
-                      <span>10th College Name: {resumeData.education.clgName10th}</span>
+                      <span>{resumeData.education.clgName10th}</span><br/>10th
                       <br/>
                       GPA: {resumeData.education.gpa10th}
                     </p>
                     <p>{resumeData.education.stDate12th} to {resumeData.education.endDate12th}
                       <br/>
-                      <span>12th College Name: {resumeData.education.clgName12th}</span>
+                      <span>{resumeData.education.clgName12th}
+                        </span><br/>12th
                       <br/>
                       GPA: {resumeData.education.gpa12th}
                     </p>
                     <p>{resumeData.education.stDateGraduate} to {resumeData.education.endDateGraduate}
                       <br/>
-                      <span>Grauate College Name: {resumeData.education.clgNameGraduate}</span>
+                      <span>{resumeData.education.clgNameGraduate}</span><br/>
+                      Graduation
                       <br/>
                       GPA: {resumeData.education.gpaGraduate}
                     </p>
                   </div>
                   <div className="pr-certification-sec" >
-                    <h2>CERTIFICATIONS</h2>
+                    <h1>CERTIFICATIONS</h1>
                     {
                     arrayCertifications.map((item, index) => (
                       <div key={index}>
-                        <p>c Name: {item.certificationTitle}
-                          <br/>
-                        c Description: {item.certificationDescription}</p>
+                        <li><span> {item.certificationTitle} - </span>{item.certificationDescription}
+                        </li>
                       </div>))
                     }          
                   </div>
                 </div>
                 <div className="sub2-sec2">
-                  <div>
-                    <h2>PROFESSIONAL SUMMARY</h2>
-                    <p style={{whiteSpace:"pre-line"}}>  Summary: {resumeData.personalInformation.professionalSummary} </p>
+                  <div className='pr-ps-sec' >
+                    <h1>PROFESSIONAL SUMMARY</h1>
+                    <p>{resumeData.personalInformation.professionalSummary} </p>
                   </div>
                   <div className='skill_card' >
-                  <h2>SKILLS</h2>
+                  <h1>SKILLS</h1>
                   <div  className='skill_priview'>
                     
                     {
@@ -714,35 +748,35 @@ const handleCertificationArray = () => {
                     }
                   </div> 
                   </div> 
-                  <div>
-                    <h2>WORK EXPERIENCE</h2>
-                    <p>Duration: {resumeData.workExperience.workexpstDate} to {resumeData.workExperience.workexpendDate}</p>
-                    <p>Job Title:{resumeData.workExperience.jobTitle},
-                       Company Name:{resumeData.workExperience.companyName}, 
-                       Location:{resumeData.workExperience.workLocation}</p>
+                  <div className='pr-workexp-sec' >
+                    <h1>WORK EXPERIENCE</h1>
+                    <p>Duration: {resumeData.workExperience.workexpstDate}  to  {resumeData.workExperience.workexpendDate}</p>
+                    <p className='pr-workexp-details'>J T:{resumeData.workExperience.jobTitle},
+                       C N :<span className='workexp-title'>{resumeData.workExperience.companyName}</span>, 
+                       L :{resumeData.workExperience.workLocation}</p>
                     <p>{resumeData.workExperience.WorkDescription}</p>
                   </div>
-                  <div>
-                    <h2>INTERNSHIP EXPERIENCE</h2>
-                    <p>Duration:2025 - 2025 {resumeData.Internship.internStartdate} to {resumeData.Internship.internEnddate}</p>
-                    <p>jobTitle:{resumeData.Internship.internJobtitle},
-                      CompanyName:{resumeData.Internship.internCompanyname},
-                      Location: {resumeData.Internship.internLocation}</p>
-                    <p>descripton:{resumeData.Internship.internDescription}</p>
+                  <div className='pr-intern-sec'>
+                    <h1>INTERNSHIP EXPERIENCE</h1>
+                    <p >Duration :{resumeData.Internship.internStartdate}  to  {resumeData.Internship.internEnddate}</p>
+                    <p className='pr-intern-details'>j T:{resumeData.Internship.internJobtitle},
+                      C N :<span className='intern-title' >{resumeData.Internship.internCompanyname}</span>,
+                      <span >L : {resumeData.Internship.internLocation}</span></p>
+                    <p>W  D:{resumeData.Internship.internDescription}</p>
                   </div>
-                  <div>
-                    <h2>PROJECTS</h2>
+                  <div className='pr-project-sec'>
+                    <h1>PROJECTS</h1>
                    {
                     arrayProjects.map((item, index) => (
                       <div key={index}>
-                        <p>Project Name: {item.projectTitle}</p>
-                        <p>Project Description: {item.projectDescription}</p>
+                        <p className='pr-project-name' >Project Name: {item.projectTitle}</p>
+                        <p>P D : {item.projectDescription}</p>
                         </div>))
                    }
                   </div>
-                  <div>
-                    <h2>REFERENCES</h2>
-                    <p>Role: {resumeData.personalInformation.role}</p>
+                  <div style={{padding:15}}>
+                    <h1>REFERENCES</h1>
+                    
                   </div>
                 </div>
             </div>
