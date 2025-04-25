@@ -1,16 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { FaVideo, FaMicrophone, FaCog, FaMoon, FaPhoneAlt, FaArrowDown, FaSun } from "react-icons/fa";
+import { FaPhoneAlt, FaArrowLeft } from "react-icons/fa";
+import interviewerVideo from "../assets/AiMockInterviewsPage/Interviewer1.mp4";
 
-// import interviewerVideoRef from '../assets/AiMockInterviewsPage/Interviewer1.mp4';
 
 const MockInterview = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const selectedRole = location.state?.selectedRole || "Customer Service Representative";
 
-  // Role questions
- 
   const roleQuestions = {
     "Customer Service Representative": [
       "How do you handle a situation where a customer is very upset and dissatisfied with our service?",
@@ -84,35 +82,156 @@ const MockInterview = () => {
   const questions = roleQuestions[selectedRole] || roleQuestions["Custom Job Description"];
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isVideoAllowed, setIsVideoAllowed] = useState(false);
-  const [isCameraOn, setIsCameraOn] = useState(true);
-  const [isMicOn, setIsMicOn] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [userAnswer, setUserAnswer] = useState("");
+  const [recognitionError, setRecognitionError] = useState("");
+  const [isSpeechRecognitionSupported, setIsSpeechRecognitionSupported] = useState(true);
+  const [isRecognizing, setIsRecognizing] = useState(false);
+  const [shouldRestart, setShouldRestart] = useState(false);
   const userVideoRef = useRef(null);
   const interviewerVideoRef = useRef(null);
   const streamRef = useRef(null);
   const isSpeakingRef = useRef(false);
-  const hasSpokenRef = useRef(false);
+  const recognitionRef = useRef(null);
+  const actionRef = useRef(null);
+  const isButtonClickedRef = useRef(false);
 
-  // Start user video
+
+  useEffect(() => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      setIsSpeechRecognitionSupported(true);
+    } else {
+      setIsSpeechRecognitionSupported(false);
+      setRecognitionError("Speech recognition is not supported in this browser.");
+    }
+
+    return () => {
+      stopSpeechRecog();
+      stopWebcam();
+    };
+  }, []);
+
+  const runSpeechRecog = () => {
+    if (isButtonClickedRef.current) return; 
+    isButtonClickedRef.current = true;
+    setTimeout(() => { isButtonClickedRef.current = false; }, 500);
+
+    setUserAnswer((prev) => prev || "Loading text...");
+    setIsRecognizing(true);
+    setRecognitionError("");
+    setShouldRestart(true);
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognization = new SpeechRecognition();
+    recognization.continuous = true;
+    recognization.interimResults = true;
+    recognization.lang = "en-US";
+
+    recognization.onstart = () => {
+      if (actionRef.current) {
+        actionRef.current.innerHTML = "Listening...";
+      }
+      console.log("Speech recognition started");
+    };
+
+    recognization.onresult = (e) => {
+      let interimTranscript = "";
+      let finalTranscript = userAnswer.replace("Loading text...", "");
+
+      for (let i = e.resultIndex; i < e.results.length; i++) {
+        const transcript = e.results[i][0].transcript;
+        if (e.results[i].isFinal) {
+          finalTranscript += transcript + " ";
+        } else {
+          interimTranscript += transcript;
+        }
+      }
+
+      console.log("Final:", finalTranscript, "Interim:", interimTranscript);
+      setUserAnswer(finalTranscript + interimTranscript);
+      if (actionRef.current && !interimTranscript) {
+        actionRef.current.innerHTML = "";
+      }
+    };
+
+    recognization.onerror = (event) => {
+      console.error("Speech recognition error:", event.error);
+      let errorMessage = "Sorry, I could not understand.";
+      if (event.error === "no-speech" || event.error === "aborted") {
+        errorMessage = "Please speak to provide your answer.";
+        setRecognitionError(errorMessage);
+        if (isVideoAllowed && shouldRestart && !isSpeakingRef.current) {
+          setTimeout(runSpeechRecog, 1000);
+        }
+      } else if (event.error === "not-allowed") {
+        errorMessage = "Microphone permission denied. Please allow microphone access and type your answer below.";
+        setRecognitionError(errorMessage);
+        recognization.stop();
+        setIsRecognizing(false);
+        setShouldRestart(false);
+      } else {
+        setRecognitionError(errorMessage);
+        recognization.stop();
+        setIsRecognizing(false);
+        setShouldRestart(false);
+      }
+    };
+
+    recognization.onend = () => {
+      console.log("Speech recognition stopped");
+      setIsRecognizing(false);
+      if (actionRef.current) {
+        actionRef.current.innerHTML = "";
+      }
+      if (isVideoAllowed && shouldRestart && !isSpeakingRef.current) {
+        setTimeout(runSpeechRecog, 1000);
+      }
+    };
+
+    recognitionRef.current = recognization;
+    try {
+      recognization.start();
+    } catch (err) {
+      console.error("Error starting speech recognition:", err);
+      setRecognitionError("Failed to start speech recognition. Please check microphone permissions.");
+      setIsRecognizing(false);
+      setShouldRestart(false);
+      isButtonClickedRef.current = false;
+    }
+  };
+
+  const stopSpeechRecog = () => {
+    if (isButtonClickedRef.current) return; 
+    isButtonClickedRef.current = true;
+    setTimeout(() => { isButtonClickedRef.current = false; }, 500);
+
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+      recognitionRef.current = null; 
+      setIsRecognizing(false);
+      setShouldRestart(false);
+      if (actionRef.current) {
+        actionRef.current.innerHTML = "";
+      }
+      console.log("Speech recognition stopped manually");
+    }
+  };
+
   const startUserVideo = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
       streamRef.current = stream;
       setIsVideoAllowed(true);
-      setIsCameraOn(true);
-      setIsMicOn(true);
       console.log("Webcam started successfully");
       console.log("Video tracks:", stream.getVideoTracks());
       console.log("Audio tracks:", stream.getAudioTracks());
-      speakQuestion();
-      hasSpokenRef.current = true;
     } catch (err) {
       console.error("Error accessing webcam:", err);
-      alert("Could not access your webcam. Please ensure you have given permission and are running the app in a secure context (e.g., localhost or HTTPS).");
+      alert("Could not access your webcam or microphone. Please ensure you have given permission and are running the app in a secure context (e.g., localhost or HTTPS).");
     }
   };
 
-  // Set the video stream after the component renders
   useEffect(() => {
     if (!isVideoAllowed || !streamRef.current) return;
 
@@ -126,68 +245,53 @@ const MockInterview = () => {
         console.log("Video stream set successfully");
       } else {
         console.log("userVideoRef is still null, retrying...");
-        setTimeout(setVideoStream, 100); 
+        setTimeout(setVideoStream, 100);
       }
     };
 
     setVideoStream();
   }, [isVideoAllowed]);
 
-  // Toggle camera
-  const toggleCamera = () => {
-    if (streamRef.current) {
-      const videoTracks = streamRef.current.getVideoTracks();
-      if (videoTracks.length > 0) {
-        const videoTrack = videoTracks[0];
-        videoTrack.enabled = !videoTrack.enabled;
-        setIsCameraOn(videoTrack.enabled);
-        console.log("Camera toggled:", videoTrack.enabled ? "On" : "Off");
-        if (userVideoRef.current) {
-          userVideoRef.current.srcObject = streamRef.current;
-        }
-      } else {
-        console.error("No video tracks found in stream");
-      }
-    } else {
-      console.error("No stream available to toggle camera");
-    }
-  };
-
-  // Toggle microphone
-  const toggleMic = () => {
-    if (streamRef.current) {
-      const audioTracks = streamRef.current.getAudioTracks();
-      if (audioTracks.length > 0) {
-        const audioTrack = audioTracks[0];
-        audioTrack.enabled = !audioTrack.enabled;
-        setIsMicOn(audioTrack.enabled);
-        console.log("Microphone toggled:", audioTrack.enabled ? "On" : "Off");
-      } else {
-        console.error("No audio tracks found in stream");
-      }
-    } else {
-      console.error("No stream available to toggle microphone");
-    }
-  };
-
   const stopWebcam = () => {
     if (streamRef.current) {
-      streamRef.current.getTracks().forEach((track) => track.stop());
+      streamRef.current.getTracks().forEach((track) => {
+        track.stop();
+        console.log(`Stopped track: ${track.kind}`);
+      });
       streamRef.current = null;
-      console.log("Webcam stopped");
+      console.log("Webcam and microphone stopped");
     }
     setIsVideoAllowed(false);
-    setIsCameraOn(false);
-    setIsMicOn(false);
   };
 
- 
-  const speakQuestion = () => {
+  const playVideo = () => {
+    if (interviewerVideoRef.current) {
+      interviewerVideoRef.current.play().catch((err) => {
+        console.error("Error playing interviewer video:", err);
+      });
+      console.log("Interviewer video started");
+    }
+  };
+
+  const pauseVideo = () => {
+    if (interviewerVideoRef.current) {
+      interviewerVideoRef.current.pause();
+      console.log("Interviewer video paused");
+    }
+  };
+
+  const speakQuestion = async () => {
     if (isSpeakingRef.current) {
       speechSynthesis.cancel();
       isSpeakingRef.current = false;
       console.log("Stopped ongoing speech");
     }
+
+    pauseVideo();
+    stopSpeechRecog();
+    setUserAnswer("");
+
+    await new Promise((resolve) => setTimeout(resolve, 100));
 
     const utterance = new SpeechSynthesisUtterance(questions[currentQuestionIndex]);
     utterance.lang = "en-US";
@@ -196,88 +300,94 @@ const MockInterview = () => {
 
     utterance.onstart = () => {
       isSpeakingRef.current = true;
+      playVideo();
       console.log("Speech started for question:", questions[currentQuestionIndex]);
     };
 
     utterance.onend = () => {
       isSpeakingRef.current = false;
-      hasSpokenRef.current = true;
+      pauseVideo();
       console.log("Speech completed for question:", questions[currentQuestionIndex]);
     };
 
     utterance.onerror = (event) => {
       console.error("Speech error:", event.error);
       isSpeakingRef.current = false;
-      hasSpokenRef.current = true;
+      pauseVideo();
+      console.log("Interviewer video paused due to speech error");
     };
 
     speechSynthesis.speak(utterance);
   };
 
   useEffect(() => {
-    if (!isVideoAllowed || hasSpokenRef.current) return;
-    speakQuestion();
-  }, [isVideoAllowed]);
+    if (isVideoAllowed) {
+      speakQuestion();
+    }
+  }, [isVideoAllowed, currentQuestionIndex]);
 
- 
-  useEffect(() => {
-    if (!isVideoAllowed || hasSpokenRef.current) return;
-    speakQuestion();
-  }, [currentQuestionIndex, questions]);
-
- 
   useEffect(() => {
     return () => {
       stopWebcam();
       speechSynthesis.cancel();
+      stopSpeechRecog();
       isSpeakingRef.current = false;
-      hasSpokenRef.current = false;
-      console.log("Component unmounted, cleaned up webcam and speech");
+      pauseVideo();
+      console.log("Component unmounted, cleaned up webcam, microphone, speech, and recognition");
     };
   }, []);
 
   const handlePrevious = () => {
     if (currentQuestionIndex > 0) {
+      stopSpeechRecog();
+      setUserAnswer("");
       setCurrentQuestionIndex(currentQuestionIndex - 1);
-      hasSpokenRef.current = false;
     }
   };
 
   const handleNext = () => {
     if (currentQuestionIndex < questions.length - 1) {
+      stopSpeechRecog();
+      setUserAnswer("");
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-      hasSpokenRef.current = false;
     }
   };
 
   const handleLeave = () => {
     stopWebcam();
     speechSynthesis.cancel();
+    stopSpeechRecog();
     isSpeakingRef.current = false;
-    hasSpokenRef.current = false;
+    pauseVideo();
     navigate("/ai-mock-interviews/role-selection/InterviewQuestionsPage/InterviewReviewPage");
+  };
+
+  const handleBack = () => {
+    stopWebcam();
+    speechSynthesis.cancel();
+    stopSpeechRecog();
+    isSpeakingRef.current = false;
+    pauseVideo();
+    navigate("/ai-mock-interviews/role-selection");
   };
 
   return (
     <div className={`interview-container ${isDarkMode ? "dark-mode" : "light-mode"}`}>
-      {/* Header Section */}
       <div className="header">
         <div className="header-left">
+          <button className="back-btn" onClick={handleBack}>
+            <FaArrowLeft /> Back
+          </button>
           <h2 className="hire-matrix-title">Hire-Matrix: </h2> <h2>{selectedRole}</h2>
         </div>
         <div className="header-right">
-          <button onClick={toggleCamera}>
-            <FaVideo className={`icon orange-icon ${isCameraOn ? "active" : "inactive"}`} />
-          </button>
           <button className="leave-btn" onClick={handleLeave}>
             <FaPhoneAlt /> Leave
           </button>
         </div>
       </div>
 
-      {/* Main Content Section */}
       <div className="main-content">
-        {/* Left Panel */}
         <div className="left-panel">
           <div className="interviewer-status">
             <p>Job Role <span className="status ready">{selectedRole}</span></p>
@@ -289,25 +399,17 @@ const MockInterview = () => {
                 <div className="video-wrapper">
                   <h4>Interviewer</h4>
                   <video
-                    // ref={interviewerVideoRef}
-                    src="src/assets/AiMockInterviewsPage/Interviewer1.mp4"
-                    autoPlay
+                    ref={interviewerVideoRef}
+                    src={interviewerVideo}
                     loop
                     muted
                     className="interviewer-video"
+                    onError={(e) => console.error("Video failed to load:", e)}
                   />
                 </div>
                 <div className="video-wrapper">
                   <h4>You</h4>
                   <video ref={userVideoRef} autoPlay playsInline className="user-video" />
-                  <div className="video-controls">
-                  <button onClick={toggleCamera}>
-                    <FaVideo className={`icon ${isCameraOn ? "active" : "inactive"}`} />
-                  </button>
-                  <button onClick={toggleMic}>
-                    <FaMicrophone className={`icon ${isMicOn ? "active" : "inactive"}`} />
-                  </button>
-                </div>
                 </div>
               </div>
             ) : (
@@ -319,11 +421,8 @@ const MockInterview = () => {
               </>
             )}
           </div>
-          <div className="transcript-info">
-            
-          </div>
+          <div className="transcript-info"></div>
         </div>
-        {/* Middle Panel: Questions */}
         <div className="middle-panel">
           <div className="panel-header">
             <h3>Questions</h3>
@@ -340,8 +439,6 @@ const MockInterview = () => {
             <p>{questions[currentQuestionIndex]}</p>
           </div>
         </div>
-
-        {/* Right Panel: Thinking to convert User speech to text here */}
         <div className="right-panel">
           <div className="panel-header">
             <h3>Your Answer</h3>
@@ -349,7 +446,36 @@ const MockInterview = () => {
             <p className="status ready">Speech to Text</p>
           </div>
           <div className="panel-content">
-            <p>Thinking to convert User speech to text here</p>
+            {isVideoAllowed && (
+              <div className="speaker">
+                <p ref={actionRef} className="action"></p>
+                <div>
+                  <button onClick={runSpeechRecog} disabled={isRecognizing}>
+                    Start Speaking
+                  </button>
+                  <button onClick={stopSpeechRecog} disabled={!isRecognizing}>
+                    Stop Speaking
+                  </button>
+                </div>
+              </div>
+            )}
+            {!isSpeechRecognitionSupported || recognitionError.includes("not-allowed") ? (
+              <>
+                <p className="error">{recognitionError}</p>
+                <textarea
+                  value={userAnswer}
+                  onChange={(e) => setUserAnswer(e.target.value)}
+                  placeholder="Type your answer here..."
+                  className="answer-textarea"
+                />
+              </>
+            ) : recognitionError.includes("Please speak") ? (
+              <p className="alert">{recognitionError}</p>
+            ) : userAnswer ? (
+              <p>{userAnswer}</p>
+            ) : (
+              <p>Speak your answer, and it will appear here...</p>
+            )}
           </div>
         </div>
       </div>
