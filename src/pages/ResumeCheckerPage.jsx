@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ResumeCheckerIcon3 from '../assets/ResumeChecker/ResumeCheckerIcon-3.gif';
 import ResumeCheckerIcon4 from '../assets/ResumeChecker/ResumeCheckerIcon-4.gif';
@@ -11,27 +11,23 @@ import '../styles/ResumePagesStyles/resumeChecker.scss';
 */
 
 const ResumeCheckerPage = () => {
-  const [showCareerLevel, setShowCareerLevel] = useState(false);
+  // const [showCareerLevel, setShowCareerLevel] = useState(false);
   const [selectedLevel, setSelectedLevel] = useState('');
   const [showUploadSection, setShowUploadSection] = useState(false);
   const navigate = useNavigate();
 
-  const handleUploadClick = () => {
-    setShowCareerLevel(true); 
-  };
-
-  const handleLevelSelect = (level) => {
-    setSelectedLevel(level);
-    setShowCareerLevel(false); 
-    setShowUploadSection(true);
-  };
+  // const handleLevelSelect = (level) => {
+  //   setSelectedLevel(level);
+  //   setShowCareerLevel(false); 
+  //   setShowUploadSection(true);
+  // };
 
   const handleFinalUpload = (event) => {
     const uploadedFile = event.target.files[0];
     if (uploadedFile && (uploadedFile.type === 'application/pdf' || uploadedFile.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')) {
       if (uploadedFile.size <= 2 * 1024 * 1024) {
-        
-        navigate("/ResumeReviewPage", { state: { file: uploadedFile, careerLevel: selectedLevel } });
+        console.log('File uploaded successfully:', uploadedFile)
+        navigate("/ResumeReviewPage", { state: { file: uploadedFile } });
       } else {
         alert('File size exceeds 2MB limit.');
       }
@@ -41,20 +37,20 @@ const ResumeCheckerPage = () => {
   };
 
   const handleCloseModal = () => {
-    setShowCareerLevel(false);
+    // setShowCareerLevel(false);
     setShowUploadSection(false);
-    setSelectedLevel('');
+    // setSelectedLevel('');
   };
 
-  const handleBackToLevelSelection = () => {
-    setShowUploadSection(false);
-    setShowCareerLevel(true);
-  };
+  // const handleBackToLevelSelection = () => {
+  //   setShowUploadSection(false);
+  //   setShowCareerLevel(true);
+  // };
 
   return (
     <div className="resume-checker-page">
       {/* Main Landing Page Content */}
-      <div className={`landing-content ${showCareerLevel || showUploadSection ? 'blurred' : ''}`}>
+      <div className={`landing-content ${showUploadSection ? 'blurred' : ''}`}>
         {/* Section 1: Hero Section */}
         <section className="hero-section">
           <div className="hero-content">
@@ -67,7 +63,7 @@ const ResumeCheckerPage = () => {
               </p>
               <div className="upload-box">
                 <p>Drop your resume here or choose a file.<br />PDF & DOCX only. Max 2MB file size.</p>
-                <button className="btn primary" onClick={handleUploadClick}>
+                <button className="btn primary" onClick={() => setShowUploadSection(true)}>
                   Upload Your Resume
                 </button>
               </div>
@@ -187,7 +183,7 @@ const ResumeCheckerPage = () => {
           <p>Upload your resume and you’ll get a personalized email with an actionable tasklist.</p>
           <div className="upload-box">
             <p>Drop your resume here or choose a file.<br />PDF & DOCX only. Max 2MB file size.</p>
-            <button className="btn primary" onClick={handleUploadClick}>
+            <button className="btn primary" onClick={() => setShowUploadSection(true)}>
               Upload Your Resume
             </button>
           </div>
@@ -195,7 +191,7 @@ const ResumeCheckerPage = () => {
       </div>
 
       {/* Career Level Selection Modal  */}
-      {showCareerLevel && (
+      {/* {showCareerLevel && (
         <div className="modal-overlay">
           <div className="modal-content career-level-section">
             <button className="close-btn" onClick={handleCloseModal}>✖</button>
@@ -235,20 +231,20 @@ const ResumeCheckerPage = () => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
 
       {/* Resume Upload Modal */}
       {showUploadSection && (
         <div className="modal-overlay">
           <div className="modal-content resume-upload-section">
             <div className="modal-header">
-              <button className="back-btn" onClick={handleBackToLevelSelection}>←</button>
+              {/* <button className="back-btn" onClick={handleBackToLevelSelection}>←</button> */}
               <button className="close-btn" onClick={handleCloseModal}>✖</button>
             </div>
             {/* Upload Resume */}
             <div className="upload-section">
               <h1>Upload Your Resume</h1>
-              <p>Career Level: {selectedLevel}</p>
+              {/* <p>Career Level: {selectedLevel}</p> */}
               <div className="upload-box">
                 <div className="upload-area">
                   <span className="cloud-icon">☁️</span>
