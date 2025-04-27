@@ -29,7 +29,6 @@ const useResumeReview = () => {
     }, [])
 
     const sendResumeForAnalysis = (resume) => {
-        console.log(resume);
         if(socket.connected && isConnectedRef.current) {
             socket.emit("analyze_resume", resume);
         } else {

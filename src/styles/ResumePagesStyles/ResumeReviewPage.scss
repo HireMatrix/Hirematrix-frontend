@@ -59,18 +59,13 @@
     width: 100%; 
     height: 100vh; 
     padding: 50px;
-    box-sizing: border-box; 
 
     .review-left {
-      flex: 1;
-      min-width: 300px;
+      width: 50%;
       display: flex;
       flex-direction: column;
       gap: 20px;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: #ff750c #1a1a3d;
-      padding-top: 60vh;
+      margin-top: 100vh;
 
       &::-webkit-scrollbar {
         width: 8px;
@@ -177,9 +172,8 @@
     }
 
     .review-right {
-      flex: 1;
       height: 500px;
-      min-width: 300px;
+      width: 50%;
       background: #fff;
       color: #333;
       padding: 20px;

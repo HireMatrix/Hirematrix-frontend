@@ -12,7 +12,7 @@ const ResumeReviewPage = () => {
   const { file } = location.state || {};
   const { status, sendResumeForAnalysis, resumeResult } = useResumeReview();
 
-  console.log(resumeResult);
+  console.log(resumeResult)
 
   const [numPages, setNumPages] = useState(null);
 
@@ -42,8 +42,6 @@ const ResumeReviewPage = () => {
       socket.off('connect');
     };
   }, [file]);
-
-  console.log(resumeResult?.resume_score)
 
   return (
     <div className="resume-review-page">
@@ -79,7 +77,11 @@ const ResumeReviewPage = () => {
                   <h3>Top Fixes</h3>
                   <ul>
                     {resumeResult?.grammar_issues.map((detail, index) => (
-                      <li key={index}>{detail}</li>
+                      <li key={index}>
+                        <p>Sentence: {detail?.sentence}</p>
+                        <p>Issue: {detail?.issue}</p>
+                        <p>Suggested Update: {detail?.updatedSentence}</p>
+                      </li>
                     ))}
                   </ul>
                 </div>
