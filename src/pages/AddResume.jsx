@@ -128,6 +128,14 @@ const Resumedashboard = () => {
   const handleDeleteSkill = (index) => {
     setArraySkills((prev) => prev.filter((_, i) => i != index))
   }
+  const handleDeleteProject = (index) =>{
+    setArrayProjects((prev) => prev.filter((_, i) => i != index))
+     
+  }
+
+  const handleDeleteCertificate = (index) => {
+    setArrayCertifications((prev) => prev.filter((_, i) => i != index))
+  }
 
   const handleProjectTitle =(e) => {
     if(errors.projects?.projectTitle) {
@@ -532,7 +540,7 @@ const handleCertificationArray = () => {
                         <p>{item.skill} </p>
                         <span className='skill_level' >{item.level}</span>
                       </div>
-                      <img className='remove_skillicon' onClick={() => handleDeleteSkill(index)} src='src\assets\addResumePage\remove-skill.png' />
+                      <img className='remove_itemicon' onClick={() => handleDeleteSkill(index)} src='src\assets\addResumePage\remove-skill.png' />
                     </div>
                   ))
                 }</div>
@@ -567,6 +575,15 @@ const handleCertificationArray = () => {
                   onClick={handleCertificationArray}
                   >Add
                 </button>
+                <div className='CandP-container' >
+                  {
+                    arrayCertifications.map((item, index) => (
+                      <div className='CandD-subcontainer'  key={index} >
+                        <p>{item.certificationTitle}</p>
+                        <img className='remove_itemicon' onClick={() => handleDeleteCertificate(index)} src='src\assets\addResumePage\remove-skill.png' />
+                        </div>))
+                    }
+                </div>
               </div>
             )} 
             <div className='row' onClick={() => toggleSection('Internship')}>
@@ -657,7 +674,6 @@ const handleCertificationArray = () => {
                 <label>Project Description
                   <br/>
                   <textarea
-                 
                   // onBlur={() => validateFields('Projects', ['projectDescription'])}
                     // onChange={(e) => handleChange('Projects','projectDescription',e.target.value)}
                     onChange={handleProjectDescription}>
@@ -669,6 +685,15 @@ const handleCertificationArray = () => {
                   onClick={handleProjectArray}
                   >Add
                 </button>
+                <div className='CandP-container'  >
+                {
+                    arrayProjects.map((item, index) => (
+                      <div  className='CandD-subcontainer'  key={index}>
+                        <p className='pr-project-name' >{item.projectTitle}</p>
+                        <img className='remove_itemicon' onClick={() => handleDeleteProject(index)} src='src\assets\addResumePage\remove-skill.png' />
+                      </div>))
+                   }
+              </div>
               </div>
             )}     
           </div>
@@ -751,18 +776,18 @@ const handleCertificationArray = () => {
                   <div className='pr-workexp-sec' >
                     <h1>WORK EXPERIENCE</h1>
                     <p>Duration: {resumeData.workExperience.workexpstDate}  to  {resumeData.workExperience.workexpendDate}</p>
-                    <p className='pr-workexp-details'>J T:{resumeData.workExperience.jobTitle},
-                       C N :<span className='workexp-title'>{resumeData.workExperience.companyName}</span>, 
-                       L :{resumeData.workExperience.workLocation}</p>
+                    <p className='pr-workexp-details'>{resumeData.workExperience.jobTitle},
+                       <span className='workexp-title'> {resumeData.workExperience.companyName}</span>,<span> {resumeData.workExperience.workLocation}</span> 
+                       </p>
                     <p>{resumeData.workExperience.WorkDescription}</p>
                   </div>
                   <div className='pr-intern-sec'>
                     <h1>INTERNSHIP EXPERIENCE</h1>
                     <p >Duration :{resumeData.Internship.internStartdate}  to  {resumeData.Internship.internEnddate}</p>
-                    <p className='pr-intern-details'>j T:{resumeData.Internship.internJobtitle},
-                      C N :<span className='intern-title' >{resumeData.Internship.internCompanyname}</span>,
-                      <span >L : {resumeData.Internship.internLocation}</span></p>
-                    <p>W  D:{resumeData.Internship.internDescription}</p>
+                    <p className='pr-intern-details'>{resumeData.Internship.internJobtitle},
+                      <span className='intern-title' > {resumeData.Internship.internCompanyname}</span>,
+                      <span > {resumeData.Internship.internLocation}</span></p>
+                    <p>{resumeData.Internship.internDescription}</p>
                   </div>
                   <div className='pr-project-sec'>
                     <h1>PROJECTS</h1>
@@ -770,7 +795,7 @@ const handleCertificationArray = () => {
                     arrayProjects.map((item, index) => (
                       <div key={index}>
                         <p className='pr-project-name' >Project Name: {item.projectTitle}</p>
-                        <p>P D : {item.projectDescription}</p>
+                        <p> {item.projectDescription}</p>
                         </div>))
                    }
                   </div>

@@ -52,7 +52,7 @@
     margin:0px 10px 10px;
     padding: 0px 15px;
     border: solid 1px rgb(255, 111, 0);
-    > .remove_skillicon{
+    > .remove_itemicon{
       cursor:pointer;
     }
     > .skillpart{
@@ -68,7 +68,26 @@
       
     }
   }
+  
+}
+.CandP-container{
+  display: flex;
+  overflow:scroll;
 
+  >.CandD-subcontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin:20px 10px 10px;
+    padding: 0px 15px;
+    border: solid 1px rgb(255, 111, 0);
+    > .remove_itemicon{
+      cursor:pointer;
+    }
+    
+  }
 }
 
 .resume-dashboard #skill, 
@@ -192,24 +211,15 @@
   }
     &:hover {
     transition: all 0.3s ease-in-out ;
-    font-size: 1.3rem;
-    padding: 12px;
-    
-    
+    box-shadow: #ff5e00 1px 2px 2px 1px ;
     color: var.$main-theme-color;
     background-color: transparent;
     border: 1px solid var.$main-theme-color;
-    .row-info{
-      img{
-        height: 34px;
-        transition: all 0.3s ease-in-out ;
-
-      }
-    }
     }
     > .arrow {
       transition:0.26s ;
       border-color:rgb(255, 138, 4);;
+      
     }
 }
 
@@ -261,7 +271,6 @@
   outline: none;
   border-radius: 5px;
   padding: 10px;
-  
 }
 
 .resume-dashboard input[type='text']:focus,
@@ -440,7 +449,6 @@
               margin-bottom: 5px;
           }
           > .pr-ps-sec{
-            
             padding: 15px;
             p{
               margin-top: 5px;
@@ -494,10 +502,7 @@
             >.pr-project-name{
               font-weight: bold;
             }
-           
           }
-
-         
         } 
       }
     } 

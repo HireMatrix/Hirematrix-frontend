@@ -16,15 +16,6 @@ const ResumeBuilderPage = () => {
     <div className="resume-builder-page-main-container">
       <header className="resumeBHead">
         <h1 className="resume-builder-h1">JobReady Toolkit</h1>
-        <nav id="resume-builder-navbar">
-          <ul>
-            <li className="resume-builder-list">
-              <a href="#" className="active">
-                Resumes
-              </a>
-            </li>
-          </ul>
-        </nav>
       </header>
         <div className="content">
           <img
@@ -34,7 +25,7 @@ const ResumeBuilderPage = () => {
             loading="lazy"
           />
           <h2>Create your best resume to advance career</h2>
-          <p>Build from scratch or pre-fill it with LinkedIn, or Apna profile</p>
+          <p>Build from scratch </p>
           <button
             className="resume-builder-btn"
             onClick={() => navigate("/resume-dashboard")}
@@ -50,7 +41,7 @@ const ResumeBuilderPage = () => {
             loading="lazy"
           />
           <h3>Your Resumes</h3>
-          <p>Where your skills and experiences truly shine through!</p>
+          <p>Where your unique talents, skills, and extensive expertise truly shine and stand out.</p>
           <button>Explore Resumes</button>
         </div>
 
