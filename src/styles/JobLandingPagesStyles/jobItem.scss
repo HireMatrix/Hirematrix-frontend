@@ -1,23 +1,25 @@
+@use '../_variables.scss' as var;
 .apply-job-section-main-container{
     display: flex;
     justify-content: center;
-    background-color: rgb(239, 239, 240);
+    background-color: var.$background-color;
     min-height: 100vh;
     width: 100vw;
     overflow-y: auto;
     padding-top: 11vh;
     padding-bottom: 3vh;
+    color:rgb(235, 235, 235);
 }
 
 .applyjob-main-container{
     border-radius: 10px;
     margin-top: 2%;
     padding: 15px;
-    
     width: 660px;
     display: flex;
     flex-direction: column; 
-    background-color: rgb(255, 255, 255);    
+    background-color: var.$background-color;
+    border: 1px solid var.$box-color-thick;  
 }
 
 .applyjob-sub-container1{
@@ -27,7 +29,7 @@
 .companys-icon1{
     width: 40px;
     height: 40px;
-    background-color: rgb(233, 233, 233);
+    background-color: rgb(218, 218, 218);
     padding: 5px;
     border-radius: 10px;
  
@@ -75,12 +77,13 @@
 }
 
 .applyjob-sub-container4{
-    background-color: rgb(239, 239, 240);
+    background-color: var.$background-color;
+    border: 1px solid var.$box-color-thick; 
     display: flex;
     flex-direction: row;
     padding:10px;
+    margin-top: 3px;
     border-radius: 10px;
-
 }
 .applyjob-sub-container4-1{
     
@@ -104,7 +107,8 @@
     margin-bottom: 10px;
 }
 .applyjob-sub-container5-1{
-    background-color:  rgb(239, 239, 240);
+    background-color: var.$background-color;
+    border: 1px solid var.$box-color-thick; 
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -113,7 +117,6 @@
     padding:4px;
     height: 23px;
     border-radius: 7px; 
-    
 }
 .applyjob-sub-container5-1 p{
     font-size: 13px;
@@ -122,20 +125,28 @@
     color:rgb(160, 160, 160);
 }
 .apply-btn{
-    background-color: rgb(57, 147, 103);
+    border: 0 solid grey;
+    background-color: rgb(255, 111, 0);
     height: 44px;
     width: 82%;
-    color: white;
+    color: rgb(248, 248, 248);
     font-family: "roboto" sans-serif;
     font-weight: 600;
     font-size: 15px;
     margin-right: 8px;
     border-style: none;
     border-radius: 7px;
+    &:hover {
+        background-color: transparent;
+        border: 1px solid var.$main-theme-color;
+        color: var.$main-theme-color;
+        cursor: pointer;
+    }
     
 }
 .share-btn{
-    background-color: rgb(255, 255, 255);
+    border: 0 solid grey;
+    background-color: rgb(255, 111, 0);
     height: 44px;
     width: 16%;
     border-radius: 7px;
@@ -143,15 +154,21 @@
     font-family: "roboto" sans-serif;
     font-weight: 600;
     font-size: 15px;
-    border-color: rgb(52, 156, 102);
-    color:  rgb(52, 156, 102);
+    color:  rgb(255, 255, 255);
     border-width: 1.5px;
+    &:hover {
+        background-color: transparent;
+        border: 1px solid var.$main-theme-color;
+        color: var.$main-theme-color;
+        cursor: pointer;
+    }
 }
 .job-hilights-section{
     display: flex;
     flex-direction: column;
     column-gap: 0px;
-    background-color:rgb(198, 213, 255);
+    background-color: var.$background-color;
+    border: 1px solid var.$box-color-thick; 
     padding-top: 20px;
     border-radius: 10px;
     padding-left: 20px;
@@ -188,12 +205,12 @@
 .job-description-section p{
     font-family: "roboto";
     font-size: 15px;
-    color: rgb(35, 35, 35);
+    color: rgb(236, 236, 236);
 }
 .list-part li{
     font-family: roboto;
     font-size: 15px;
-    color:rgb(70, 70, 70);
+    color:grey;
 }
 .job-down-section h1{
     font-size: 18px;
@@ -238,7 +255,9 @@
     padding: 15px;
     display: flex;
     flex-direction: column; 
-    background-color: rgb(255, 255, 255);   
+    background-color: var.$background-color;
+    border: 1px solid var.$box-color-thick;  
+    
 }
 .applyjob-sidesub-container1{
     display: flex;
@@ -303,7 +322,8 @@
     margin-bottom: 15px;
 }
 .applyjob-sidesub-container5-1{
-    background-color:  rgb(239, 239, 240);
+     background-color: var.$background-color;
+    border: 1px solid var.$box-color-thick;  
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -332,7 +352,8 @@
     padding: 15px;
     display: flex;
     flex-direction: column; 
-    background-color: rgb(255, 255, 255);   
+    background-color: var.$background-color;
+    border: 1px solid var.$box-color-thick; 
 }
 
 .small-icons{
