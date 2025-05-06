@@ -1,3 +1,5 @@
+@use '../_variables.scss' as var;
+
 .resume-review-page {
   font-family: 'Poppins', sans-serif;
   background-image: radial-gradient(closest-side, rgba(255, 237, 70, 0.353), #000000); 
@@ -62,7 +64,7 @@
 
     .review-left {
       width: 50%;
-      height: 50%;
+      height: 75%;
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -85,92 +87,288 @@
         background: #292929;
       }
 
+
+      //----------------------Score Section Css-----------------//
+
       .score-section {
         display: flex;
-        gap: 20px;
-
+        gap: 28px; 
+        padding: 28px; 
+        background: rgba(255, 255, 255, 0.15); 
+        border-radius: 10px; 
+        border: 1px solid rgba(255, 255, 255, 0.2); 
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+        transition: box-shadow 0.3s ease;
+      
+        &:hover {
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+      
         .score-circle {
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          width: 100px;
-          height: 100px;
+          width: 110px; 
+          height: 110px;
           border-radius: 50%;
-          border: 5px solid #ff750c;
+          border: 6px solid #ff750c; 
           background: #fff;
           color: #333;
-          font-size: 24px;
+          font-size: 28px; 
           font-weight: 700;
-
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); 
+          transition: transform 0.3s ease;
+      
+          &:hover {
+            transform: scale(1.05); 
+          }
+      
           .score-label {
-            font-size: 12px;
-            font-weight: 400;
+            font-size: 13px; 
+            font-weight: 500; 
+            margin-top: 6px;
+            text-transform: uppercase;
+            color: #666; 
           }
         }
-
+      
         .score-details {
           flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
 
           h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
+            font-size: 26px; 
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0; 
           }
-
-          p {
-            font-size: 16px;
-            color: #ccc;
-            margin-bottom: 10px;
-          }
-
+      
           h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
+            font-size: 22px; 
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0;
           }
-
+      
+          p {
+            font-size: 18px; 
+            line-height: 1.6; 
+            color: #ccc; 
+            margin-bottom: 0;
+          }
+      
           .score-bar {
-            width: 100%;
-            height: 10px;
             background: #ccc;
             border-radius: 5px;
             overflow: hidden;
+            height: 10px !important;
+            padding: 0 !important;
+            border: 0 solid grey !important;
+            box-shadow: 0 !important;
+            transition: unset !important;
 
             .score-fill {
               height: 100%;
               background: linear-gradient(to right, #ff0000, #00ff00);
               transition: width 0.5s ease;
+              padding: 0 !important;
+              border: 0 solid grey !important;
+              box-shadow: 0 !important;
+              transition: unset !important;
             }
           }
         }
       }
 
-      .issues-section,
-      .improvement-section {
-        h3 {
-          font-size: 20px;
-          margin-bottom: 10px;
+      //----------------- Resume Issues Section ------------//
+      .issues-section {
+        padding: 24px; 
+        background: rgba(255, 255, 255, 0.15); 
+        border-radius: 10px; 
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+        transition: box-shadow 0.3s ease;
+      
+        &:hover {
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3); 
         }
-
+      
+        h3 {
+          font-size: 22px;
+          font-weight: 600; 
+          color: #fff; 
+          margin-bottom: 16px; 
+          border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+          padding-bottom: 8px; 
+        }
+      
         ul {
           list-style: none;
           padding: 0;
-
+          margin: 0;
+      
           li {
-            font-size: 14px;
-            color: #ccc;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
+            font-size: 15px; 
+            color: #ccc; 
+            margin-bottom: 16px; 
+            padding-left: 28px; 
+            position: relative;
+            transition: color 0.3s ease;
+      
+            &:hover {
+              color: #fff;
+            }
+      
             &::before {
-              content: "⚠";
-              color: #ff750c;
+              content: "⚠"; 
+              color: #ff750c; 
+              position: absolute;
+              left: 0;
+              font-size: 18px; 
+              line-height: 1.2;
+            }
+      
+            p {
+              margin: 4px 0;
+              line-height: 1.6; 
+              &:first-child {
+                font-weight: 500; 
+                color: #fff; 
+              }
+      
+              &:nth-child(2) {
+                font-style: italic; 
+                color: #bbb; 
+              }
+      
+              &:last-child {
+                font-weight: 400; 
+                color: #ccc; 
+                padding-left: 16px; 
+                position: relative;
+      
+                &::before {
+                  content: "➔";
+                  color: #ff750c; 
+                  position: absolute;
+                  left: 0;
+                  font-size: 14px;
+                }
+              }
             }
           }
         }
       }
     }
+
+    //----------------- Issues Improvement, Skills, etc..------------//
+    .improvement-section {
+      padding: 24px; 
+      background: rgba(255, 255, 255, 0.15); 
+      border-radius: 10px; 
+      border: 1px solid rgba(255, 255, 255, 0.2); 
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+      transition: box-shadow 0.3s ease;
+    
+      &:hover {
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3); 
+      }
+    
+      h3 {
+        font-size: 22px; 
+        font-weight: 600; 
+        color: #fff; 
+        margin-bottom: 16px; 
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+        padding-bottom: 8px; 
+      }
+    
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    
+        li {
+          font-size: 15px; 
+          color: #ccc;
+          margin-bottom: 16px; 
+          padding-left: 28px; 
+          position: relative;
+          line-height: 1.6; 
+          transition: color 0.3s ease;
+    
+          &:hover {
+            color: #fff; 
+          }
+    
+          &::before {
+            content: "➔"; 
+            color: #ff750c; 
+            position: absolute;
+            left: 0;
+            font-size: 16px; 
+            line-height: 1.2;
+          }
+        }
+      }
+    }
+
+    // -------------------------Left Content--------------------------------//
+    .review-left div {
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: box-shadow 0.3s ease;
+    
+      &:hover {
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+      }
+    
+      h3 {
+        font-size: 22px;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 8px;
+      }
+    
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    
+        li {
+          font-size: 15px;
+          color: #ccc;
+          margin-bottom: 16px;
+          padding-left: 28px;
+          position: relative;
+          line-height: 1.6;
+          transition: color 0.3s ease;
+    
+          &:hover {
+            color: #fff;
+          }
+    
+          &::before {
+            content: "✓";
+            color: #ff750c;
+            position: absolute;
+            left: 0;
+            font-size: 16px;
+            line-height: 1.2;
+          }
+        }
+      }
+    }
+    
+    // -------------------------- Right Content --------------------------//
 
     .review-right {
       height: 500px;
@@ -226,5 +424,20 @@
         }
       }
     }
+  }
+}
+
+.skills-section > ul {
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+.skills-section > ul > li {
+  background-color: var.$main-theme-color;
+  margin: 0 3px;
+  border-radius: 5px;
+  padding: 5px 12px !important;
+  &::before {
+    content: "" !important;
   }
 }

@@ -125,7 +125,7 @@ const ResumeReviewPage = () => {
             }
             {
               resumeResult?.skills_detected?.length > 0 && (
-                <div>
+                <div className="skills-section">
                   <h3>Detected Skills</h3>
                   <ul>
                     {resumeResult?.skills_detected.map((strength, index) => (

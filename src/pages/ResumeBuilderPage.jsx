@@ -26,7 +26,7 @@ const ResumeBuilderPage = () => {
           />
           <h2>Create your best resume to advance career</h2>
           <p>Build from scratch </p>
-          <button
+          <button 
             className="resume-builder-btn"
             onClick={() => navigate("/resume-dashboard")}
           >
@@ -42,7 +42,7 @@ const ResumeBuilderPage = () => {
           />
           <h3>Your Resumes</h3>
           <p>Where your unique talents, skills, and extensive expertise truly shine and stand out.</p>
-          <button>Explore Resumes</button>
+          <button onClick={() => navigate("/resume-dashboard")} >Explore Resumes</button>
         </div>
 
         <div className="card">
@@ -51,12 +51,12 @@ const ResumeBuilderPage = () => {
             alt="Analysis Icon"
             loading="lazy"
           />
-          <h3>ATPC Score</h3>
+          <h3>ATS Score</h3>
           <p>
             Review your resume for errors and unlock expert insights to elevate
             your application!
           </p>
-          <button>Check your resume score</button>
+          <button onClick={() => navigate("/resume-checker")} >Check your resume score</button>
         </div>
 
         <div className="card">
