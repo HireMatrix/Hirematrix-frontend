@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+
 
 const Resumedashboard = () => {
 
@@ -24,7 +26,7 @@ const Resumedashboard = () => {
     Project: {},
   });
  
-
+  const navigate = useNavigate();
   const uploadimgId=useRef(null)
   const[errors,setErrors] =useState({})
   const printRef=React.useRef(null);
@@ -224,7 +226,7 @@ const handleCertificationArray = () => {
     <div className="resume-dashboard">
       <div className='header'>
         <div className='container'>
-          <h1 id='resume'  className='h1'>Resume Analysis</h1>
+          <h1 id='resume' onClick={() => navigate("/resume-checker")} className='h1'>Resume Analysis</h1>
           <h1 id='template' className='h1'>Templates</h1>
           <h1 id='download' onClick={handleDownloadPdf} className='h1'>Download</h1>
         </div>
