@@ -1,7 +1,22 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { blogs } from "../../assets/blogs"; 
+import Blog1 from "../../assets/BlogsPage/Blog1.jpg";
+import Blog2 from "../../assets/BlogsPage/Blog2.png";
+import Blog3 from "../../assets/BlogsPage/Blog3.webp";
+import Blog6 from "../../assets/BlogsPage/Blog6.png";
+import Blog7 from "../../assets/BlogsPage/Blog7.avif";
+import Blog8 from "../../assets/BlogsPage/Blog8.webp";
 
+const imageMap = {
+  Blog1: Blog1,
+  Blog2: Blog2,
+  Blog3: Blog3,
+  Blog6: Blog6,
+  Blog7: Blog7,
+  Blog8: Blog8
+  // Add more like Blog2: Blog2 if needed
+};
 const BlogPage = () => {
   const navigate = useNavigate();
 
@@ -59,12 +74,8 @@ const BlogPage = () => {
               aria-label={`View blog post: ${blog.title}`}
             >
               <img 
-                src={blog.image} 
+                src={imageMap[blog.image] || blog.image} 
                 alt={blog.title} 
-                loading="lazy"
-                onError={(e) => {
-                  e.target.src = "path/to/fallback-image.jpg";
-                }}
               />
               <div className="blog-info">
                 <span className="blog-author">{blog.author}</span>
