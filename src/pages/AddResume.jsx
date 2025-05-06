@@ -22,7 +22,6 @@ const Resumedashboard = () => {
     Certifications:{},
     Internship: {},
     Project: {},
-   
   });
  
 
@@ -710,7 +709,7 @@ const handleCertificationArray = () => {
                   />
                 )
               }
-              <p>Dandamudi Satya Nikith{resumeData.personalInformation.fullName}</p>
+              <p>{resumeData.personalInformation.fullName}</p>
             </div>
             <div className='sub-preview-section2'>
                 <div className="sub2-sec1">

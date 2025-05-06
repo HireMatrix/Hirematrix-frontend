@@ -72,7 +72,7 @@ const ResumeReviewPage = () => {
               </div>
             </div>
             {
-              resumeResult?.grammar_issues.length > 0 && (
+              resumeResult?.grammar_issues?.length > 0 && (
                 <div className="issues-section">
                   <h3>Top Fixes</h3>
                   <ul>
@@ -88,7 +88,7 @@ const ResumeReviewPage = () => {
               )
             }
             {
-              resumeResult?.suggestions.length > 0 && (
+              resumeResult?.suggestions?.length > 0 && (
                 <div className="improvement-section">
                   <h3>Steps to increase your score</h3>
                   <ul>
@@ -100,7 +100,7 @@ const ResumeReviewPage = () => {
               )
             }
             {
-              resumeResult?.strengths.length > 0 && (
+              resumeResult?.strengths?.length > 0 && (
                 <div>
                   <h3>Strengths</h3>
                   <ul>
@@ -112,7 +112,7 @@ const ResumeReviewPage = () => {
               )
             }
             {
-              resumeResult?.weaknesses.length > 0 && (
+              resumeResult?.weaknesses?.length > 0 && (
                 <div>
                   <h3>Weaknesses</h3>
                   <ul>
@@ -124,7 +124,7 @@ const ResumeReviewPage = () => {
               )
             }
             {
-              resumeResult?.skills_detected.length > 0 && (
+              resumeResult?.skills_detected?.length > 0 && (
                 <div>
                   <h3>Detected Skills</h3>
                   <ul>
@@ -136,7 +136,7 @@ const ResumeReviewPage = () => {
               )
             }
             {
-              resumeResult?.job_titles_detected.length > 0 && (
+              resumeResult?.job_titles_detected?.length > 0 && (
                 <div>
                   <h3>Detected Job Titles</h3>
                   <ul>
